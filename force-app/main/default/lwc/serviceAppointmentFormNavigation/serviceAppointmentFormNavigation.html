@@ -1,0 +1,20 @@
+<template>
+        <div class="button-container slds-m-top_medium slds-text-align_center">
+            <button 
+            onclick={handleConfirm}
+            disabled={isButtonDisabled} 
+            class="slds-button slds-button_success slds-m-horizontal_small"
+            style="color: white;border-color: transparent">
+            
+            {confirmLabel}
+            </button>
+             
+            <button 
+            onclick={handleDecline}
+            class="slds-button slds-button_destructive slds-m-horizontal_small"
+            style="color: white;border-color: transparent">
+            {declineLabel}
+            </button>
+           
+        </div>
+</template>

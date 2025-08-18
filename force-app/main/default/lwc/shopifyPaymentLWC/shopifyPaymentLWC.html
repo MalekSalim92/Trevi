@@ -1,0 +1,26 @@
+<!-- shopifyPayNow.html -->
+<template>
+    <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-center slds-p-around_medium">
+        
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-text-align_center">
+                <lightning-spinner alternative-text="Processing" size="small"></lightning-spinner>
+             </div>
+        </template>
+        
+    
+        
+        <!-- Pay Now Button (Regular Mode Only) -->
+        <template if:true={showButton}>
+            <lightning-button
+                label="Pay Now"
+                variant="brand"
+                onclick={handlePayNowClick}
+                disabled={isLoading}
+                class="slds-m-top_small">
+            </lightning-button>
+        </template>
+        
+    </div>
+</template>

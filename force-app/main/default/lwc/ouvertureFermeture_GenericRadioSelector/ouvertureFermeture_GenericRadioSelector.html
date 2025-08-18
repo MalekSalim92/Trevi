@@ -1,0 +1,124 @@
+<template>
+    <div class="container">
+        <!-- Title Section -->
+        <div class="title-section">
+            <h2 class="component-title">{componentTitle}</h2>
+        </div>
+
+        <!-- Loading State -->
+        <template if:true={isLoading}>
+            <div class="loading-container">
+                <lightning-spinner alternative-text="Loading options..." size="medium"></lightning-spinner>
+                <p class="loading-text">Loading options...</p>
+            </div>
+        </template>
+
+        <!-- Error State -->
+        <template if:true={hasError}>
+            <div class="error-container">
+                <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                <p class="error-message">{errorMessage}</p>
+            </div>
+        </template>
+
+        <!-- Options Display -->
+        <template if:true={showOptions}>
+            <div class="options-container">
+                <template for:each={options} for:item="option">
+                    <div key={option.value} class="option-wrapper">
+                        <div class="option-content">
+                            <!-- Radio Button Section -->
+                            <div class="radio-section">
+                                <input type="radio"
+                                       id={option.value}
+                                       name="metadataSelection"
+                                       value={option.value}
+                                       checked={option.checked}
+                                       required
+                                       class="radio-input"
+                                       onchange={handleSelection} />
+                                <label for={option.value} class="radio-label">
+                                    <span class="radio-button"></span>
+                                    <span class="label-text">{option.label}</span>
+                                </label>
+                            </div>
+                            
+                            <!-- Image Section -->
+                            <div class="image-section">
+                                <template if:true={option.image}>
+                                    <img src={option.image}
+                                         alt={option.label}
+                                         class="option-image" 
+                                         onerror={handleImageError} />
+                                </template>
+                                <template if:false={option.image}>
+                                    <div class="placeholder-image">
+                                        <lightning-icon icon-name="utility:image" size="large" variant="brand"></lightning-icon>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Size Options Display (Conditional) -->
+        <template if:true={showSizeOptions}>
+            <div class="size-section">
+                <h3 class="size-title">Choose Size</h3>
+                
+                <!-- Size Loading State -->
+                <template if:true={isSizeLoading}>
+                    <div class="loading-container">
+                        <lightning-spinner alternative-text="Loading sizes..." size="small"></lightning-spinner>
+                        <p class="loading-text">Loading sizes...</p>
+                    </div>
+                </template>
+
+                <!-- Size Error State -->
+                <template if:true={hasSizeError}>
+                    <div class="error-container">
+                        <lightning-icon icon-name="utility:error" variant="error" size="small"></lightning-icon>
+                        <p class="error-message">{sizeErrorMessage}</p>
+                    </div>
+                </template>
+
+                <!-- Size Options - Simple List -->
+                <template if:false={isSizeLoading}>
+                    <template if:false={hasSizeError}>
+                        <div class="size-options-container">
+                            <template for:each={sizeOptionsWithChecked} for:item="sizeOption">
+                                <div key={sizeOption.value} class="size-option-wrapper">
+                                    <div class="size-option-content">
+                                        <!-- Size Radio Button Section Only -->
+                                        <input type="radio"
+                                               id={sizeOption.value}
+                                               name="sizeSelection"
+                                               value={sizeOption.value}
+                                               required
+                                               checked={sizeOption.checked}
+                                               class="radio-input"
+                                               onchange={handleSizeSelection} />
+                                        <label for={sizeOption.value} class="radio-label">
+                                            <span class="radio-button"></span>
+                                            <span class="label-text">{sizeOption.label}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </template>
+
+        <!-- No Options State -->
+        <template if:true={showNoOptionsMessage}>
+            <div class="no-options-container">
+                <lightning-icon icon-name="utility:info" variant="brand" size="small"></lightning-icon>
+                <p class="no-options-message">No active options available.</p>
+            </div>
+        </template>
+    </div>
+</template>

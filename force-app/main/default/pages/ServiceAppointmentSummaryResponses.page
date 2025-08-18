@@ -1,0 +1,18 @@
+<apex:page renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false">
+    <html>
+        <body style="font-family: Arial, sans-serif; margin: 20px;">
+            <div style="margin-bottom: 30px;">
+                <img src="{!$Resource.TreviLogo}" alt="Trevi Logo" style="height: 60px; margin-bottom: 20px;" />
+                <h1 style="color: #808080; font-weight: bold; margin: 10px 0; text-align: center;">
+                    {!$CurrentPage.parameters.title}
+                </h1>
+                <div style="text-align: center;font-weight: bold; font-size: 18px; margin: 15px 0; color: {!IF(OR($CurrentPage.parameters.status == 'Confirmed', $CurrentPage.parameters.status == 'Confirmé') , '#008000', '#FF0000')};">
+                    {!$CurrentPage.parameters.status}
+                </div>
+            </div>
+            <div style="margin-top: 20px; line-height: 1.6;">
+                <apex:outputText value="{!$CurrentPage.parameters.content}" escape="false" />
+            </div>
+        </body>
+    </html>
+</apex:page>

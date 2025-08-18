@@ -1,0 +1,34 @@
+<template>
+    <div class="selector-container">
+        <!-- Spa Type Selection -->
+        <h3 class="section-title">{spaSelectionTitle}</h3>
+
+        <template for:each={options} for:item="option">
+            <div key={option.value} class="option-wrapper">
+                <div class="option-content">
+                    <div class="radio-section">
+                        <input type="radio" 
+                               id={option.value} 
+                               name="spaSelection"
+                               value={option.value}
+                               checked={option.checked}
+                               class="radio-input"
+                               onchange={handleSelection} />
+                        <label for={option.value} class="radio-label">
+                            <span class="radio-button"></span>
+                            <span class="label-text">{option.label}</span>
+                        </label>
+                    </div>
+                    
+                    <div class="image-section">
+                        <img src={option.image} 
+                             alt={option.label}
+                             class="option-image" />
+                    </div>
+                </div>
+            </div>
+        </template>
+        
+      
+    </div>
+</template>

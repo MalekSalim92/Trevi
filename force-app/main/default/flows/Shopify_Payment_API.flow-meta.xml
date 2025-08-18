@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Shopify_Paiement</name>
+        <label>Shopify Paiement</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Shopify.Shopify Customer Pay</actionName>
+        <actionType>externalService</actionType>
+        <faultConnector>
+            <targetReference>Assign_Error_msg</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>body</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Shopify.Shopify Customer Pay</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>response</assignToReference>
+            <name>2XX</name>
+        </outputParameters>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Assign_Error_msg</name>
+        <label>Assign Error msg</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>errorMsg</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Body</name>
+        <label>Set Body</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>body.order.billingx5fcity</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>order.Account.BillingCity</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.billingx5fcountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>order.Account.BillingCountryCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.billingx5fpostalcode</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>order.Account.BillingPostalCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.billingx5fstate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>order.Account.BillingStateCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.billingx5fstreet</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>order.Account.BillingStreet</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.customerx5femail</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.firstx5fname</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>firstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.lastx5fname</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lastName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.paymentx5ftype</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>paymentType</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.phone</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>phone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.sagex5fcustomerx5fid</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>order.Account_Sage_ID__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.sagex5forderx5fid</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>orderSageId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.salesforcex5fid</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>salesforceId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.salesforcex5fobject</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>object</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.sendx5femail</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>sendEmail</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.successx5fstatus</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>successStatus</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.transactionx5ftype</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>transactionType</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.totalx5famount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>totalAmount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.GST</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>gst</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.HST</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>hst</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.QST</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>qst</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>body.order.cancelx5fat</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>cancelAt</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Shopify_Paiement</targetReference>
+        </connector>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>email</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+{!order.Account.Email__c},
+{!contact.Email}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>firstName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+{!order.BillToContact.FirstName},
+{!contact.FirstName}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>gst</name>
+        <dataType>String</dataType>
+        <expression>IF(
+LOWER({!transactionType}) = &apos;refund&apos;,&apos;0&apos;,
+IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+TEXT({!order.TotalAmount} * {!order.GST__c}),
+TEXT({!woli.Outstanding_Amount_Before_Tax__c} * {!woli.GST__c})
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>hst</name>
+        <dataType>String</dataType>
+        <expression>IF(
+LOWER({!transactionType}) = &apos;refund&apos;,&apos;0&apos;,
+IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+TEXT({!order.TotalAmount} * {!order.HST__c}),
+TEXT({!woli.Outstanding_Amount_Before_Tax__c} * {!woli.HST__c})
+))</expression>
+    </formulas>
+    <formulas>
+        <name>lastName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+{!order.BillToContact.LastName},
+{!contact.LastName}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>object</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+&apos;Order&apos;,
+&apos;Work Order Line Item&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>orderSageId</name>
+        <dataType>String</dataType>
+        <expression>IF({!order.Order_Number__c} &lt;&gt; &apos;&apos;, {!order.Order_Number__c} , &apos;Null&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>phone</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+IF(
+{!order.Account.Cellphone__c} &lt;&gt; &apos;&apos;,
+{!order.Account.Cellphone__c} ,
+{!order.Account.Phone}
+),
+IF(
+{!contact.MobilePhone} &lt;&gt; &apos;&apos;,
+{!contact.MobilePhone} ,
+{!contact.HomePhone}
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>qst</name>
+        <dataType>String</dataType>
+        <expression>IF(
+LOWER({!transactionType}) = &apos;refund&apos;,&apos;0&apos;,
+IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+TEXT({!order.TotalAmount} * {!order.QST__c}),
+TEXT({!woli.Outstanding_Amount_Before_Tax__c} * {!woli.QST__c})
+))</expression>
+    </formulas>
+    <formulas>
+        <name>salesforceId</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+{!order.Id},
+{!woli.Id}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>totalAmount</name>
+        <dataType>String</dataType>
+        <expression>IF(
+LOWER({!transactionType}) = &apos;refund&apos;,TEXT({!refundAmount}),
+IF(
+OR( ISNULL({!woli.Id}) , ISBLANK({!woli.Id})),
+TEXT({!order.TotalAmount}),
+TEXT({!woli.Outstanding_Amount_Before_Tax__c})
+)
+)</expression>
+    </formulas>
+    <interviewLabel>Shopify Payment API {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Shopify Payment API</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Body</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>body</name>
+        <apexClass>ExternalService__Shopify_Shopifyx20Customerx20Pay_IN_body</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>cancelAt</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>contact</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <name>defaultException</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>errorMsg</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>order</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Order</objectType>
+    </variables>
+    <variables>
+        <name>paymentType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>refundAmount</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <description>Shopify Customer Pay</description>
+        <name>response</name>
+        <apexClass>ExternalService__Shopify_Shopifyx20Customerx20Pay_OUT_2XX</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>responseCode</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>sendEmail</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>False</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>successStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>transactionType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Payment</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>woli</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>WorkOrderLineItem</objectType>
+    </variables>
+</Flow>

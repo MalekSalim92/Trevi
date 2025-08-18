@@ -1,0 +1,157 @@
+<template>
+    <div class="slds-p-around_medium">
+        <!-- Step 0: Contact Selection -->
+        <template if:true={isStepZero}>
+          
+            <template if:true={showSpinner}>
+                <lightning-spinner
+                    alternative-text="Loading contacts"
+                    size="medium">
+                </lightning-spinner>
+            </template>
+            
+            <template if:false={showSpinner}>
+                <template if:true={contacts.length}>
+                    <lightning-radio-group
+                        name="contacts"
+                        options={contactOptions}
+                        value={selectedContactId}
+                        onchange={handleContactChange}
+                        label={labels.Shopify_Select_a_Contact}
+                        required>
+                    </lightning-radio-group>
+                    <br>
+                    <lightning-button
+                        label={labels.Shopify_Next}
+                        variant="brand"
+                        onclick={handleNext}
+                        disabled={isNextButtonDisabled}
+                        class="slds-m-top_medium">
+                    </lightning-button>
+                </template>
+                
+                <template if:false={contacts.length}>
+                    <p class="slds-text-color_error">
+                        {labels.Shopify_No_Contacts_Found}
+                    </p>
+                </template>
+            </template>
+        </template>
+
+        <!-- Step 1: Payment Response -->
+        <template if:true={isStepOne}>
+            <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                {labels.Shopify_Payment_Status}
+            </h2>
+            
+            <template if:true={showSpinner}>
+                <lightning-spinner
+                    alternative-text="Processing payment"
+                    size="medium">
+                </lightning-spinner>
+            </template>
+            
+            <template if:false={showSpinner}>
+                <template if:true={apiResponseData}>
+                    
+                    <!-- Payment Pending Message -->
+                    <template if:true={isPaymentPending}>
+                        <div class="slds-box slds-theme_success slds-m-bottom_medium">
+                            <lightning-icon 
+                                icon-name="utility:success" 
+                                size="small" 
+                                class="slds-m-right_small">
+                            </lightning-icon>
+                            <strong>{labels.payment_Processed}</strong>
+                        </div>
+                        
+                        <!-- Payment URL Button -->
+                        <template if:true={apiResponseData.url}>
+                            <div class="slds-m-bottom_medium">
+                                <lightning-button
+                                    label="Complete Payment"
+                                    variant="brand"
+                                    onclick={handleOpenPaymentUrl}
+                                    class="slds-m-right_small">
+                                </lightning-button>
+                                
+                                <lightning-button
+                                    label="Copy Payment Link"
+                                    variant="neutral"
+                                    onclick={handleCopyPaymentUrl}>
+                                </lightning-button>
+                            </div>
+                        </template>
+                    </template>
+                    
+                    <!-- Payment Not Pending Message -->
+                    <template if:false={isPaymentPending}>
+                        <div class="slds-box slds-theme_warning slds-m-bottom_medium">
+                            <lightning-icon 
+                                icon-name="utility:warning" 
+                                size="small" 
+                                class="slds-m-right_small">
+                            </lightning-icon>
+                            <strong>{labels.customer_pays}</strong>
+                        </div>
+                    </template>
+                    
+                    <!-- Payment Details Card -->
+                    <div class="slds-box slds-m-bottom_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">{labels.Shopify_Payment_Details}</h3>
+                        <dl class="slds-dl_horizontal">
+                            <dt class="slds-dl_horizontal__label">{labels.Shopify_Payment_URL}</dt>
+                            <dd class="slds-dl_horizontal__detail">
+                                <template if:true={apiResponseData.url}>
+                                    <a href={apiResponseData.url} target="_blank" class="slds-text-link">
+                                        {labels.Shopify_View_Payment_Page}
+                                    </a>
+                                </template>
+                                <template if:false={apiResponseData.url}>
+                                    Not available
+                                </template>
+                            </dd>
+                            
+                            <dt class="slds-dl_horizontal__label">{labels.Shopify_Payment_Pending_Label}</dt>
+                            <dd class="slds-dl_horizontal__detail">
+                                <lightning-badge 
+                                    label={paymentPendingLabel}
+                                    variant={paymentPendingVariant}>
+                                </lightning-badge>
+                            </dd>
+                        </dl>
+                    </div>
+                    
+                
+                    
+                </template>
+                
+                <template if:false={apiResponseData}>
+                    <div class="slds-box slds-theme_error">
+                        <lightning-icon 
+                            icon-name="utility:error" 
+                            size="small" 
+                            class="slds-m-right_small">
+                        </lightning-icon>
+                        <strong>No Payment Data Available</strong>
+                        <p class="slds-m-top_small">
+                            {labels.Shopify_Unable_Retrieve_Payment}
+                        </p>
+                    </div>
+                </template>
+            </template>
+        </template>
+        
+        <!-- Error Handling -->
+        <template if:true={error}>
+            <div class="slds-box slds-theme_error slds-m-top_medium">
+                <lightning-icon 
+                    icon-name="utility:error" 
+                    size="small" 
+                    class="slds-m-right_small">
+                </lightning-icon>
+                <strong>Error:</strong> {error}
+            </div>
+        </template>
+    </div>
+</template>

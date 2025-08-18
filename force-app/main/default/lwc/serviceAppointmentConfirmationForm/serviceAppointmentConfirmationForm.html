@@ -1,0 +1,38 @@
+<template>
+    <div class="container" style="padding: 0 2rem;max-width: 1200px;margin: 0 auto;">
+
+                 <!-- Header with Logo and Language Toggle -->
+ 
+
+            <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;" >
+                <!-- Logo on the left -->
+                <div class="logo-container">
+                    <img src={treviLogoUrl} alt="Trevi Logo" style="height: 120px; width: auto;">
+                </div>
+                
+                <!-- Language Toggle Button on the right -->
+                <div class="language-toggle-container">
+                    <lightning-button 
+                    label={languageButtonLabel}
+                    onclick={handleLanguageToggle}
+                    variant="brand-outline">
+                </lightning-button>
+            </div>
+        </div>
+ 
+        <!-- Flow Component -->
+        <lightning-flow
+            flow-api-name={flowApiName}
+            flow-input-variables={flowInputVariables}
+            onstatuschange={handleStatusChange}>
+        </lightning-flow>
+
+        <!-- Error Display -->
+        <template if:true={error}>
+            <div class="slds-notify slds-notify_alert slds-theme_error" role="alert">
+                <span class="slds-assistive-text">Error</span>
+                <h2>{error}</h2>
+            </div>
+        </template>
+    </div>
+</template>

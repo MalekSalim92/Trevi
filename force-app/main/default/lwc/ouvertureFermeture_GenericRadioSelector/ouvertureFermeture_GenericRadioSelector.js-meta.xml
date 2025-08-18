@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+   <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <!-- Output - Selected Values -->
+            <property name="selectedValue" type="String" role="outputOnly" 
+                      label="Selected Value" 
+                      description="The selected main option value"/>
+            
+            <property name="selectedSize" type="String" role="outputOnly" 
+                      label="Selected Size" 
+                      description="The selected size option value (when applicable)"/>
+            
+            <!-- Required Input - Metadata Objects -->
+            <property name="metadataObjectApiName" type="String" role="inputOnly" 
+                      label="Main Metadata Object API Name" 
+                      description="API Name of the main Custom Metadata Type (e.g., Ouverture_Fermeture_Spa__mdt)"
+                      required="true"/>
+            
+            <property name="sizesMetadataObjectApiName" type="String" role="inputOnly" 
+                      label="Sizes Metadata Object API Name" 
+                      description="API Name of the sizes Custom Metadata Type (e.g., Ouverture_Fermeture_spaSize__mdt)"/>
+            
+
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

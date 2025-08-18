@@ -1,0 +1,79 @@
+Name*Priority*Product_Condition
+Ouverture SC toile avec marche Sel, Sable*1*77548 AND 92327 AND 85842 AND 77498 AND ( 77554 OR 77555 )
+Ouverture HT Marche, Toile, Sel, Sable*2*77202 AND 92327 AND 85842 AND 77498 AND ( 77554 OR 77555 )
+Ouverture CR avec toile Sel, Sable*3*77204 AND 92327 AND 85842 AND ( 77467 OR 77477 )
+Ouverture HT avec toile Sel, Sable*4*77202 AND 92327 AND 85842 AND ( 77554 OR 77555 )
+Ouverture HT Marche, Toile, Sable*5*77202 AND 77498 AND 85842 AND ( 77554 OR 77555 )
+Ouverture HT toile avec marche Sel*6*77202 AND 77498 AND 92327 AND ( 77554 OR 77555 )
+Ouverture SC avec toile Sel, Sable*7*77548 AND 85842 AND 92327 AND ( 77554 OR 77555 )
+Ouverture SC toile avec marche Sel*8*77548 AND 77498 AND 92327 AND ( 77554 OR 77555 )
+Ouverture SC toile avec marche, Sable*9*77548 AND 77498 AND 85842 AND ( 77554 OR 77555 )
+Ouverture CR avec toile Sel*10*77204 AND 92327 AND ( 77467 OR 77477 )
+Ouverture CR avec toile, Sable*11*77204 AND 85842 AND ( 77467 OR 77477 )
+Ouverture CR Deluxe Sel, Sable*12*92327 AND 85842 AND ( 77532 OR 77500 )
+Ouverture HT avec toile Sel*13*77202 AND 92327 AND ( 77554 OR 77555 )
+Ouverture HT avec toile, Sable*14*77202 AND 85842 AND ( 77554 OR 77555 )
+Ouverture HT Marche, Sel, Sable*15*77202 AND 92937 AND 85842 AND 77498
+Ouverture HT toile avec marche*16*77202 AND 77498 AND ( 77554 OR 77555 )
+Ouverture SC avec marche Sel, Sable*17*77548 AND 92327 AND 85842 AND 77498
+Ouverture SC avec toile Sel*18*77548 AND 92327 AND ( 77554 OR 77555 )
+Ouverture SC avec toile, Sable*19*77548 AND 85842 AND ( 77554 OR 77555 )
+Ouverture SC toile avec marche*20*77548 AND 77498 AND ( 77554 OR 77555 )
+Fermeture HT avec toile filet marche*21*77203 AND 77438 AND 77553 AND 77556
+Fermeture HT avec toile et marche*22*77203 AND 77438 AND ( 77553 OR 77556 )
+Fermeture SC avec toile et marche*23*77539 AND 77438 AND ( 77551 OR 77553 )
+Fermeture SC avec toile filet et marche*24*77539 AND 77438 AND 77551 AND 77553
+Fermeture CR avec toile et marche*25*77289 AND 77438 AND ( 77370 OR 77385 )
+Ouverture CR avec toile*26*77204 AND ( 77467 OR 77477 )
+Ouverture CR Deluxe Sel*27*92327 AND ( 77532 OR 77500 )
+Ouverture CR Deluxe, Sable*28*85842 AND ( 77532 OR 77500 )
+Ouverture CR Sel, Sable*29*85842 AND 77204 AND 92327
+Ouverture HT avec toile*30*77202 AND ( 77554 OR 77555 )
+Ouverture HT marche Sel*31*77202 AND 92327 AND 77498
+Ouverture HT marche, Sable*32*77202 AND 85842 AND 77498
+Ouverture HT Sel, Sable*33*77202 AND 92327 AND 85842
+Ouverture SC avec marche Sel*34*77548 AND 92327 AND 77498
+Ouverture SC avec marche, Sable*35*77548 AND 85842 AND 77498
+Ouverture SC avec toile*36*77548 AND ( 77554 OR 77555 )
+Ouverture SC Sel, Sable*37*77548 AND 92327 AND 85842
+Fermeture CR avec Sécurapool et marche*38*77438 AND ( 77289 OR 77398 )
+Fermeture CR avec toile et filet*39*77289 AND 77370 AND 77385
+Fermeture CR spa déversoir avec marche*40*77289 AND 77438 AND 77359
+Fermeture HT avec filet et marche*41*77203 AND 77556 AND 77438
+Fermeture HT avec toile et filet*42*77203 AND 77553 AND 77556
+Fermeture HT toile*43*77203 AND ( 77553 OR 77556 )
+Fermeture SC avec toile et filet*44*77539 AND 77551 AND 77553
+Fermeture SC avec toile*45*77539 AND ( 77551 OR 77553 )
+Fermeture SC filet et marche*46*77539 AND 77551 AND 77438
+Fermeture CR avec toile*47*77289 AND ( 77370 OR 77385 )
+Ouverture CR Sable*48*77204 AND 85842
+Ouverture CR Sel*49*77204 AND 92327
+Ouverture HT marche*50*77202 AND 77498
+Ouverture HT Sel*51*77202 AND 92327
+Ouverture HT, Sable*52*77202 AND 85842
+Ouverture SC avec marche*53*77548 AND 77498
+Ouverture SC Sel*54*77548 AND 92327
+Ouverture SC, Sable*55*77548 AND 85842
+Fermeture CR avec filet*56*77289 AND 77370
+Fermeture CR avec marche*57*77289 AND 77438
+Fermeture CR spa déversoir*58*77289 AND 77359
+Fermeture HT filet*59*77203 AND 77556
+Fermeture HT marche*60*77203 AND 77438
+Fermeture SC avec filet*61*77539 AND 77551
+Fermeture SC marche*62*77539 AND 77438
+Ouverture CR Deluxe*63*77532 OR 77500
+Fermeture CR avec Sécurapool*64*77289 OR 77398
+Vider laver CR 32' et plus*65*77532
+Vider laver CR moins de 32'*66*77500
+Ouverture CR*67*77204
+Ouverture HT*68*77202
+Ouverture SC*69*77548
+Ouverture SPA nature*70*77567
+Ouverture Val-Mar*71*35539
+Fermeture CR*72*77289
+Fermeture HT*73*77203
+Fermeture SC*74*77539
+Fermeture SPA nature*75*77539
+Fermeture Spa*76*77207
+Ouverture Spa*77*77206
+Ouverture Spa nage*78*77560

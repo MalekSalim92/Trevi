@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+   <isExposed>true</isExposed>
+    <masterLabel>Flow Popup Launcher</masterLabel>
+    <description>Opens a popup window with a URL provided by the Flow</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__RecordAction</target>
+        <target>lightningCommunity__Page</target>
+    </targets>
+    <targetConfigs>
+   
+        <targetConfig targets="lightning__FlowScreen">
+            <!-- Input properties -->
+            <property name="orderId" type="String" label="Order Id" description="Order Id" />
+<!--             <property name="paymentLink" type="String" label="Popup URL" description="URL to open in the popup window" />
+            <property name="buttonLabel" type="String" label="Button Label" description="Text to display on the button" default="Open Popup"/>
+            <property name="popupWidth" type="Integer" label="Popup Width" description="Width of the popup window in pixels" default="800"/>
+            <property name="popupHeight" type="Integer" label="Popup Height" description="Height of the popup window in pixels" default="600"/>
+ -->        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
+ 

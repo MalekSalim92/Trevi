@@ -1,0 +1,29 @@
+<apex:page showHeader="false" 
+           sidebar="false" 
+           standardStylesheets="false"
+           cache="false"
+           expires="0">
+    <apex:includeLightning />
+    
+    <div id="flowContainer"></div>
+    
+    <script>
+        // Get record ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const recordId = urlParams.get('id');
+        
+        // Initialize Flow with parameters
+        $Lightning.use("c:FlowApp", function() {
+            $Lightning.createComponent("lightning:flow", {
+                "flowApiName": "Service_Appointment_Confirmation_Form",
+                "flowInputVariables": [
+                    {
+                        "name": "recordId", 
+                        "type": "String", 
+                        "value": recordId
+                    }
+                ]
+            }, "flowContainer");
+        });
+    </script>
+</apex:page>

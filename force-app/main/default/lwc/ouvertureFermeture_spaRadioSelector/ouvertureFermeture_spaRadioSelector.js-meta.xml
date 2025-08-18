@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <isExposed>true</isExposed>
+     <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+ <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <!-- Output properties -->
+            <property name="selectedSpa" type="String" label="Selected Spa Type" 
+                      description="The value of the selected spa type" role="outputOnly"/>
+            <property name="selectedSize" type="String" label="Selected Spa Size" 
+                      description="The size of the swim spa (if applicable)" role="outputOnly"/>
+            
+            <!-- Input properties for spa type labels -->
+            <property name="acrylicSpaLabel" type="String" label="Acrylic Spa Label" 
+                      description="Label for acrylic spa option"/>
+            <property name="swimSpaLabel" type="String" label="Swim Spa Label" 
+                      description="Label for swim spa option"/>
+            <property name="natureSpaLabel" type="String" label="Nature Spa Label" 
+                      description="Label for nature spa option"/>
+            
+            <!-- Input properties for size labels -->
+            <property name="thirteenSizeLabel" type="String" label="13' Size Label" 
+                      description="Label for small size option"/>
+            <property name="sixteenSizeLabel" type="String" label="16' Size Label" 
+                      description="Label for medium size option"/>
+            <property name="seventeenSizeLabel" type="String" label="17' Size Label" 
+                      description="Label for large size option"/>
+            <property name="eighteenSizeLabel" type="String" label="18' Size Label" 
+                      description="Label for extra large size option"/>
+            <property name="nineteenSizeLabel" type="String" label="19' Size Label" 
+                      description="Label for extra large size option"/>
+            
+            <!-- Optional section title -->
+            <property name="spaSelectionTitle" type="String" label="Spa Selection Title" 
+                      description="Title for the spa selection section"/>
+            <property name="sizeSelectionTitle" type="String" label="Size Selection Title" 
+                      description="Title for the size selection section"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

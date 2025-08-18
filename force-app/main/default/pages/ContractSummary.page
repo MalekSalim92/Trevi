@@ -1,0 +1,220 @@
+<apex:page standardController="Order" extensions="ContractSummaryController" renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+    <html>
+        <head>
+            <style type="text/css">
+                @page {
+                    size: letter;
+                    margin: 1cm;
+                }
+                body {
+                    font-family: Arial, sans-serif;
+                    font-size: 10pt;
+                }
+                
+                /* Header styles with horizontal alignment */
+                .header {
+                    width: 100%;
+                    display: table;
+                    margin-bottom: 20px;
+                }
+                
+                .left-section, .middle-section, .right-section {
+                    display: table-cell;
+                    vertical-align: top;
+                }
+                
+                .left-section {
+                    width: 30%;
+                }
+                
+                .middle-section {
+                    width: 40%;
+                    text-align: center;
+                }
+                
+                .right-section {
+                    width: 30%;
+                    text-align: center;
+                }
+                
+                .company-details {
+                    font-size: 8pt;
+                    margin-top: 5px;
+                }
+                
+                .header-box {
+                    background-color: #f5f5f5;
+                    border: 1px solid #ddd;
+                    padding: 5px;
+                    margin-bottom: 5px;
+                    text-align: center;
+                }
+                
+                .text-center {
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+                
+                /* Rest of styles */
+                .clear {
+                    clear: both;
+                }
+                
+                .section-title {
+                    background-color: #f5f5f5;
+                    font-weight: bold;
+                    padding: 5px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    border: 1px solid #ddd;
+                }
+                
+                .customer-info {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+                
+                .customer-info td {
+                    padding: 2px 5px;
+                    vertical-align: top;
+                }
+                
+                .products-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+                
+                .products-table th {
+                    background-color: #f5f5f5;
+                    border: 1px solid #ddd;
+                    padding: 5px;
+                    text-align: left;
+                    font-weight: bold;
+                }
+                
+                .products-table td {
+                    border: 1px solid #ddd;
+                    padding: 5px;
+                    vertical-align: top;
+                }
+                
+                .footer {
+                    font-size: 8pt;
+                    text-align: center;
+                    margin-top: 20px;
+                    position: fixed;
+                    bottom: 0;
+                    width: 100%;
+                }
+            </style>
+        </head>
+        <body>
+            <!-- Header with three horizontal sections -->
+            <div class="header">
+                <!-- Left section - Logo and company details -->
+                <div class="left-section">
+                    <apex:image url="{!$Resource.TreviLogo}" width="250" height="60" rendered="{!$Resource.TreviLogo != null}"/> <br/>
+                    <div class="company-details">
+                        Licence R.B.Q.: 8312-2044-00 TPS 145300703<br/>
+                        Siège social: (450) 973-1249 TVQ 1205323739<br/>
+                        1 (888) 777-0447<br/>
+                    </div>
+                </div>
+                
+                <!-- Middle section - Store information -->
+                <div class="middle-section">
+                    Magasin {!order.Account.BillingCity}<br/>
+                    {!order.Account.BillingStreet}<br/>
+                    {!order.Account.BillingCity}, {!order.Account.BillingState} {!order.Account.BillingPostalCode}<br/>
+                    1 800 44-TREVI<br/>
+                    514 22-TREVI 
+                    <br/>
+                    <p style="font-size: 16pt; color:red; margin-bottom: 0">{!order.Account.Sage_Id__c}</p>
+                        No Client
+               </div>
+                
+                <!-- Right section - Contract details -->
+                <div class="right-section">
+                    <div class="header-box">
+                        <strong>CONTRAT SOMMAIRE</strong>
+                    </div>
+                    <div class="text-center">
+                        <strong>{!order.Order_Number__c}</strong><br/>
+                        Date: <apex:outputText value="{0,date,M/d/yyyy h:mm:ss a}">
+                            <apex:param value="{!order.CreatedDate}" />
+                        </apex:outputText>
+                    </div>
+                    <br/>
+                    <div class="header-box">
+                        <strong>REPRESENTANT</strong>
+                    </div>
+                    <div class="text-center">
+                        {!order.Salesperson_2__r.Name}
+                    </div>
+                </div>
+            </div>
+            
+         
+            
+            <div class="section-title">ACHETEUR (CI-APRÈS NOMMÉ "L'ACHETEUR")</div>
+            
+            <table class="customer-info">
+                <tr>
+                    <td width="15%"><strong>Nom:</strong></td>
+                    <td width="35%">{!primaryContact.LastName} {!primaryContact.FirstName}</td>
+                    <td width="15%"><strong>Téléphone1:</strong></td>
+                    <td width="35%">{!primaryContact.MobilePhone}</td>
+                </tr>
+                <tr>
+                    <td><strong>2e nom:</strong></td>
+                    <td>{!primaryContact.MiddleName}</td>
+                    <td><strong>Téléphone2:</strong></td>
+                    <td>{!primaryContact.Phone}</td>
+                </tr>
+                <tr>
+                    <td><strong>Adresse:</strong></td>
+                    <td>{!order.ShippingStreet}</td>
+                    <td><strong>Courriel:</strong></td>
+                    <td>{!primaryContact.Email}</td>
+                </tr>
+                <tr>
+                    <td><strong>Ville:</strong></td>
+                    <td>{!order.ShippingCity}</td>
+                    <td><strong>Code Postal:</strong></td>
+                    <td>{!order.ShippingPostalCode}</td>
+                     <td>&nbsp;</td>
+                </tr>
+            </table>
+            
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Quantité</th>
+                        <th>Location</th>
+                        <th>No Produit</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!summarizedProducts}" var="prod">
+                        <tr>
+                            <td><apex:outputText value="{0, number, integer}">
+                                <apex:param value="{!prod.quantity}" />
+                            </apex:outputText></td>
+                            
+                            <td>{!prod.location}</td>
+                            <td>{!prod.productCode}</td>
+                            <td>
+                                {!prod.productName}<br/>
+                                SN: {!prod.serialNumber}
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </tbody>
+            </table>
+            
+            
+        </body>
+    </html>
+</apex:page>

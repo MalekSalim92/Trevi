@@ -1,0 +1,246 @@
+<apex:page controller="DispatcherConsoleStatusActionController" lightningStylesheets="true">
+    <apex:slds />
+    
+    <!-- Include JavaScript for console integration -->
+    <script>
+        function closeConsole() {
+            parent.postMessage('closeLightbox','*');
+        }
+    
+        function showSpinner() {
+        // Create spinner dynamically to avoid rerender issues
+        var spinner = document.createElement('div');
+        spinner.id = 'loadingSpinner';
+        spinner.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); z-index: 9999; display: flex; justify-content: center; align-items: center;';
+        spinner.innerHTML = '<div class="slds-spinner slds-spinner_medium" role="status"><span class="slds-assistive-text">Loading...</span><div class="slds-spinner__dot-a"></div><div class="slds-spinner__dot-b"></div></div>';
+        document.body.appendChild(spinner);
+        
+        var updateBtn = document.querySelector('[id$="updateBtn"]');
+        if (updateBtn) {
+            updateBtn.disabled = true;
+        }
+    }
+    
+    function hideSpinner() {
+        var spinner = document.getElementById('loadingSpinner');
+        if (spinner) {
+            spinner.remove();
+        }
+        var updateBtn = document.querySelector('[id$="updateBtn"]');
+        if (updateBtn) {
+            updateBtn.disabled = false;
+        }
+    }
+    </script>
+    
+    <div class="slds-scope">
+        <apex:outputPanel id="mainPanel">
+        <div class="slds-card">
+  
+    
+            <div class="slds-card__body slds-card__body_inner">
+                            
+
+                
+                <!-- Display service appointment information - HIDE after update -->
+                <apex:outputPanel rendered="{!NOT(showResults)}">
+
+                  <div class="slds-grid slds-wrap slds-gutters">
+   <div class="slds-col slds-size_1-of-1">
+       <div class="slds-form-element">
+           <div class="slds-form-element__control">
+               <span class="slds-form-element__label">Selected Service Appointments ({!serviceAppointmentCount} selected)</span>
+             
+           </div>
+       </div>
+   </div>
+</div>
+
+                      <!-- Service Appointments Details (if available) -->
+                      <apex:outputPanel rendered="{!serviceAppointments.size > 0}">
+                        <div class="slds-section slds-is-open" style="margin-top: 1rem;">
+                            <h3 class="slds-section__title slds-theme_shade">
+                                <span class="slds-truncate slds-p-horizontal_small">Service Appointments Details</span>
+                            </h3>
+                            
+                            <div class="slds-section__content">
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate">Appointment Number</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate">Current Status</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate">Scheduled Start</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate">Work Type</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                                <div class="slds-truncate">Order Sage Id</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!serviceAppointments}" var="sa">
+                                            <tr class="slds-hint-parent">
+                                                <td data-label="Appointment Number">
+                                                    <div class="slds-truncate">
+                                                        <apex:outputLink value="/{!sa.Id}" target="_blank" styleClass="slds-link">
+                                                            <apex:outputText value="{!sa.AppointmentNumber}"/>
+                                                        </apex:outputLink>
+                                                    </div>
+                                                </td>                                                
+                                                <td data-label="Current Status">
+                                                    <div class="slds-truncate">
+                                                        <span class="slds-badge slds-badge_lightest">
+                                                            <apex:outputText value="{!sa.Status}"/>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Scheduled Start">
+                                                    <div class="slds-truncate">
+                                                        <apex:outputText value="{0,date,MM/dd/yyyy HH:mm}">
+                                                            <apex:param value="{!sa.SchedStartTime}"/>
+                                                        </apex:outputText>
+                                                    </div>
+                                                </td>
+                                                <td data-label="WorkType">
+                                                    <div class="slds-truncate">
+                                                        <apex:outputText value="{!sa.WorkType.Name}"/>
+                                                    </div>
+                                                </td>
+                                                <td data-label="SageId">
+                                                    <div class="slds-truncate">
+                                                        <apex:outputText value="{!sa.Order_Sage_ID__c}"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <!-- Status Selection Section - HIDE after update -->
+                    <div class="slds-section slds-is-open" style="margin-top: 1rem;">
+                        <h3 class="slds-section__title slds-theme_shade">
+                            <span class="slds-truncate slds-p-horizontal_small">Status Selection</span>
+                        </h3>
+                        
+                        <div class="slds-section__content">
+                            <apex:form>
+                                <div class="slds-grid slds-wrap slds-gutters">
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="status-select">
+                                                <span class="slds-required">*</span>New Status
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <apex:selectList value="{!selectedStatus}" size="1" styleClass="slds-select" id="status-select">
+                                                        <apex:selectOption itemValue="" itemLabel="--Select Status--"/>
+                                                        <apex:selectOptions value="{!statusOptions}"/>
+                                                    </apex:selectList>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action buttons inside same form -->
+                                <div class="slds-grid slds-grid_align-end" style="margin-top: 1rem;">
+                                    <div class="slds-col">
+                                        <button type="button" class="slds-button slds-button_neutral" onclick="closeConsole()">
+                                            Cancel
+                                        </button>
+                                        
+                                        <apex:commandButton value="Update Status" 
+                                        id="updateBtn"
+                                        styleClass="slds-button slds-button_brand slds-m-left_x-small"
+                                        action="{!updateServiceAppointmentStatus}"
+                                        onclick="showSpinner();"
+                                        oncomplete="hideSpinner();"
+                                        rerender="mainPanel"/>
+                     
+
+                                    </div>
+                                </div>
+                            </apex:form>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+
+                                <!-- Show Results Sections after Update -->
+                                <apex:outputPanel rendered="{!showResults}">
+                    
+                                <!-- Successful Updates Section -->
+                                <apex:outputPanel rendered="{!successfulUpdates.size > 0}">
+                                    <div class="slds-section slds-is-open" style="margin-bottom: 1rem;">
+                                        <h3 class="slds-section__title slds-theme_shade">
+                                            <span class="slds-truncate slds-p-horizontal_small">
+                                                Successfully Changed Status
+                                            </span>
+                                        </h3>
+                                        
+                                        <div class="slds-section__content">
+                                            <apex:repeat value="{!successfulUpdates}" var="result">
+                                                <div class="slds-grid slds-wrap" style="padding: 0.5rem 0; border-bottom: 1px solid #e5e5e5;">
+                                                    <div class="slds-col slds-size_1-of-2">                                                    
+                                                        <apex:outputLink value="/{!result.appointmentId}" target="_blank" styleClass="slds-link slds-text-body_regular">
+                                                        <apex:outputText value="{!result.appointmentNumber}"/>
+                                                    </apex:outputLink>
+                                                    
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                                                     </div>
+                                                </div>
+                                            </apex:repeat>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                                
+                                <!-- Failed Updates Section -->
+                                <apex:outputPanel rendered="{!failedUpdates.size > 0}">
+                                    <div class="slds-section slds-is-open" style="margin-bottom: 1rem;">
+                                        <h3 class="slds-section__title slds-theme_shade">
+                                            <span class="slds-truncate slds-p-horizontal_small">
+                                                Failed To Change Status
+                                            </span>
+                                        </h3>
+                                        
+                                        <div class="slds-section__content">
+                                            <apex:repeat value="{!failedUpdates}" var="result">
+                                                <div class="slds-grid slds-wrap" style="padding: 0.5rem 0; border-bottom: 1px solid #e5e5e5;">
+                                                    <div class="slds-col slds-size_1-of-4">                                                 
+                                                        <apex:outputLink value="/{!result.appointmentId}" target="_blank" styleClass="slds-link slds-text-body_regular">
+                                                        <apex:outputText value="{!result.appointmentNumber}"/>
+                                                    </apex:outputLink>
+
+                                                 
+                                                    </div>
+                                                    <div class="slds-col slds-size_3-of-4 slds-text-align_right">
+                                                        <span class="slds-text-body_small" title="{!result.errorMessage}">
+                                                            <apex:outputText value="{!result.errorMessage}"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </apex:repeat>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                                
+                            </apex:outputPanel>
+            </div>
+            
+            <!-- Footer (now empty since buttons moved up) -->
+            <footer class="slds-card__footer">
+            </footer>
+        </div>
+        </apex:outputPanel>
+    </div>
+</apex:page>

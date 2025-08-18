@@ -1,0 +1,3 @@
+<aura:component implements="ltng:availableForServiceAppointmentActions,force:hasRecordId">
+    <!-- your button logic here -->
+</aura:component>

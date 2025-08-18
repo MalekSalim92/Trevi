@@ -1,0 +1,1339 @@
+<template>
+
+ 
+    <template if:true={isLoading}>
+    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center; background: rgba(255, 255, 255, 0.8); z-index: 9999;">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <template if:false={isLoading}>
+        <div class="slds-p-around_medium slds-size_full" style="font-family: Arial; max-width: 1200px; margin: 0 auto;">
+
+            <!--* HEADER -->
+        <template if:true={showHeader}>
+
+        <div class="slds-m-bottom_medium" style="display: flex; justify-content: space-between; align-items: center;">
+            <img src={logoUrl} alt="Trevi Logo" style="max-width: 250px;"/>
+            <button 
+                class="slds-button slds-button_neutral" 
+                onclick={handleLanguageRedirect}>
+                {otherLanguageLabel}
+            </button>
+        </div>
+        </template>
+
+
+        <!--* Adress Section -->
+
+        <template if:true={showAddressSection}>
+
+        <div class="slds-theme_default">
+    
+            <h1 class="slds-text-heading_medium">
+                {headerLabels.title}        
+                </h1>
+
+            <p class="slds-text-body_regular slds-p-bottom_medium">
+                {headerLabels.subtitle}
+            </p>
+            
+            <div class="slds-box slds-theme_shade">
+ 
+                <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                    <h2 class="slds-text-heading_medium">
+                    {addressLabels.title}        
+                    </h2>
+                </div>
+                
+                <div class="slds-p-bottom_medium">
+                    <br/>
+                    <p class="slds-p-bottom_x-small">{addressLabels.subtitle}</p>
+                    <div class="slds-p-left_medium">
+                        <p>{deliveryAddress.street}</p>
+                        <p>{deliveryAddress.city}, {deliveryAddress.province}</p>
+                        <p>{deliveryAddress.postalCode}</p>
+                    </div>
+                </div>
+                
+                <div class="slds-form-element">
+                    <label >{addressLabels.question}</label>
+           
+                    <div class="slds-grid slds-grid_vertical">
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                <input type="radio" id="checkbox-oui" name="addressConfirm" value="oui" 
+                                       onchange={handleAddressRadioChange}/>
+                                <label class="slds-radio__label" for="checkbox-oui">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{yesNoLabels.yes}</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                 <input type="radio" id="checkbox-non" name="addressConfirm" value="non" 
+                                       onchange={handleAddressRadioChange}/>
+                                <label class="slds-radio__label" for="checkbox-non">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{yesNoLabels.no}</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <template if:true={showAddressNegativeMsg}>
+
+            <p style="color: red;">  {negativeChoiceMsg} </p>
+                </template>
+                <template if:true={showCommentBox}>
+                    <div class="slds-form-element slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <textarea class="slds-textarea" 
+                                    placeholder={addressLabels.commentPlaceholder}
+                                    onchange={handleAdressCommentChange}></textarea>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </template>
+
+    <!--* Communication Preference Section -->
+     <template if:true={showCommunicationSection}>
+        <div class="slds-theme_default slds-m-top_medium">
+ 
+             <div class="slds-box slds-theme_shade">
+ 
+                <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                    <h2 class="slds-text-heading_medium">
+                    {communicationLabels.titleLabel}        
+                    </h2>
+                </div>
+                
+                <div class="slds-form-element slds-p-top_medium">
+                    <label  for="communication-preference-select">
+                        {communicationLabels.question}
+                    </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container" style="width: 20%;">
+                            <select 
+                                id="communication-preference-select" 
+                                class="slds-select" 
+                                onchange={handleCommunicationPreferenceChange}
+                            >
+                                <option value="">{communicationLabels.selectOption}</option>
+                                <option value="email">{communicationLabels.emailOptionLabel}</option>
+                                <option value="phone">{communicationLabels.phoneOptionLabel}</option>
+                             </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+        <!--* Contract Summary Section -->
+        <template if:true={showContractSection}> 
+        <div class="slds-box slds-theme_default slds-m-top_medium">
+            <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                <h2 class="slds-text-heading_medium">
+                {contractLabels.title}        
+                </h2>
+            </div>
+  
+            <div class="slds-table_bordered slds-scrollable_x" style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col" class="slds-text-title_caps">{tableLabels.productCode}</th>
+                            <th scope="col" class="slds-text-title_caps">{tableLabels.productName}</th>
+                            <th scope="col" class="slds-text-title_caps">{tableLabels.serialNumber}</th>
+                            <th scope="col" class="slds-text-title_caps">{tableLabels.quantity}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={contractItems} for:item="item">
+                            <tr key={item.productCode}>
+                                <td>{item.productCode}</td>
+                                <td>{item.productName}</td>
+                                <td>{item.serialNumber}</td>
+                                <td>{item.quantity}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+            <div class="slds-m-top_medium">
+                <div class="slds-form-element">
+                    <label >{contractLabels.question}</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-grid slds-grid_vertical">
+                            <div class="slds-col slds-p-vertical_x-small">
+                                <div class="slds-radio">
+                                    <input type="radio" name="contractConfirm" id="contract-radio-oui" value="oui" 
+                                           onchange={handleContractRadioChange}/>
+                                    <label class="slds-radio__label" for="contract-radio-oui">
+                                        <span class="slds-radio_faux"></span>
+                                        <span >{yesNoLabels.yes}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-p-vertical_x-small">
+                                <div class="slds-radio">
+                                    <input type="radio" name="contractConfirm" id="contract-radio-non" value="non"
+                                           onchange={handleContractRadioChange}/>
+                                    <label class="slds-radio__label" for="contract-radio-non">
+                                        <span class="slds-radio_faux"></span>
+                                        <span >{yesNoLabels.no}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <template if:true={showSummaryNegativeMsg}>
+
+                    <p style="color: red;">  {negativeChoiceMsg} </p>
+                        </template>
+        
+                <template if:true={showContractCommentBox}>
+                    <div class="slds-form-element slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <textarea class="slds-textarea" 
+                                    placeholder={contractLabels.commentPlaceholder}
+                                    onchange={handleContractCommentChange}></textarea>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </template>
+
+<!--* Important Information Section  -->
+    <template if:true={showImportantInformationSection}>
+        <div class="slds-box slds-theme_default slds-m-top_medium">
+            <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                <h2 class="slds-text-heading_medium">
+            {importantInformationLabels.titleLabel}        
+                
+                </h2>
+            </div>
+                
+                <div class="slds-p-around_medium">
+                    <p class="slds-p-bottom_small">
+                        <strong>{importantInformationLabels.deliveryDate}:</strong> {deliveryDate}
+                    </p>
+                    <p class="slds-p-bottom_small">
+                        <strong>{importantInformationLabels.installationDate}:</strong> {installationDate}
+                    </p>
+                    
+                    <p class="slds-p-bottom_medium">
+                        {importantInformationLabels.extraDetailsDescription}
+                    </p>
+                    
+                    <div class="slds-p-bottom_medium">
+                        <h4 class="slds-text-heading_small slds-p-bottom_small">
+                            {importantInformationLabels.requirementsListLabel}
+                        </h4>
+                        <ul class="slds-list_dotted">
+                            <li>{importantInformationLabels.requirement1}</li>
+                            <li>{importantInformationLabels.requirement2}</li>
+                            <li>{importantInformationLabels.requirement3}</li>
+                            <li>{importantInformationLabels.requirement4}</li>
+                            <li>{importantInformationLabels.requirement5}</li>
+                            <li>{importantInformationLabels.requirement6}</li>
+                            <li>{importantInformationLabels.requirement7}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="slds-p-bottom_medium">
+                        <p class="slds-text-color_error slds-text-heading_small">
+                            {importantInformationLabels.importantNoteLabel}
+                        </p>
+                        <p>{importantInformationLabels.importantNoteDescription}</p>
+                    </div>
+                    
+                    <p class="slds-p-top_medium">
+                        {importantInformationLabels.nextStepDescription}
+                    </p>
+                </div>
+         </div>
+    </template>
+    
+<!--* Versement Section  -->
+
+    <template if:true={showVersementSection}>
+        <div class="slds-box slds-theme_default slds-m-top_medium">
+            <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                <h2 class="slds-text-heading_medium">
+                {versementLabels.title}        
+                </h2>
+            </div>
+                
+                <div class="slds-p-around_medium">
+                    <p class="slds-p-bottom_small">
+                    {versementLabels.subtitle}
+                    </p>
+               
+                    <p class="slds-p-bottom_medium">
+                        {versementLabels.details}
+                    </p>                 
+                   
+                    <p class="slds-p-top_medium">
+                        {versementLabels.steps}
+                    </p>
+                </div>
+ 
+                <table style="width: 60%; border-collapse: collapse; font-family: Arial, sans-serif;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; background-color: #f2f2f2;">{versementLabels.description}</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: center; background-color: #f2f2f2;">{versementLabels.amount}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">{versementLabels.delivery}</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;text-align: center;">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">{versementLabels.liner}</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;text-align: center;">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">{versementLabels.sidewalk}</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;text-align: center;">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">{versementLabels.orientation}</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;text-align: center;">$0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+         </div>
+    </template>
+
+<!--* AC FORM Access Section  -->
+
+    <template if:true={showAcAccessSection}>
+        <div class="slds-box slds-theme_default slds-m-top_medium">
+          
+                
+                <div class="slds-p-around_medium">
+                    <p class="slds-p-bottom_small">
+                    {acSectionLabels.subtitle}
+                    </p>
+               
+                   
+                </div>
+ 
+                <div class="slds-form-element slds-p-top_medium">
+                    <div class="slds-form-element__control">
+                        <textarea class="slds-textarea" 
+                                placeholder={acSectionLabels.commentPlaceholder}
+                                onchange={handleAcCommentChange}></textarea>
+                    </div>
+                </div>
+
+         </div>
+    </template>
+
+<!--* AB Access Section  -->
+
+    <template if:true={showAbAccessSection}>
+        <div class="slds-box slds-theme_default slds-m-top_medium">
+          
+                
+                <div class="slds-p-around_medium">
+                    <p class="slds-p-bottom_small">
+                    {acSectionLabels.subtitle}
+                    </p>
+                </div>
+ 
+                <div class="slds-form-element slds-p-top_medium">
+                    <div class="slds-form-element__control">
+                        <textarea class="slds-textarea" 
+                                placeholder={acSectionLabels.commentPlaceholder}
+                                onchange={handleAbCommentChange}></textarea>
+                    </div>
+                </div>
+
+         </div>
+    </template>
+    
+        <!--* Delivery Location Section -->
+        
+        <template if:true={showModeleSection}>
+          <div class="slds-box slds-theme_default slds-m-top_medium">
+            <h2 class="slds-text-heading_medium slds-p-bottom_medium" style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px;">
+                {locationLabels.title}
+            </h2> <br/>
+            
+            <div class="slds-form-element">
+                <label >{locationLabels.question}</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-grid slds-grid_vertical">
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                <input type="radio" id="garage" name="deliveryLocation" value="garage" 
+                                       onchange={handleDeliveryLocationChange}/>
+                                <label class="slds-radio__label" for="garage">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{locationLabels.garage}</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                <input type="radio" id="stationnement" name="deliveryLocation" value="stationnement" 
+                                       onchange={handleDeliveryLocationChange}/>
+                                <label class="slds-radio__label" for="stationnement">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{locationLabels.parking}</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                <input type="radio" id="cour" name="deliveryLocation" value="cour" 
+                                       onchange={handleDeliveryLocationChange}/>
+                                <label class="slds-radio__label" for="cour">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{locationLabels.backyard}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--* Conditional Section when "Dans la cour arrière" is selected -->
+            <template if:true={showBackyardSection}>
+                <div class="slds-box slds-theme_shade slds-m-top_medium">
+                    <p class="slds-text-body_regular slds-m-bottom_medium">
+                        {locationLabels.accessDescription}
+                    </p>
+                    
+                    <div class="slds-form-element">
+                        <label >{locationLabels.accessQuestion}</label>
+                        <div class="slds-form-element__control"> 
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="accessConfirm" id="access-oui" value="oui" 
+                                               onchange={handleAccessRadioChange}/>
+                                        <label class="slds-radio__label" for="access-oui">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.yes}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="accessConfirm" id="access-non" value="non"
+                                               onchange={handleAccessRadioChange}/>
+                                        <label class="slds-radio__label" for="access-non">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.no}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <template if:true={showAccessNote}>
+                        <p class="slds-text-body_regular slds-m-top_small">
+                            {locationLabels.accessNote}
+                        </p>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+     
+            <!--* SPA Area Location Section -->
+        
+            <template if:true={showSpaAreaSection}>
+                <div class="slds-box slds-theme_default slds-m-top_medium">
+ 
+                  <div class="slds-form-element">
+                    <label >{spaAreaLabels.subtitle}</label>
+
+                    <div class="slds-form-element slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <textarea class="slds-textarea" 
+                                    placeholder={spaAreaLabels.commentPlaceholder}
+                                    onchange={handleSpaAreaCommentChange}></textarea>
+                        </div>
+                    </div>
+                    <br/>
+                      <label >{spaAreaLabels.question}</label>
+                      <div class="slds-form-element__control">
+                          <div class="slds-grid slds-grid_vertical">
+                              <div class="slds-col slds-p-vertical_x-small">
+                                  <div class="slds-radio">
+                                      <input type="radio" id="dust" name="deliveryLocation" value="dust" 
+                                             onchange={handleSpaAreaChange}/>
+                                      <label class="slds-radio__label" for="dust">
+                                          <span class="slds-radio_faux"></span>
+                                          <span >{spaAreaLabels.dust}</span>
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="slds-col slds-p-vertical_x-small">
+                                  <div class="slds-radio">
+                                      <input type="radio" id="cement" name="deliveryLocation" value="cement" 
+                                             onchange={handleSpaAreaChange}/>
+                                      <label class="slds-radio__label" for="cement">
+                                          <span class="slds-radio_faux"></span>
+                                          <span >{spaAreaLabels.cement}</span>
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="slds-col slds-p-vertical_x-small">
+                                  <div class="slds-radio">
+                                      <input type="radio" id="wood" name="deliveryLocation" value="wood" 
+                                             onchange={handleSpaAreaChange}/>
+                                      <label class="slds-radio__label" for="wood">
+                                          <span class="slds-radio_faux"></span>
+                                          <span >{spaAreaLabels.wood}</span>
+                                      </label>
+                                  </div>
+                              </div>
+                            
+                              <div class="slds-col slds-p-vertical_x-small">
+                                  <div class="slds-radio">
+                                      <input type="radio" id="patio" name="deliveryLocation" value="patio" 
+                                             onchange={handleSpaAreaChange}/>
+                                      <label class="slds-radio__label" for="patio">
+                                          <span class="slds-radio_faux"></span>
+                                          <span >{spaAreaLabels.patio}</span>
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="slds-col slds-p-vertical_x-small">
+                                  <div class="slds-radio">
+                                      <input type="radio" id="paving" name="deliveryLocation" value="paving" 
+                                             onchange={handleSpaAreaChange}/>
+                                      <label class="slds-radio__label" for="paving">
+                                          <span class="slds-radio_faux"></span>
+                                          <span >{spaAreaLabels.paving}</span>
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="slds-col slds-p-vertical_x-small">
+                                <div class="slds-radio">
+                                    <input type="radio" id="other" name="deliveryLocation" value="other" 
+                                           onchange={handleSpaAreaChange}/>
+                                    <label class="slds-radio__label" for="other">
+                                        <span class="slds-radio_faux"></span>
+                                        <span >{spaAreaLabels.other}</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                          </div>
+                      </div>
+                  </div>
+      
+                </div>
+            </template>   
+            
+            <!--* CA FORM Access Section  -->
+
+    <template if:true={showAcInformationSection}>
+        <div class="slds-box slds-theme_default slds-m-top_medium">
+          
+            <h2 class="slds-text-heading_medium slds-p-bottom_medium" style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px;">
+                {acSectionLabels.informationTitle}
+            </h2> 
+
+                <div class="slds-p-around_medium">
+                    <p class="slds-p-bottom_small">
+                    {acSectionLabels.firstInfo}
+                    </p>
+                     <p class="slds-p-bottom_small">
+                    {acSectionLabels.secondInfo}
+                    </p>
+                    <p class="slds-p-bottom_small">
+                    {acSectionLabels.thirdInfo}
+                    </p>
+               
+                   
+                </div>
+
+         </div>
+    </template>
+            <!--* Meuble Access Section  -->
+
+    <template if:true={showMeubleInformationSection}>
+        <div class="slds-box slds-theme_default slds-m-top_medium">
+          
+              
+            <h2 class="slds-text-heading_medium slds-p-bottom_medium" style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px;">
+                {acSectionLabels.informationTitle}
+            </h2> 
+                <div class="slds-p-around_medium">
+                    <p class="slds-p-bottom_small">
+                    {acSectionLabels.note}
+                    </p>
+                    <br/>
+                    <p class="slds-p-bottom_small">
+                    {acSectionLabels.question}
+                    </p>
+                    <div class="slds-col slds-p-vertical_x-small">
+                        <div class="slds-radio">
+                            <input type="radio" id="checkbox-yes" name="addressConfirm" value="oui" 
+                                   onchange={handleMeubleRadioChange}/>
+                            <label class="slds-radio__label" for="checkbox-yes">
+                                <span class="slds-radio_faux"></span>
+                                <span >{yesNoLabels.yes}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-p-vertical_x-small">
+                        <div class="slds-radio">
+                             <input type="radio" id="checkbox-no" name="addressConfirm" value="non" 
+                             onchange={handleMeubleRadioChange}/>
+                             <label class="slds-radio__label" for="checkbox-no">
+                                <span class="slds-radio_faux"></span>
+                                <span >{yesNoLabels.no}</span>
+                            </label>
+                        </div>
+                    </div>
+               
+                    <template if:true={showMeubleCommentBox}>
+                        <div class="slds-form-element slds-p-top_medium">
+                            <div class="slds-form-element__control">
+                                <textarea class="slds-textarea" 
+                                        placeholder={addressLabels.commentPlaceholder}
+                                        onchange={handleMeubleCommentChange}></textarea>
+                            </div>
+                        </div>
+                    </template>
+                   
+                </div>
+
+         </div>
+    </template>
+
+            <!--* HL Section -->
+            <template if:true={showHlSection}>
+                <!-- ! First section -->
+                
+                <div class="slds-box slds-theme_shade slds-m-top_medium">
+                    <label >{hlLabels.endroit}</label><br/>
+                    <input class="slds-input" style="width: 30%;"
+                    onchange={handleEndroitInstallationChange}>
+         
+                    <div class="slds-form-element">
+                        <br/>
+                        <label >{hlLabels.gazon}</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="gazon" id="terrain-gazon-oui" value="oui" 
+                                               onchange={handleGazonRadioChange}/>
+                                        <label class="slds-radio__label" for="terrain-gazon-oui">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.yes}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="gazon" id="terrain-gazon-non" value="non"
+                                               onchange={handleGazonRadioChange}/>
+                                        <label class="slds-radio__label" for="terrain-gazon-non">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.no}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                   
+                    <div class="slds-form-element">
+                        <label >{hlLabels.remplacement}</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="remplacement" id="remplacement-oui" value="oui" 
+                                               onchange={handleRemplacementRadioChange}/>
+                                        <label class="slds-radio__label" for="remplacement-oui">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.yes}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="remplacement" id="remplacement-non" value="non"
+                                               onchange={handleRemplacementRadioChange}/>
+                                        <label class="slds-radio__label" for="remplacement-non">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.no}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <template if:true={showRemplacementInput}>
+                         <div class="slds-form-element slds-p-top_medium">
+                             <div class="slds-form-element__control">
+                                <input class="slds-input" style="width:30%" 
+                                        placeholder={hlLabels.grandeur}
+                                        onchange={handleHlGrandeurCommentChange}></input>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="slds-form-element">
+                            <label >{hlLabels.demontee}</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-grid slds-grid_vertical">
+                                    <div class="slds-col slds-p-vertical_x-small">
+                                        <div class="slds-radio">
+                                            <input type="radio" name="demontee" id="demontee-oui" value="oui" 
+                                                   onchange={handleDemonteeRadioChange}/>
+                                            <label class="slds-radio__label" for="demontee-oui">
+                                                <span class="slds-radio_faux"></span>
+                                                <span >{yesNoLabels.yes}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-p-vertical_x-small">
+                                        <div class="slds-radio">
+                                            <input type="radio" name="demontee" id="demontee-non" value="non"
+                                            onchange={handleDemonteeRadioChange}/>
+                                            <label class="slds-radio__label" for="demontee-non">
+                                                <span class="slds-radio_faux"></span>
+                                                <span >{yesNoLabels.no}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="slds-form-element">
+                            <label >{hlLabels.installation}</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-grid slds-grid_vertical">
+                                    <div class="slds-col slds-p-vertical_x-small">
+                                        <div class="slds-radio">
+                                            <input type="radio" name="installation" id="installation-oui" value="oui" 
+                                                   onchange={handleInstallationRadioChange}/>
+                                            <label class="slds-radio__label" for="installation-oui">
+                                                <span class="slds-radio_faux"></span>
+                                                <span >{yesNoLabels.yes}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-p-vertical_x-small">
+                                        <div class="slds-radio">
+                                            <input type="radio" name="installation" id="installation-non" value="non"
+                                            onchange={handleInstallationRadioChange}/>
+                                            <label class="slds-radio__label" for="installation-non">
+                                                <span class="slds-radio_faux"></span>
+                                                <span >{yesNoLabels.no}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+ 
+                    </template>
+
+                    <br/>
+
+                    <div class="slds-form-element">
+                        <label >{hlLabels.terrainDroit}</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="terrainDroit" id="terrainDroit-oui" value="oui" 
+                                               onchange={handleTerrainDroitRadioChange}/>
+                                        <label class="slds-radio__label" for="terrainDroit-oui">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.yes}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="terrainDroit" id="terrainDroit-non" value="non"
+                                        onchange={handleTerrainDroitRadioChange}/>
+                                        <label class="slds-radio__label" for="terrainDroit-non">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.no}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={showDeniveleInput}>
+                            <div class="slds-form-element slds-p-top_medium">
+                                <div class="slds-form-element__control">
+                                   <input class="slds-input" style="width:30%" 
+                                           placeholder={hlLabels.denivele}
+                                           onchange={handleDeniveleChange}></input>
+                               </div>
+                           </div>
+                        </template>
+                    </div>
+
+                    <br/>
+                    <div class="slds-form-element">
+                        <label >{hlLabels.obstacle}</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="obstacle" id="obstacle-oui" value="oui" 
+                                               onchange={handleHlObstacleRadioChange}/>
+                                               <label class="slds-radio__label" for="obstacle-oui">
+                                               <span class="slds-radio_faux"></span>
+                                               <span >{yesNoLabels.yes}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="obstacle" id="obstacle-non" value="non"
+                                        onchange={handleHlObstacleRadioChange}/>
+                                        <label class="slds-radio__label" for="obstacle-non">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.no}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- ! Second section -->
+                
+                <div class="slds-box slds-theme_shade slds-m-top_medium">
+                    <p class="slds-text-body_regular slds-m-bottom_medium">
+                        {hlLabels.accessDescription}
+                    </p>
+                    
+                    <div class="slds-form-element">
+                        <label >{hlLabels.accessQuestion}</label>
+                        <div class="slds-form-element__control"> 
+                            <div class="slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="accessConfirm" id="hl-oui" value="oui" 
+                                        onchange={handleHlAccessRadioChange}/>
+                                        <label class="slds-radio__label" for="hl-oui">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.yes}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-p-vertical_x-small">
+                                    <div class="slds-radio">
+                                        <input type="radio" name="accessConfirm" id="hl-non" value="non"
+                                        onchange={handleHlAccessRadioChange}/>
+                                        <label class="slds-radio__label" for="hl-non">
+                                            <span class="slds-radio_faux"></span>
+                                            <span >{yesNoLabels.no}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <template if:true={showHlAccessNote}>
+                        <p class="slds-text-body_regular slds-m-top_small">
+                            {hlLabels.accessNote}
+                        </p>
+                    </template>
+                </div>
+                
+                <!-- ! Third section -->
+               
+
+                    <div class="slds-box slds-theme_default slds-m-top_medium">
+                      
+                     
+            
+                            <div class="slds-p-around_medium">
+                                <p class="slds-p-bottom_small">
+                                {hlLabels.statementOne}
+                                </p>
+                                 <p class="slds-p-bottom_small">
+                                {hlLabels.statementTwo}
+                                </p>
+                                <p class="slds-p-bottom_small">
+                                {hlLabels.statementThree}
+                                </p>
+                                <p class="slds-p-bottom_small">
+                                {hlLabels.statementFour}
+                                </p>
+                                <p class="slds-p-bottom_small">
+                                {hlLabels.statementFive} {appointmentDate}
+                                </p>
+                           
+                               
+                            </div>
+            
+                     </div>
+            
+            </template>
+        <!--* Delivery Information Section -->
+
+        <template if:true={showDeliverySection}>
+         <div class="slds-box slds-theme_default slds-m-top_medium">
+            <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                <h2 class="slds-text-heading_medium">
+                {deliveryInfoLabels.title}        
+                </h2>
+            </div>
+            <div class="slds-text-body_regular slds-m-bottom_medium">
+
+               
+            </div>
+    
+            <div class="slds-form-element slds-m-bottom_medium">
+                <div class="slds-form-element__control">
+                    <div class="slds-checkbox">
+                        <input type="checkbox" name="contactPreference" id="contact-me" 
+                               onchange={handleContactPreferenceChange}/>
+                        <label class="slds-checkbox__label" for="contact-me">
+                            <span class="slds-checkbox_faux"></span>
+                         <span  style="color:black"><strong>{deliveryInfoLabels.contactCheckbox}</strong></span>
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="slds-form-element slds-m-bottom_medium">
+                 <p class="slds-text-body_regular">{deliveryInfoLabels.phoneNumberCurrent} <strong>{customerPhone}</strong></p>
+
+            </div>
+      
+            <div class="slds-form-element">
+                <label >
+                    {deliveryInfoLabels.phoneNumberChange}
+                </label>
+        
+                <div class="slds-form-element__control" style="width: 30%;">
+                    <input 
+                           type="tel" 
+                           class="slds-input" 
+                           pattern="[0-9]{10}"
+                           maxlength="10"
+                           placeholder={deliveryInfoLabels.phoneNumberPlaceholder}
+                           onchange={handlePhoneNumberChange}/>
+                </div>            
+
+            </div>
+            <div class="slds-form-element slds-m-bottom_medium">
+                <p class="slds-text-body_regular">{deliveryInfoLabels.psStatement}</p>
+           </div>
+        </div>
+    </template>
+
+       <!--* FERMETURE / OUVERTURE FORM -->
+
+       <template if:true={showFermeture}>
+           
+        <div class="slds-box slds-theme_shade">
+        
+            <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                <h2 class="slds-text-heading_medium">
+                    {rdvLabels.acceptTitle}       
+                </h2>
+            </div>
+             
+            <p class="slds-text-body_regular slds-p-bottom_medium">
+                <strong>{rdvLabels.acceptrdv}</strong> {appointmentNumber} - {workType} 
+            </p>
+            
+            <p class="slds-text-body_regular slds-p-bottom_medium">
+                 <strong>{rdvLabels.acceptDate}</strong> {appointmentDate} 
+            </p>
+         
+        </div>
+    </br>
+
+        <div class="slds-theme_default">
+    
+        
+            <div class="slds-box slds-theme_shade">
+ 
+                <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                    <h2 class="slds-text-heading_medium">
+                    {addressLabels.title}        
+                    </h2>
+                </div>
+                
+                <div class="slds-p-bottom_medium">
+                    <br/>
+                    <p class="slds-p-bottom_x-small">{addressLabels.subtitle}</p>
+                    <div class="slds-p-left_medium">
+                        <p>{deliveryAddress.street}</p>
+                        <p>{deliveryAddress.city}, {deliveryAddress.province}</p>
+                        <p>{deliveryAddress.postalCode}</p>
+                    </div>
+                </div>
+                
+                <div class="slds-form-element">
+                    <label >{fermetureLabels.address}</label>
+           
+                    <div class="slds-grid slds-grid_vertical">
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                <input type="radio" id="checkbox-oui1" name="addressConfirm" value="oui" 
+                                       onchange={handleAddressFermetureRadioChange}/>
+                                <label class="slds-radio__label" for="checkbox-oui1">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{yesNoLabels.yes}</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                 <input type="radio" id="checkbox-non1" name="addressConfirm" value="non" 
+                                       onchange={handleAddressFermetureRadioChange}/>
+                                <label class="slds-radio__label" for="checkbox-non1">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{yesNoLabels.no}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <template if:true={showFermetureCommentBox}>
+                    <div class="slds-form-element slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <textarea class="slds-textarea" 
+                                    placeholder={addressLabels.commentPlaceholder}
+                                    onchange={handleAdressCommentChange}></textarea>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </br>
+
+        <div class="slds-theme_default">
+    
+        
+            <div class="slds-box slds-theme_shade">
+ 
+                
+                
+                <div class="slds-form-element">
+                    <label >{fermetureLabels.question} <strong>{customerPhone}</strong></label>
+           
+                    <div class="slds-grid slds-grid_vertical">
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                <input type="radio" id="checkbox-oui2" name="addressConfirm" value="oui" 
+                                       onchange={handlePhoneRadioChange}/>
+                                <label class="slds-radio__label" for="checkbox-oui2">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{yesNoLabels.yes}</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-p-vertical_x-small">
+                            <div class="slds-radio">
+                                 <input type="radio" id="checkbox-non2" name="addressConfirm" value="non" 
+                                       onchange={handlePhoneRadioChange}/>
+                                <label class="slds-radio__label" for="checkbox-non2">
+                                    <span class="slds-radio_faux"></span>
+                                    <span >{yesNoLabels.no}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <template if:true={showPhoneBox}>
+                    <div class="slds-form-element slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <input class="slds-textarea" 
+                                     onchange={handlePhoneFermetureChange}></textarea>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        
+        </br>
+            
+        <div class="slds-box slds-theme_shade">
+     
+                <div class="slds-form-element">
+                    <div class="slds-p-around_medium">
+                        <p class="slds-p-bottom_small">
+                        {fermetureLabels.statementOne}
+                        </p>
+                         <p class="slds-p-bottom_small">
+                        {fermetureLabels.statementTwo}
+                        </p>
+                        <p class="slds-p-bottom_small">
+                        {fermetureLabels.statementThree}
+                        </p>
+                     
+                    </div>
+
+
+                </div>
+                
+            
+            </div>
+
+        </br>
+
+            <div class="slds-box slds-theme_shade">
+                <button class="slds-button slds-button_success" onclick={handleAcceptAppointment} disabled={isAcceptButtonFermetureDisabled}>{fermetureLabels.acceptButton} </button>
+            </div>
+
+        </br>
+
+            <div class="slds-box slds-theme_shade">
+        
+              
+                <p class="slds-text-body_regular slds-p-bottom_medium">
+                    {fermetureLabels.refuseStatement}
+                </p>
+                         <div class="slds-form-element slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <textarea 
+                            
+                            class="slds-textarea" 
+                                    placeholder={fermetureLabels.refusePlaceholder}
+                                    onchange={handleReasonChange}>
+                            </textarea>
+                        </div>
+                    </div>
+                  
+                <button class="slds-button slds-button_destructive"
+                onclick={handleRefuseAppointment}>
+                {fermetureLabels.refuseButton}          
+                
+                </button>
+    
+             
+            </div>
+
+        </div>
+
+    </template>
+
+         <!--* Acceptance/Refusal Section -->
+         <template if:true={showFooterSection}>
+        
+        <div class="slds-box slds-theme_default slds-m-top_medium" style="background-color: #f3f3f3;">
+            <div class="slds-m-bottom_medium" style="display: flex; gap: 1rem;">
+                <button class="slds-button slds-button_success"
+                        onclick={handleAcceptAppointment}
+                        disabled={isAcceptButtonDisabled}>
+                        {footerLabels.acceptButton}
+                </button>
+                <button class="slds-button slds-button_destructive"
+                        onclick={handleRefuseAppointment}>
+                        {footerLabels.refuseButton}
+                </button>
+            </div>
+
+            <div class="slds-text-body_regular">
+                {footerLabels.contactIntro} 
+                <a href="mailto:horsterre@trevi.ca" class="slds-text-color_brand">‎ horsterre@trevi.ca</a>, 
+                <a href="mailto:horsterreqc@trevi.ca" class="slds-text-color_brand">‎ horsterreqc@trevi.ca</a> 
+                ‎ {footerLabels.or} 
+                <a href="https://support.trevi.ca/hc/fr" target="_blank" class="slds-text-color_brand">‎ {footerLabels.helpCenter}</a>
+            </div>
+        </div>
+    </template>
+
+    </div>
+
+    </template>
+
+      <!--* CONFIRMATION RENDEZ VOUS MISE EN MARCHE  -  SERVICE CALL -->
+
+       <template if:true={showConfirmationRDV}>
+           
+        <div class="slds-box slds-theme_shade">
+        
+            <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                <h2 class="slds-text-heading_medium">
+                    {rdvLabels.acceptTitle}       
+                </h2>
+            </div>
+             
+            <p class="slds-text-body_regular slds-p-bottom_medium">
+                <strong>{rdvLabels.acceptrdv}</strong> {appointmentNumber} - {workType} 
+            </p>
+            
+
+            <p class="slds-text-body_regular slds-p-bottom_medium">
+                 <strong>{rdvLabels.acceptDate}</strong> {appointmentDate} 
+
+            </p>
+            <button class="slds-button slds-button_success"
+            onclick={handleAcceptAppointment}
+             >
+             {rdvLabels.acceptButton}           
+            
+            </button>
+
+         
+        </div>
+
+        
+
+    </template>
+       
+   
+       
+    <!--* ANNULATION RENDEZ VOUS -->
+
+        <template if:true={showAnnulationRDV}>
+        
+            <div class="slds-box slds-theme_shade">
+        
+            <div style="background-color: #f3f3f3; padding: 0.5rem; border: 1px solid #dddbda; border-radius: 4px; margin-bottom: 1rem; width: 100%;">
+                <h2 class="slds-text-heading_medium">
+                    {rdvLabels.refuseTitle}       
+                </h2>
+            </div>
+             
+            <p class="slds-text-body_regular slds-p-bottom_medium">
+                {rdvLabels.refuseStatement}
+            </p>
+                     <div class="slds-form-element slds-p-top_medium">
+                    <div class="slds-form-element__control">
+                        <textarea class="slds-textarea" 
+                                placeholder={rdvLabels.refusePlaceholder}
+                                onchange={handleReasonChange}>
+                        </textarea>
+                    </div>
+                </div>
+              
+            <button class="slds-button slds-button_destructive"
+            onclick={handleAcceptAppointment}>
+            {rdvLabels.refuseButton}          
+            
+            </button>
+
+         
+        </div>
+    </template>
+
+
+     <!--* Confirmation Modal -->
+     <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-modal__title">
+                        {footerLabels.popupTitle}
+                    </h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>{footerLabels.popupMessage}</p>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button 
+                        class="slds-button slds-button_neutral" 
+                        onclick={closeModal}
+                    >
+                        {footerLabels.cancelButton}
+                    </button>
+                    <button 
+                        class="slds-button slds-button_brand" 
+                        onclick={confirmAndExecute}
+                    >
+                        {footerLabels.confirmButton}
+                    </button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    
+<!--* Thank you Modal -->
+<template if:true={showThankYouMessage}>
+   <div class="slds-theme_default slds-p-around_large slds-text-align_center">
+    <img src={logoUrl} alt="Trevi Logo" style="max-width: 300px;"/>
+    <div class="slds-illustration">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="width: 100px; height: 100px;" class="mx-auto">
+            <circle cx="50" cy="50" r="45" fill="#4CAF50" />
+            <path d="M25 50 L40 65 L75 30" 
+                  stroke="white" 
+                  stroke-width="6" 
+                  fill="none" 
+                  stroke-linecap="round"/>
+        </svg>
+    </div>
+    <h1 class="slds-text-heading_large slds-p-top_medium">
+        {endingPageLabels.thankyouTitle}
+    </h1>
+    <p class="slds-text-body_regular slds-p-top_small">
+        {endingPageLabels.thankyouMessage}
+    </p>
+</div>
+</template>
+
+<!--* Decline Modal -->
+<template if:true={showDeclineMessage}>
+   <div class="slds-theme_default slds-p-around_large slds-text-align_center">
+    <img src={logoUrl} alt="Trevi Logo" style="max-width: 300px;"/>
+   
+    <h1 class="slds-text-heading_large slds-p-top_medium">
+        {endingPageLabels.declineTitle}
+    </h1>
+    <p class="slds-text-body_regular slds-p-top_small">
+        {endingPageLabels.declineSubtitle}
+    </p>
+    <p class="slds-text-body_regular slds-p-top_small">
+        {endingPageLabels.declineMessage}
+    </p>
+</div>
+</template>
+
+<!--* Invalid URL Modal -->
+<template if:true={showInvalidUrlMessage}>
+    <div class="slds-p-around_large slds-text-align_center">
+    <img src={logoUrl} alt="Trevi Logo" style="max-width: 300px;"/>
+    <div class="slds-illustration">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="width: 100px; height: 100px;" class="mx-auto">
+            <circle cx="50" cy="50" r="45" fill="#FF5252" />
+            <path d="M35 35 L65 65 M65 35 L35 65" 
+                  stroke="white" 
+                  stroke-width="6" 
+                  fill="none" 
+                  stroke-linecap="round"/>
+        </svg>
+    </div>
+    <h1 class="slds-text-heading_large slds-p-top_medium">
+        {endingPageLabels.invalidTitle}
+    </h1>
+    <p class="slds-text-body_regular slds-p-top_small">
+        {endingPageLabels.invalidMessage}
+    </p>
+</div>
+</template>
+</template>

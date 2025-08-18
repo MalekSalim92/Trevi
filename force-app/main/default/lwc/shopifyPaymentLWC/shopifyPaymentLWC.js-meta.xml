@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <isExposed>true</isExposed>
+
+    <masterLabel>Shopify Payment</masterLabel>
+    <description>Polls for Shopify payment URL and opens payment popup or shows status</description>
+    
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__RecordAction</target>
+    </targets>
+    
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="paymentUrl" type="String" label="Payment Url" description="Shopify Payment Url" />
+         </targetConfig>
+</targetConfigs>
+</LightningComponentBundle>

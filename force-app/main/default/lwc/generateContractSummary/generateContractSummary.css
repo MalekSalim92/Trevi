@@ -1,0 +1,88 @@
+:host {
+    --sds-c-modal-content-color-background: #ffffff;
+    height: 100% !important;
+}
+
+.content-wrapper {
+    height: 100% !important;
+}
+
+.modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 90vh !important; 
+    max-height: 100vh !important; 
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-container {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 1rem;
+    position: relative;
+    height: 100% !important;
+}
+
+.iframe-container {
+    width: 100%;
+    height: 100% !important;
+    overflow: hidden;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 100% !important;
+    border: none;
+}
+
+.error-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    text-align: center;
+    color: #c23934;
+}
+
+.fixed-footer {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f3f3f3;
+    border-top: 1px solid #d8dde6;
+}
+
+
+
+.language-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.language-tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.language-tab.active {
+    border-bottom-color: #0070d2;
+    font-weight: bold;
+}
+
+.modal-wrapper {
+    height: 90vh !important;
+    max-height: 70vh !important;
+    display: flex;
+    flex-direction: column;
+}
+.iframe-container, .iframe-container iframe {
+    flex: 1 0 0;
+    height: 100% !important;
+    min-height: 0;
+}

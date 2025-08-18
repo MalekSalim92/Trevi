@@ -1,0 +1,256 @@
+<!--
+  @description       : 
+  @author            : Mohammed Elhadi SANNEF
+  @group             : 
+  @last modified on  : 03-06-2025
+  @last modified by  : Mohammed Elhadi SANNEF
+-->
+<apex:page controller="KnowledgeFormsNewUsersController" docType="html-5.0" lightningStylesheets="true" cache="false">
+     <script type="text/javascript">
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            try {
+                // Get URL parameters from the Experience Cloud parent page
+                let urlParams = new URLSearchParams(window.top.location.search);
+                let article = urlParams.get("article");
+                let formType = urlParams.get("formType");
+                if (article && !window.location.search.includes("article")) {
+                	let newUrl = window.location.pathname + "?article=" + encodeURIComponent(article) + "&formType=" + encodeURIComponent(formType);
+                	window.location.replace(newUrl);
+                }
+            } catch (error) {
+                console.error("Error retrieving parameters: ", error);
+            }
+        });
+    
+        function showLoader() {
+            document.getElementById("loader").style.display = "block";
+        }
+    
+    	function redirectHome() {
+            alert("SUCCESSS!!");
+        }
+    
+            function validateRequiredFields() {
+                var isValid = true;
+                var form = document.getElementById("{!$Component.myForm}");
+                var requiredFields = form.querySelectorAll("input[required], select");
+
+                requiredFields.forEach(field => {
+                    if (field.value.trim() === "") {
+                        field.style.border = "2px solid red"; // Highlight empty fields
+                        isValid = false;
+                    } else {
+                        field.style.border = ""; // Remove highlight if filled
+                    }
+                });
+
+                if (!isValid) {
+                    alert("❌ Please fill in all required fields.");
+                } else {
+                    showLoader();
+                }
+                return isValid;
+            }
+    
+
+    </script>
+    <apex:slds />
+    
+
+    <div class="slds-scope">
+        <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-center form-wrapper">
+            <div class="slds-col slds-size_1-of-2"> 
+                <apex:form id="myForm">
+                    
+                    <apex:pageBlock title="{!formTitle}" mode="edit">
+                    <apex:pageMessages />
+                    <div class="slds-form">
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="name"> Name * : </label>
+                            <div class="slds-form-element__control">
+                                <apex:input id="name" required="true" value="{!fName}" type="text" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="email"> Email * : </label>
+                            <div class="slds-form-element__control">
+                                <apex:input label="Email" required="true" id="email" value="{!fEmail}" type="email" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="subject"> Subject * : </label>
+                            <div class="slds-form-element__control">
+                                <apex:input id="subject" required="true" value="{!fSubject}" type="text" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        <apex:outputPanel rendered="{!formType == 'vente'}">
+                            <div class="slds-form-element slds-m-bottom_medium" >
+                                <label class="slds-form-element__label" for="magasinChoice"> Choix du magasin * : </label>
+                                <div class="slds-form-element__control">
+                                    <apex:selectList id="magasinChoice" required="true" value="{!magasin}" size="1" multiselect="false" styleClass="slds-input">
+                                        <apex:selectOptions value="{!magasinItems}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+
+
+                        <apex:outputPanel rendered="{!formType == 'financement' || formType == 'service'}">
+                            <div class="slds-grid slds-wrap">
+                                
+                                <!-- Street Address -->
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                                    <div class="slds-form-element slds-m-bottom_medium">
+                                        <label class="slds-form-element__label" for="streetAddress"> Street Address * : </label>
+                                        <div class="slds-form-element__control">
+                                            <apex:input required="true" id="streetAddress" value="{!fStreetAddress}" type="text" styleClass="slds-input"/>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Country -->
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                                    <div class="slds-form-element slds-m-bottom_medium">
+                                        <label class="slds-form-element__label" for="countrySelect"> Country * : </label>
+                                        <div class="slds-form-element__control">
+                                            <apex:selectList id="countrySelect" required="true" value="{!fCountry}" size="1" multiselect="false" styleClass="slds-input">
+                                                <apex:selectOptions value="{!countries}"/>
+                                            </apex:selectList>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Province -->
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                                    <div class="slds-form-element slds-m-bottom_medium">
+                                        <label class="slds-form-element__label" for="provinceSelect"> Province * : </label>
+                                        <div class="slds-form-element__control">
+                                            <apex:selectList id="provinceSelect" required="true" value="{!fProvince}" size="1" multiselect="false" styleClass="slds-input">
+                                                <apex:selectOptions value="{!provinces}"/>
+                                            </apex:selectList>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- City -->
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                                    <div class="slds-form-element slds-m-bottom_medium">
+                                        <label class="slds-form-element__label" for="city"> City * : </label>
+                                        <div class="slds-form-element__control">
+                                            <apex:input required="true" id="city" value="{!fCity}" type="text" styleClass="slds-input"/>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Postal Code -->
+                                <div class="slds-col slds-size_1-of-2 slds-p-around_x-small">
+                                    <div class="slds-form-element slds-m-bottom_medium">
+                                        <label class="slds-form-element__label" for="postalCode"> Postal Code * : </label>
+                                        <div class="slds-form-element__control">
+                                            <apex:input required="true" id="postalCode" value="{!fPostalCode}" type="text" styleClass="slds-input"/>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </apex:outputPanel>
+
+                        
+                        <apex:outputPanel rendered="{!formType == 'service' 
+                                                    || formType == 'suivi-vente' 
+                                                    || formType == 'suivi-financement'
+                                                    || formType == 'suivi-livraison'
+                                                    || formType == 'suivi-service' }">
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label" for="region"> Region * : </label>
+                                <div class="slds-form-element__control">
+                                    <apex:selectList id="region" required="true" value="{!selectedRegion}" size="1" multiselect="false" styleClass="slds-input">
+                                    <apex:selectOptions value="{!regions}"/>
+                                </apex:selectList>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!formType == 'service'}">
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label" for="prevClientInfo"> Previous customer information * : </label>
+                                <div class="slds-form-element__control">
+                                    <apex:input id="prevClientInfo" required="true" value="{!fPreviousClientInfo}" styleClass="slds-input"/>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!(formType == 'suivi-vente' 
+                                                    || formType == 'suivi-financement' 
+                                                    || formType == 'suivi-service' 
+                                                    || formType == 'suivi-livraison') 
+                                                    && NOT(ISNULL(orderOptions)) && (orderOptions.size > 0)}">
+                            <apex:pageBlockSection title="Contract Number">
+                                <p>Total Contracts: {!orderOptions.size}</p>
+                                <label class="slds-form-element__label" for="contractChoice"> Contract Number * : </label>
+                                <div class="slds-form-element__control">
+                                    <apex:selectList id="contractChoice" value="{!Contract}" size="1" multiselect="false" styleClass="slds-input">
+                                        <apex:selectOptions value="{!ContractNumbers}"/>
+                                    </apex:selectList>
+                                </div>
+                            </apex:pageBlockSection>
+						</apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!(formType == 'suivi-vente' 
+                                                    || formType == 'suivi-financement' 
+                                                    || formType == 'suivi-service' 
+                                                    || formType == 'suivi-livraison') 
+                                                    && (ISNULL(orderOptions) || (orderOptions.size = 0))}">
+                            <apex:outputText value="No contracts found for your account." />
+                        </apex:outputPanel>
+
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="phone"> Phone Number * : </label>
+                            <div class="slds-form-element__control">
+                                <apex:input id="phone" required="true" value="{!fPhone}" type="tel" styleClass="slds-input"/>
+                            </div>
+                        </div>
+
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="description"> Description</label>
+                            <div class="slds-form-element__control">
+                                <apex:inputTextarea id="description" value="{!fDescription}" styleClass="slds-input"/>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="email"> Pièce Jointes</label>
+                            <div class="slds-form-element__control">
+                                <apex:inputFile value="{!fFileBody}" filename="{!fFileName}"/>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button with SLDS styling -->
+                        <div class="slds-m-top_large slds-text-align_center">
+                            
+                            <apex:actionFunction name="checkSuccess" action="{!save}" />
+                    
+                            <apex:commandButton value="Submit" onclick="if(validateRequiredFields()) 
+                                                                        checkSuccess(); return false;" styleClass="slds-button slds-button_brand"/>
+
+
+                        </div>
+                        <div id="loader" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+                            background:rgba(0,0,0,0.8); color:#fff; padding:20px; border-radius:10px;">
+                            Processing... Please wait.
+                        </div>                       
+          
+                        
+                    </div>
+                    </apex:pageBlock>
+                </apex:form>
+            </div>
+        </div>
+    </div>
+    
+    
+</apex:page>

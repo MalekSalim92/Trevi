@@ -1,0 +1,175 @@
+<apex:page standardController="ServiceAppointment" extensions="ContractorInvoiceController" renderAs="pdf" applyBodyTag="false">
+    <head>
+       <style type="text/css">
+           @page {
+               size: landscape;
+               @bottom-right {
+                   content: counter(page) "/" counter(pages);
+                   font-size: 10px;
+                   font-family: Arial, sans-serif;
+               }
+               @bottom-left {
+        content: " "  /* initial space or label if needed */
+            "{!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.Sage_Id_Number__c}"
+            " - " 
+            "<apex:outputText value="{0,date,yyyyMMdd}"><apex:param value="{!TODAY()}"/></apex:outputText>"  /* or a properly formatted date string */
+            " - "
+            "{!billingSettings.Invoice_Number__c}";
+        font-size: 10px;
+        font-family: Arial, sans-serif;
+    }
+               
+           }
+           .header-bg { background-color: #eeeeee; font-weight: bold; }
+           body, * { font-family: Arial, sans-serif; font-size: 12px; }
+           table, td, th { font-family: Arial, sans-serif; }
+           .avoid-page-break { page-break-inside: avoid; break-inside: avoid; }
+       </style>
+   </head>
+
+    <div style="margin-bottom: 20px; width: 100%; display: table; clear: both;">
+        <div style="float: left; width: 30%;">
+            <strong>DE</strong><br/>
+            <div style="word-wrap: break-word;">
+                {!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.Name}<br/>
+                {!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.BillingStreet}, {!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.BillingCity} <br/>
+                {!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.BillingState}, {!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.BillingPostalCode} <br/>
+                TEL :{!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.Phone}
+            </div>
+        </div>
+        <div style="float: left; width: 30%; text-align: center;">
+            <strong>Facture</strong><br/><br/>
+            <span style="white-space: nowrap;">
+                {!resourcesByAppointment[serviceAppointmentIds[0]][0].Resource__r.Account__r.Sage_Id_Number__c}&nbsp;-&nbsp;
+                <apex:outputText value="{0,date,yyyyMMdd}"><apex:param value="{!TODAY()}"/></apex:outputText>&nbsp;-&nbsp;
+                {!billingSettings.Invoice_Number__c}
+            </span>
+        </div>
+        <div style="float: right; width: 40%;">
+            <strong>À</strong><br/>
+            <div style="word-wrap: break-word;">
+                {!billingSettings.Company__c}<br/>
+                {!billingSettings.Street__c}<br/>
+                {!billingSettings.City__c} {!billingSettings.Province__c} {!billingSettings.Postal_Code__c}<br/>
+                TEL :{!billingSettings.Phone__c}
+            </div>
+        </div>
+    </div>
+
+    <apex:repeat value="{!serviceAppointmentIds}" var="saId">
+        <!-- Apply .avoid-page-break to avoid splitting detail tables -->
+        <div class="avoid-page-break" style="margin-bottom: 15px;">
+            <table style="width: 100%; border: 1px solid black; border-collapse: collapse; table-layout: fixed;">
+                <tr>
+                    <td style="width: 33%; border-left: 1px solid black;border-top: 1px solid black; padding: 5px;">
+                        Contrat:&nbsp;&nbsp;&nbsp;{!resourcesByAppointment[saId][0].Order__r.Order_Number__c}
+                    </td>
+                    <td style="width: 33%; border-top: 1px solid black; padding: 5px; text-align: center;">
+                        Client:&nbsp;&nbsp;&nbsp;{!resourcesByAppointment[saId][0].Account_Sage_ID__c}
+                    </td>
+                    <td style="width: 33%; border-right: 1px solid black; border-top: 1px solid black;padding: 5px; text-align: center;">
+                        Planifiée le:&nbsp;&nbsp;&nbsp;
+                        <apex:outputText value="{0,date,dd/MM/yyyy}">
+                            <apex:param value="{!resourcesByAppointment[saId][0].Service_Appointment__r.ActualStartTime}"/>
+                        </apex:outputText>
+                    </td>
+                </tr>
+             </table>
+             
+             <table style="width: 100%; border-collapse: collapse; border: 1px solid black;">
+                <tr class="header-bg">
+                    <th style="border: 1px solid black; padding: 5px; width: 30%; text-align: center; background-color: #eeeeee;">Produits</th>
+                    <th style="border: 1px solid black; padding: 5px; width: 20%; text-align: center; background-color: #eeeeee;">Ressource</th>
+                    <th style="border: 1px solid black; padding: 5px; width: 15%; text-align: center; background-color: #eeeeee;">Commentaire de Trevi</th>
+                    <th style="border: 1px solid black; padding: 5px; width: 15%; text-align: center; background-color: #eeeeee;">Commentaire de Sous-Traitant</th>
+                    <th style="border: 1px solid black; padding: 5px; width: 10%; text-align: center; background-color: #eeeeee;">Ajustement</th>
+                    <th style="border: 1px solid black; padding: 5px; width: 10%; text-align: center; background-color: #eeeeee;">Total</th>
+                </tr>
+                <apex:variable var="isFirst" value="true"/>
+                <apex:repeat value="{!resourcesByAppointment[saId]}" var="resource">
+                    <tr>
+                        <apex:outputPanel layout="none" rendered="{!isFirst}">
+                            <td style="border: 1px solid black; padding: 5px;" rowspan="{!resourceCounts[saId]}">
+                                {!resource.All_Products__c}
+                            </td>
+                        </apex:outputPanel>
+                        <td style="border: 1px solid black; padding: 5px; text-align: left;">
+                            {!resource.Resource__r.Name} 
+                        </td>
+                        <td style="border: 1px solid black; padding: 5px;">
+                            {!IF(LEN(resource.Description__c) > 100, 
+                                LEFT(resource.Description__c, 100) + '... etc', 
+                                resource.Description__c)}
+                        </td>
+                        <td style="border: 1px solid black; padding: 5px;">
+                            {!IF(LEN(resource.Contractor_Comment__c) > 100, 
+                                LEFT(resource.Contractor_Comment__c, 100) + '... etc', 
+                                resource.Contractor_Comment__c)}
+                        </td>
+
+                        <td style="border: 1px solid black; padding: 5px; text-align: right;">
+                            <apex:outputText value="{0, number, ###,##0.00}">
+                                <apex:param value="{!resource.Bonus__c}"/>
+                            </apex:outputText>
+                        </td>
+                        <td style="border: 1px solid black; padding: 5px; text-align: right;">
+                            <apex:outputText value="{0, number, ###,##0.00}">
+                                <apex:param value="{!resource.Total__c}"/>
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                    <apex:variable var="isFirst" value="false"/>
+                </apex:repeat>
+            </table>
+            <table style="width: 100%; border-collapse: collapse; border: 1px solid black; margin-left: auto;">
+                <tr>
+                    <td style="border: 1px solid black; padding: 5px; text-align: right; width: 100%;">
+                        <apex:outputText value="{0, number, ###,##0.00}">
+                            <apex:param value="{!subtotalsByAppointment[saId]}"/>
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </apex:repeat>
+    
+<!-- Wrap summary table in .avoid-page-break and right-aligned container -->
+<div class="avoid-page-break" style="width: 100%; text-align: right;">
+    <table style="display: inline-table; border-collapse: collapse; border: 1px solid black; width: 40%; margin-left: auto;">
+        <tr>
+            <td style="border: 1px solid black; padding: 5px; text-align: left; background-color: #eeeeee; width: 25%;">Sous total</td>
+            <td style="border: 1px solid black; padding: 5px; text-align: right; width: 25%; background-color: #eeeeee;">
+                <apex:outputText value="{0, number, ###,##0.00}">
+                    <apex:param value="{!totalSubtotal}"/>
+                </apex:outputText>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 5px; text-align: left; background-color: #eeeeee;">TPS:776375693</td>
+            <td style="border: 1px solid black; padding: 5px; text-align: right; background-color: #eeeeee;">
+                <apex:outputText value="{0, number, ###,##0.00}">
+                    <apex:param value="{!totalTPS}"/>
+                </apex:outputText>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 5px; text-align: left; background-color: #eeeeee;">TVQ:1223675201</td>
+            <td style="border: 1px solid black; padding: 5px; text-align: right; background-color: #eeeeee;">
+                <apex:outputText value="{0, number, ###,##0.00}">
+                    <apex:param value="{!totalTVQ}"/>
+                </apex:outputText>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 5px; text-align: left; background-color: #eeeeee;">Total</td>
+            <td style="border: 1px solid black; padding: 5px; text-align: right; background-color: #eeeeee;">
+                <apex:outputText value="{0, number, ###,##0.00}">
+                    <apex:param value="{!finalTotalWithTax}"/>
+                </apex:outputText>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+</apex:page>

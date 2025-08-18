@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Add_Order_Product_To_Collection</name>
+        <label>Add Order Product To Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>PrepareOrderItemsList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>orderItem</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Extras_Total_Price</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Extra_Selected_Product_Price</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Extras_Total_FullPrice</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Extra_Selected_Product_FullPrice</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Opening_Closing</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_to_Opening_Product_Sets</name>
+        <label>Add to Opening Product Sets</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>openingProductSet</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.Product_Sage_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_pricebook_entries</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_to_Opening_Product_Sets2</name>
+        <label>Add to Opening Product Sets</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>openingProductSet</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.Product_Sage_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Closing_Product_Sets2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Order_Item</name>
+        <label>Assign Order Item</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>orderItem.Product2Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.Product2Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.UnitPrice</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>price</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.Quantity</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>qty</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.ListPrice</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.UnitPrice</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.PricebookEntryId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.Description</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.TotalPrice</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>totalPrice</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.IsBundle__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>isBundle</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.Ship_Track__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>shipTrack</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Order_Product_To_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Closing_Product_Sets</name>
+        <label>Closing Product Sets</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closingProductSet</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.Product_Sage_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_pricebook_entries</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Closing_Product_Sets2</name>
+        <label>Closing Product Sets</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closingProductSet</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_pricebook_entries.Product_Sage_Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_pricebook_entries</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Opening_Closing</name>
+        <label>Opening Closing</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_pricebook_entries</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Opening</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_pricebook_entries.Opening_Closing__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Opening</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_to_Opening_Product_Sets</targetReference>
+            </connector>
+            <label>Opening</label>
+        </rules>
+        <rules>
+            <name>Closing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_pricebook_entries.Opening_Closing__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Closing_Product_Sets</targetReference>
+            </connector>
+            <label>Closing</label>
+        </rules>
+        <rules>
+            <name>Opening_ClosingBoth</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_pricebook_entries.Opening_Closing__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Opening Closing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_to_Opening_Product_Sets2</targetReference>
+            </connector>
+            <label>Opening Closing</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>discount</name>
+        <dataType>Number</dataType>
+        <expression>IF(
+{!Contract_Terms} = 1,
+1,
+IF(
+{!Contract_Terms} = 2,
+0.95,
+IF(
+{!Contract_Terms} = 3,
+0.9,1
+)
+)
+
+
+)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>Extra_Selected_Product_FullPrice</name>
+        <dataType>Currency</dataType>
+        <expression>{!orderItem.Quantity} * {!orderItem.ListPrice}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>Extra_Selected_Product_Price</name>
+        <dataType>Currency</dataType>
+        <expression>{!orderItem.Quantity} * {!orderItem.UnitPrice}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>price</name>
+        <dataType>Currency</dataType>
+        <expression>IF(
+ISNULL({!unitPrice}),
+IF(ISNULL({!distanceFactor}),
+{!Loop_through_pricebook_entries.UnitPrice} * {!discount} ,
+ {!Loop_through_pricebook_entries.UnitPrice} * {!distanceFactor} * {!discount}
+),
+{!unitPrice}
+)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>qty</name>
+        <dataType>Number</dataType>
+        <expression>IF(ISNULL({!quantity}) , 1 , {!quantity})</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>shipTrack</name>
+        <dataType>String</dataType>
+        <expression>IF(
+ISBLANK({!openingOrClosing}),
+{!Loop_through_pricebook_entries.Opening_Closing__c},
+{!openingOrClosing}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>totalPrice</name>
+        <dataType>Currency</dataType>
+        <expression>{!price} * {!qty}</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Ouverture Fermeture Assign {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ouverture Fermeture AssignOrderProductsSubflow</label>
+    <loops>
+        <name>Loop_through_pricebook_entries</name>
+        <label>Loop through pricebook entries</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>pricebookEntries</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Order_Item</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Loop_through_pricebook_entries</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>closingProductSet</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Contract_Terms</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>1.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>distanceFactor</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>Extras_Total_FullPrice</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>Extras_Total_Price</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>isBundle</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>openingOrClosing</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>openingProductSet</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>orderItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrderItem</objectType>
+    </variables>
+    <variables>
+        <name>PrepareOrderItemsList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>OrderItem</objectType>
+    </variables>
+    <variables>
+        <name>pricebookEntries</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>PricebookEntry</objectType>
+    </variables>
+    <variables>
+        <name>pricebookEntry</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>PricebookEntry</objectType>
+    </variables>
+    <variables>
+        <name>quantity</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>unitPrice</name>
+        <dataType>Currency</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+</Flow>
