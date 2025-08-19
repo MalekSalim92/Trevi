@@ -1,33 +1,57 @@
+/**
+ * ContractorInvoiceManager
+ *
+ * Manager class responsible for generating contractor invoices.
+ * - Calculates totals and taxes for appointment resources
+ * - Creates invoice and invoice lines
+ * - Updates invoice numbering in settings
+ * - Generates and saves PDF invoices
+ *
+ * Author: Malek Brachemi
+ * Date: 2025-05-08
+ */
 public class ContractorInvoiceManager {
 
+    /**
+     * Main method to generate an invoice for a list of appointment resources
+     * @param appointmentResourceIds List of Appointment_Resource__c IDs
+     * @return Id of the created Contractor_Invoice__c record
+     */
     public static Id generateInvoice(List<Id> appointmentResourceIds) {
 
-        Contractor_Invoice_Settings__c settings = [SELECT Invoice_Number__c FROM Contractor_Invoice_Settings__c LIMIT 1 FOR UPDATE ];
+        // Lock invoice settings to prevent concurrency issues
+        Contractor_Invoice_Settings__c settings = [
+            SELECT Invoice_Number__c 
+            FROM Contractor_Invoice_Settings__c 
+            LIMIT 1 
+            FOR UPDATE
+        ];
         
-        // Get the resources
+        // Fetch appointment resources
         List<Appointment_Resource__c> resources = [
             SELECT Id, Invoice_Number__c, Is_Invoiced__c,
                    Resource__c,
                    Resource__r.Account__r.Sage_Id_Number__c,
-                   Resource__r.Account__c, Order__c,Order__r.Order_Number__c,
+                   Resource__r.Account__c, Order__c, Order__r.Order_Number__c,
                    Fee_Amount__c, Fixed_Fee__c, Special_Tariffication_Fee__c, Total__c
             FROM Appointment_Resource__c 
             WHERE Id IN :appointmentResourceIds
         ];        
+        
         if (resources.isEmpty()) {
             throw new AuraHandledException('No resources found');
         }
        
-        // Calculate totals and update resources
+        // Calculate totals and update appointment resources
         Map<String, Decimal> totals = calculateTotals(resources, settings);
         
-        // Create new Invoice record
+        // Create the main invoice record
         Contractor_Invoice__c invoice = createInvoiceRecord(resources, totals, settings);
         
-        // Create invoice lines
+        // Create associated invoice lines
         createInvoiceLines(resources, invoice.Id);
         
-        // Update invoice number setting
+        // Increment and update invoice number in settings
         updateInvoiceNumberSetting(settings);
 
         // Generate and save PDF
@@ -36,8 +60,12 @@ public class ContractorInvoiceManager {
         return invoice.Id;
     }
     
-    
- 
+    /**
+     * Calculates totals and marks resources as invoiced
+     * @param resources List of Appointment_Resource__c
+     * @param settings Invoice settings containing current invoice number
+     * @return Map with totalAmount, totalTPS, and totalTVQ
+     */
     private static Map<String, Decimal> calculateTotals(
         List<Appointment_Resource__c> resources, 
         Contractor_Invoice_Settings__c settings
@@ -59,18 +87,23 @@ public class ContractorInvoiceManager {
             totalTVQ += tvq;
         }
         
-        // Update resources
+        // Update resources in Salesforce
         update resources;
         
-        Map<String, Decimal> totals = new Map<String, Decimal>{
+        return new Map<String, Decimal>{
             'totalAmount' => totalAmount,
             'totalTPS' => totalTPS,
             'totalTVQ' => totalTVQ
         };
-        
-        return totals;
     }
    
+    /**
+     * Creates the main invoice record
+     * @param resources List of appointment resources
+     * @param totals Map of calculated totals
+     * @param settings Invoice settings
+     * @return Inserted Contractor_Invoice__c record
+     */
     private static Contractor_Invoice__c createInvoiceRecord(
         List<Appointment_Resource__c> resources,
         Map<String, Decimal> totals,
@@ -90,7 +123,11 @@ public class ContractorInvoiceManager {
         return invoice;
     }
     
-   
+    /**
+     * Creates invoice lines for each appointment resource
+     * @param resources List of Appointment_Resource__c
+     * @param invoiceId Id of the related invoice
+     */
     private static void createInvoiceLines(List<Appointment_Resource__c> resources, Id invoiceId) {
         List<Contractor_Invoice_Line__c> invoiceLines = new List<Contractor_Invoice_Line__c>();
         
@@ -105,11 +142,13 @@ public class ContractorInvoiceManager {
         insert invoiceLines;
     }
     
-  
+    /**
+     * Increments and updates the invoice number in settings
+     * @param settings Contractor_Invoice_Settings__c record
+     */
     private static void updateInvoiceNumberSetting(Contractor_Invoice_Settings__c settings) {
         Decimal currentNumber = Decimal.valueOf(settings.Invoice_Number__c);
         settings.Invoice_Number__c = String.valueOf(currentNumber + 1);
         update settings;
     }
-    
 }
