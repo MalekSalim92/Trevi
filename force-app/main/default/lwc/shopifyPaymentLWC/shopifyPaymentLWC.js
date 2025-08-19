@@ -55,7 +55,10 @@ export default class ShopifyPaymentLWC extends LightningElement {
             } else {
                 console.log('No existing URL - making API call');
                 // Make API call to get new payment URL
- 
+                const result = await makePaymentSync({orderId: orderIdToUse});
+                console.log(result);
+                console.log(JSON.stringify(result));
+
                 if (result.success && result.paymentUrl) {
                     console.log('New payment URL received:', result.paymentUrl);
                     this.openPaymentPopup(result.paymentUrl);
