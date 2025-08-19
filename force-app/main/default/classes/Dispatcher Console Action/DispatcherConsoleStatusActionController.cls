@@ -1,25 +1,51 @@
+/**
+ * DispatcherConsoleStatusActionController
+ *
+ * Controller for updating the status of ServiceAppointments from the Field Service Lightning Console.
+ * Handles:
+ *   - Extracting console parameters (single/multiple appointments)
+ *   - Loading ServiceAppointment records
+ *   - Providing available status picklist values
+ *   - Updating ServiceAppointment statuses with proper error handling
+ *   - Reporting success and failure for each update
+ *
+ * Author: Malek Brachemi
+ * Date: 2025-05-27
+ * Notes: Uses Database.update with allOrNone=false to handle partial failures
+ */
 public class DispatcherConsoleStatusActionController {
 
-    // Properties to hold the console parameters
+    // ----- Properties -----
+
+    /** Comma-separated ServiceAppointment IDs from console parameters */
     public String serviceAppointmentIds { get; set; }
     
-    // Properties for status update
+    /** Selected status to update ServiceAppointments */
     public String selectedStatus { get; set; }
     
-    // List to hold service appointment records
+    /** Loaded ServiceAppointment records */
     public List<ServiceAppointment> serviceAppointments { get; set; }
     
-    // Properties to hold update results
+    /** List of successful updates for display */
     public List<UpdateResult> successfulUpdates { get; set; }
+    
+    /** List of failed updates for display */
     public List<UpdateResult> failedUpdates { get; set; }
+    
+    /** Flag to show results panel on Visualforce page */
     public Boolean showResults { get; set; }
     
-    // Wrapper class for update results
+    // ----- Nested Wrapper Classes -----
+
+    /**
+     * Wrapper class to hold update results per ServiceAppointment
+     */
     public class UpdateResult {
         public String appointmentNumber { get; set; }
         public String appointmentId { get; set; }
         public String errorMessage { get; set; }
         
+        /** Constructor */
         public UpdateResult(ServiceAppointment sa, String error) {
             this.appointmentNumber = (sa != null) ? sa.AppointmentNumber : '';
             this.appointmentId = (sa != null) ? sa.Id : '';
@@ -27,7 +53,12 @@ public class DispatcherConsoleStatusActionController {
         }
     }
     
-    // Constructor
+    // ----- Constructor -----
+    
+    /**
+     * Default constructor
+     * Initializes console parameters, loads service appointments, and sets default result lists.
+     */
     public DispatcherConsoleStatusActionController() {
         getConsoleParameters();
         loadServiceAppointments();
@@ -36,18 +67,19 @@ public class DispatcherConsoleStatusActionController {
         showResults = false;
     }
     
+    // ----- Private Helper Methods -----
+
     /**
-     * Extract parameters passed from FSL Console
+     * Extracts parameters passed from the FSL Console.
+     * Supports both single ('id') and multiple ('services') ServiceAppointments.
      */
     private void getConsoleParameters() {
         Map<String, String> params = ApexPages.currentPage().getParameters();
         
-        // Handle single service appointment (id parameter)
         if (params.containsKey('id')) {
             serviceAppointmentIds = params.get('id');
         }
         
-        // Handle multiple service appointments (services parameter)
         if (params.containsKey('services')) {
             serviceAppointmentIds = params.get('services');
         }
@@ -56,7 +88,9 @@ public class DispatcherConsoleStatusActionController {
     }
     
     /**
-     * Load service appointment records based on IDs
+     * Loads ServiceAppointment records based on extracted IDs.
+     * Orders results by scheduled start time.
+     * Handles errors gracefully with an ApexPages message.
      */
     private void loadServiceAppointments() {
         serviceAppointments = new List<ServiceAppointment>();
@@ -76,15 +110,20 @@ public class DispatcherConsoleStatusActionController {
                         ORDER BY SchedStartTime
                     ];
                 } catch (Exception e) {
-                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                        'Error loading service appointments: ' + e.getMessage()));
+                    ApexPages.addMessage(new ApexPages.Message(
+                        ApexPages.Severity.ERROR, 
+                        'Error loading service appointments: ' + e.getMessage()
+                    ));
                 }
             }
         }
     }
     
+    // ----- Public Methods -----
+
     /**
-     * Get available status picklist values for ServiceAppointment
+     * Retrieves active picklist values for ServiceAppointment.Status.
+     * Used to populate the status dropdown on the Visualforce page.
      */
     public List<SelectOption> getStatusOptions() {
         List<SelectOption> options = new List<SelectOption>();
@@ -101,33 +140,42 @@ public class DispatcherConsoleStatusActionController {
                 }
             }
         } catch (Exception e) {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                'Error loading status options: ' + e.getMessage()));
+            ApexPages.addMessage(new ApexPages.Message(
+                ApexPages.Severity.ERROR, 
+                'Error loading status options: ' + e.getMessage()
+            ));
         }
         
         return options;
     }
     
     /**
-     * Method to update service appointment status using Database.update with allOrNone=false
+     * Updates the status of the loaded ServiceAppointments.
+     * Uses Database.update with allOrNone=false to allow partial success.
+     * Populates successfulUpdates and failedUpdates lists.
+     * Returns null to stay on the same page.
      */
     public PageReference updateServiceAppointmentStatus() {
         
-        // Clear previous results
+        // Reset previous results
         if (successfulUpdates != null) successfulUpdates.clear();
         if (failedUpdates != null) failedUpdates.clear();
         showResults = false;
         
         // Validation
         if (String.isBlank(selectedStatus)) {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                'Please select a status before updating.'));
+            ApexPages.addMessage(new ApexPages.Message(
+                ApexPages.Severity.ERROR, 
+                'Please select a status before updating.'
+            ));
             return null;
         }
         
         if (serviceAppointments == null || serviceAppointments.isEmpty()) {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                'No service appointments found to update.'));
+            ApexPages.addMessage(new ApexPages.Message(
+                ApexPages.Severity.ERROR, 
+                'No service appointments found to update.'
+            ));
             return null;
         }
         
@@ -135,7 +183,7 @@ public class DispatcherConsoleStatusActionController {
         Map<Id, ServiceAppointment> originalAppointmentsMap = new Map<Id, ServiceAppointment>();
         
         try {
-            // Prepare service appointments for update
+            // Prepare appointments for update
             for (ServiceAppointment sa : serviceAppointments) {
                 if (sa != null) {
                     originalAppointmentsMap.put(sa.Id, sa);
@@ -152,7 +200,7 @@ public class DispatcherConsoleStatusActionController {
                 }
             }
             
-            // Perform the update if there are appointments to update
+            // Execute updates
             if (!appointmentsToUpdate.isEmpty()) {
                 List<Database.SaveResult> results = Database.update(appointmentsToUpdate, false);
                 
@@ -172,9 +220,7 @@ public class DispatcherConsoleStatusActionController {
                                 if (errors != null) {
                                     for (Database.Error err : errors) {
                                         if (err != null) {
-                                            if (String.isNotBlank(errorMsg)) {
-                                                errorMsg += '; ';
-                                            }
+                                            if (String.isNotBlank(errorMsg)) errorMsg += '; ';
                                             errorMsg += err.getMessage();
                                         }
                                     }
@@ -186,24 +232,28 @@ public class DispatcherConsoleStatusActionController {
                     }
                 }
                 
-                loadServiceAppointments(); // Refresh data
+                // Reload updated data
+                loadServiceAppointments();
             }
             
-            if ((successfulUpdates != null && successfulUpdates.size() > 0) || 
-                (failedUpdates != null && failedUpdates.size() > 0)) {
+            // Show results if there are any updates
+            if ((successfulUpdates != null && !successfulUpdates.isEmpty()) || 
+                (failedUpdates != null && !failedUpdates.isEmpty())) {
                 showResults = true;
             }
             
         } catch (Exception e) {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 
-                'An unexpected error occurred while updating service appointments: ' + e.getMessage()));
+            ApexPages.addMessage(new ApexPages.Message(
+                ApexPages.Severity.ERROR, 
+                'An unexpected error occurred while updating service appointments: ' + e.getMessage()
+            ));
         }
         
         return null;
     }
     
     /**
-     * Get formatted service appointment count for display
+     * Returns the count of loaded ServiceAppointments as a string for display.
      */
     public String getServiceAppointmentCount() {
         return (serviceAppointments != null) ? String.valueOf(serviceAppointments.size()) : '0';
