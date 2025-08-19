@@ -39,7 +39,7 @@
         <name>Send_Service_Contract_Email</name>
         <label>Send Service Contract Email</label>
         <locationX>745</locationX>
-        <locationY>8102</locationY>
+        <locationY>8210</locationY>
         <actionName>OuvertureFermetureContractEmailer</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -50,6 +50,12 @@
             <name>accountId</name>
             <value>
                 <elementReference>contact.AccountId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>baseServiceOrderItems</name>
+            <value>
+                <elementReference>baseOrderItem</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -155,8 +161,31 @@
                 <elementReference>PrepareMainServiceOrderItem</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>baseOrderItem</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>PrepareMainServiceOrderItem</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Capture_Taxes</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Base_OrderItem</name>
+        <label>Assign Base OrderItem</label>
+        <locationX>542</locationX>
+        <locationY>4334</locationY>
+        <assignmentItems>
+            <assignToReference>baseOrderItem</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Base_Products2.openingAndClosingOrderItems</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Capture_Clauses</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -220,7 +249,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Capture_Clauses</targetReference>
+            <targetReference>Assign_Base_OrderItem</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -484,7 +513,7 @@
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Asset Product</label>
         <locationX>448</locationX>
-        <locationY>7046</locationY>
+        <locationY>7154</locationY>
         <assignNextValueToReference>currentItem_Filter_Asset_Product</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allProducts</collectionReference>
@@ -546,7 +575,7 @@ TEXT({!currentItem_Filter_Base_Pricebook_Entries.Product2.Spa_Type__c}) = {!spaT
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Late fee pbe</label>
         <locationX>674</locationX>
-        <locationY>4526</locationY>
+        <locationY>4634</locationY>
         <assignNextValueToReference>currentItem_Filter_Late_fee_pbe</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
@@ -618,7 +647,7 @@ AND(
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Work Type products</label>
         <locationX>448</locationX>
-        <locationY>6938</locationY>
+        <locationY>7046</locationY>
         <assignNextValueToReference>currentItem_Filter_Work_Type_products</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>PrepareOrderItemsList</collectionReference>
@@ -667,7 +696,7 @@ AND(
         <name>Capacities_Available</name>
         <label>Capacities Available</label>
         <locationX>1396</locationX>
-        <locationY>6614</locationY>
+        <locationY>6722</locationY>
         <defaultConnector>
             <targetReference>Capacities_Not_Available_Screen</targetReference>
         </defaultConnector>
@@ -692,7 +721,7 @@ AND(
         <name>Capacity_Week_Selected</name>
         <label>Capacity Week Selected?</label>
         <locationX>992</locationX>
-        <locationY>6830</locationY>
+        <locationY>6938</locationY>
         <defaultConnector>
             <targetReference>Week_Not_Selected_Screen</targetReference>
         </defaultConnector>
@@ -718,7 +747,7 @@ AND(
         <name>Closing_Capacities</name>
         <label>Closing Capacities</label>
         <locationX>1396</locationX>
-        <locationY>5498</locationY>
+        <locationY>5606</locationY>
         <defaultConnector>
             <targetReference>Opening_Capacities</targetReference>
         </defaultConnector>
@@ -768,7 +797,7 @@ AND(
         <name>Error</name>
         <label>Error ?</label>
         <locationX>674</locationX>
-        <locationY>4742</locationY>
+        <locationY>4850</locationY>
         <defaultConnector>
             <targetReference>ExtraProducts_Count</targetReference>
         </defaultConnector>
@@ -790,7 +819,7 @@ AND(
         <name>Error_Create_Records</name>
         <label>Error ?</label>
         <locationX>448</locationX>
-        <locationY>7262</locationY>
+        <locationY>7370</locationY>
         <defaultConnector>
             <targetReference>whoUser</targetReference>
         </defaultConnector>
@@ -842,7 +871,7 @@ AND(
         <name>ErrorClosingCapacity</name>
         <label>Error ?</label>
         <locationX>1242</locationX>
-        <locationY>5714</locationY>
+        <locationY>5822</locationY>
         <defaultConnector>
             <targetReference>Opening_Capacities</targetReference>
         </defaultConnector>
@@ -868,7 +897,7 @@ AND(
         <name>ErrorOpeningCapacity</name>
         <label>Error ?</label>
         <locationX>1242</locationX>
-        <locationY>6272</locationY>
+        <locationY>6380</locationY>
         <defaultConnector>
             <targetReference>Capacities_Available</targetReference>
         </defaultConnector>
@@ -956,7 +985,7 @@ AND(
         <name>Has_ErrorShopify</name>
         <label>Has Error</label>
         <locationX>679</locationX>
-        <locationY>7778</locationY>
+        <locationY>7886</locationY>
         <defaultConnector>
             <targetReference>Set_url_to_Order</targetReference>
         </defaultConnector>
@@ -1031,7 +1060,7 @@ AND(
         <name>Opening_Capacities</name>
         <label>Opening Capacities</label>
         <locationX>1396</locationX>
-        <locationY>6056</locationY>
+        <locationY>6164</locationY>
         <defaultConnector>
             <targetReference>Capacities_Available</targetReference>
         </defaultConnector>
@@ -1081,7 +1110,7 @@ AND(
         <name>Send_Contract</name>
         <label>Send Contract ?</label>
         <locationX>877</locationX>
-        <locationY>7994</locationY>
+        <locationY>8102</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>YesSendContract</name>
@@ -1103,7 +1132,7 @@ AND(
         <name>whoUser</name>
         <label>who user ?</label>
         <locationX>679</locationX>
-        <locationY>7370</locationY>
+        <locationY>7478</locationY>
         <defaultConnector>
             <targetReference>Payment_Screen_Client</targetReference>
         </defaultConnector>
@@ -1609,7 +1638,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Set_url_to_Order</name>
         <label>Set url to Order</label>
         <locationX>877</locationX>
-        <locationY>7886</locationY>
+        <locationY>7994</locationY>
         <connector>
             <targetReference>Send_Contract</targetReference>
         </connector>
@@ -1638,7 +1667,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Capacities_Not_Available_Screen</name>
         <label>Capacities Not Available Screen</label>
         <locationX>1801</locationX>
-        <locationY>6722</locationY>
+        <locationY>6830</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>true</allowPause>
@@ -1654,7 +1683,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Clauses_Screen</name>
         <label>Clauses Screen</label>
         <locationX>1396</locationX>
-        <locationY>5066</locationY>
+        <locationY>5174</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1768,7 +1797,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Date_Selection_Screen</name>
         <label>Date Selection Screen</label>
         <locationX>1396</locationX>
-        <locationY>5390</locationY>
+        <locationY>5498</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1903,7 +1932,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Pay_Customer_Screen</name>
         <label>Pay Customer Screen</label>
         <locationX>745</locationX>
-        <locationY>8210</locationY>
+        <locationY>8318</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1928,7 +1957,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Payment_Screen</name>
         <label>Payment Screen</label>
         <locationX>547</locationX>
-        <locationY>7478</locationY>
+        <locationY>7586</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1952,7 +1981,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Payment_Screen_Client</name>
         <label>Payment Screen</label>
         <locationX>811</locationX>
-        <locationY>7478</locationY>
+        <locationY>7586</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1972,7 +2001,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Price_Summary</name>
         <label>Price Summary</label>
         <locationX>1396</locationX>
-        <locationY>4958</locationY>
+        <locationY>5066</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2697,7 +2726,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Week_Not_Selected_Screen</name>
         <label>Week Not Selected Screen</label>
         <locationX>1537</locationX>
-        <locationY>6938</locationY>
+        <locationY>7046</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2713,7 +2742,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Week_Selection_Screen</name>
         <label>Week Selection Screen</label>
         <locationX>992</locationX>
-        <locationY>6722</locationY>
+        <locationY>6830</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2808,7 +2837,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Add_Main_Service_to_Collection</name>
         <label>Add Main Service to Collection</label>
         <locationX>1396</locationX>
-        <locationY>5282</locationY>
+        <locationY>5390</locationY>
         <connector>
             <targetReference>Date_Selection_Screen</targetReference>
         </connector>
@@ -2860,7 +2889,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Api_Faulty_Screen</name>
         <label>Api Faulty Screen</label>
         <locationX>481</locationX>
-        <locationY>7886</locationY>
+        <locationY>7994</locationY>
         <flowName>Screen_Flow_Faulty_Message</flowName>
         <inputAssignments>
             <name>errorMessage</name>
@@ -2950,7 +2979,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Capture_Clauses</name>
         <label>Capture Clauses</label>
         <locationX>674</locationX>
-        <locationY>4418</locationY>
+        <locationY>4526</locationY>
         <connector>
             <targetReference>Filter_Late_fee_pbe</targetReference>
         </connector>
@@ -3032,7 +3061,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Create_records</name>
         <label>Create records</label>
         <locationX>448</locationX>
-        <locationY>7154</locationY>
+        <locationY>7262</locationY>
         <connector>
             <targetReference>Error_Create_Records</targetReference>
         </connector>
@@ -3223,7 +3252,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Get_Closing_Capacities2</name>
         <label>Get Closing Capacities</label>
         <locationX>1242</locationX>
-        <locationY>5606</locationY>
+        <locationY>5714</locationY>
         <connector>
             <targetReference>ErrorClosingCapacity</targetReference>
         </connector>
@@ -3289,7 +3318,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Late_Fees</name>
         <label>Late Fees</label>
         <locationX>674</locationX>
-        <locationY>4634</locationY>
+        <locationY>4742</locationY>
         <connector>
             <targetReference>Error</targetReference>
         </connector>
@@ -3367,7 +3396,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Opening_Capacities2</name>
         <label>Opening Capacities</label>
         <locationX>1242</locationX>
-        <locationY>6164</locationY>
+        <locationY>6272</locationY>
         <connector>
             <targetReference>ErrorOpeningCapacity</targetReference>
         </connector>
@@ -3429,7 +3458,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Payment_Options</name>
         <label>Payment Options</label>
         <locationX>1396</locationX>
-        <locationY>5174</locationY>
+        <locationY>5282</locationY>
         <connector>
             <targetReference>Add_Main_Service_to_Collection</targetReference>
         </connector>
@@ -3457,7 +3486,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>Process_Shopify_Payment</name>
         <label>Process Shopify Payment</label>
         <locationX>679</locationX>
-        <locationY>7670</locationY>
+        <locationY>7778</locationY>
         <connector>
             <targetReference>Has_ErrorShopify</targetReference>
         </connector>
@@ -3650,7 +3679,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         <name>ExtraProducts_Count</name>
         <label>ExtraProducts_Count</label>
         <locationX>1396</locationX>
-        <locationY>4850</locationY>
+        <locationY>4958</locationY>
         <connector>
             <targetReference>Price_Summary</targetReference>
         </connector>
@@ -3767,6 +3796,15 @@ IF({!Selected_Contract_Terms_Num}=3,
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>used for email</description>
+        <name>baseOrderItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrderItem</objectType>
     </variables>
     <variables>
         <name>basePricebookEntries</name>
