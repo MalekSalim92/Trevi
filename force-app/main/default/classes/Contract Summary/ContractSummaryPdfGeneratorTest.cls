@@ -12,11 +12,6 @@
 @isTest
 private class ContractSummaryPdfGeneratorTest {
 
-    // Mock HTTP callouts for any dependent services
-    // static {
-    //     Test.setMock(HttpCalloutMock.class, new HexaSurveyMockHttpResponse());
-    // }
-
     /**
      * Test setup: Creates required test data using TestDataFactory
      */
