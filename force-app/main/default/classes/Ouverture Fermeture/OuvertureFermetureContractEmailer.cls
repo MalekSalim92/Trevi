@@ -6,13 +6,26 @@ public class OuvertureFermetureContractEmailer {
         }
         
         RequestWrapper request = requestList[0];
-        System.debug('baseServicePricebookEntries: ' + request.baseServicePricebookEntries);
-        System.debug('optionPricebookEntries ' + request.optionPricebookEntries);
-
+        
+        // Serialize the request data to pass to future method
+        String requestJson = JSON.serialize(request);
+        
+        // Call the future method
+        sendServiceContractEmailAsync(requestJson);
+    }
+    
+    @future
+    public static void sendServiceContractEmailAsync(String requestJson) {
         try {
+            // Deserialize the request data
+            RequestWrapper request = (RequestWrapper) JSON.deserialize(requestJson, RequestWrapper.class);
+            
+            System.debug('baseServicePricebookEntries: ' + request.baseServicePricebookEntries);
+            System.debug('baseServiceOrderItems: ' + request.baseServiceOrderItems);
+            System.debug('optionPricebookEntries ' + request.optionPricebookEntries);
 
             List<String> productIds = new List<String>();
-            for (OrderItem item : request.baseServicePricebookEntries) {
+            for (OrderItem item : request.baseServiceOrderItems) {
                 productIds.add(item.Product2Id);
             }
             
@@ -31,14 +44,18 @@ public class OuvertureFermetureContractEmailer {
             Account acc = [SELECT Id, Name, Email__c FROM Account WHERE Id = :request.accountId];
             Order ord = [SELECT Id,Order_Number__c  FROM Order WHERE Id = :request.orderId];
             // Get the email template by name
+			String emailTemplate = UserInfo.getLanguage() == 'fr' ? 'Ouverture_Fermeture_Contract_de_service_Fr' : 'Ouverture_Fermeture_Contract_de_service_En';
+
+            // Get the email template by name
             EmailTemplate template = [SELECT Id, Subject, HtmlValue, Body 
                                      FROM EmailTemplate 
-                                     WHERE DeveloperName = 'Ouverture_Fermeture_Contract_de_service' LIMIT 1];
+                                     WHERE DeveloperName = :emailTemplate LIMIT 1];
             
             // Get the HTML content of the template
             String htmlBody = template.HtmlValue;
-            String orderNumber = (ord != null && ord.Order_Number__c != null) ? ord.Order_Number__c : '';
-                        // Replace basic placeholders
+            String orderNumber = ord.Order_Number__c ?? '';
+            
+            // Replace basic placeholders
             htmlBody = htmlBody.replace('{ACCOUNT_NAME}', acc.Name);
             htmlBody = htmlBody.replace('{ACCOUNT_SAGEID}', orderNumber);
             htmlBody = htmlBody.replace('{BASE_SERVICE_DESCRIPTION}', worktypeNameConcatenation);
@@ -95,7 +112,7 @@ public class OuvertureFermetureContractEmailer {
             String optionsHtml = '';
             Decimal optionsSubtotal = 0;
             Decimal optionsDiscountedSubtotal = 0;
-            
+
             for (orderItem pbe : request.optionPricebookEntries) {
                 if (String.isNotBlank(pbe.Description) && pbe.ListPrice > 0 ) {
                     Decimal quantity = pbe.Quantity != null ? pbe.Quantity : 1;
@@ -117,7 +134,7 @@ public class OuvertureFermetureContractEmailer {
                     optionsHtml += '</tr>';
                 }
             }
-            
+            htmlBody = htmlBody.replace('{OPTION_HEADER}', discountHeader);
             htmlBody = htmlBody.replace('{OPTION_PRODUCTS}', optionsHtml);
             
             // Add discount message if applicable
@@ -173,7 +190,7 @@ public class OuvertureFermetureContractEmailer {
             System.debug('Email sent successfully to ' + acc.Email__c);
             
         } catch (Exception e) {
-            System.debug('Error processing email: ' + e.getMessage());
+            System.debug('Error processing email in future method: ' + e.getMessage());
         }
     }
     
@@ -201,6 +218,9 @@ public class OuvertureFermetureContractEmailer {
         @InvocableVariable(label='Base Service Pricebook Entries')
         public List<orderItem> baseServicePricebookEntries;
 
+        @InvocableVariable(label='Base Service Order Items')
+        public List<orderItem> baseServiceOrderItems;
+
         @InvocableVariable(label='Option Pricebook Entries')
         public List<orderItem> optionPricebookEntries;
         
@@ -215,7 +235,5 @@ public class OuvertureFermetureContractEmailer {
 
         @InvocableVariable(label='Order Id')
         public String orderId;
-
-        
     }
 }

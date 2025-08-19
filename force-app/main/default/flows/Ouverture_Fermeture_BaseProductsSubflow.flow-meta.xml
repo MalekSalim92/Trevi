@@ -15,6 +15,22 @@
         </assignmentItems>
     </assignments>
     <assignments>
+        <name>Add_order_Item_to_list</name>
+        <label>Add order Item to list</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>openingAndClosingOrderItems</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>orderItem</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Pricebook_Entries</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Prepare_Opening_Closing_Product</name>
         <label>Prepare_Opening_Closing_Product</label>
         <locationX>0</locationX>
@@ -56,8 +72,15 @@
                 <elementReference>Loop_through_Pricebook_Entries</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>orderItem.Product2Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Pricebook_Entries.Product2Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
-            <targetReference>Loop_through_Pricebook_Entries</targetReference>
+            <targetReference>Add_order_Item_to_list</targetReference>
         </connector>
     </assignments>
     <environments>Default</environments>
@@ -103,7 +126,7 @@
             <targetReference>Loop_through_Pricebook_Entries</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>currentItem_Base_Products_Filter</name>
         <dataType>SObject</dataType>
@@ -142,6 +165,22 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>PricebookEntry</objectType>
+    </variables>
+    <variables>
+        <name>openingAndClosingOrderItems</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>OrderItem</objectType>
+    </variables>
+    <variables>
+        <name>orderItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrderItem</objectType>
     </variables>
     <variables>
         <name>pricebookEntriesInput</name>
