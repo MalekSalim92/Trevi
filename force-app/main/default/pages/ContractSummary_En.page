@@ -1,47 +1,44 @@
-<apex:page standardController="Order" extensions="ContractSummaryController" renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+<apex:page 
+    standardController="Order"  extensions="ContractSummaryController"  renderAs="pdf" 
+    showHeader="false" sidebar="false" standardStylesheets="false" 
+    applyBodyTag="false" applyHtmlTag="false"
+>
     <html>
         <head>
             <style type="text/css">
+                /* --- Page setup --- */
                 @page {
-                    size: letter;
-                    margin: 1cm;
+                    size: letter; /* Letter size PDF */
+                    margin: 1cm;  /* Standard margin */
                 }
+
                 body {
                     font-family: Arial, sans-serif;
                     font-size: 10pt;
                 }
-                
-                /* Header styles with horizontal alignment */
+
+                /* --- Header layout --- */
                 .header {
                     width: 100%;
-                    display: table;
+                    display: table; /* Table display for horizontal layout */
                     margin-bottom: 20px;
                 }
-                
+
                 .left-section, .middle-section, .right-section {
                     display: table-cell;
-                    vertical-align: top;
+                    vertical-align: top; /* Align top of each section */
                 }
-                
-                .left-section {
-                    width: 30%;
-                }
-                
-                .middle-section {
-                    width: 40%;
-                    text-align: center;
-                }
-                
-                .right-section {
-                    width: 30%;
-                    text-align: center;
-                }
-                
+
+                .left-section { width: 30%; }
+                .middle-section { width: 40%; text-align: center; }
+                .right-section { width: 30%; text-align: center; }
+
+                /* --- Company logo and details --- */
                 .company-details {
                     font-size: 8pt;
                     margin-top: 5px;
                 }
-                
+
                 .header-box {
                     background-color: #f5f5f5;
                     border: 1px solid #ddd;
@@ -49,17 +46,15 @@
                     margin-bottom: 5px;
                     text-align: center;
                 }
-                
+
                 .text-center {
                     text-align: center;
                     margin-bottom: 10px;
                 }
-                
-                /* Rest of styles */
-                .clear {
-                    clear: both;
-                }
-                
+
+                /* --- Section and table styles --- */
+                .clear { clear: both; }
+
                 .section-title {
                     background-color: #f5f5f5;
                     font-weight: bold;
@@ -68,23 +63,23 @@
                     margin-bottom: 10px;
                     border: 1px solid #ddd;
                 }
-                
+
                 .customer-info {
                     width: 100%;
                     margin-bottom: 20px;
                 }
-                
+
                 .customer-info td {
                     padding: 2px 5px;
                     vertical-align: top;
                 }
-                
+
                 .products-table {
                     width: 100%;
                     border-collapse: collapse;
                     margin-top: 20px;
                 }
-                
+
                 .products-table th {
                     background-color: #f5f5f5;
                     border: 1px solid #ddd;
@@ -92,13 +87,13 @@
                     text-align: left;
                     font-weight: bold;
                 }
-                
+
                 .products-table td {
                     border: 1px solid #ddd;
                     padding: 5px;
                     vertical-align: top;
                 }
-                
+
                 .footer {
                     font-size: 8pt;
                     text-align: center;
@@ -109,10 +104,12 @@
                 }
             </style>
         </head>
+
         <body>
-            <!-- Header with three horizontal sections -->
+            <!-- === Header Section (3 columns) === -->
             <div class="header">
-                <!-- Left section - Logo and company details -->
+                
+                <!-- Left section: Logo + company info -->
                 <div class="left-section">
                     <apex:image url="{!$Resource.TreviLogo}" width="250" height="60" rendered="{!$Resource.TreviLogo != null}"/> <br/>
                     <div class="company-details">
@@ -122,23 +119,24 @@
                     </div>
                 </div>
                 
-                <!-- Middle section - Store information -->
+                <!-- Middle section: Store details -->
                 <div class="middle-section">
                     Store {!order.Account.BillingCity}<br/>
                     {!order.Account.BillingStreet}<br/>
                     {!order.Account.BillingCity}, {!order.Account.BillingState} {!order.Account.BillingPostalCode}<br/>
                     1 800 44-TREVI<br/>
-                    514 22-TREVI 
-                    <br/>
+                    514 22-TREVI<br/>
                     <p style="font-size: 16pt; color:red; margin-bottom: 0">{!order.Account.Sage_Id__c}</p>
-                        Client No
+                    Client No
                </div>
                 
-                <!-- Right section - Contract details -->
+                <!-- Right section: Contract info -->
                 <div class="right-section">
                     <div class="header-box">
                         <strong>CONTRACT SUMMARY</strong>
                     </div>
+
+                    <!-- Order number + date -->
                     <div class="text-center">
                         <strong>{!order.Order_Number__c}</strong><br/>
                         Date: <apex:outputText value="{0,date,M/d/yyyy h:mm:ss a}">
@@ -146,6 +144,8 @@
                         </apex:outputText>
                     </div>
                     <br/>
+
+                    <!-- Sales representative -->
                     <div class="header-box">
                         <strong>SALES REPRESENTATIVE</strong>
                     </div>
@@ -154,9 +154,11 @@
                     </div>
                 </div>
             </div>
-            
+
+            <!-- === Buyer Section === -->
             <div class="section-title">BUYER (HEREINAFTER REFERRED TO AS "THE BUYER")</div>
             
+            <!-- Customer information table -->
             <table class="customer-info">
                 <tr>
                     <td width="15%"><strong>Name:</strong></td>
@@ -181,10 +183,11 @@
                     <td>{!order.ShippingCity}</td>
                     <td><strong>Postal Code:</strong></td>
                     <td>{!order.ShippingPostalCode}</td>
-                     <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
-            
+
+            <!-- === Products Table Section === -->
             <table class="products-table">
                 <thead>
                     <tr>
@@ -195,12 +198,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop through summarized products -->
                     <apex:repeat value="{!summarizedProducts}" var="prod">
                         <tr>
-                            <td><apex:outputText value="{0, number, integer}">
-                                <apex:param value="{!prod.quantity}" />
-                            </apex:outputText></td>
-                                                        <td>{!prod.location}</td>
+                            <td>
+                                <apex:outputText value="{0, number, integer}">
+                                    <apex:param value="{!prod.quantity}" />
+                                </apex:outputText>
+                            </td>
+                            <td>{!prod.location}</td>
                             <td>{!prod.productCode}</td>
                             <td>
                                 {!prod.productName}<br/>
@@ -211,7 +217,6 @@
                 </tbody>
             </table>
             
-           
         </body>
     </html>
 </apex:page>

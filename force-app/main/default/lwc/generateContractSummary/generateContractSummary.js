@@ -6,6 +6,10 @@ import savePDFToFiles from '@salesforce/apex/ContractSummaryPdfGenerator.savePDF
 import { CloseActionScreenEvent } from 'lightning/actions';
 
 export default class GenerateContractSummary extends NavigationMixin(LightningModal) {
+     // ----------------------
+    // Properties
+    // ----------------------
+
     @api recordId;
     vfPageUrl;
     isLoading = false;
@@ -13,6 +17,10 @@ export default class GenerateContractSummary extends NavigationMixin(LightningMo
     frenchTabClass = 'language-tab active';
     englishTabClass = 'language-tab';
     errorMessage = 'No record ID available. Please ensure you\'re accessing this component from a valid record.';
+
+    // ----------------------
+    // Getters
+    // ----------------------
 
     get generateLabel() {
         return this.selectedLanguage === 'en' ? 'Generate PDF' : 'Générer PDF';
@@ -25,32 +33,34 @@ export default class GenerateContractSummary extends NavigationMixin(LightningMo
     get headerLabel() {
         return this.selectedLanguage === 'en' ? 'Generate Contract Summary' : 'Générer le Sommaire de Contrat';
     }
+    
+    // ----------------------
+    // Lifecycle hook
+    // ----------------------
 
     connectedCallback() {
-
-        console.log('START')
+ 
+        // Attempt to extract recordId from current URL
         const fullUrl = window.location.href;
- 
         const pathParts = fullUrl.split('/');
- 
-        // Find the index of 'Order' in the path parts
+
+        // Try to find 'Order' in the URL path
         const orderIndex = pathParts.indexOf('Order');
- 
-        // If 'Order' is found and there is an ID after it
+
         if (orderIndex !== -1 && orderIndex + 1 < pathParts.length) {
-            // Extract the ID
+            // If found, assign next segment as recordId
             this.recordId = pathParts[orderIndex + 1];
-        }
-        else{
+        } else {
+            // Otherwise, try to get from URL query parameters
             const urlParams = new URLSearchParams(window.location.search);
-             this.recordId = urlParams.get('recordId');
+            this.recordId = urlParams.get('recordId');
         }
 
+        // If recordId is available, update VF page URL
         if (this.recordId) {
- 
             this.updateVFPageUrl();
         } else {
- 
+            // Fallback to query parameter check
             const urlParams = new URLSearchParams(window.location.search);
             this.recordId = urlParams.get('recordId');
             if (this.recordId) {
@@ -59,30 +69,46 @@ export default class GenerateContractSummary extends NavigationMixin(LightningMo
         }
     }
 
+    // ----------------------
+    // Event handlers
+    // ----------------------
 
-
+    // === Update Visualforce Page URL depending on selected language ===
     updateVFPageUrl() {
         const baseUrl = window.location.origin;
         this.vfPageUrl = this.selectedLanguage === 'en'
             ? `${baseUrl}/apex/ContractSummary_En?id=${encodeURIComponent(this.recordId)}`
             : `${baseUrl}/apex/ContractSummary?id=${encodeURIComponent(this.recordId)}`;
     }
-
+    
+    
+    // === Handle language tab clicks ===
     handleTabClick(event) {
+        // Update selected language
         this.selectedLanguage = event.target.dataset.language;
+
+        // Update CSS classes for tabs
         this.frenchTabClass = this.selectedLanguage === 'fr' ? 'language-tab active' : 'language-tab';
         this.englishTabClass = this.selectedLanguage === 'en' ? 'language-tab active' : 'language-tab';
+
+        // Update VF page URL to reflect new language
         this.updateVFPageUrl();
     }
 
+    // === Handle Cancel button click ===
     handleCancel() {
+        // Close modal
         this.dispatchEvent(new CloseActionScreenEvent());
     }
 
- 
-    handleGeneratePDF() {
+    // ----------------------
+    // Apex Calls
+    // ----------------------
+   async handleGeneratePDF() {
+        // Prevent duplicate requests
         if (this.isLoading) return;
-    
+
+        // Validate recordId
         if (!this.recordId) {
             this.showToast(
                 this.selectedLanguage === 'en' ? 'Error' : 'Erreur',
@@ -91,20 +117,24 @@ export default class GenerateContractSummary extends NavigationMixin(LightningMo
             );
             return;
         }
-    
+
         this.isLoading = true;
-    
-        savePDFToFiles({
+        try{
+        // Call Apex method to generate PDF and save to Files
+        const contentDocumentId = await savePDFToFiles({
             recordId: this.recordId,
             language: this.selectedLanguage
         })
-        .then(contentDocumentId => {
+        
+      
+            // Success toast
             this.showToast(
                 this.selectedLanguage === 'en' ? 'Success' : 'Succès',
                 this.selectedLanguage === 'en' ? 'PDF saved to Files' : 'PDF enregistré dans les fichiers',
                 'success'
             );
-    
+
+            // Navigate to the Order record page after success
             this[NavigationMixin.Navigate]({
                 type: 'standard__recordPage',
                 attributes: {
@@ -112,20 +142,28 @@ export default class GenerateContractSummary extends NavigationMixin(LightningMo
                     actionName: 'view'
                 }
             });
-        })
-        .catch(error => {
+        }
+        catch(error) {
+            // Log error to console and show error toast
             console.error('PDF Generation Error:', error);
             this.showToast(
                 this.selectedLanguage === 'en' ? 'Error' : 'Erreur',
                 this.selectedLanguage === 'en' ? 'Failed to generate PDF' : 'Échec de la génération du PDF',
                 'error'
             );
-        })
-        .finally(() => {
+        }
+        finally {
+            // Reset loading state
             this.isLoading = false;
-        });
+        };
     }
-    
+
+    // ----------------------
+    // Toast event
+    // ----------------------
+
+
+    // === Helper method to show toast messages ===
     showToast(title, message, variant) {
         const toast = new ShowToastEvent({
             title: title,
