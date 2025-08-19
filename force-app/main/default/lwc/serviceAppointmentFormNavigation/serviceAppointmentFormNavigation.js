@@ -1,39 +1,54 @@
+/**
+ * @description  LWC component for Flow navigation within a Service Appointment form.
+ * Provides Confirm / Decline buttons and outputs the selected action back to Flow.
+ * 
+ * Usage: 
+ * - Exposed in Flow with "isButtonDisabled" and "actionName" API properties
+ * - Dispatches Flow events (FlowAttributeChangeEvent & FlowNavigationNextEvent)
+ *
+ * @file        serviceAppointmentFormNavigation.js
+ * @author      Malek brachemi
+ * @date        2025-06-06
+ */
+
 import { LightningElement, api } from 'lwc';
 import { FlowAttributeChangeEvent, FlowNavigationNextEvent } from 'lightning/flowSupport';
 import CONFIRM_LABEL from '@salesforce/label/c.confirm';
 import DECLINE_LABEL from '@salesforce/label/c.decline';
 
 export default class ServiceAppointmentFormNavigation extends LightningElement {
+    // Button labels (from custom labels for localization)
     confirmLabel = CONFIRM_LABEL;
     declineLabel = DECLINE_LABEL;
+
+    /** @description Controls whether Confirm button is disabled */
     @api isButtonDisabled;
 
-    // Output properties to flow  
+    /** @description Output property passed to Flow to indicate action taken */
     @api actionName = '';
     
+    /** Handle Confirm button click */
     handleConfirm() {
-        console.log('Confirm button clicked');
         this.setActionAndNavigate('Confirm');
     }
     
+    /** Handle Decline button click */
     handleDecline() {
-        console.log('Decline button clicked');
         this.setActionAndNavigate('Decline');
     }
     
+    /**
+     * Set the action output property and navigate Flow to the next screen
+     * @param {String} action - Action name ("Confirm" or "Decline")
+     */
     setActionAndNavigate(action) {
-        // Set the action
+        // Update API property
         this.actionName = action;
-        console.log('Setting action to:', action);
         
-        // Notify flow that actionName has changed
-        const attributeChangeEvent = new FlowAttributeChangeEvent('actionName', action);
-        this.dispatchEvent(attributeChangeEvent);
-        console.log('Dispatched attribute change event for:', action);
+        // Notify Flow that actionName has changed
+        this.dispatchEvent(new FlowAttributeChangeEvent('actionName', action));
         
-        // Navigate to next screen
-        const navigateNextEvent = new FlowNavigationNextEvent();
-        this.dispatchEvent(navigateNextEvent);
-        console.log('Dispatched navigation next event');
+        // Navigate Flow to the next screen
+        this.dispatchEvent(new FlowNavigationNextEvent());
     }
 }
