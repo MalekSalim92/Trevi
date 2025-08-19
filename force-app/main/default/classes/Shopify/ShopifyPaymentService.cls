@@ -3,7 +3,7 @@
  *
  * Responsible for handling Shopify payment requests from Salesforce.
  * Provides invocable methods for Flow/Process Builder and makes async
- * callouts to Shopify API. Updates WorkOrderLineItem records with 
+ * callouts to Shopify API. Updates WorkOrderLineItem/Order records with 
  * payment URLs and pending status.
  *
  * Author: Malek Brachemi
@@ -17,10 +17,13 @@ public with sharing class ShopifyPaymentService {
      * Wrapper class to receive inputs from Flow or Process Builder
      */
     public class PaymentRequest {
-        @InvocableVariable(label='Work Order Line Item ID' description='ID of the Work Order Line Item' required=true)
+        @InvocableVariable(label='Order ID' description='ID of the Order')
+        public String orderId;
+
+        @InvocableVariable(label='Work Order Line Item ID' description='ID of the Work Order Line Item')
         public String woliId;
         
-        @InvocableVariable(label='Contact ID' description='ID of the Contact for billing' required=true)
+        @InvocableVariable(label='Contact ID' description='ID of the Contact for billing')
         public String contactId;
     }
 
@@ -32,19 +35,23 @@ public with sharing class ShopifyPaymentService {
      * @throws AuraHandledException if input is missing or callout fails
      */
     @InvocableMethod(label='Shopify Payment' description='Method to process Shopify payment')
-    public static void makePayment(List<PaymentRequest> requests ) {
-        if (requests == null || requests.isEmpty() || String.isBlank(requests[0].woliId) || String.isBlank(requests[0].contactId)) {
-            throw new AuraHandledException('WOLI Id must be provided.');
+    public static void makePayment(List<PaymentRequest> requests) {
+        if (requests == null || requests.isEmpty() || 
+            !(!String.isBlank(requests[0].orderId) || 
+              (!String.isBlank(requests[0].woliId) && !String.isBlank(requests[0].contactId)))) {
+            throw new AuraHandledException('Order ID or (WOLI ID + Contact ID) must be provided.');
         }
 
-        String contactId = requests[0].contactId;
-        String woliId = requests[0].woliId;
+        // Safe null checks for Apex
+        String contactId = (requests[0] != null) ? requests[0].contactId : null;
+        String woliId = (requests[0] != null) ? requests[0].woliId : null;
+        String orderId = (requests[0] != null) ? requests[0].orderId : null;
 
         try {
             // Call future method for async callout
-            makeCalloutAsync(woliId, contactId);
+            makeCalloutAsync(orderId, woliId, contactId);
         } catch (Exception e) {
-            System.debug('Error updating WOLI: ' + e.getMessage());
+            System.debug('Error initiating payment: ' + e.getMessage());
             throw new AuraHandledException('Failed to initiate payment process: ' + e.getMessage());
         }
     }
@@ -53,43 +60,33 @@ public with sharing class ShopifyPaymentService {
      * makeCalloutAsync
      *
      * Future method to perform API callout asynchronously
-     * @param woliId WorkOrderLineItem Id
-     * @param contactId Contact Id
+     * @param orderId Order Id (optional)
+     * @param woliId WorkOrderLineItem Id (optional)
+     * @param contactId Contact Id (optional)
      */
     @future(callout=true)
-    private static void makeCalloutAsync(Id woliId, Id contactId) {
-        WorkOrderLineItem woli = [
-            SELECT Id, OrderId, Order.BillToContactId,
-                   Order.Id, Order.Order_Number__c,
-                   Order.BillingStreet, Order.BillingCity, Order.BillingPostalCode,
-                   Order.BillingStateCode, Order.BillingCountryCode, Order.TotalAmount,
-                   GST__c, QST__c, HST__c,
-                   Order.AccountId, Status,
-                   Order.Account.Sage_ID__c, Order.Account.Email__c,
-                   Order.Account.BillingStreet, Order.Account.BillingCity,
-                   Order.Account.BillingPostalCode, Order.Account.BillingStateCode,
-                   Order.Account.BillingCountryCode, Outstanding_Amount_Before_Tax__c,
-                   Order.Account.Phone, Shopify_Payment_Pending__c, Shopify_Payment_url__c
-            FROM WorkOrderLineItem
-            WHERE Id = :woliId
-            LIMIT 1
-        ];
-
-        Contact con = [
-            SELECT Id, FirstName, LastName, Email, MobilePhone, HomePhone
-            FROM Contact
-            WHERE Id = :contactId
-            LIMIT 1
-        ];
-
+    private static void makeCalloutAsync(Id orderId, Id woliId, Id contactId) {
         try {
+            // Get required records using helper methods
+            WorkOrderLineItem woli = getWorkOrderLineItemRecord(woliId);
+            Id orderIdToUse = orderId ?? woli?.OrderId;
+
+            Order order = getOrderRecord(orderIdToUse);
+            Contact con = getContactRecord(contactId);
+
             // Perform the Shopify API callout
-            ShopifyResponseWrapper response = makeCallout(woli, con);
+            ShopifyResponseWrapper response = makeCallout(order, woli, con);
 
             // Update WOLI with URL and pending status
-            woli.Shopify_Payment_url__c = response.url;
-            woli.Shopify_Payment_Pending__c = response.has_payment_request_pending == 'true';
-            update woli;
+            if (woli != null) {
+                woli.Shopify_Payment_url__c = response.url;
+                woli.Shopify_Payment_Pending__c = response.has_payment_request_pending == 'true';
+                update woli;
+            }
+            else{
+                order.Shopify_Payment_url__c = response.url;
+                update order;
+            }
 
             System.debug('Payment completed successfully for WOLI: ' + woliId);
         } catch (Exception e) {
@@ -98,16 +95,65 @@ public with sharing class ShopifyPaymentService {
     }
 
     /**
+     * Helper method to get Order record
+     */
+    private static Order getOrderRecord(Id orderId) {
+        if (orderId == null ) return null;
+        return [
+            SELECT Id, Order_Number__c, AccountId, Status,
+                   BillingStreet, BillingCity, BillingPostalCode,
+                   BillingStateCode, BillingCountryCode, TotalAmount,
+                   Account.Sage_ID__c, Account.Email__c,GST__c,QST__c,HST__c,
+                   Account.BillingStreet, Account.BillingCity,
+                   Account.BillingPostalCode, Account.BillingStateCode,
+                   Account.BillingCountryCode, Account.Phone
+            FROM Order
+            WHERE Id = :orderId
+            LIMIT 1
+        ];
+    }
+
+    /**
+     * Helper method to get WorkOrderLineItem record
+     */
+    private static WorkOrderLineItem getWorkOrderLineItemRecord(Id woliId) {
+        if (woliId == null) return null;
+        
+        return [
+            SELECT Id, OrderId, Status, Outstanding_Amount_Before_Tax__c,
+                   GST__c, QST__c, HST__c, Shopify_Payment_url__c
+             FROM WorkOrderLineItem
+            WHERE Id = :woliId
+            LIMIT 1
+        ];
+    }
+
+    /**
+     * Helper method to get Contact record
+     */
+    private static Contact getContactRecord(Id contactId) {
+        if (contactId == null) return null;
+        
+        return [
+            SELECT Id, FirstName, LastName, Email, MobilePhone, HomePhone
+            FROM Contact
+            WHERE Id = :contactId
+            LIMIT 1
+        ];
+    }
+
+    /**
      * makeCallout
      *
      * Synchronous callout to Shopify API
-     * @param woli WorkOrderLineItem
-     * @param con Contact
+     * @param order Order record
+     * @param woli WorkOrderLineItem record
+     * @param con Contact record
      * @return ShopifyResponseWrapper
      * @throws AuraHandledException if network or parsing error occurs
      */
-    private static ShopifyResponseWrapper makeCallout(WorkOrderLineItem woli, Contact con) {
-        ShopifyApiWrapper requestWrapper = buildWrapper(woli, con);
+    private static ShopifyResponseWrapper makeCallout(Order order, WorkOrderLineItem woli, Contact con) {
+        ShopifyApiWrapper requestWrapper = buildWrapper(order, woli, con);
         System.debug('requestWrapper: ' + requestWrapper);
 
         Http http = new Http();
@@ -137,48 +183,65 @@ public with sharing class ShopifyPaymentService {
      * buildWrapper
      *
      * Builds request wrapper object for Shopify API call
-     * @param woli WorkOrderLineItem
-     * @param con Contact
+     * @param order Order record
+     * @param woli WorkOrderLineItem record
+     * @param con Contact record
      * @return ShopifyApiWrapper
      */
-    private static ShopifyApiWrapper buildWrapper(WorkOrderLineItem woli, Contact con) {
+    private static ShopifyApiWrapper buildWrapper(Order order, WorkOrderLineItem woli, Contact con) {
         ShopifyApiWrapper wrapper = new ShopifyApiWrapper();
         wrapper.order.transaction_type = 'Payment';
-        wrapper.order.payment_type = 'FS';
-        wrapper.order.salesforce_id = woli.Id;
-        wrapper.order.salesforce_object = 'Work Order Line Item';
-        wrapper.order.sage_customer_id = woli.Order.Account.Sage_ID__c ?? '';
-        wrapper.order.sage_order_id = woli.Order.Order_Number__c ?? '';
-        wrapper.order.first_name = con.FirstName ?? '';
-        wrapper.order.last_name = con.LastName ?? '';
-        wrapper.order.customer_email = con.Email ?? '';
-        wrapper.order.billing_street = woli.Order.Account.BillingStreet ?? '';
-        wrapper.order.billing_city = woli.Order.Account.BillingCity ?? '';
-        wrapper.order.billing_postalcode = woli.Order.Account.BillingPostalCode ?? '';
-        wrapper.order.billing_state = woli.Order.Account.BillingStateCode ?? '';
-        wrapper.order.billing_country = woli.Order.Account.BillingCountryCode ?? '';
-        wrapper.order.phone = String.isNotEmpty(con.MobilePhone) ? con.MobilePhone : con.HomePhone;
-        wrapper.order.success_status = 'Completed and paid';
+        wrapper.order.payment_type = woli != null ? 'FS' : 'OP';
+        wrapper.order.salesforce_id = woli != null ? woli.Id : order.Id;
+        wrapper.order.salesforce_object = woli != null ? 'Work Order Line Item' : 'Order';
+        
+        // Use data from order or woli as available
+        String sageCustomerId = order?.Account?.Sage_ID__c ?? '';
+        String sageOrderId = order?.Order_Number__c ?? '';
+        
+        wrapper.order.sage_customer_id = sageCustomerId ?? '';
+        wrapper.order.sage_order_id = sageOrderId ?? '';
+        wrapper.order.first_name = con?.FirstName ?? '';
+        wrapper.order.last_name = con?.LastName ?? '';
+        wrapper.order.customer_email = con?.Email ?? '';
+        wrapper.order.billing_street = order?.Account?.BillingStreet ?? '';
+        wrapper.order.billing_city =  order?.Account?.BillingCity ?? '';
+        wrapper.order.billing_postalcode =  order?.Account?.BillingPostalCode ?? '';
+        wrapper.order.billing_state =  order?.Account?.BillingStateCode ?? '';
+        wrapper.order.billing_country = order?.Account?.BillingCountryCode ?? '';
+                
+        wrapper.order.phone = String.isNotEmpty(con?.MobilePhone) ? con.MobilePhone : con?.HomePhone;
+        wrapper.order.success_status = woli != null ? 'Completed and paid' : 'To intervene';
 
-        Decimal totalAmount = woli.Outstanding_Amount_Before_Tax__c ?? 0;
+        Decimal totalAmount = woli != null ? woli?.Outstanding_Amount_Before_Tax__c ?? 0 : order?.TotalAmount ?? 0;
+        Decimal gst = woli != null ? woli?.GST__c ?? 0 : order?.GST__c ?? 0;
+        Decimal qst = woli != null ? woli?.QST__c ?? 0 : order?.QST__c ?? 0;
+        Decimal hst = woli != null ? woli?.HST__c ?? 0 : order?.HST__c ?? 0;
+
         wrapper.order.total_amount = String.valueOf(totalAmount);
-        wrapper.order.GST = String.valueOf(totalAmount * woli.GST__c);
-        wrapper.order.QST = String.valueOf(totalAmount * woli.QST__c);
-        wrapper.order.HST = String.valueOf(totalAmount * woli.HST__c);
+        wrapper.order.GST = String.valueOf(totalAmount * gst);
+        wrapper.order.QST = String.valueOf(totalAmount * qst);
+        wrapper.order.HST = String.valueOf(totalAmount * hst);
         wrapper.order.products = null;
 
         return wrapper;
     }
 
-    // COMMENT: Wrapper classes for request and response
-    public class ShopifyApiWrapper { public OrderDetails order = new OrderDetails(); }
+    // Wrapper classes for request and response
+    public class ShopifyApiWrapper { 
+        public OrderDetails order = new OrderDetails(); 
+    }
+    
     public class OrderDetails {
         public String transaction_type, payment_type, salesforce_object, salesforce_id, sage_order_id, sage_customer_id;
         public String first_name, last_name, customer_email, billing_street, billing_city, billing_postalcode, billing_state, billing_country;
         public String phone, cancel_at, send_email, success_status, total_amount, GST, QST, HST;
         public Object products;
     }
-    public class ShopifyResponseWrapper { public String url, has_payment_request_pending, refund_status; }
+    
+    public class ShopifyResponseWrapper { 
+        public String url, has_payment_request_pending, refund_status; 
+    }
 
     /**
      * getOrderDetails
