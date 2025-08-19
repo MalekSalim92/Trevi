@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>default</label>
+    <protected>false</protected>
+    <values>
+        <field>barcode_url__c</field>
+        <value xsi:type="xsd:string">https://bwipjs-api.metafloor.com/?bcid=code128&amp;text=</value>
+    </values>
+    <values>
+        <field>qrcode_url__c</field>
+        <value xsi:type="xsd:string">https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=</value>
+    </values>
+</CustomMetadata>

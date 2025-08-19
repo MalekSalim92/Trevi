@@ -1,103 +1,92 @@
+<apex:page standardController="Case" extensions="CaseQRCodeGenerator" 
+           title="Case" applyBodyTag="false" showHeader="false" 
+           sidebar="false" standardStylesheets="false" renderAs="PDF">
 
-<apex:page standardController="Case" extensions="CaseQRCodeGenerator" title="Case" applyBodyTag="false" showHeader="false" sidebar="false" standardStylesheets="false" renderAs="PDF">
-   <head>
-
-       <style type="text/css" media="print">
-          @page {
+    <!-- --------------------------
+         PDF Styles
+         -------------------------- -->
+    <head>
+        <style type="text/css" media="print">
+            /* Page size and margins for PDF */
+            @page {
                 margin: 0 !important;
                 size: 4in 2in !important;
-
             }
 
+            /* Horizontal line style */
             hr {
                 border: 2px solid;
                 background-color: #000;
             }
             
+            /* Body styles */
             body {
                 font-family: Arial;
                 font-size: 12px;
                 margin-left: 15px;
                 margin-right: 15px;
                 margin-top: 0;
-                
             }
             
-            img{
+            /* Reset image and table spacing */
+            img {
                 margin: 0;
                 padding: 0;
             }
             
-            table{
+            table {
                 margin: 0;
                 padding: 0;
             }
 
-            #address {
-                padding-left: 100px;
-            }
-            #titleRight {
-                padding-left: 95px;
-                text-align: right;
-            }
-
-            #infoMidddle {
-                padding-left: 530px;
-                text-align: right;
-
-            }
-            #contact {
-                padding-right: 100px;
-            }
-            #amount {
-                padding-left: 390px;
-                text-align: right;
-            }
+            /* Custom padding for various sections */
+            #address { padding-left: 100px; }
+            #titleRight { padding-left: 95px; text-align: right; }
+            #infoMidddle { padding-left: 530px; text-align: right; }
+            #contact { padding-right: 100px; }
+            #amount { padding-left: 390px; text-align: right; }
         </style>
+    </head>
 
-</head>
-<body>
- 
+    <body>
+        <!-- Spacer -->
+        <br/>
 
-    <br/>
-    <table class="page">
-    
-        <tr>
-            <td style="width: 100%; vertical-align: top;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; ">
-                    <tr>
-                        <td style="width: 30%;  padding: 10px;">Case Number</td>
-                        <td style="width: 70%;">{!Case.CaseNumber}</td>
-                    </tr>
+        <!-- Main table container -->
+        <table class="page">
+            <tr>
+                <!-- Left section: Case details -->
+                <td style="width: 100%; vertical-align: top;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <!-- Case Number -->
+                        <tr>
+                            <td style="width: 30%; padding: 10px;">Case Number</td>
+                            <td style="width: 70%;">{!Case.CaseNumber}</td>
+                        </tr>
 
-                    <tr>
-                        <td style="width: 30%;  padding: 10px;">Location</td>
-                        <td style="width: 70%;">{!storeName}</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 30%;  padding: 10px;">Account Number</td>
-                        <td style="width: 70%;">{!Case.Sage_ID__c}</td>
-                    </tr>
-                    
-                </table>            
-            
-                
-            </td>
- 
-           <td style="width: 20%; text-align: right; vertical-align: top;">
- 
-            <apex:image value="{!qrCode}" style="width: 50px; height: 50px;"/>
-            <br/>
-            <br/>
-            <apex:image value="{!barCode}" style="width: 100px; height: 40px;"/>
+                        <!-- Store Location -->
+                        <tr>
+                            <td style="width: 30%; padding: 10px;">Location</td>
+                            <td style="width: 70%;">{!storeName}</td>
+                        </tr>
 
-           </td>
+                        <!-- Account Number -->
+                        <tr>
+                            <td style="width: 30%; padding: 10px;">Account Number</td>
+                            <td style="width: 70%;">{!Case.Sage_ID__c}</td>
+                        </tr>
+                    </table>            
+                </td>
 
-          
-        </tr>
-    </table>
-    
-
-
-</body>
+                <!-- Right section: QR and Barcode images -->
+                <td style="width: 20%; text-align: right; vertical-align: top;">
+                    <!-- QR Code Image -->
+                    <apex:image value="{!qrCode}" style="width: 50px; height: 50px;"/>
+                    <br/><br/>
+                    <!-- Barcode Image -->
+                    <apex:image value="{!barCode}" style="width: 100px; height: 40px;"/>
+                </td>
+            </tr>
+        </table>
+    </body>
 </apex:page>
