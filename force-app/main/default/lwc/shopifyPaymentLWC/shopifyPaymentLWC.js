@@ -1,111 +1,117 @@
 import { LightningElement, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getOrderDetails from '@salesforce/apex/ShopifyPaymentService.getOrderDetails';
+import makePaymentSync from '@salesforce/apex/ShopifyPaymentService.makePaymentSync';
 import getRedirectUrl from '@salesforce/apex/ShopifyPaymentService.getRedirectUrl';
 import { CloseActionScreenEvent } from 'lightning/actions';
 
-// Import custom labels
-import integrationError from '@salesforce/label/c.integration_error';
-import customerPays from '@salesforce/label/c.customer_pays';
-import paymentProcessed from '@salesforce/label/c.payment_processed';
-
 export default class ShopifyPaymentLWC extends LightningElement {
     
-    // ----------------------
-    // Properties
-    // ----------------------
-
     @api recordId;    // From Flow or button context
     @api paymentUrl;  // Direct payment URL input from Flow
      
     isLoading = false;
-    processedPaymentUrl = null;
-    hasIntegrationError = false;
-    isFromFlow = false; // Track if component is used in Flow
-    
-    // Expose custom labels to template
-    labels = {
-        integrationError,
-        customerPays,
-        paymentProcessed
-    };
-
-    // ----------------------
-    // Getters
-    // ----------------------
-
-    get showButton() {
-        // Only show button when used in Flow (has direct paymentUrl)
-        return this.isFromFlow && this.processedPaymentUrl && !this.hasIntegrationError && !this.isLoading;
-    }
-    
-    get showMessage() {
-        // Show integration error message or loading message
-        return this.hasIntegrationError || this.isLoading;
-    }
 
     // ----------------------
     // Lifecycle hooks
     // ----------------------
     
     connectedCallback() {
-        console.log('Component loaded');
-        console.log('Inputs - recordId:', this.recordId, 'paymentUrl:', this.paymentUrl);
+        console.log('Component loaded - recordId:', this.recordId, 'paymentUrl:', this.paymentUrl);
         
-        // Check if called from Flow (has direct payment URL)
+        // Case 1: Payment URL provided - open popup and redirect
         if (this.paymentUrl) {
-            console.log('Called from Flow - showing button');
-            this.isFromFlow = true;
-            this.processedPaymentUrl = this.paymentUrl;
+            console.log('Payment URL provided - opening popup and redirecting');
+            this.openPaymentPopup(this.paymentUrl);
+            this.redirectMainWindow();
+            this.closeAction();
             return;
         }
         
-        // Called from Record Page - get Order ID and auto-open popup
-        console.log('Called from Record Page - will auto-open popup');
-        this.isFromFlow = false;
+        // Case 2: No payment URL - get Order ID and process
         const orderIdToUse = this.recordId || this.getRecordIdFromUrl();
         
         if (orderIdToUse) {
-            this.fetchOrderPaymentUrl(orderIdToUse);
+            this.processOrderPayment(orderIdToUse);
         } else {
             this.showError('No Order ID found');
         }
     }
 
     // ----------------------
-    // Event handlers
+    // Core Logic
     // ----------------------
     
-    handlePayNowClick() {
-        // This is only called from Flow scenario
-        console.log('Pay Now button clicked - opening popup and redirecting');
+    async processOrderPayment(orderIdToUse) {
+        this.isLoading = true;
         
-        // Open popup
-        this.openPaymentPopup();
-        
-        // Close the flow screen
-        this.dispatchEvent(new CloseActionScreenEvent());
-
-        // Redirect main window (only for Flow scenario)
-        this.redirectMainWindow();
+        try {
+            // Check if Order already has payment URL
+            const orderRecord = await getOrderDetails({ recordId: orderIdToUse });
+            
+            if (orderRecord && orderRecord.Shopify_payment_url__c) {
+                console.log('Existing payment URL found:', orderRecord.Shopify_payment_url__c);
+                this.openPaymentPopup(orderRecord.Shopify_payment_url__c);
+            } else {
+                console.log('No existing URL - making API call');
+                // Make API call to get new payment URL
+ 
+                if (result.success && result.paymentUrl) {
+                    console.log('New payment URL received:', result.paymentUrl);
+                    this.openPaymentPopup(result.paymentUrl);
+                } else {
+                    this.showError(result.errorMessage || 'Failed to get payment URL');
+                }
+            }
+        } catch (error) {
+            console.error('Error processing payment:', error);
+            this.showError('Error processing payment: ' + (error.body?.message || error.message));
+        } finally {
+            this.isLoading = false;
+            this.closeAction();
+        }
     }
 
-    openPaymentPopup() {
-        if (!this.processedPaymentUrl) {
+    // ----------------------
+    // Helper Methods
+    // ----------------------
+
+    openPaymentPopup(url) {
+        if (!url) {
             this.showError('Payment URL is not available');
             return;
         }
         
-        console.log('Opening payment popup:', this.processedPaymentUrl);
+        console.log('Opening payment popup:', url);
         
         const popup = window.open(
-            this.processedPaymentUrl,
+            url,
             'paymentWindow',
             'width=800,height=600,left=100,top=100,resizable=yes,scrollbars=yes'
         );
         
         if (!popup) {
             this.showError('Popup blocked. Please allow popups and try again.');
+        }
+    }
+
+    async redirectMainWindow() {
+        console.log('Redirecting main window...');
+        try {
+            const redirectUrl = await getRedirectUrl();
+            console.log('Retrieved redirect URL:', redirectUrl);
+            
+            if (redirectUrl) {
+                // Small delay to ensure popup opens first
+                setTimeout(() => {
+                    console.log('Redirecting to:', redirectUrl);
+                    window.location.href = redirectUrl;
+                }, 1000);
+            } else {
+                console.log('No redirect URL found in custom metadata');
+            }
+        } catch (error) {
+            console.error('Error retrieving redirect URL:', error);
         }
     }
 
@@ -128,61 +134,8 @@ export default class ShopifyPaymentLWC extends LightningElement {
             variant: 'error'
         }));
     }
-  
-    
-    // ----------------------
-    // Apex Calls
-    // ----------------------
 
-    
-    async fetchOrderPaymentUrl(orderIdToUse) {
-        this.isLoading = true;
-        try{
-            let orderRecord = await getOrderDetails({recordId : orderIdToUse})
-            if (orderRecord && orderRecord.Shopify_payment_url__c) {
-                this.processedPaymentUrl = orderRecord.Shopify_payment_url__c;
-                this.isLoading = false;
-                this.hasIntegrationError = false;
-                
-                console.log('Payment URL found:', this.processedPaymentUrl);
-                
-                // Auto-open popup for Record Page scenario (no button, no redirect)
-                this.openPaymentPopup();
-                // Close the LWC action screen/modal
-                this.dispatchEvent(new CloseActionScreenEvent());
-
-            } else {
-                this.isLoading = false;
-                this.hasIntegrationError = true;
-                this.showError('No payment URL found for this order');
-            }
-        } catch (error){
-            console.error('Error getting order details:', error);
-            this.isLoading = false;
-            this.hasIntegrationError = true;
-            this.showError('Error checking payment status: ' + (error.body?.message || error.message));
-        }
-    }
-    
-   
-    
-    async redirectMainWindow() {
-        console.log('Redirecting main window...');
-        try{
-            const redirectUrl = await getRedirectUrl();
-            console.log('Retrieved redirect URL:', redirectUrl);
-                if (redirectUrl) {
-                    // Small delay to ensure popup opens first
-                    setTimeout(() => {
-                        console.log('Redirecting to:', redirectUrl);
-                        window.location.href = redirectUrl;
-                    }, 1000); // 1 second delay
-                } else {
-                    console.log('No redirect URL found in custom metadata');
-                }
-        }
-        catch (error){
-            console.error('Error retrieving redirect URL:', error);
-        }
+    closeAction() {
+        this.dispatchEvent(new CloseActionScreenEvent());
     }
 }

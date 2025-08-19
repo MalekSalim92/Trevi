@@ -9,7 +9,7 @@
  * Author: Malek Brachemi
  * Date: 2025-08-18
  */
-public with sharing class ShopifyPaymentService {
+public without sharing class ShopifyPaymentService {
 
     /**
      * PaymentRequest
@@ -28,28 +28,51 @@ public with sharing class ShopifyPaymentService {
     }
 
     /**
-     * makePayment
+     * PaymentResult
+     *
+     * Wrapper class to return payment results for synchronous calls
+     */
+    public class PaymentResult {
+        @AuraEnabled public String paymentUrl;
+        @AuraEnabled public Boolean hasPaymentPending;
+        @AuraEnabled public Boolean success;
+        @AuraEnabled public String errorMessage;
+        
+        public PaymentResult(String url, Boolean pending) {
+            this.paymentUrl = url;
+            this.hasPaymentPending = pending;
+            this.success = true;
+            this.errorMessage = null;
+        }
+        
+        public PaymentResult(String error) {
+            this.success = false;
+            this.errorMessage = error;
+            this.paymentUrl = null;
+            this.hasPaymentPending = false;
+        }
+    }
+
+    /**
+     * makePayment (Async version)
      *
      * Invocable method callable from Flow or Process Builder
      * @param requests List of PaymentRequest objects
      * @throws AuraHandledException if input is missing or callout fails
      */
-    @InvocableMethod(label='Shopify Payment' description='Method to process Shopify payment')
+    @InvocableMethod(label='Shopify Payment (Async)' description='Method to process Shopify payment asynchronously')
     public static void makePayment(List<PaymentRequest> requests) {
-        if (requests == null || requests.isEmpty() || 
-            !(!String.isBlank(requests[0].orderId) || 
-              (!String.isBlank(requests[0].woliId) && !String.isBlank(requests[0].contactId)))) {
-            throw new AuraHandledException('Order ID or (WOLI ID + Contact ID) must be provided.');
+        if (requests == null || requests.isEmpty() || String.isBlank(requests[0].woliId) || String.isBlank(requests[0].contactId)) {
+            throw new AuraHandledException('(WOLI ID + Contact ID) must be provided.');
         }
 
         // Safe null checks for Apex
         String contactId = (requests[0] != null) ? requests[0].contactId : null;
         String woliId = (requests[0] != null) ? requests[0].woliId : null;
-        String orderId = (requests[0] != null) ? requests[0].orderId : null;
-
+ 
         try {
             // Call future method for async callout
-            makeCalloutAsync(orderId, woliId, contactId);
+            makeCalloutAsync(woliId, contactId);
         } catch (Exception e) {
             System.debug('Error initiating payment: ' + e.getMessage());
             throw new AuraHandledException('Failed to initiate payment process: ' + e.getMessage());
@@ -57,7 +80,30 @@ public with sharing class ShopifyPaymentService {
     }
 
     /**
-     * makeCalloutAsync
+     * makePaymentSync
+     *
+     * Synchronous method for immediate response (e.g., from LWC or Aura)
+     * @param orderId Order Id (optional)
+     * @param woliId WorkOrderLineItem Id (optional)
+     * @param contactId Contact Id (optional)
+     * @return PaymentResult with payment URL and status
+     */
+    @AuraEnabled
+    public static PaymentResult makePaymentSync(String orderId) {
+        if (String.isBlank(orderId)) {
+            return new PaymentResult('Order ID must be provided.');
+        }
+
+        try {
+            return processPayment(orderId, null, null);
+        } catch (Exception e) {
+            System.debug('Sync payment failed. Error: ' + e.getMessage());
+            return new PaymentResult('Failed to process payment: ' + e.getMessage());
+        }
+    }
+
+    /**
+     * makeCalloutAsync (Future method)
      *
      * Future method to perform API callout asynchronously
      * @param orderId Order Id (optional)
@@ -65,11 +111,34 @@ public with sharing class ShopifyPaymentService {
      * @param contactId Contact Id (optional)
      */
     @future(callout=true)
-    private static void makeCalloutAsync(Id orderId, Id woliId, Id contactId) {
+    private static void makeCalloutAsync(Id woliId, Id contactId) {
+        try {
+            PaymentResult result = processPayment(null, woliId, contactId);
+            
+            if (result.success) {
+                System.debug('Async payment completed successfully for WOLI: ' + woliId);
+            } else {
+                System.debug('Async payment failed for WOLI: ' + woliId + '. Error: ' + result.errorMessage);
+            }
+        } catch (Exception e) {
+            System.debug('Async payment failed for WOLI: ' + woliId + '. Error: ' + e.getMessage());
+        }
+    }
+
+    /**
+     * processPayment (Core logic)
+     *
+     * Shared logic for both sync and async payment processing
+     * @param orderId Order Id (optional)
+     * @param woliId WorkOrderLineItem Id (optional)  
+     * @param contactId Contact Id (optional)
+     * @return PaymentResult
+     */
+    private static PaymentResult processPayment(String orderId, String woliId, String contactId) {
         try {
             // Get required records using helper methods
             WorkOrderLineItem woli = getWorkOrderLineItemRecord(woliId);
-            Id orderIdToUse = orderId ?? woli?.OrderId;
+            Id orderIdToUse = String.isNotBlank(orderId) ? orderId : woli?.OrderId;
 
             Order order = getOrderRecord(orderIdToUse);
             Contact con = getContactRecord(contactId);
@@ -82,23 +151,23 @@ public with sharing class ShopifyPaymentService {
                 woli.Shopify_Payment_url__c = response.url;
                 woli.Shopify_Payment_Pending__c = response.has_payment_request_pending == 'true';
                 update woli;
-            }
-            else{
+            } else {
                 order.Shopify_Payment_url__c = response.url;
                 update order;
             }
 
-            System.debug('Payment completed successfully for WOLI: ' + woliId);
+            return new PaymentResult(response.url, response.has_payment_request_pending == 'true');
+            
         } catch (Exception e) {
-            System.debug('Payment failed for WOLI: ' + woliId + '. Error: ' + e.getMessage());
+            return new PaymentResult('Payment processing failed: ' + e.getMessage());
         }
     }
 
     /**
      * Helper method to get Order record
      */
-    private static Order getOrderRecord(Id orderId) {
-        if (orderId == null ) return null;
+    private static Order getOrderRecord(String orderId) {
+        if (String.isBlank(orderId)) return null;
         return [
             SELECT Id, Order_Number__c, AccountId, Status,
                    BillingStreet, BillingCity, BillingPostalCode,
@@ -106,7 +175,7 @@ public with sharing class ShopifyPaymentService {
                    Account.Sage_ID__c, Account.Email__c,GST__c,QST__c,HST__c,
                    Account.BillingStreet, Account.BillingCity,
                    Account.BillingPostalCode, Account.BillingStateCode,
-                   Account.BillingCountryCode, Account.Phone
+                   Account.BillingCountryCode, Account.Phone,Account.Cellphone__c
             FROM Order
             WHERE Id = :orderId
             LIMIT 1
@@ -116,8 +185,8 @@ public with sharing class ShopifyPaymentService {
     /**
      * Helper method to get WorkOrderLineItem record
      */
-    private static WorkOrderLineItem getWorkOrderLineItemRecord(Id woliId) {
-        if (woliId == null) return null;
+    private static WorkOrderLineItem getWorkOrderLineItemRecord(String woliId) {
+        if (String.isBlank(woliId)) return null;
         
         return [
             SELECT Id, OrderId, Status, Outstanding_Amount_Before_Tax__c,
@@ -131,8 +200,8 @@ public with sharing class ShopifyPaymentService {
     /**
      * Helper method to get Contact record
      */
-    private static Contact getContactRecord(Id contactId) {
-        if (contactId == null) return null;
+    private static Contact getContactRecord(String contactId) {
+        if (String.isBlank(contactId)) return null;
         
         return [
             SELECT Id, FirstName, LastName, Email, MobilePhone, HomePhone
@@ -189,35 +258,44 @@ public with sharing class ShopifyPaymentService {
      * @return ShopifyApiWrapper
      */
     private static ShopifyApiWrapper buildWrapper(Order order, WorkOrderLineItem woli, Contact con) {
-        ShopifyApiWrapper wrapper = new ShopifyApiWrapper();
-        wrapper.order.transaction_type = 'Payment';
-        wrapper.order.payment_type = woli != null ? 'FS' : 'OP';
-        wrapper.order.salesforce_id = woli != null ? woli.Id : order.Id;
-        wrapper.order.salesforce_object = woli != null ? 'Work Order Line Item' : 'Order';
         
-        // Use data from order or woli as available
-        String sageCustomerId = order?.Account?.Sage_ID__c ?? '';
-        String sageOrderId = order?.Order_Number__c ?? '';
-        
-        wrapper.order.sage_customer_id = sageCustomerId ?? '';
-        wrapper.order.sage_order_id = sageOrderId ?? '';
-        wrapper.order.first_name = con?.FirstName ?? '';
-        wrapper.order.last_name = con?.LastName ?? '';
-        wrapper.order.customer_email = con?.Email ?? '';
-        wrapper.order.billing_street = order?.Account?.BillingStreet ?? '';
-        wrapper.order.billing_city =  order?.Account?.BillingCity ?? '';
-        wrapper.order.billing_postalcode =  order?.Account?.BillingPostalCode ?? '';
-        wrapper.order.billing_state =  order?.Account?.BillingStateCode ?? '';
-        wrapper.order.billing_country = order?.Account?.BillingCountryCode ?? '';
-                
-        wrapper.order.phone = String.isNotEmpty(con?.MobilePhone) ? con.MobilePhone : con?.HomePhone;
-        wrapper.order.success_status = woli != null ? 'Completed and paid' : 'To intervene';
+        String phoneNumber;
 
+        if (woli != null) {
+            if (!String.isBlank(con?.MobilePhone)) {
+                phoneNumber = con.MobilePhone;
+            } else {
+                phoneNumber = con?.HomePhone;
+            }
+        } else {
+            if (!String.isBlank(order?.Account?.Cellphone__c)) {
+                phoneNumber = order?.Account?.Cellphone__c;
+            } else {
+                phoneNumber = order?.Account?.Phone;
+            }
+        }
         Decimal totalAmount = woli != null ? woli?.Outstanding_Amount_Before_Tax__c ?? 0 : order?.TotalAmount ?? 0;
         Decimal gst = woli != null ? woli?.GST__c ?? 0 : order?.GST__c ?? 0;
         Decimal qst = woli != null ? woli?.QST__c ?? 0 : order?.QST__c ?? 0;
         Decimal hst = woli != null ? woli?.HST__c ?? 0 : order?.HST__c ?? 0;
 
+        ShopifyApiWrapper wrapper = new ShopifyApiWrapper();
+        wrapper.order.transaction_type = 'Payment';
+        wrapper.order.payment_type = woli != null ? 'FS' : 'OP';
+        wrapper.order.salesforce_id = woli != null ? woli.Id : order.Id;
+        wrapper.order.salesforce_object = woli != null ? 'Work Order Line Item' : 'Order';        
+        wrapper.order.sage_customer_id = order?.Account?.Sage_ID__c;
+        wrapper.order.sage_order_id = order?.Order_Number__c;
+        wrapper.order.first_name = woli != null ? con?.FirstName : UserInfo.getFirstName();
+        wrapper.order.last_name = woli != null ? con?.LastName : UserInfo.getLastName();
+        wrapper.order.customer_email = woli != null ? con?.Email : UserInfo.getUserEmail();
+        wrapper.order.billing_street = order?.Account?.BillingStreet ?? '';
+        wrapper.order.billing_city =  order?.Account?.BillingCity ?? '';
+        wrapper.order.billing_postalcode =  order?.Account?.BillingPostalCode ?? '';
+        wrapper.order.billing_state =  order?.Account?.BillingStateCode ?? '';
+        wrapper.order.billing_country = order?.Account?.BillingCountryCode ?? '';
+        wrapper.order.phone = phoneNumber;
+        wrapper.order.success_status = woli != null ? 'Completed and paid' : 'To intervene';
         wrapper.order.total_amount = String.valueOf(totalAmount);
         wrapper.order.GST = String.valueOf(totalAmount * gst);
         wrapper.order.QST = String.valueOf(totalAmount * qst);
