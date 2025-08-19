@@ -108,6 +108,7 @@ public with sharing class ShopifyPaymentService {
      */
     private static ShopifyResponseWrapper makeCallout(WorkOrderLineItem woli, Contact con) {
         ShopifyApiWrapper requestWrapper = buildWrapper(woli, con);
+        System.debug('requestWrapper: ' + requestWrapper);
 
         Http http = new Http();
         HttpRequest req = new HttpRequest();

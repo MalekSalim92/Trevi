@@ -16,11 +16,12 @@ export default class ShopifyPaymentLWC extends LightningElement {
     // ----------------------
 
     @api recordId;    // From Flow or button context
-    @api paymentUrl;  // Direct payment URL input
+    @api paymentUrl;  // Direct payment URL input from Flow
      
     isLoading = false;
     processedPaymentUrl = null;
     hasIntegrationError = false;
+    isFromFlow = false; // Track if component is used in Flow
     
     // Expose custom labels to template
     labels = {
@@ -34,15 +35,14 @@ export default class ShopifyPaymentLWC extends LightningElement {
     // ----------------------
 
     get showButton() {
-        // Show button if payment URL is directly provided
-        return this.paymentUrl && !this.hasIntegrationError;
+        // Only show button when used in Flow (has direct paymentUrl)
+        return this.isFromFlow && this.processedPaymentUrl && !this.hasIntegrationError && !this.isLoading;
     }
     
     get showMessage() {
         // Show integration error message or loading message
         return this.hasIntegrationError || this.isLoading;
     }
-
 
     // ----------------------
     // Lifecycle hooks
@@ -52,14 +52,17 @@ export default class ShopifyPaymentLWC extends LightningElement {
         console.log('Component loaded');
         console.log('Inputs - recordId:', this.recordId, 'paymentUrl:', this.paymentUrl);
         
-        // Prioritize direct payment URL
+        // Check if called from Flow (has direct payment URL)
         if (this.paymentUrl) {
+            console.log('Called from Flow - showing button');
+            this.isFromFlow = true;
             this.processedPaymentUrl = this.paymentUrl;
-            this.handlePayNowClick();
             return;
         }
         
-        // Get the actual Order ID to work with
+        // Called from Record Page - get Order ID and auto-open popup
+        console.log('Called from Record Page - will auto-open popup');
+        this.isFromFlow = false;
         const orderIdToUse = this.recordId || this.getRecordIdFromUrl();
         
         if (orderIdToUse) {
@@ -74,14 +77,17 @@ export default class ShopifyPaymentLWC extends LightningElement {
     // ----------------------
     
     handlePayNowClick() {
+        // This is only called from Flow scenario
+        console.log('Pay Now button clicked - opening popup and redirecting');
+        
         // Open popup
         this.openPaymentPopup();
+        
+        // Close the flow screen
         this.dispatchEvent(new CloseActionScreenEvent());
 
-        // Redirect main window only if direct payment URL is provided
-        if (this.paymentUrl) {
-            this.redirectMainWindow();
-        }
+        // Redirect main window (only for Flow scenario)
+        this.redirectMainWindow();
     }
 
     openPaymentPopup() {
@@ -140,8 +146,11 @@ export default class ShopifyPaymentLWC extends LightningElement {
                 
                 console.log('Payment URL found:', this.processedPaymentUrl);
                 
-                // Automatically trigger pay now when URL is fetched
-                this.handlePayNowClick();
+                // Auto-open popup for Record Page scenario (no button, no redirect)
+                this.openPaymentPopup();
+                // Close the LWC action screen/modal
+                this.dispatchEvent(new CloseActionScreenEvent());
+
             } else {
                 this.isLoading = false;
                 this.hasIntegrationError = true;
@@ -152,7 +161,6 @@ export default class ShopifyPaymentLWC extends LightningElement {
             this.isLoading = false;
             this.hasIntegrationError = true;
             this.showError('Error checking payment status: ' + (error.body?.message || error.message));
-
         }
     }
     
@@ -175,9 +183,6 @@ export default class ShopifyPaymentLWC extends LightningElement {
         }
         catch (error){
             console.error('Error retrieving redirect URL:', error);
-
         }
-       
     }
-    
 }
