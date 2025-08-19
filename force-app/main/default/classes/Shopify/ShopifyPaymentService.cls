@@ -1,5 +1,21 @@
+/**
+ * ShopifyPaymentService
+ *
+ * Responsible for handling Shopify payment requests from Salesforce.
+ * Provides invocable methods for Flow/Process Builder and makes async
+ * callouts to Shopify API. Updates WorkOrderLineItem records with 
+ * payment URLs and pending status.
+ *
+ * Author: Malek Brachemi
+ * Date: 2025-08-18
+ */
 public with sharing class ShopifyPaymentService {
 
+    /**
+     * PaymentRequest
+     *
+     * Wrapper class to receive inputs from Flow or Process Builder
+     */
     public class PaymentRequest {
         @InvocableVariable(label='Work Order Line Item ID' description='ID of the Work Order Line Item' required=true)
         public String woliId;
@@ -8,94 +24,105 @@ public with sharing class ShopifyPaymentService {
         public String contactId;
     }
 
+    /**
+     * makePayment
+     *
+     * Invocable method callable from Flow or Process Builder
+     * @param requests List of PaymentRequest objects
+     * @throws AuraHandledException if input is missing or callout fails
+     */
     @InvocableMethod(label='Shopify Payment' description='Method to process Shopify payment')
     public static void makePayment(List<PaymentRequest> requests ) {
         if (requests == null || requests.isEmpty() || String.isBlank(requests[0].woliId) || String.isBlank(requests[0].contactId)) {
             throw new AuraHandledException('WOLI Id must be provided.');
         }
+
         String contactId = requests[0].contactId;
         String woliId = requests[0].woliId;
-        
+
         try {
-             
-            // Call the future method to handle API callout
+            // Call future method for async callout
             makeCalloutAsync(woliId, contactId);
-            
         } catch (Exception e) {
             System.debug('Error updating WOLI: ' + e.getMessage());
             throw new AuraHandledException('Failed to initiate payment process: ' + e.getMessage());
         }
     }
 
+    /**
+     * makeCalloutAsync
+     *
+     * Future method to perform API callout asynchronously
+     * @param woliId WorkOrderLineItem Id
+     * @param contactId Contact Id
+     */
     @future(callout=true)
     private static void makeCalloutAsync(Id woliId, Id contactId) {
-
         WorkOrderLineItem woli = [
             SELECT Id, OrderId, Order.BillToContactId,
                    Order.Id, Order.Order_Number__c,
                    Order.BillingStreet, Order.BillingCity, Order.BillingPostalCode,
-                   Order.BillingStateCode, Order.BillingCountryCode,
-                   Order.TotalAmount,GST__c, QST__c, HST__c,
-                   Order.AccountId,Status,
+                   Order.BillingStateCode, Order.BillingCountryCode, Order.TotalAmount,
+                   GST__c, QST__c, HST__c,
+                   Order.AccountId, Status,
                    Order.Account.Sage_ID__c, Order.Account.Email__c,
                    Order.Account.BillingStreet, Order.Account.BillingCity,
                    Order.Account.BillingPostalCode, Order.Account.BillingStateCode,
-                   Order.Account.BillingCountryCode,Outstanding_Amount_Before_Tax__c,
-                   Order.Account.Phone,Shopify_Payment_Pending__c,Shopify_Payment_url__c
+                   Order.Account.BillingCountryCode, Outstanding_Amount_Before_Tax__c,
+                   Order.Account.Phone, Shopify_Payment_Pending__c, Shopify_Payment_url__c
             FROM WorkOrderLineItem
             WHERE Id = :woliId
             LIMIT 1
         ];
-        
+
         Contact con = [
-            SELECT Id, FirstName, LastName, Email,MobilePhone,HomePhone
+            SELECT Id, FirstName, LastName, Email, MobilePhone, HomePhone
             FROM Contact
-            WHERE Id = :contactId 
+            WHERE Id = :contactId
             LIMIT 1
         ];
-        
+
         try {
-            // Make the API callout
+            // Perform the Shopify API callout
             ShopifyResponseWrapper response = makeCallout(woli, con);
-            String url = response.url;
-            boolean pending = response.has_payment_request_pending == 'true';
-            woli.Shopify_Payment_url__c = url;
-            woli.Shopify_Payment_Pending__c = pending;
+
+            // Update WOLI with URL and pending status
+            woli.Shopify_Payment_url__c = response.url;
+            woli.Shopify_Payment_Pending__c = response.has_payment_request_pending == 'true';
             update woli;
+
             System.debug('Payment completed successfully for WOLI: ' + woliId);
-            
         } catch (Exception e) {
             System.debug('Payment failed for WOLI: ' + woliId + '. Error: ' + e.getMessage());
-            
         }
     }
 
+    /**
+     * makeCallout
+     *
+     * Synchronous callout to Shopify API
+     * @param woli WorkOrderLineItem
+     * @param con Contact
+     * @return ShopifyResponseWrapper
+     * @throws AuraHandledException if network or parsing error occurs
+     */
     private static ShopifyResponseWrapper makeCallout(WorkOrderLineItem woli, Contact con) {
-        // Build request body wrapper
         ShopifyApiWrapper requestWrapper = buildWrapper(woli, con);
 
-        // Call Shopify API
         Http http = new Http();
         HttpRequest req = new HttpRequest();
         req.setEndpoint('callout:Shopify_API');
         req.setMethod('POST');
         req.setHeader('Content-Type', 'application/json');
         req.setBody(JSON.serialize(requestWrapper));
-        
-        HttpResponse res;
+
         try {
-            res = http.send(req);
-            System.debug('Shopify API Response Status: ' + res.getStatusCode());
-            System.debug('Shopify API Response Body: ' + res.getBody());
-
+            HttpResponse res = http.send(req);
             if (res.getStatusCode() >= 200 && res.getStatusCode() < 300) {
-                ShopifyResponseWrapper responseWrapper = (ShopifyResponseWrapper) JSON.deserialize(res.getBody(), ShopifyResponseWrapper.class);
-
-                return responseWrapper;
+                return (ShopifyResponseWrapper) JSON.deserialize(res.getBody(), ShopifyResponseWrapper.class);
             } else {
                 throw new AuraHandledException('Shopify API returned status ' + res.getStatusCode() + ': ' + res.getBody());
             }
-
         } catch (CalloutException e) {
             throw new AuraHandledException('Network error calling Shopify API: ' + e.getMessage());
         } catch (JSONException e) {
@@ -105,10 +132,16 @@ public with sharing class ShopifyPaymentService {
         }
     }
 
+    /**
+     * buildWrapper
+     *
+     * Builds request wrapper object for Shopify API call
+     * @param woli WorkOrderLineItem
+     * @param con Contact
+     * @return ShopifyApiWrapper
+     */
     private static ShopifyApiWrapper buildWrapper(WorkOrderLineItem woli, Contact con) {
         ShopifyApiWrapper wrapper = new ShopifyApiWrapper();
-        
-        // Set fields on the wrapper.order object
         wrapper.order.transaction_type = 'Payment';
         wrapper.order.payment_type = 'FS';
         wrapper.order.salesforce_id = woli.Id;
@@ -118,88 +151,56 @@ public with sharing class ShopifyPaymentService {
         wrapper.order.first_name = con.FirstName ?? '';
         wrapper.order.last_name = con.LastName ?? '';
         wrapper.order.customer_email = con.Email ?? '';
-        wrapper.order.billing_street =  woli.Order.Account.BillingStreet ?? '';
-        wrapper.order.billing_city =   woli.Order.Account.BillingCity ?? '';
+        wrapper.order.billing_street = woli.Order.Account.BillingStreet ?? '';
+        wrapper.order.billing_city = woli.Order.Account.BillingCity ?? '';
         wrapper.order.billing_postalcode = woli.Order.Account.BillingPostalCode ?? '';
-        wrapper.order.billing_state =  woli.Order.Account.BillingStateCode ?? '';
-        wrapper.order.billing_country =  woli.Order.Account.BillingCountryCode ?? '';
+        wrapper.order.billing_state = woli.Order.Account.BillingStateCode ?? '';
+        wrapper.order.billing_country = woli.Order.Account.BillingCountryCode ?? '';
         wrapper.order.phone = String.isNotEmpty(con.MobilePhone) ? con.MobilePhone : con.HomePhone;
         wrapper.order.success_status = 'Completed and paid';
-        
+
         Decimal totalAmount = woli.Outstanding_Amount_Before_Tax__c ?? 0;
         wrapper.order.total_amount = String.valueOf(totalAmount);
         wrapper.order.GST = String.valueOf(totalAmount * woli.GST__c);
         wrapper.order.QST = String.valueOf(totalAmount * woli.QST__c);
         wrapper.order.HST = String.valueOf(totalAmount * woli.HST__c);
-
         wrapper.order.products = null;
-        
+
         return wrapper;
     }
 
-    // Wrapper classes for request and response
-    public class ShopifyApiWrapper {
-        public OrderDetails order;
-        
-        public ShopifyApiWrapper() {
-            this.order = new OrderDetails();
-        }
-    }
-
+    // COMMENT: Wrapper classes for request and response
+    public class ShopifyApiWrapper { public OrderDetails order = new OrderDetails(); }
     public class OrderDetails {
-        public String transaction_type;
-        public String payment_type;
-        public String salesforce_object;
-        public String salesforce_id;
-        public String sage_order_id;
-        public String sage_customer_id;
-        public String first_name;
-        public String last_name;
-        public String customer_email;
-        public String billing_street;
-        public String billing_city;
-        public String billing_postalcode;
-        public String billing_state;
-        public String billing_country;
-        public String phone;
-        public String cancel_at;
-        public String send_email;
-        public String success_status;
-        public String total_amount;
-        public String GST;
-        public String QST;
-        public String HST;
+        public String transaction_type, payment_type, salesforce_object, salesforce_id, sage_order_id, sage_customer_id;
+        public String first_name, last_name, customer_email, billing_street, billing_city, billing_postalcode, billing_state, billing_country;
+        public String phone, cancel_at, send_email, success_status, total_amount, GST, QST, HST;
         public Object products;
     }
+    public class ShopifyResponseWrapper { public String url, has_payment_request_pending, refund_status; }
 
-    public class ShopifyResponseWrapper {
-        public String url;
-        public String has_payment_request_pending;
-        public String refund_status;
-    }
-    
-
-
+    /**
+     * getOrderDetails
+     *
+     * Returns Order record with payment URL
+     * @param recordId Id of the Order
+     * @return Order
+     * @throws CustomExceptions.OrderNotFoundException if not found
+     */
     @AuraEnabled
     public static Order getOrderDetails(String recordId){
         if (String.isBlank(recordId)) {
             throw new CustomExceptions.OrderNotFoundException('Record ID is required');
         }
-        
-        System.debug('recordId ' + recordId);
-
-        try {
-            return [
-                SELECT Id, Shopify_payment_url__c
-                FROM Order
-                WHERE Id = :recordId
-                LIMIT 1
-            ];
-        } catch (QueryException qe) {
-            throw new CustomExceptions.OrderNotFoundException('Order not found with Id: ' + recordId + '. Error: ' + qe.getMessage());
-        }
+        return [SELECT Id, Shopify_payment_url__c FROM Order WHERE Id = :recordId LIMIT 1];
     }
 
+    /**
+     * getRedirectUrl
+     *
+     * Returns external redirect URL from custom metadata
+     * @return String URL or null
+     */
     @AuraEnabled(cacheable=true)
     public static String getRedirectUrl() {
         try {
@@ -209,12 +210,7 @@ public with sharing class ShopifyPaymentService {
                 WHERE DeveloperName = 'External_Site_Redirect' 
                 LIMIT 1
             ];
-            
             return urlConfig.Redirect_URL__c;
-            
-        } catch (QueryException qe) {
-            System.debug('URL configuration not found: ' + qe.getMessage());
-            return null;
         } catch (Exception e) {
             System.debug('Error retrieving URL from custom metadata: ' + e.getMessage());
             return null;
