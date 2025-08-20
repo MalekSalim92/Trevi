@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Form_Name__c</columns>
+    <columns>Email_Template_Name_Mtl__c</columns>
+    <columns>Email_Template_Name_Qc__c</columns>
+    <columns>Montreal_Expiration_Days__c</columns>
+    <columns>Quebec_Expiration_Days__c</columns>
+    <columns>Expiration_Time_Montreal__c</columns>
+    <columns>Expiration_Time_Quebec__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

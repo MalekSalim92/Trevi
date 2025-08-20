@@ -16,19 +16,34 @@
         <label>SC Industria</label>
     </customValue>
     <customValue>
-        <fullName>AC_RC_RB</fullName>
+        <fullName>AC_RB</fullName>
         <default>false</default>
-        <label>AC ou RC ou RB</label>
+        <label>AC ou RB</label>
     </customValue>
     <customValue>
-        <fullName>AC_RC_RB_PriseDeMesure</fullName>
+        <fullName>RC</fullName>
         <default>false</default>
-        <label>AC ou RC ou RB  Prise de mesure</label>
+        <label>RC</label>
     </customValue>
     <customValue>
-        <fullName>AC_RC_RB_Autre</fullName>
+        <fullName>AC_RB_PriseDeMesure</fullName>
         <default>false</default>
-        <label>AC ou RC ou RB (Autre)</label>
+        <label>AC ou RB  Prise de mesure</label>
+    </customValue>
+    <customValue>
+        <fullName>RC_PriseDeMesure</fullName>
+        <default>false</default>
+        <label>RC Prise de mesure</label>
+    </customValue>
+    <customValue>
+        <fullName>AC_RB_Autre</fullName>
+        <default>false</default>
+        <label>AC ou RB (Autre)</label>
+    </customValue>
+    <customValue>
+        <fullName>RC_Autre</fullName>
+        <default>false</default>
+        <label>RC (Autre)</label>
     </customValue>
     <customValue>
         <fullName>Livraison_Abris</fullName>
@@ -36,7 +51,7 @@
         <label>Livraison Abris</label>
     </customValue>
     <customValue>
-        <fullName>7</fullName>
+        <fullName>Installation_Abri</fullName>
         <default>false</default>
         <label>Installation Abri</label>
     </customValue>
