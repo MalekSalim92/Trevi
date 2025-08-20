@@ -34,11 +34,11 @@ public without sharing class ShopifyPaymentService {
      */
     public class PaymentResult {
         @AuraEnabled public String paymentUrl;
-        @AuraEnabled public Boolean hasPaymentPending;
+        @AuraEnabled public String hasPaymentPending;
         @AuraEnabled public Boolean success;
         @AuraEnabled public String errorMessage;
         
-        public PaymentResult(String url, Boolean pending) {
+        public PaymentResult(String url, String pending) {
             this.paymentUrl = url;
             this.hasPaymentPending = pending;
             this.success = true;
@@ -49,7 +49,7 @@ public without sharing class ShopifyPaymentService {
             this.success = false;
             this.errorMessage = error;
             this.paymentUrl = null;
-            this.hasPaymentPending = false;
+            this.hasPaymentPending = '';
         }
     }
 
@@ -135,9 +135,12 @@ public without sharing class ShopifyPaymentService {
      * @return PaymentResult
      */
     private static PaymentResult processPayment(String orderId, String woliId, String contactId) {
+       
+        WorkOrderLineItem woli = null;  
+
         try {
             // Get required records using helper methods
-            WorkOrderLineItem woli = getWorkOrderLineItemRecord(woliId);
+            woli = getWorkOrderLineItemRecord(woliId);
             Id orderIdToUse = String.isNotBlank(orderId) ? orderId : woli?.OrderId;
 
             Order order = getOrderRecord(orderIdToUse);
@@ -149,16 +152,21 @@ public without sharing class ShopifyPaymentService {
             // Update WOLI with URL and pending status
             if (woli != null) {
                 woli.Shopify_Payment_url__c = response.url;
-                woli.Shopify_Payment_Pending__c = response.has_payment_request_pending == 'true';
+                woli.Shopify_Payment_Pending__c = response.has_payment_request_pending;
                 update woli;
             } else {
                 order.Shopify_Payment_url__c = response.url;
                 update order;
             }
 
-            return new PaymentResult(response.url, response.has_payment_request_pending == 'true');
+            return new PaymentResult(response.url, response.has_payment_request_pending);
             
         } catch (Exception e) {
+            if (woli != null) {
+                woli.Payment_Launched__c = false;
+                update woli;
+            }
+
             return new PaymentResult('Payment processing failed: ' + e.getMessage());
         }
     }
