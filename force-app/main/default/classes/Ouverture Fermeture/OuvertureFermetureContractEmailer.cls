@@ -33,7 +33,7 @@ public class OuvertureFermetureContractEmailer {
                     workTypeNames.add(product.Work_Type__r.Name);
                 }
             }
- 
+            String senderId = [SELECT Id,DisplayName,Address from OrgWideEmailAddress WHERE DisplayName =: request.sender LIMIT 1].Id;
             String worktypeNameConcatenation = String.join(workTypeNames, ' / ');
  
             // Get account  
@@ -193,7 +193,7 @@ public class OuvertureFermetureContractEmailer {
             mail.setSubject(template.Subject);
             mail.setToAddresses(new String[] { acc.Email__c });
             mail.setHtmlBody(htmlBody);
-            
+            mail.setOrgWideEmailAddressId(senderId);
             Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
             System.debug('Email sent successfully to ' + acc.Email__c);
             
@@ -243,5 +243,8 @@ public class OuvertureFermetureContractEmailer {
 
         @InvocableVariable(label='Order Id')
         public String orderId;
+
+        @InvocableVariable(label='Sender Display Name')
+        public String sender;
     }
 }
