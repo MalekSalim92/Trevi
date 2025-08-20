@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Appointment_Status__c</fullName>
+    <label>Service Appointment Status</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Requested</fullName>
+                <default>false</default>
+                <label>Requested</label>
+            </value>
+            <value>
+                <fullName>Waiting for customer confirmation</fullName>
+                <default>false</default>
+                <label>Waiting for customer confirmation</label>
+            </value>
+            <value>
+                <fullName>Analysis by office</fullName>
+                <default>false</default>
+                <label>Analysis by office</label>
+            </value>
+            <value>
+                <fullName>To be rescheduled</fullName>
+                <default>false</default>
+                <label>To be rescheduled</label>
+            </value>
+            <value>
+                <fullName>En route</fullName>
+                <default>false</default>
+                <label>En route</label>
+            </value>
+            <value>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+                <label>Confirmed</label>
+            </value>
+            <value>
+                <fullName>Requires another appointment</fullName>
+                <default>false</default>
+                <label>Requires another appointment</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Cannot Complete</fullName>
+                <default>false</default>
+                <label>Cannot Complete</label>
+            </value>
+            <value>
+                <fullName>Dispatched</fullName>
+                <default>false</default>
+                <label>Dispatched</label>
+            </value>
+            <value>
+                <fullName>In progress</fullName>
+                <default>false</default>
+                <label>In progress</label>
+            </value>
+            <value>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+                <label>Scheduled</label>
+            </value>
+            <value>
+                <fullName>Confirmed by technician</fullName>
+                <default>false</default>
+                <label>Confirmed by technician</label>
+            </value>
+            <value>
+                <fullName>Payment Analysis</fullName>
+                <default>false</default>
+                <label>Payment Analysis</label>
+            </value>
+            <value>
+                <fullName>Analyse de Payment</fullName>
+                <default>false</default>
+                <label>Analyse de Payment</label>
+            </value>
+            <value>
+                <fullName>Awaiting for Payment</fullName>
+                <default>false</default>
+                <label>Awaiting for Payment</label>
+            </value>
+            <value>
+                <fullName>Completed &amp; Paid</fullName>
+                <default>false</default>
+                <label>Completed &amp; Paid</label>
+            </value>
+            <value>
+                <fullName>Refused by costumer</fullName>
+                <default>false</default>
+                <label>Refused by costumer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

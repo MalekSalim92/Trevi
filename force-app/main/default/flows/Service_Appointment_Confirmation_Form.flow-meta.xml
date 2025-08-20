@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Group_Products</name>
+        <label>Group Products</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>ServiceAppointmentProductGrouper</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Appointment_form</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Faulty_Screen2</targetReference>
+        </faultConnector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>serviceAppointmentId</name>
+            <value>
+                <elementReference>serviceAppId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>ServiceAppointmentProductGrouper</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>ConsolidatedProducts</assignToReference>
+            <name>groupedOrderItems</name>
+        </outputParameters>
+    </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
-        <name>Form_Name</name>
-        <label>Form Name</label>
+        <name>Assing_Variables</name>
+        <label>Assing Variables</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
@@ -11,6 +39,27 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Work_Type_Group_Member.Form_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>serviceDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Service_Appointment.SchedStartTime</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>phoneNumber</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Service_Appointment.Contact_Phone__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>serviceAppId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Service_Appointment.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -73,44 +122,6 @@
             <stringValue>true</stringValue>
         </value>
     </choices>
-    <collectionProcessors>
-        <name>Check_Form_MTL</name>
-        <elementSubtype>FilterCollectionProcessor</elementSubtype>
-        <label>Check Form</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Check_Form_MTL</assignNextValueToReference>
-        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
-        <collectionReference>Get_Form_Rules</collectionReference>
-        <conditionLogic>formula_evaluates_to_true</conditionLogic>
-        <connector>
-            <targetReference>Form_Found</targetReference>
-        </connector>
-        <formula>IF(
-    ISBLANK({!currentItem_Check_Form_MTL.Montreal_Expiration_Days__c}),
-    TRUE,
-    TODAY() &lt;= (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!currentItem_Check_Form_MTL.Montreal_Expiration_Days__c})
-)</formula>
-    </collectionProcessors>
-    <collectionProcessors>
-        <name>Check_Form_QC</name>
-        <elementSubtype>FilterCollectionProcessor</elementSubtype>
-        <label>Check Form</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Check_Form_MTL</assignNextValueToReference>
-        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
-        <collectionReference>Get_Form_Rules</collectionReference>
-        <conditionLogic>formula_evaluates_to_true</conditionLogic>
-        <connector>
-            <targetReference>Form_Found</targetReference>
-        </connector>
-        <formula>IF(
-    ISBLANK({!currentItem_Check_Form_MTL.Quebec_Expiration_Days__c}),
-    TRUE,
-    TODAY() &lt;= (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!currentItem_Check_Form_MTL.Quebec_Expiration_Days__c})
-)</formula>
-    </collectionProcessors>
     <decisions>
         <name>Form_Found</name>
         <label>Form Found</label>
@@ -119,42 +130,10 @@
         <defaultConnector>
             <targetReference>Invalid_Appointment</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <defaultConnectorLabel>Error</defaultConnectorLabel>
         <rules>
-            <name>YesFound</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Check_Form_MTL</leftValueReference>
-                <operator>IsEmpty</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Check_Form_QC</leftValueReference>
-                <operator>IsEmpty</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Appointment_form</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Region</name>
-        <label>Region</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Check_Form_MTL</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Montreal</defaultConnectorLabel>
-        <rules>
-            <name>Quebec</name>
-            <conditionLogic>or</conditionLogic>
+            <name>Quebec_Montreal</name>
+            <conditionLogic>((1 OR 2 OR 3) AND 4) OR ((5 OR 6 ) AND 7)</conditionLogic>
             <conditions>
                 <leftValueReference>Get_Woli.Region__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -176,10 +155,63 @@
                     <stringValue>QC</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>ruleConditionsQc</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Woli.Region__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Montréal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Woli.Region__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Montreal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ruleConditionsMtl</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
-                <targetReference>Check_Form_QC</targetReference>
+                <targetReference>Products_Summary</targetReference>
             </connector>
-            <label>Quebec</label>
+            <label>Quebec/Montreal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Products_Summary</name>
+        <label>Products Summary Needed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Appointment_form</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesSumNeeded</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>showSummaryContract</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Group_Products</targetReference>
+            </connector>
+            <label>Yes</label>
         </rules>
     </decisions>
     <decisions>
@@ -188,7 +220,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Faulty_Message</targetReference>
+            <targetReference>Error_Updating</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Error</defaultConnectorLabel>
         <rules>
@@ -215,6 +247,21 @@
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>abAcAccessText</name>
+        <dataType>String</dataType>
+        <expression>IF({!formName} = &apos;Livraison_Abris&apos; , {!$Label.AB_Access_Text} , {!$Label.AC_Access_Text})</expression>
+    </formulas>
+    <formulas>
+        <name>Appointment_Confirmation_Header</name>
+        <dataType>String</dataType>
+        <expression>IF(OR( {!formName} = &apos;Service_Call &apos; ,  {!formName} = &apos;CR_Mise_En_Marche &apos; ) , {!$Label.Appointment_Confirmation_Header} ,{!$Label.Appointment_Confirmation_Header_SPA})</expression>
+    </formulas>
+    <formulas>
+        <name>confirmationButtonDisabled</name>
+        <dataType>Boolean</dataType>
+        <expression>OR( {!isCorrectAddress} = {!No} , {!Contract_Summary_Confirm_Question} = {!No} )</expression>
+    </formulas>
     <formulas>
         <name>confirmationMessage</name>
         <dataType>String</dataType>
@@ -253,34 +300,263 @@
         <expression>&apos;&apos;</expression>
     </formulas>
     <formulas>
+        <name>exactPhoneNumber</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.Telephone_Exacte}  &amp;  {!phoneNumber}</expression>
+    </formulas>
+    <formulas>
+        <name>fermeture_Terms_Form</name>
+        <dataType>String</dataType>
+        <expression>IF({!formName} = &apos;Fermeture&apos;,{!$Label.Fermeture_Terms_Form},&apos;&apos;)</expression>
+    </formulas>
+    <formulas>
+        <name>responses</name>
+        <dataType>String</dataType>
+        <expression>IF({!isCorrectAddress} != null , {!$Label.Is_Correct_Address_Question} + &quot;  :   &quot; + {!isCorrectAddress} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!isCorrectAddress} = {!No}, {!AddressCommentPlaceholder} + &quot;&lt;br&gt;&quot;, &quot;&quot;) +
+
+IF({!Contract_Summary_Confirm_Question} != null , {!$Label.Contract_Summary_Confirm_Question} + &quot;  :   &quot; + {!Contract_Summary_Confirm_Question} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Contract_Summary_Confirm_Question} = {!No}, {!ContractSummaryCommentPlaceholder} + &quot;&lt;br&gt;&quot;, &quot;&quot;) +
+
+IF({!Telephone_Exacte} != null , {!exactPhoneNumber} + &quot;  :   &quot; + {!Telephone_Exacte} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Communication_Preference_Picklist} != null , {!$Label.Communication_Preference_Question} + &quot;  :   &quot; + {!Communication_Preference_Picklist} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Model_Question} != null , {!$Label.Model_Question} + &quot;  :   &quot; + {!Model_Question} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Model_Access_Answer} != null , {!$Label.Access_Fits} + &quot;  :   &quot; + {!Model_Access_Answer} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!AC_Access_Placeholder} != null , {!$Label.AC_Access_Placeholder} + &quot;  :   &quot; + {!AC_Access_Placeholder} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Livraison_HL_Endroit} != null , {!$Label.Livraison_HL_Endroit} + &quot;  :   &quot; + {!Livraison_HL_Endroit} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Livraison_HL_Gazon} != null , {!$Label.Livraison_HL_Gazon} + &quot;  :   &quot; + {!Livraison_HL_Gazon} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Livraison_HL_Remplacement} != null , {!$Label.Livraison_HL_Remplacement} + &quot;  :   &quot; + {!Livraison_HL_Remplacement} + &quot;&lt;br&gt;&quot; , &quot;&quot; )
+ +
+
+IF({!Livraison_HL_GrandeurPiscine} != null , {!$Label.Livraison_HL_GrandeurPiscine} + &quot;  :   &quot; + {!Livraison_HL_GrandeurPiscine} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Livraison_HL_Piscine_demontee} != null , {!$Label.Livraison_HL_Piscine_demontee} + &quot;  :   &quot; + {!Livraison_HL_Piscine_demontee} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Livraison_HL_Meme_Endroit} != null , {!$Label.Livraison_HL_Meme_Endroit} + &quot;  :   &quot; + {!Livraison_HL_Meme_Endroit} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Livraison_HL_Terrain_Droit} != null , {!$Label.Livraison_HL_Terrain_Droit} + &quot;  :   &quot; + {!Livraison_HL_Terrain_Droit} + &quot;&lt;br&gt;&quot; , &quot;&quot; )
+
+ +
+
+IF({!Livraison_HL_Denevele} != null , {!$Label.Livraison_HL_Denevele} + &quot;  :   &quot; + {!Livraison_HL_Denevele} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+
+IF({!Livraison_HL_Obstacle} != null , {!$Label.Livraison_HL_Obstacle} + &quot;  :   &quot; + {!Livraison_HL_Obstacle} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+
+IF({!Access_Fits} != null , {!$Label.Access_Fits} + &quot;  :   &quot; + {!Access_Fits} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Access_Fits_MB} != null , {!$Label.Access_Fits} + &quot;  :   &quot; + {!Access_Fits_MB} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!Appointment_Cancelling_Reason} != null , {!$Label.Appointment_Cancelling_Reason} + &quot;  :   &quot; + {!Appointment_Cancelling_Reason} + &quot;&lt;br&gt;&quot; , &quot;&quot; ) +
+
+IF({!To_Be_Contacted}  != null  , {!$Label.Delivery_Confirmation_To_be_contacted} + &quot;  :   &quot; +
+IF( {!To_Be_Contacted} = True, {!Yes} , {!No} ),&quot;&quot;) +
+
+IF({!Delivery_Confirmation_Change_Phone} != null , {!$Label.Delivery_Confirmation_Change_Phone} + &quot;  :   &quot; + {!Delivery_Confirmation_Change_Phone} + &quot;&lt;br&gt;&quot; , &quot;&quot; )</expression>
+    </formulas>
+    <formulas>
+        <name>ruleConditionsMtl</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(
+    ISBLANK({!formRule.Montreal_Expiration_Days__c}),
+    TRUE,
+    IF(
+        ISBLANK({!formRule.Expiration_Time_Montreal__c}),
+        TODAY() &lt;= (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!currentItem_Check_Form_MTL.Montreal_Expiration_Days__c}),
+        IF(
+            TODAY() = (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!formRule.Montreal_Expiration_Days__c}),
+             {!timeNow} &lt;= {!formRule.Expiration_Time_Montreal__c},
+            TODAY() &lt; (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!formRule.Montreal_Expiration_Days__c})
+        )
+    )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>ruleConditionsQc</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(
+    ISBLANK({!formRule.Quebec_Expiration_Days__c}),
+    TRUE,
+    IF(
+        ISBLANK({!formRule.Expiration_Time_Quebec__c}),
+        TODAY() &lt;= (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!currentItem_Check_Form_MTL.Quebec_Expiration_Days__c}),
+        IF(
+            TODAY() = (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!formRule.Quebec_Expiration_Days__c}),
+             {!timeNow} &lt;= {!formRule.Expiration_Time_Quebec__c},
+            TODAY() &lt; (DATEVALUE({!Service_Appointment.SchedStartTime}) - {!formRule.Quebec_Expiration_Days__c})
+        )
+    )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showAcAbAccess</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;RC&apos;,
+{!formName} = &apos;AC_RB&apos;,
+{!formName} = &apos;Livraison_Abris&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showAcAutre</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;RC_Autre&apos;,
+{!formName} = &apos;AC_RB_Autre&apos;
+)</expression>
+    </formulas>
+    <formulas>
         <name>showAddress</name>
         <dataType>Boolean</dataType>
-        <expression>True</expression>
+        <expression>OR(
+{!formName} = &apos;HT_HL_SC&apos;,
+{!formName} = &apos;SC_Industria&apos;,
+{!formName} = &apos;CR_HA&apos;,
+{!formName} = &apos;RC&apos;,
+{!formName} = &apos;AC_RB&apos;,
+{!formName} = &apos;RC_PriseDeMesure&apos;,
+{!formName} = &apos;AC_RB_PriseDeMesure&apos;,
+{!formName} = &apos;RC_Autre&apos;,
+{!formName} = &apos;AC_RB_Autre&apos;,
+{!formName} = &apos;Livraison_Abris&apos;,
+{!formName} = &apos;Installation_HT_HL&apos;,
+{!formName} = &apos;Meuble_MB&apos;,
+{!formName} = &apos;Ouverture&apos;,
+{!formName} = &apos;Fermeture&apos;
+)</expression>
     </formulas>
     <formulas>
         <name>showCummunicationPreferences</name>
         <dataType>Boolean</dataType>
-        <expression>True</expression>
+        <expression>OR(
+{!formName} = &apos;CR_HA&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showDeliveryConfirmation</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;HT_HL_SC&apos;,
+{!formName} = &apos;SC_Industria&apos;,
+{!formName} = &apos;CR_HA&apos;,
+{!formName} = &apos;RC&apos;,
+{!formName} = &apos;AC_RB&apos;,
+{!formName} = &apos;RC_PriseDeMesure&apos;,
+{!formName} = &apos;AC_RB_PriseDeMesure&apos;,
+{!formName} = &apos;RC_Autre&apos;,
+{!formName} = &apos;AC_RB_Autre&apos;,
+{!formName} = &apos;Livraison_Abris&apos;,
+{!formName} = &apos;Meuble_MB&apos;,
+{!formName} = &apos;Meuble_Autre&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showHLnotes</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;Installation_HT_HL&apos;
+)</expression>
     </formulas>
     <formulas>
         <name>showImportantInformation</name>
         <dataType>Boolean</dataType>
-        <expression>True</expression>
+        <expression>OR(
+{!formName} = &apos;CR_HA&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showMbAutreNote</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;Meuble_Autre&apos; 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showMbNote</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;Meuble_MB&apos; 
+)</expression>
     </formulas>
     <formulas>
         <name>showModel</name>
         <dataType>Boolean</dataType>
-        <expression>True</expression>
+        <expression>OR(
+{!formName} = &apos;HT_HL_SC&apos;,
+{!formName} = &apos;SC_Industria&apos;,
+{!formName} = &apos;Meuble_MB&apos; 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showOuvertureFermeture</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;Ouverture&apos;,
+{!formName} = &apos;Fermeture&apos; 
+)</expression>
     </formulas>
     <formulas>
         <name>showPayment</name>
         <dataType>Boolean</dataType>
-        <expression>True</expression>
+        <expression>OR(
+{!formName} = &apos;CR_HA&apos; 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showServiceCallCancellation</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;CR_Mise_En_Marche&apos;,
+{!formName} = &apos;Service_Call&apos;,
+{!formName} = &apos;Ouverture&apos;,
+{!formName} = &apos;Fermeture&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>showServiceCallConfirmation</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+{!formName} = &apos;CR_Mise_En_Marche&apos;,
+{!formName} = &apos;Service_Call&apos;,
+{!formName} = &apos;Ouverture&apos;,
+{!formName} = &apos;Fermeture&apos; 
+)</expression>
     </formulas>
     <formulas>
         <name>showSummaryContract</name>
         <dataType>Boolean</dataType>
-        <expression>True</expression>
+        <expression>OR(
+{!formName} = &apos;HT_HL_SC&apos;,
+{!formName} = &apos;SC_Industria&apos;,
+{!formName} = &apos;CR_HA&apos;,
+{!formName} = &apos;RC&apos;,
+{!formName} = &apos;AC_RB&apos;,
+{!formName} = &apos;RC_PriseDeMesure&apos;,
+{!formName} = &apos;AC_RB_PriseDeMesure&apos;,
+{!formName} = &apos;RC_Autre&apos;,
+{!formName} = &apos;AC_RB_Autre&apos;,
+{!formName} = &apos;Livraison_Abris&apos;,
+{!formName} = &apos;Installation_HT_HL&apos;,
+{!formName} = &apos;Meuble_MB&apos; 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>timeNow</name>
+        <dataType>Time</dataType>
+        <expression>IF(MONTH(TODAY()) &gt;= 3 &amp;&amp; MONTH(TODAY()) &lt;= 11,
+TIMENOW() - 14400000,
+TIMENOW() - 18000000 
+)</expression>
     </formulas>
     <formulas>
         <name>updateStatus</name>
@@ -288,7 +564,7 @@
         <expression>IF(
 {!actionButtons.actionName} = &apos;Confirm&apos;,
 &apos;Confirmed&apos; ,
- &apos;Refused by customer&apos; 
+ &apos;Refused by costumer&apos; 
 )</expression>
     </formulas>
     <interviewLabel>Service Appointment Confirmation Form {!$Flow.CurrentDateTime}</interviewLabel>
@@ -320,11 +596,11 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Region</targetReference>
+            <targetReference>Form_Found</targetReference>
         </connector>
         <faultConnector>
             <isGoTo>true</isGoTo>
-            <targetReference>Faulty_Screen</targetReference>
+            <targetReference>Faulty_Screen2</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -341,9 +617,20 @@
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <filters>
+            <field>Service_Appointment_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>status</elementReference>
+            </value>
+        </filters>
         <object>ServiceAppointmentFormRule__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <outputReference>formRule</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Expiration_Time_Quebec__c</queriedFields>
+        <queriedFields>Expiration_Time_Montreal__c</queriedFields>
+        <queriedFields>Quebec_Expiration_Days__c</queriedFields>
+        <queriedFields>Montreal_Expiration_Days__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Woli</name>
@@ -356,7 +643,7 @@
         </connector>
         <faultConnector>
             <isGoTo>true</isGoTo>
-            <targetReference>Faulty_Screen</targetReference>
+            <targetReference>Faulty_Screen2</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -385,14 +672,21 @@
             <targetReference>Get_Woli</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Faulty_Screen</targetReference>
+            <targetReference>Faulty_Screen2</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>External_Reference__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>serviceAppId</elementReference>
+                <elementReference>serviceAppExternalId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>status</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -407,6 +701,7 @@
         <queriedFields>Country</queriedFields>
         <queriedFields>AccountId</queriedFields>
         <queriedFields>SchedStartTime</queriedFields>
+        <queriedFields>Contact_Phone__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -416,11 +711,11 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Form_Name</targetReference>
+            <targetReference>Assing_Variables</targetReference>
         </connector>
         <faultConnector>
             <isGoTo>true</isGoTo>
-            <targetReference>Faulty_Screen</targetReference>
+            <targetReference>Faulty_Screen2</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -446,7 +741,7 @@
     <runInMode>SystemModeWithSharing</runInMode>
     <screens>
         <name>Appointment_form</name>
-        <label>Appointment form</label>
+        <label>Appointment formd</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>true</allowBack>
@@ -456,30 +751,61 @@
             <targetReference>Update_Service_Appointment</targetReference>
         </connector>
         <fields>
-            <name>TreviLogoHeader</name>
-            <extensionName>flowruntime:image</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>imageName</name>
-                <value>
-                    <stringValue>TreviLogo</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>imageHeight</name>
-                <value>
-                    <stringValue>80</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <name>confirmationFormsTitle</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 20px;&quot;&gt;{!$Label.confirmationFormsTitle}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
             <name>Appointment_form_Section1</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
                 <name>Appointment_form_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Appointment_Confirmation_Header_Label</name>
+                    <extensionName>c:serviceAppointmentFormBanner</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>text</name>
+                        <value>
+                            <elementReference>Appointment_Confirmation_Header</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>Confirmation_Text</name>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;{!$Label.Rdv}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;NAME TO BE DETERMINED&lt;/p&gt;&lt;p&gt;&lt;strong&gt;{!$Label.Appointment_Date} &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!serviceDate}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showServiceCallConfirmation</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section2</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section2_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Address_Header</name>
@@ -508,14 +834,14 @@
                     <fieldText>{!$Label.Is_Correct_Address_Question}</fieldText>
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>AddressCommentPlaceholder</name>
                     <fieldText>{!$Label.Address_Input_Placeholder}</fieldText>
                     <fieldType>LargeTextArea</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -549,10 +875,105 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>Appointment_form_Section2</name>
+            <name>Appointment_form_Section3</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Appointment_form_Section2_Column1</name>
+                <name>Appointment_form_Section3_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Telephone_Exacte</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!exactPhoneNumber}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Ouverture_Fermeture_Terms</name>
+                    <fieldText>&lt;p&gt;{!$Label.Ouverture_Terms_Form}&lt;/p&gt;&lt;p&gt;{!fermeture_Terms_Form}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showOuvertureFermeture</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section4</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section4_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Appointment_Cancelling_Header</name>
+                    <extensionName>c:serviceAppointmentFormBanner</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>text</name>
+                        <value>
+                            <elementReference>$Label.Appointment_Cancelling_Header</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>Appointment_Cancelling_Text</name>
+                    <fieldText>&lt;p&gt;{!$Label.Appointment_Cancelling_Text}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>Appointment_Cancelling_Reason</name>
+                    <fieldText>{!$Label.Appointment_Cancelling_Reason}</fieldText>
+                    <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showServiceCallCancellation</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section5</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section5_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Summary_Contract_Header</name>
@@ -562,6 +983,59 @@
                         <name>text</name>
                         <value>
                             <elementReference>$Label.Summary_Contract_Header</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>emtySpace</name>
+                    <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>Product_Summary</name>
+                    <dataTypeMappings>
+                        <typeName>T</typeName>
+                        <typeValue>OrderItem</typeValue>
+                    </dataTypeMappings>
+                    <extensionName>flowruntime:datatable</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Data Table</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>selectionMode</name>
+                        <value>
+                            <stringValue>NO_SELECTION</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>minRowSelection</name>
+                        <value>
+                            <numberValue>0.0</numberValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableData</name>
+                        <value>
+                            <elementReference>ConsolidatedProducts</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columns</name>
+                        <value>
+                            <stringValue>[{&quot;apiName&quot;:&quot;Return_Location__c&quot;,&quot;guid&quot;:&quot;column-f6be&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;{!$Label.Service_Appointment_Product_Code}&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Return Location&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Description&quot;,&quot;guid&quot;:&quot;column-8829&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;{!$Label.Service_Appointment_Product_Name}&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Line Description&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Serial__c&quot;,&quot;guid&quot;:&quot;column-c6aa&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;{!$Label.Appointment_Confirmation_Serial}&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Serial&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Quantity&quot;,&quot;guid&quot;:&quot;column-c82c&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;{!$Label.Appointment_Confirmation_Quatity}&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;Quantity&quot;,&quot;type&quot;:&quot;number&quot;}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>maxRowSelection</name>
+                        <value>
+                            <numberValue>0.0</numberValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -580,9 +1054,10 @@
                 </fields>
                 <fields>
                     <name>ContractSummaryCommentPlaceholder</name>
+                    <fieldText>{!$Label.Address_Input_Placeholder}</fieldText>
                     <fieldType>LargeTextArea</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -616,10 +1091,10 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>Appointment_form_Section3</name>
+            <name>Appointment_form_Section6</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Appointment_form_Section3_Column1</name>
+                <name>Appointment_form_Section6_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Communication_Preference_Header</name>
@@ -636,15 +1111,11 @@
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
                 <fields>
-                    <name>Communication_Preference_Questionc</name>
-                    <fieldText>&lt;p&gt;{!$Label.Communication_Preference_Question}&lt;/p&gt;</fieldText>
-                    <fieldType>DisplayText</fieldType>
-                </fields>
-                <fields>
                     <name>Communication_Preference_Picklist</name>
                     <choiceReferences>Email</choiceReferences>
                     <choiceReferences>Phone</choiceReferences>
                     <dataType>String</dataType>
+                    <fieldText>{!$Label.Communication_Preference_Question}</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
@@ -671,10 +1142,10 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>Appointment_form_Section4</name>
+            <name>Appointment_form_Section7</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Appointment_form_Section4_Column1</name>
+                <name>Appointment_form_Section7_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Important_Information_Header</name>
@@ -692,7 +1163,7 @@
                 </fields>
                 <fields>
                     <name>Importnat_Information</name>
-                    <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.important_Information_DeliveryDate} 11/11/11&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.important_Information_InstallationDate} 11/11/11&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_extraDetailsDescription}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_requirementsListLabel}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;{!$Label.Important_Information_Requirement1}&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement2}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement3}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement4}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement5}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement6}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement7}&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;&lt;u&gt;{!$Label.Important_Information_NoteLabel}&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_NoteDescription}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_NextStepDescription}&lt;/p&gt;</fieldText>
+                    <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.important_Information_DeliveryDate} {!deliveryDate}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.important_Information_InstallationDate} {!installationDate}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_extraDetailsDescription}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_requirementsListLabel}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;{!$Label.Important_Information_Requirement1}&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement2}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement3}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement4}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement5}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement6}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Important_Information_Requirement7}&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 0, 0); background-color: rgb(255, 255, 255);&quot;&gt;&lt;u&gt;{!$Label.Important_Information_NoteLabel}&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_NoteDescription}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.Important_Information_NextStepDescription}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                 </fields>
                 <inputParameters>
@@ -717,10 +1188,10 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>Appointment_form_Section5</name>
+            <name>Appointment_form_Section8</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Appointment_form_Section5_Column1</name>
+                <name>Appointment_form_Section8_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Payment_Header</name>
@@ -763,10 +1234,10 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>Appointment_form_Section6</name>
+            <name>Appointment_form_Section9</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Appointment_form_Section6_Column1</name>
+                <name>Appointment_form_Section9_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Model_Header</name>
@@ -813,6 +1284,7 @@
                     <choiceReferences>Yes</choiceReferences>
                     <choiceReferences>No</choiceReferences>
                     <dataType>String</dataType>
+                    <fieldText>{!$Label.Access_Fits}</fieldText>
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
@@ -864,10 +1336,380 @@
             </visibilityRule>
         </fields>
         <fields>
-            <name>Appointment_form_Section7</name>
+            <name>Appointment_form_Section10</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>Appointment_form_Section7_Column1</name>
+                <name>Appointment_form_Section10_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>AC_access</name>
+                    <extensionName>c:serviceAppointmentFormBanner</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>text</name>
+                        <value>
+                            <elementReference>$Label.AC_Access_Title</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>Ac_Access_Info</name>
+                    <fieldText>&lt;p&gt;{!abAcAccessText}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>AC_Access_Placeholder</name>
+                    <fieldText>{!$Label.AC_Access_Placeholder}</fieldText>
+                    <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showAcAbAccess</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section11</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section11_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>AC_Autre_Title</name>
+                    <extensionName>c:serviceAppointmentFormBanner</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>text</name>
+                        <value>
+                            <elementReference>$Label.AC_Autre_Title</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>AC_Autre_Text</name>
+                    <fieldText>&lt;p&gt;{!$Label.AC_Autre_Text}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showAcAutre</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section12</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section12_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Livraison_HL_Endroit</name>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Endroit}</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Gazon</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Gazon}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Remplacement</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Remplacement}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_GrandeurPiscine</name>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_GrandeurPiscine}</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Livraison_HL_Remplacement</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <elementReference>Yes</elementReference>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Piscine_demontee</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Piscine_demontee}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Meme_Endroit</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Meme_Endroit}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Terrain_Droit</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Terrain_Droit}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Denevele</name>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Denevele}</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Livraison_HL_Terrain_Droit</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <elementReference>No</elementReference>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Obstacle</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Livraison_HL_Obstacle}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Acces_rue_Text</name>
+                    <fieldText>&lt;p&gt;{!$Label.&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Livraison_HL_Acces_rue_Text&lt;/span&gt;}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>Access_Fits</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Access_Fits}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>HL_AccessNote</name>
+                    <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Model_AccessNote}&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Access_Fits</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <elementReference>No</elementReference>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>Livraison_HL_Note</name>
+                    <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt; {!$Label.&lt;/span&gt;Livraison_HL_Note&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;} &lt;/span&gt;{!serviceDate}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showHLnotes</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section13</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section13_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Meuble_Livraison_Text</name>
+                    <fieldText>&lt;p&gt;{!$Label.Meuble_Livraison_Text}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>Access_Fits_MB</name>
+                    <choiceReferences>Yes</choiceReferences>
+                    <choiceReferences>No</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>{!$Label.Access_Fits}</fieldText>
+                    <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Inscrire_details</name>
+                    <fieldText>{!$Label.Inscrire_details}</fieldText>
+                    <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Access_Fits_MB</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <elementReference>Yes</elementReference>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showMbNote</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section14</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section14_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>MB_Autre_Title</name>
+                    <extensionName>c:serviceAppointmentFormBanner</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>text</name>
+                        <value>
+                            <elementReference>$Label.AC_Autre_Title</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>MB_Autre_Text</name>
+                    <fieldText>&lt;p&gt;{!$Label.MB_Autre_Text}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showMbAutreNote</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Appointment_form_Section15</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Appointment_form_Section15_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>Delivery_Confirmation_Header</name>
@@ -898,7 +1740,7 @@
                 </fields>
                 <fields>
                     <name>PhoneNotes</name>
-                    <fieldText>&lt;p&gt;{!currentPhoneNote}&lt;/p&gt;</fieldText>
+                    <fieldText>&lt;p&gt;{!$Label.Delivery_Confirmation_Current_Phone} {!phoneNumber}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                 </fields>
                 <fields>
@@ -919,14 +1761,114 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>showDeliveryConfirmation</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>actionButtons</name>
             <extensionName>c:serviceAppointmentFormNavigation</extensionName>
             <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>isButtonDisabled</name>
+                <value>
+                    <elementReference>confirmationButtonDisabled</elementReference>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Error_Updating</name>
+        <label>Error Updating</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Copy_1_of_invalid</name>
+            <extensionName>flowruntime:image</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>imageName</name>
+                <value>
+                    <stringValue>invalid</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>horizontalAlignment</name>
+                <value>
+                    <stringValue>center</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>imageHeight</name>
+                <value>
+                    <stringValue>2cm</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Copy_1_of_invalidLinkMsg</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;{!Update_Service_Appointment.flowErrorMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Faulty_Screen2</name>
+        <label>Faulty Screen</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>invalid2</name>
+            <extensionName>flowruntime:image</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>imageName</name>
+                <value>
+                    <stringValue>invalid</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>horizontalAlignment</name>
+                <value>
+                    <stringValue>center</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>imageHeight</name>
+                <value>
+                    <stringValue>2cm</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>errorMsg</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
@@ -939,32 +1881,6 @@
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
-        <fields>
-            <name>TreviLogo</name>
-            <extensionName>flowruntime:image</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>imageName</name>
-                <value>
-                    <stringValue>TreviLogo	</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>horizontalAlignment</name>
-                <value>
-                    <stringValue>center</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>imageHeight</name>
-                <value>
-                    <stringValue>150</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
         <fields>
             <name>invalid</name>
             <extensionName>flowruntime:image</extensionName>
@@ -996,7 +1912,7 @@
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;{!$Label.Invalid_Link_Title}&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;{!$Label.Invalid_Link_Subtitle}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
-        <showFooter>false</showFooter>
+        <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
@@ -1007,32 +1923,6 @@
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
-        <fields>
-            <name>TreviLogo2</name>
-            <extensionName>flowruntime:image</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>imageName</name>
-                <value>
-                    <stringValue>TreviLogo</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>horizontalAlignment</name>
-                <value>
-                    <stringValue>center</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>imageHeight</name>
-                <value>
-                    <stringValue>150</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
         <fields>
             <name>Check</name>
             <extensionName>flowruntime:image</extensionName>
@@ -1079,33 +1969,7 @@
             <targetReference>Service_Appointment</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
-    <subflows>
-        <name>Faulty_Message</name>
-        <label>Faulty Message</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <flowName>Screen_Flow_Faulty_Message</flowName>
-        <inputAssignments>
-            <name>errorMessage</name>
-            <value>
-                <elementReference>Update_Service_Appointment.flowErrorMessage</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
-        <name>Faulty_Screen</name>
-        <label>Faulty Screen</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <flowName>Screen_Flow_Faulty_Message</flowName>
-        <inputAssignments>
-            <name>errorMessage</name>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
+    <status>Active</status>
     <subflows>
         <name>Update_Service_Appointment</name>
         <label>Update Service Appointment</label>
@@ -1116,6 +1980,12 @@
         </connector>
         <flowName>Service_Appointment_Confirmation_Form_ActionSubflow</flowName>
         <inputAssignments>
+            <name>response</name>
+            <value>
+                <elementReference>responses</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <name>serviceAppointmentId</name>
             <value>
                 <elementReference>serviceAppId</elementReference>
@@ -1125,6 +1995,12 @@
             <name>status</name>
             <value>
                 <elementReference>updateStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>woli</name>
+            <value>
+                <elementReference>Get_Woli.Id</elementReference>
             </value>
         </inputAssignments>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -1180,11 +2056,43 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>deliveryDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>formName</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>formRule</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ServiceAppointmentFormRule__c</objectType>
+    </variables>
+    <variables>
+        <name>installationDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>lwcHeaderOn</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>orderId</name>
@@ -1210,6 +2118,13 @@
         <objectType>OrderItem</objectType>
     </variables>
     <variables>
+        <name>phoneNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>ProductFound</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>
@@ -1231,10 +2146,24 @@
         </value>
     </variables>
     <variables>
-        <name>serviceAppId</name>
+        <name>serviceAppExternalId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>serviceAppId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>serviceDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
@@ -1243,6 +2172,9 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+        <value>
+            <stringValue>Waiting for customer confirmation</stringValue>
+        </value>
     </variables>
     <variables>
         <name>summaryProductCollection</name>
