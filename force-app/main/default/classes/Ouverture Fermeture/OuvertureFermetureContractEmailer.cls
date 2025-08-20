@@ -20,31 +20,29 @@ public class OuvertureFermetureContractEmailer {
             // Deserialize the request data
             RequestWrapper request = (RequestWrapper) JSON.deserialize(requestJson, RequestWrapper.class);
             
-            System.debug('baseServicePricebookEntries: ' + request.baseServicePricebookEntries);
-            System.debug('baseServiceOrderItems: ' + request.baseServiceOrderItems);
-            System.debug('optionPricebookEntries ' + request.optionPricebookEntries);
-
             List<String> productIds = new List<String>();
             for (OrderItem item : request.baseServiceOrderItems) {
                 productIds.add(item.Product2Id);
             }
             
             List<Product2> products = [SELECT Id, Work_Type__r.Name FROM Product2 WHERE Id IN: productIds];
-            
+ 
             List<String> workTypeNames = new List<String>();
             for (Product2 product : products) {
                 if (product.Work_Type__r?.Name != null) {
                     workTypeNames.add(product.Work_Type__r.Name);
                 }
             }
-            
+ 
             String worktypeNameConcatenation = String.join(workTypeNames, ' / ');
-            
+ 
             // Get account  
             Account acc = [SELECT Id, Name, Email__c FROM Account WHERE Id = :request.accountId];
+ 
             Order ord = [SELECT Id,Order_Number__c  FROM Order WHERE Id = :request.orderId];
-            // Get the email template by name
-			String emailTemplate = UserInfo.getLanguage() == 'fr' ? 'Ouverture_Fermeture_Contract_de_service_Fr' : 'Ouverture_Fermeture_Contract_de_service_En';
+ 
+                    // Get the email template by name
+            String emailTemplate = UserInfo.getLanguage() == 'fr' ? 'Ouverture_Fermeture_Contract_de_service_Fr' : 'Ouverture_Fermeture_Contract_de_service_En';
 
             // Get the email template by name
             EmailTemplate template = [SELECT Id, Subject, HtmlValue, Body 
@@ -54,7 +52,7 @@ public class OuvertureFermetureContractEmailer {
             // Get the HTML content of the template
             String htmlBody = template.HtmlValue;
             String orderNumber = ord.Order_Number__c ?? '';
-            
+
             // Replace basic placeholders
             htmlBody = htmlBody.replace('{ACCOUNT_NAME}', acc.Name);
             htmlBody = htmlBody.replace('{ACCOUNT_SAGEID}', orderNumber);
@@ -110,33 +108,43 @@ public class OuvertureFermetureContractEmailer {
             
             // Build the options table rows
             String optionsHtml = '';
+            String optionsLabel = '';
+            String optionsDiscountHeader = '';
             Decimal optionsSubtotal = 0;
             Decimal optionsDiscountedSubtotal = 0;
-
-            for (orderItem pbe : request.optionPricebookEntries) {
-                if (String.isNotBlank(pbe.Description) && pbe.ListPrice > 0 ) {
-                    Decimal quantity = pbe.Quantity != null ? pbe.Quantity : 1;
-                    Decimal listPrice = pbe.ListPrice;
-                    Decimal unitPrice = pbe.UnitPrice != null ? pbe.UnitPrice : listPrice; // Get UnitPrice from the PBE
-                    
-                    optionsSubtotal += listPrice * quantity;
-                    optionsDiscountedSubtotal += unitPrice * quantity;
-                    
-                    optionsHtml += '<tr style="border-bottom: 1px solid #ddd;">';
-                    optionsHtml += '<td style="padding: 8px; text-align: left; border: 1px solid #ddd;">' + pbe.Description + '</td>';
-                    optionsHtml += '<td style="padding: 8px; text-align: center; border: 1px solid #ddd;">' + quantity + '</td>';
-                    optionsHtml += '<td style="padding: 8px; text-align: right; border: 1px solid #ddd;">' + formatCurrency(listPrice) + ' $</td>';
-                    
-                    if (hasDiscount) {
-                        optionsHtml += '<td style="padding: 8px; text-align: right; border: 1px solid #ddd;">' + formatCurrency(unitPrice) + ' $</td>';
-                    }
-                    
-                    optionsHtml += '</tr>';
-                }
-            }
-            htmlBody = htmlBody.replace('{OPTION_HEADER}', discountHeader);
-            htmlBody = htmlBody.replace('{OPTION_PRODUCTS}', optionsHtml);
             
+            if(request.optionPricebookEntries != null){
+
+                for (orderItem pbe : request.optionPricebookEntries) {
+                    if (String.isNotBlank(pbe.Description) && pbe.ListPrice > 0 ) {
+                        Decimal quantity = pbe.Quantity != null ? pbe.Quantity : 1;
+                        Decimal listPrice = pbe.ListPrice;
+                        Decimal unitPrice = pbe.UnitPrice != null ? pbe.UnitPrice : listPrice; // Get UnitPrice from the PBE
+                        
+                        optionsSubtotal += listPrice * quantity;
+                        optionsDiscountedSubtotal += unitPrice * quantity;
+                        
+                        optionsHtml += '<tr style="border-bottom: 1px solid #ddd;">';
+                        optionsHtml += '<td style="padding: 8px; text-align: left; border: 1px solid #ddd;">' + pbe.Description + '</td>';
+                        optionsHtml += '<td style="padding: 8px; text-align: center; border: 1px solid #ddd;">' + quantity + '</td>';
+                        optionsHtml += '<td style="padding: 8px; text-align: right; border: 1px solid #ddd;">' + formatCurrency(listPrice) + ' $</td>';
+                        
+                        if (hasDiscount) {
+                            optionsHtml += '<td style="padding: 8px; text-align: right; border: 1px solid #ddd;">' + formatCurrency(unitPrice) + ' $</td>';
+                        }
+                        
+                        optionsHtml += '</tr>';
+                    }
+                }
+                optionsLabel = 'Options';
+                optionsDiscountHeader = discountHeader;
+
+            }
+            htmlBody = htmlBody.replace('{OPTIONS_LABEL}', optionsLabel);
+            htmlBody = htmlBody.replace('{OPTION_HEADER}', optionsDiscountHeader);
+            htmlBody = htmlBody.replace('{OPTION_PRODUCTS}', optionsHtml);
+
+
             // Add discount message if applicable
             String discountHtml = '';
             if (hasDiscount) {

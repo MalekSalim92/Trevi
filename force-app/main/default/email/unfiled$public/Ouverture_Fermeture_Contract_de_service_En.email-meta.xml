@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Ouverture Fermeture Contract de service En</name>
+    <style>none</style>
+    <subject>Service Contract Confirmation</subject>
+    <textOnly>Hello {ACCOUNT_NAME},
+
+At your request, a service contract for a {BASE_SERVICE_DESCRIPTION} has been created.
+
+Your reference number is:
+
+Base Service
+
+{HEADER} {BASE_SERVICE_PRODUCTS}
+
+Options
+
+{HEADER} {OPTION_PRODUCTS}
+
+Subtotal:  {SUBTOTAL} $
+GST (5%):  {GST} $
+PST (9.975%):  {QST} $
+Total:  {GRAND_TOTAL} $
+
+Payment Option
+
+Pay subsequent years before August 31st of each year.
+
+Payment
+
+The current service request has been paid.
+You will receive an email for payment of other service requests before August 31st of each year of the contract.
+
+Requested Date
+
+{DATE_SECTION}
+
+Our dispatch department will contact you between 24 and 72 hours before the appointment to confirm it.
+
+Due to fall weather conditions, some delays may occur compared to your scheduled week. We thank you for your understanding.
+
+Terms and Conditions
+
+{CLAUSES}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
