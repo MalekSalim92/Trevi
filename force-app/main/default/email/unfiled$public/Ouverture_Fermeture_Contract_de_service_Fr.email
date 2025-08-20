@@ -1,0 +1,86 @@
+<!-- Classic Salesforce HTML Email Template for Service Contract Quote -->
+<html>
+<body style="margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; font-size:14px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff; border-collapse:collapse; margin:0; padding:0;">
+    <tr>
+      <td style="padding:20px;">
+        <!-- Body Wrapper Table -->
+        <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #e6e6e6; border-collapse:collapse; background-color:#fff;">
+          <tr>
+            <td style="padding:24px;">
+              
+              <p style="margin-bottom:16px;">Bonjour <strong>{ACCOUNT_NAME}</strong>,</p>
+              <p style="margin-bottom:12px;">&Agrave; votre demande, un contrat de service pour une {BASE_SERVICE_DESCRIPTION} a &eacute;t&eacute; fait.</p>
+              <p style="margin-bottom:12px;">Votre num&eacute;ro de r&eacute;f&eacute;rence est&nbsp;: <strong>{ACCOUNT_SAGEID}</strong></p>
+              
+              <!-- Base Service Products Table -->
+              <p style="margin:18px 0 8px; font-weight:bold;">Service de base</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin-bottom:16px;">
+                {HEADER}
+                {BASE_SERVICE_PRODUCTS}
+              </table>
+              
+              <!-- Option Products Table -->
+              <p style="margin:18px 0 8px; font-weight:bold;">{OPTIONS_LABEL}</p>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; margin-bottom:16px;">
+                {HEADER}
+                {OPTION_PRODUCTS}
+              </table>
+              
+              <!-- Totals Box, aligned right using a table row and two columns -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;">
+                <tr>
+                  <td width="55%"></td>
+                  <td width="45%">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ddd; background-color:#f9f9f9;">
+                      <tr>
+                        <td style="text-align:left; padding:6px;"><strong>Sous-total:</strong></td>
+                        <td style="text-align:right; padding:6px;">{SUBTOTAL} $</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left; padding:6px;"><strong>TPS (5%):</strong></td>
+                        <td style="text-align:right; padding:6px;">{GST} $</td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left; padding:6px;"><strong>TVQ (9.975%):</strong></td>
+                        <td style="text-align:right; padding:6px;">{QST} $</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" style="border-top:1px solid #ccc; padding:2px 0;"></td>
+                      </tr>
+                      <tr>
+                        <td style="text-align:left; padding:6px;"><strong>Total:</strong></td>
+                        <td style="text-align:right; padding:6px;"><strong>{GRAND_TOTAL} $</strong></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              
+              <!-- Payment and Date Sections -->
+              <p style="margin:18px 0 8px; font-weight:bold;">Option de paiement</p>
+              <p style="margin-bottom:12px;">Payer les ann&eacute;es ult&eacute;rieures avant le 31 ao&ucirc;t de chaque ann&eacute;e.</p>
+              <p style="margin:18px 0 8px; font-weight:bold;">Paiement</p>
+              <p style="margin-bottom:12px;">
+                La requ&ecirc;te de service courante a &eacute;t&eacute; pay&eacute;e.<br>
+                Vous recevrez un courriel pour le paiement des autres requ&ecirc;tes de service avant le 31 ao&ucirc;t de chaque ann&eacute;e du contrat.
+              </p>
+              <p style="margin:18px 0 8px; font-weight:bold;">Date demand&eacute;e</p>
+              {DATE_SECTION}
+              <p style="margin-bottom:12px;">
+                Notre d&eacute;partement de r&eacute;partition communiquera avec vous entre 24 et 72 heures avant le rendez-vous afin de confirmer celui-ci.
+              </p>
+              <p style="margin-bottom:16px;">
+                En raison des conditions m&eacute;t&eacute;orologiques automnales, certains retards pourraient survenir par rapport &agrave; votre semaine pr&eacute;vue. Nous vous remercions de votre compr&eacute;hension.
+              </p>
+              <p style="margin:18px 0 8px; font-weight:bold;">Clauses</p>
+              <p>{CLAUSES}</p>
+              
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
