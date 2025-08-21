@@ -28,7 +28,7 @@ global class CapacityFinderValmar {
         global List<Capacity__c> availCapacities;
         
         @InvocableVariable
-        global String workType;
+        global workType workType;
         
         @InvocableVariable
         global String capRegion;
@@ -45,9 +45,9 @@ global class CapacityFinderValmar {
         System.debug('capRegion **** ' + capRegion);
         set<String> workTypeSet = new set<String>();
         workTypeSet.addALL(requests[0].workType);
-        List<String> workTypeResult = getWorkType(workTypeSet,requests[0].timeOuverture,requests[0].timeViderLaver,requests[0].timeFermeture);
-        String capWorkType = workTypeResult[0];
-        String workType = workTypeResult[1];
+        workType workTypeResult = getWorkType(workTypeSet,requests[0].timeOuverture,requests[0].timeViderLaver,requests[0].timeFermeture);
+        String capWorkType = workTypeResult.Capacity_Type__c;
+        String workType = workTypeResult.Id;
         System.debug('capWorkType **** ' + capWorkType);
         List<Capacity__c> capList = new  List<Capacity__c>([Select Id, Name, Capacity_Remaining__c, Week_Start__c from Capacity__c 
                                                             WHERE Contract_Type__c =: requests[0].contractType 
@@ -55,6 +55,7 @@ global class CapacityFinderValmar {
                                                             AND Week_Start__c >=: Date.valueOf(requests[0].weekEnd) 
                                                             AND Week_End__c >=: Date.valueOf(requests[0].weekEnd)
                                                             AND Capacity_Remaining__c > 0 
+                                                            AND Week_Start__c > TODAY
                                                             AND CALENDAR_YEAR(Week_End__c) =: requests[0].weekEnd.year()
                                                            ORDER BY Week_Start__c ASC LIMIT 3]);
         if(capList.size() == 0){//Verify Custom Metadata Type "Shared Capacity"
@@ -65,7 +66,7 @@ global class CapacityFinderValmar {
             if(sharedCapList.size() > 0){
                 capList = new  List<Capacity__c>([Select Id, Name, Capacity_Remaining__c, Week_Start__c from Capacity__c WHERE (Contract_Type__c =: sharedCapList[0].Contract_Type__c OR Contract_Type__c =: requests[0].contractType)
                                                   AND (Work_Type__c =: sharedCapList[0].Work_Type__c OR Work_Type__c =: capWorkType) AND (Region__c =: sharedCapList[0].Region__c OR Region__c =: capRegion)
-                                                  AND Week_Start__c >=: Date.valueOf(requests[0].weekEnd) AND Week_End__c >=: Date.valueOf(requests[0].weekEnd) AND Capacity_Remaining__c > 0 AND CALENDAR_YEAR(Week_End__c) =: requests[0].weekEnd.year()
+                                                  AND Week_Start__c >=: Date.valueOf(requests[0].weekEnd) AND Week_End__c >=: Date.valueOf(requests[0].weekEnd) AND Capacity_Remaining__c > 0 AND Week_Start__c > TODAY AND CALENDAR_YEAR(Week_End__c) =: requests[0].weekEnd.year()
                                                  ORDER BY Week_Start__c ASC LIMIT 3]);
             }
         }
@@ -76,13 +77,13 @@ global class CapacityFinderValmar {
                 dts.add(cp);
             }
             opR.availCapacities = dts;
-            opR.workType = workType;
+            opR.workType = workTypeResult;
             opR.capRegion = capRegion;
             opR.result = TRUE;
             results.add(opR);
         }else{
             OutputResults opR = new OutputResults();
-            opR.workType = workType;
+            opR.workType = workTypeResult;
             opR.capRegion = capRegion;
             opR.result = FALSE;
             results.add(opR);
@@ -113,6 +114,62 @@ global class CapacityFinderValmar {
         return 'Quebec';//TODO
     }
     
+    @TestVisible 
+static WorkType getWorkType(Set<String> productSageIdSet, Integer timeOuverture, Integer timeViderLaver, Integer timeFermeture) {
+    List<String> resReturn = new List<String>();
+    WorkType listWorkType = new  WorkType();
+    
+    // Check productSageIdSet contents to determine work type logic
+    if (productSageIdSet.contains('35540')) {
+        if (timeViderLaver > 0) {
+            if (timeViderLaver <= 1) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Vider Laver Val-Mar 1h'];
+            } else if (timeViderLaver <= 2) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Vider Laver Val-Mar 2h'];
+            } else if (timeViderLaver <= 3) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Vider Laver Val-Mar 3h'];
+            } else if (timeViderLaver <= 4) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Vider Laver Val-Mar 4h'];
+            } else {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Vider Laver Val-Mar 5h et plus'];
+            }
+        }
+    } else if (productSageIdSet.contains('35539')) {
+        // Only 35539 - use Ouverture logic
+        listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                       WHERE Capacity_Type__c != NULL AND Name = 'Ouverture Val-Mar'];
+    } else if (productSageIdSet.contains('35538')) {
+        // Only 35538 - use Fermeture logic with timeFermeture
+        if (timeFermeture > 0) {
+            if (timeFermeture <= 1) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Fermeture Val-Mar 1h'];
+            } else if (timeFermeture <= 2) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Fermeture Val-Mar 2h'];
+            } else if (timeFermeture <= 3) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Fermeture Val-Mar 3h'];
+            } else if (timeFermeture <= 4) {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Fermeture Val-Mar 4h'];
+            } else {
+                listWorkType = [SELECT Id, Name, Capacity_Type__c FROM WorkType 
+                               WHERE Capacity_Type__c != NULL AND Name = 'Fermeture Val-Mar 5h et plus'];
+            }
+        }
+    }
+    
+ 
+    return listWorkType;
+}
+    
+    /*
     @TestVisible
     static List<String> getWorkType(set<string> productSageIdSet,Integer timeOuverture,Integer timeViderLaver,Integer timeFermeture){
         List<String> resReturn = new List<string>();
@@ -148,4 +205,5 @@ global class CapacityFinderValmar {
         resReturn.add(listWorkType[0].Id);
         return resReturn;
     }
+*/
 }

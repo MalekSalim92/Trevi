@@ -1,200 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customLabels>
-        <label>À la demande du client et moyennant le paiement des frais indiqués, TRÉVI « la Compagnie » s&apos;engage à exécuter les services décrits ci-dessous :
-
-Dans l’éventualité où un ou plusieurs services supplémentaires n’auraient pas été sélectionnés ou si notre technicien n’a pu avoir accès à tous les équipements et matériaux, le rendez-vous serait reporté et des frais de déplacement de &lt;strong&gt; 85 $ plus taxes &lt;/strong&gt;, ainsi que des frais de service supplémentaires, seraient payables avant la prochaine visite.
-
-Les travaux d’ouverture et de fermeture incluent une distance &lt;strong&gt; jusqu’à 50 km &lt;/strong&gt; de votre Super Magasin Trévi le plus près. Des frais de &lt;strong&gt; 2,00 $ du kilomètre supplémentaire &lt;/strong&gt; seront ajoutés à votre demande automatiquement.</label>
+        <label><!-- Requested Services Text --></label>
         <name>Requested_Services_Text</name>
     </customLabels>
     <customLabels>
-        <label>SERVICES DEMANDÉS</label>
+        <label><!-- Requested Services Title --></label>
         <name>Requested_Services_VM_Title</name>
     </customLabels>
     <customLabels>
-        <label>Nous sommes désolés, mais il n’y a plus de créneaux disponibles pour la date que vous avez choisie. Merci de sélectionner une autre date</label>
+        <label><!-- not available capacity --></label>
         <name>not_available_capacity</name>
     </customLabels>
     <customLabels>
-        <label>Vous n’avez sélectionné aucun produit. Veuillez retourner aux écrans précédents et sélectionner au moins un produit.</label>
+        <label><!-- select at least a product --></label>
         <name>select_at_least_a_product</name>
     </customLabels>
     <customLabels>
-        <label>Compte</label>
+        <label><!-- val mar account --></label>
         <name>val_mar_account</name>
     </customLabels>
     <customLabels>
-        <label>Des frais supplémentaires de 100$ seront appliqués pour les demandes faites après le 15 novembre ou après le 1er juin</label>
+        <label><!-- val mar additional fees note --></label>
         <name>val_mar_additional_fees_note</name>
     </customLabels>
     <customLabels>
-        <label>Adresse</label>
+        <label><!-- val mar address --></label>
         <name>val_mar_address</name>
     </customLabels>
     <customLabels>
-        <label>Montant (avant taxes)</label>
+        <label><!-- val mar amount before taxes --></label>
         <name>val_mar_amount_before_taxes</name>
     </customLabels>
     <customLabels>
-        <label>Marque</label>
+        <label><!-- val mar brand label --></label>
         <name>val_mar_brand_label</name>
     </customLabels>
     <customLabels>
-        <label>1. &lt;strong&gt; Baisser le niveau d&apos;eau  &lt;/strong&gt; (100$ en sus pour la Ville Mont-Royal)
-2. &lt;strong&gt; Enlever la planche du tremplin, l&apos;échelle et les lumières &lt;/strong&gt;
-3. &lt;strong&gt; Vidanger la pompe, le filtreur, le chlorinateur, bromateur, système au sel ou ozonateur &lt;/strong&gt;
-4. &lt;strong&gt; Vidanger et hiverner le chauffe-eau  &lt;/strong&gt;
-5. &lt;strong&gt; Vidanger et souffler tous les tuyaux incluant la ligne égalisatrice (si applicable) &lt;/strong&gt;	
-6. &lt;strong&gt; Hiverner l&apos;écumoire &lt;/strong&gt;
-7. &lt;strong&gt; Remiser l’équipement et accessoires de la piscine  &lt;/strong&gt;</label>
+        <label><!-- val mar closing clauses --></label>
         <name>val_mar_closing_clauses</name>
     </customLabels>
     <customLabels>
-        <label>Date Fermeture</label>
+        <label><!-- val mar closing date --></label>
         <name>val_mar_closing_date</name>
     </customLabels>
     <customLabels>
-        <label>FERMETURE</label>
+        <label><!-- val mar closing title --></label>
         <name>val_mar_closing_title</name>
     </customLabels>
     <customLabels>
-        <label>Commentaire</label>
+        <label><!-- val mar comments --></label>
         <name>val_mar_comments</name>
     </customLabels>
     <customLabels>
-        <label>Je confirme avoir pris connaissance des conditions</label>
+        <label><!-- val mar confirm conditions --></label>
         <name>val_mar_confirm_conditions</name>
     </customLabels>
     <customLabels>
-        <label>CONFIRMATION DES INFORMATIONS</label>
+        <label><!-- val mar confirmation of information --></label>
         <name>val_mar_confirmation_of_information</name>
     </customLabels>
     <customLabels>
-        <label>Contact</label>
+        <label><!-- val mar contact --></label>
         <name>val_mar_contact</name>
     </customLabels>
     <customLabels>
-        <label>Description</label>
+        <label><!-- val mar description label --></label>
         <name>val_mar_description_label</name>
     </customLabels>
     <customLabels>
-        <label>Courriel</label>
+        <label><!-- val mar email --></label>
         <name>val_mar_email</name>
     </customLabels>
     <customLabels>
-        <label>1-a. Magasin Trévi inc. établira la cédule des travaux, soit du 30 septembre au 1er novembre et du 15 avril au 5 mai
-   b. Magasin Trévi inc. n’assume aucune responsabilité pour tous bris, dommage ou détérioration de la piscine dû à un hivernage (après le 1er novembre) ou ouverture (après le 1 juin) tardive.
-
-2 - Les frais de service ne comprennent pas :
-le coût des pièces qui doivent être remplacées;
-le coût du démontage de la base du tremplin, de la pompe, de la glissoire;
-le coût des réparations de la céramique et à la structure de béton après la période
-le coût du pompage du trop-plein d’eau lorsque la piscine est hivernée;
-le coût du ramassage des feuilles dans la piscine (35.00 $ par sac)
-
-3 - Tout remplissage d’eau requis à l’ouverture devra être effectué par le client.</label>
+        <label><!-- val mar notice part 1 --></label>
         <name>val_mar_notice_part_1</name>
     </customLabels>
     <customLabels>
-        <label>4 - Magasin Trévi inc. déposera à l’endroit indiqué par le client les équipements qu’elle enlève lors des préparatifs pour l’hiver mais sans aucune responsabilité pour les dommages causés lors du déplacement de ces équipements.
-
-5 - Magasin Trévi inc. se dégage de toute responsabilité relativement aux dommages découlant du gel et/ou :
-du soulèvement de la piscine occasionnés par une nappe phréatique trop élevée;
-des débris qui pourraient tomber dans l’eau lors du retrait de la toile d’hiver.
-
-6 - Magasin Trévi inc. ne roule pas, ne plie pas et ne nettoie pas la toile d’hiver.
-
-7 - Le client s’engage à enlever tous les débris sur la toile d’hiver avant le rendez-vous</label>
+        <label><!-- val mar notice part 2 --></label>
         <name>val_mar_notice_part_2</name>
     </customLabels>
     <customLabels>
-        <label>8 - Le client doit maintenir le puits d’assèchement avec moins de 18&quot; d’eau jusqu’au gel.
-
-9 - Magasin Trévi inc. révisera les frais de service applicables si le technicien constate que la grandeur de la piscine ci-haut ne correspond pas aux dimensions réelles de votre piscine ou tout équipement et autre service supplémentaire non mentionné.</label>
+        <label><!-- val mar notice part 3 --></label>
         <name>val_mar_notice_part_3</name>
     </customLabels>
     <customLabels>
-        <label>1. &lt;strong&gt; Réinstaller la planche du tremplin, l’échelle et les lumières   &lt;/strong&gt;
-2. &lt;strong&gt; Rebrancher le chauffe-eau   &lt;/strong&gt;
-3. &lt;strong&gt; Rebrancher, démarrer et vérifier le système de filtration   &lt;/strong&gt;
-4. &lt;strong&gt; Rebrancher les systèmes de contrôle et d&apos;automatisation   &lt;/strong&gt;
-5. &lt;strong&gt; Mettre en marche et traitement choc   &lt;/strong&gt;</label>
+        <label><!-- val mar opening clauses --></label>
         <name>val_mar_opening_clauses</name>
     </customLabels>
     <customLabels>
-        <label>Date Ouverture</label>
+        <label><!-- val mar opening date --></label>
         <name>val_mar_opening_date</name>
     </customLabels>
     <customLabels>
-        <label>OUVERTURE</label>
+        <label><!-- val mar opening title --></label>
         <name>val_mar_opening_title</name>
     </customLabels>
     <customLabels>
-        <label>Téléphone</label>
+        <label><!-- val mar phone --></label>
         <name>val_mar_phone</name>
     </customLabels>
     <customLabels>
-        <label>Prix</label>
+        <label><!-- val mar price label --></label>
         <name>val_mar_price_label</name>
     </customLabels>
     <customLabels>
-        <label>Liste des produits Val-Mar</label>
+        <label><!-- val mar product list --></label>
         <name>val_mar_product_list</name>
     </customLabels>
     <customLabels>
-        <label>Type de produit</label>
+        <label><!-- val mar product type --></label>
         <name>val_mar_product_type</name>
     </customLabels>
     <customLabels>
-        <label>Quantité</label>
+        <label><!-- val mar quantity label --></label>
         <name>val_mar_quantity_label</name>
     </customLabels>
     <customLabels>
-        <label>Sélectionnez la date la plus proche à laquelle vous souhaiteriez ce service</label>
+        <label><!-- val mar select date --></label>
         <name>val_mar_select_date</name>
     </customLabels>
     <customLabels>
-        <label>Sélectionnez une date de service</label>
+        <label><!-- val mar select dates --></label>
         <name>val_mar_select_dates</name>
     </customLabels>
     <customLabels>
-        <label>Voici la liste de vos produits Val-Mar veuillez en sélectionner un</label>
+        <label><!-- val mar select products --></label>
         <name>val_mar_select_products</name>
     </customLabels>
     <customLabels>
-        <label>Date</label>
+        <label><!-- val mar service date --></label>
         <name>val_mar_service_date</name>
     </customLabels>
     <customLabels>
-        <label>Résumé des services choisis</label>
+        <label><!-- val mar service summary --></label>
         <name>val_mar_service_summary</name>
     </customLabels>
     <customLabels>
-        <label>Taille (pc)</label>
+        <label><!-- val mar size label --></label>
         <name>val_mar_size_label</name>
     </customLabels>
     <customLabels>
-        <label>VAL-MAR - FERMETURE ET OUVERTURE</label>
+        <label><!-- val mar title --></label>
         <name>val_mar_title</name>
     </customLabels>
     <customLabels>
-        <label>S&apos;il vous plait, veuillez confirmer les informations de l&apos;appel de service.
-
-
-Si vous désirez ajouter des précisions, vous pouver le faire dans la zone commentaire ci-aprés :</label>
+        <label><!-- val mar total confirmation --></label>
         <name>val_mar_total_confirmation</name>
     </customLabels>
     <customLabels>
-        <label>Prix total</label>
+        <label><!-- val mar total price label --></label>
         <name>val_mar_total_price_label</name>
     </customLabels>
     <customLabels>
-        <label>Trévi ne garantit pas les bris pouvant survenir après le premier gel au sol</label>
+        <label><!-- val mar warranty damages --></label>
         <name>val_mar_warranty_damages</name>
     </customLabels>
     <customLabels>
-        <label>Année</label>
+        <label><!-- val mar year label --></label>
         <name>val_mar_year_label</name>
     </customLabels>
     <flowDefinitions>

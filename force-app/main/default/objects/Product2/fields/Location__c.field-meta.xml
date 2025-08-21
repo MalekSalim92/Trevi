@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location__c</fullName>
+    <label>Location</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Heat Pump</fullName>
+                <default>false</default>
+                <label>Heat Pump</label>
+            </value>
+            <value>
+                <fullName>Gaz Heater</fullName>
+                <default>false</default>
+                <label>Gaz Heater</label>
+            </value>
+            <value>
+                <fullName>Electric Heater</fullName>
+                <default>false</default>
+                <label>Electric Heater</label>
+            </value>
+            <value>
+                <fullName>Solar Heater</fullName>
+                <default>false</default>
+                <label>Solar Heater</label>
+            </value>
+            <value>
+                <fullName>Water Blades</fullName>
+                <default>false</default>
+                <label>Water Blades</label>
+            </value>
+            <value>
+                <fullName>Laminar Jets</fullName>
+                <default>false</default>
+                <label>Laminar Jets</label>
+            </value>
+            <value>
+                <fullName>Swim Jet System</fullName>
+                <default>false</default>
+                <label>Swim Jet System</label>
+            </value>
+            <value>
+                <fullName>Spillover Opening</fullName>
+                <default>false</default>
+                <label>Spillover Opening</label>
+            </value>
+            <value>
+                <fullName>Spillover Closing</fullName>
+                <default>false</default>
+                <label>Spillover Closing</label>
+            </value>
+            <value>
+                <fullName>Covers</fullName>
+                <default>false</default>
+                <label>Covers</label>
+            </value>
+            <value>
+                <fullName>Cleaning</fullName>
+                <default>false</default>
+                <label>Cleaning Pool</label>
+            </value>
+            <value>
+                <fullName>Cleaning Shared</fullName>
+                <default>false</default>
+                <label>Cleaning Shared</label>
+            </value>
+            <value>
+                <fullName>Salt Bags</fullName>
+                <default>false</default>
+                <label>Salt Bags</label>
+            </value>
+            <value>
+                <fullName>Luxury Service</fullName>
+                <default>false</default>
+                <label>Luxury Service</label>
+            </value>
+            <value>
+                <fullName>Opening Extras</fullName>
+                <default>false</default>
+                <label>Opening Extras</label>
+            </value>
+            <value>
+                <fullName>Closing Extras</fullName>
+                <default>false</default>
+                <label>Closing Extras</label>
+            </value>
+            <value>
+                <fullName>Polywood</fullName>
+                <default>false</default>
+                <label>Polywood</label>
+            </value>
+            <value>
+                <fullName>Support Blocs</fullName>
+                <default>false</default>
+                <label>Support Blocs</label>
+            </value>
+            <value>
+                <fullName>Closing Extras Shared</fullName>
+                <default>false</default>
+                <label>Closing Extras Shared</label>
+            </value>
+            <value>
+                <fullName>Opening Extras Shared</fullName>
+                <default>false</default>
+                <label>Opening Extras Shared</label>
+            </value>
+            <value>
+                <fullName>Opening Val Mar</fullName>
+                <default>false</default>
+                <label>Opening Val Mar</label>
+            </value>
+            <value>
+                <fullName>Closing Val Mar</fullName>
+                <default>false</default>
+                <label>Closing Val Mar</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
