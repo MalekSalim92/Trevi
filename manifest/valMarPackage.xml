@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- Apex Classes -->
+    <types>
+        <members>CapacityFinderValmar</members>
+        <name>ApexClass</name>
+    </types>
+    
+    <!-- Custom Fields -->
+    <types>
+        <members>Product2.Base_Type__c</members>
+        <members>Product2.Val_Mar_Required__c</members>
+        <members>Product2.Location__c</members>
+        <members>Product2.Opening_Closing__c</members>
+        <members>Product2.Product_Type__c</members>
+        <members>Product2.Val_Mar_Product__c</members>
+        <members>PricebookEntry.Base_Type__c</members>
+        <members>PricebookEntry.Location__c</members>
+        <members>PricebookEntry.Opening_Closing__c</members>
+        <members>PricebookEntry.Product_Type__c</members>
+        <members>PricebookEntry.Val_Mar_Product__c</members>
+        <members>PricebookEntry.Val_Mar_Required__c</members>
+        <name>CustomField</name>
+    </types>
+    
+    <!-- Flows -->
+    <types>
+        <members>Ouverture_Fermeture_Val_Mar_AssignProducts_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_CreateRecords_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_GetProducts_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_LateFees_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_Optimized</members>
+        <members>Ouverture_Fermeture_Val_Mar_PriceCalculation_Subflow</members>
+        <members>Screen_Flow_Faulty_Message</members>
+        <name>Flow</name>
+    </types>
+    
+    <!-- Custom Labels -->
+    <types>
+        <members>Requested_Services_Text</members>
+        <members>Requested_Services_VM_Title</members>
+        <members>not_available_capacity</members>
+        <members>select_at_least_a_product</members>
+        <members>val_mar_account</members>
+        <members>val_mar_additional_fees_note</members>
+        <members>val_mar_address</members>
+        <members>val_mar_amount_before_taxes</members>
+        <members>val_mar_brand_label</members>
+        <members>val_mar_closing_clauses</members>
+        <members>val_mar_closing_date</members>
+        <members>val_mar_closing_title</members>
+        <members>val_mar_comments</members>
+        <members>val_mar_confirm_conditions</members>
+        <members>val_mar_confirmation_of_information</members>
+        <members>val_mar_contact</members>
+        <members>val_mar_description_label</members>
+        <members>val_mar_email</members>
+        <members>val_mar_notice_part_1</members>
+        <members>val_mar_notice_part_2</members>
+        <members>val_mar_notice_part_3</members>
+        <members>val_mar_opening_clauses</members>
+        <members>val_mar_opening_date</members>
+        <members>val_mar_opening_title</members>
+        <members>val_mar_phone</members>
+        <members>val_mar_price_label</members>
+        <members>val_mar_product_list</members>
+        <members>val_mar_product_type</members>
+        <members>val_mar_quantity_label</members>
+        <members>val_mar_select_date</members>
+        <members>val_mar_select_dates</members>
+        <members>val_mar_select_products</members>
+        <members>val_mar_service_date</members>
+        <members>val_mar_service_summary</members>
+        <members>val_mar_size_label</members>
+        <members>val_mar_title</members>
+        <members>val_mar_total_confirmation</members>
+        <members>val_mar_total_price_label</members>
+        <members>val_mar_warranty_damages</members>
+        <members>val_mar_year_label</members>
+        <name>CustomLabel</name>
+    </types>
+    
+    <!-- Translations -->
+    <types>
+        <members>en_US</members>
+        <members>fr</members>
+        <name>Translations</name>
+    </types>
+    
+    <version>64.0</version>
+</Package>

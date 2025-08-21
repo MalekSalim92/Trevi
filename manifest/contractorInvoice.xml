@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+   
+
+      <!-- Custom Objects / Metadata types / Custom Settings -->
+
+     <types>
+         <members>Contractor_Invoice_Settings__c.*</members>
+         <members>Contractor_Invoice__c.*</members>
+         <members>Contractor_Invoice_Line__c.*</members>
+        <name>CustomObject</name>
+    </types>
+
+    <!-- Custom Fields -->
+    <types>
+        <members>ServiceAppointment.TECH_OrderRecordType__c</members>
+        <members>Appointment_Resource__c.TECH_Resource_Account_Id__c</members>
+        <name>CustomField</name>
+    </types>
+
+
+ 
+   <!-- APEX -->
+
+    <types>
+        <!-- Apex Classes -->
+
+        <members>AppointmentResourceDuplicationChecker</members>
+        <members>ContractorInvoiceController</members>
+        <members>ContractorInvoiceManager</members>
+        <members>ContractorInvoiceInvocable</members>
+        <members>ContractorInvoicePdfGenerator</members>
+
+            <!-- Test classes -->
+
+        <members>AppointmentResourceDuplicationTest</members>
+        <members>ContractorInvoiceControllerTest</members>
+        <members>ContractorInvoiceInvocableTest</members>
+         <name>ApexClass</name>
+    </types>
+   
+   
+
+
+
+      <!-- LWC -->
+
+    <types>
+        <members>Contractor_Invoice</members>
+        <name>Flow</name>
+    </types>
+
+      <!-- Visualforce Page -->
+
+     <types>
+         <members>CaseQRCodePage</members>
+        <name>ApexPage</name>
+    </types>
+
+     <!-- Web link -->
+
+    <types>
+    <members>Appointment_Resource__c.Generate_an_Invoice</members> 
+     <name>WebLink</name>
+    </types>
+
+
+
+
+
+    <version>58.0</version>
+</Package>

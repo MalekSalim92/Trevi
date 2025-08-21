@@ -5,15 +5,13 @@
       <!-- Custom Objects / Metadata types -->
 
      <types>
-         <members>QR_code_urls__mdt</members>
+         <members>QR_code_urls__mdt.*</members>
         <name>CustomObject</name>
     </types>
 
     <!-- Custom Fields -->
     <types>
-        <members>QR_code_urls__mdt.barcode_url__c</members>
-        <members>QR_code_urls__mdt.qrcode_url__c</members>
-        <name>CustomField</name>
+         <name>CustomField</name>
     </types>
  
    <!-- APEX -->
@@ -35,7 +33,7 @@
 
     <types>
         <members>Generate_QR_Code_on_CASE</members>
-        <name>Flows</name>
+        <name>Flow</name>
     </types>
 
       <!-- Visualforce Page -->
@@ -45,16 +43,6 @@
         <name>ApexPage</name>
     </types>
 
-     <!-- Quick Action -->
-
-    <types>
-    <members>Order.Generate_Summary</members> 
-     <name>QuickAction</name>
-    </types>
-
-
-
-
-
-    <version>58.0</version>
+     
+    <version>64.0</version>
 </Package>
