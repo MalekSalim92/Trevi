@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Requested_Services_Text</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services Text</shortDescription>
+        <value>At the request of the customer and in consideration of the payment of the service charges, TRÉVI &quot;the Company&quot; undertakes to perform the following services:
+
+In the event that one or more additional services have not been selected or we do not have access to all equipment and materials, the appointment will be handed over and the travelling expenses of &lt;strong&gt; $85 plus tax &lt;/strong&gt; and the additional service charges will be payable before the next visit.
+
+Opening and closing service prices include a distance of &lt;strong&gt;50 km or less&lt;/strong&gt; from the nearest Trevi Super-store. An additional charge of&lt;strong&gt; $2.00 per kilometer &lt;/strong&gt;will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Requested_Services_VM_Title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services Title</shortDescription>
+        <value>REQUESTED SERVICES</value>
+    </labels>
+    <labels>
+        <fullName>not_available_capacity</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>not available capacity</shortDescription>
+        <value>We&apos;re sorry, but there are no more available slots for the selected date.Please choose another date</value>
+    </labels>
+    <labels>
+        <fullName>select_at_least_a_product</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>select at least a product</shortDescription>
+        <value>You haven’t selected any products. Please go back to the previous screens and select at least one product.</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_account</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_additional_fees_note</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar additional fees note</shortDescription>
+        <value>Additional fees of $100 will be applied for requests submitted after November 15 or after June 1st</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_address</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_amount_before_taxes</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar amount before taxes</shortDescription>
+        <value>Amount (before taxes)</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_brand_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar brand label</shortDescription>
+        <value>Brand</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_closing_clauses</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar closing clauses</shortDescription>
+        <value>1. &lt;strong&gt; Lower water level  &lt;/strong&gt; ($100 extra for the town of Mount-Royal)
+2. &lt;strong&gt; Remove diving board, ladder and lights &lt;/strong&gt;
+3. &lt;strong&gt; Drain the pump, the filter, the chlorinator, brominator, salt system, or ozonator &lt;/strong&gt;
+4. &lt;strong&gt; Drain and winterize pool heater &lt;/strong&gt;
+5. &lt;strong&gt; Drain and blow all pipes &lt;/strong&gt;	
+6. &lt;strong&gt; Winterize skimmer &lt;/strong&gt;
+7. &lt;strong&gt; Store pool equipment and accessories &lt;/strong&gt;</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_closing_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar closing date</shortDescription>
+        <value>Closing Date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_closing_title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar closing title</shortDescription>
+        <value>CLOSING</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_comments</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar comments</shortDescription>
+        <value>Comments</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_confirm_conditions</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar confirm conditions</shortDescription>
+        <value>I confirm that I have read the terms and conditions</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_confirmation_of_information</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar confirmation of information</shortDescription>
+        <value>CONFIRMATION OF INFORMATION</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_contact</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_description_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar description label</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_email</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_notice_part_1</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar notice part 1</shortDescription>
+        <value>1 - a . Magasin Trévi inc. will schedule the work to be done, from September 30th to November 1st for the winterizing period and from April 15 to May 15 for the opening period. 
+     b . Magasin Trévi inc. shall not be responsible for any breaks, damages or deterioration of pool due to winterizing period and from April 15 to May 15 for the opening period.
+
+2 - Service charges do not include:
+the cost of parts which need to be replaced;
+the cost of removal of the pump, the base of the diving board, the slide;
+the cost of repairs to the ceramic or the concrete structure after the warranty
+the cost of pumping out any excess water following winterizing of the pool;
+the cost of the leaves collecting in the pool ($35.00 per bag)
+
+3 - Any refill of water required for the opening of the pool shall be done by the customer.</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_notice_part_2</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar notice part 2</shortDescription>
+        <value>4 - Magasin Trévi inc. will place the equipment removed during winterizing where indicated by the customer but without any liability for damages caused while moving this equipment.
+
+5 - Magasin Trévi inc. shall not be responsible for any damages resulting from freezing and/or:
+any shifting of the pool caused by a high water table
+any debris falling in the water while removing the winter cover.
+
+6 - Magasin Trévi inc. does not roll, fold or clean the winter cover
+
+7 - The customer agrees to remove all debris from the winter cover before the opening</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_notice_part_3</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar notice part 3</shortDescription>
+        <value>8 - The customer has to maintain his draining well with less than 18&quot; of water until frost.
+
+9 - Magasin Trévi inc. reserves the right to adjust applicable service charges in the event the technician should note any discrepancy between the size of pool described above and the actual size of your pool or any other supplementary service not mentioned.</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_opening_clauses</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar opening clauses</shortDescription>
+        <value>1. &lt;strong&gt; Reinstall diving board, ladder and lights   &lt;/strong&gt;
+2. &lt;strong&gt; Reconnect pool heater   &lt;/strong&gt;
+3. &lt;strong&gt; Reconnect, start up and check the filtration system   &lt;/strong&gt;
+4. &lt;strong&gt; Reconnect control system and automation   &lt;/strong&gt;
+5. &lt;strong&gt; Start up and water calibration   &lt;/strong&gt;</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_opening_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar opening date</shortDescription>
+        <value>Opening Date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_opening_title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar opening title</shortDescription>
+        <value>OPENING</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_phone</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_price_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar price label</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_product_list</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar product list</shortDescription>
+        <value>Val-Mar Product list</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_product_type</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar product type</shortDescription>
+        <value>Product type</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_quantity_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar quantity label</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_select_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar select date</shortDescription>
+        <value>Select the earliest date you would like this service</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_select_dates</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar select dates</shortDescription>
+        <value>Select a service date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_select_products</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar select products</shortDescription>
+        <value>Here is the list of your Val-Mar products, please select one</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_service_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar service date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_service_summary</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar service summary</shortDescription>
+        <value>Summary of selected services</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_size_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar size label</shortDescription>
+        <value>Size (sq. ft.)</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar title</shortDescription>
+        <value>VAL-MAR - OPENING AND CLOSING</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_total_confirmation</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar total confirmation</shortDescription>
+        <value>Please confirm the service call information.
+
+
+
+If you wish to add any details, you can do so in the comments area below :</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_total_price_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar total price label</shortDescription>
+        <value>Total price</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_warranty_damages</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar warranty damages</shortDescription>
+        <value>Trevi does not warranty damages caused after the year&apos;s first frost</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_year_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar year label</shortDescription>
+        <value>Year</value>
+    </labels>
+</CustomLabels>
