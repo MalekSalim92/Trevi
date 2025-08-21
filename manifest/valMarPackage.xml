@@ -20,6 +20,7 @@
         <members>PricebookEntry.Product_Type__c</members>
         <members>PricebookEntry.Val_Mar_Product__c</members>
         <members>PricebookEntry.Val_Mar_Required__c</members>
+        <members>asset.Lower_water_level_closing__c</members>
         <name>CustomField</name>
     </types>
     
