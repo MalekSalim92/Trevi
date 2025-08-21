@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+   
+   <!-- APEX -->
+
+    <types>
+        <!-- Apex Classes -->
+
+        <members>ContractSummaryController</members>
+        <members>ContractSummaryPdfGenerator</members>
+
+            <!-- Test classes -->
+
+        <members>ContractSummaryControllerTest</members>
+        <members>ContractSummaryPdfGeneratorTest</members>
+         <name>ApexClass</name>
+    </types>
+   
+      <!-- LWC -->
+
+    <types>
+        <members>GenerateContractSummary</members>
+        <name>LightningComponentBundle</name>
+    </types>
+
+      <!-- Visualforce Page -->
+
+     <types>
+        <members>ContractSummary</members>
+        <members>ContractSummary_En</members>
+
+        <name>ApexPage</name>
+    </types>
+
+     <!-- Quick Action -->
+
+    <types>
+    <members>Order.Generate_Summary</members> 
+     <name>QuickAction</name>
+    </types>
+
+
+
+
+
+    <version>58.0</version>
+</Package>

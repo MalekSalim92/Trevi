@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+   
+
+      <!-- Custom Objects / Metadata types -->
+
+     <types>
+         <members>QR_code_urls__mdt</members>
+        <name>CustomObject</name>
+    </types>
+
+    <!-- Custom Fields -->
+    <types>
+        <members>QR_code_urls__mdt.barcode_url__c</members>
+        <members>QR_code_urls__mdt.qrcode_url__c</members>
+        <name>CustomField</name>
+    </types>
+ 
+   <!-- APEX -->
+
+    <types>
+        <!-- Apex Classes -->
+
+        <members>CaseQRCodeGenerator</members>
+        <members>CaseQRCodeAttachmentCreator</members>
+
+            <!-- Test classes -->
+
+        <members>CaseQRCodeGeneratorTest</members>
+        <members>CaseQRCodeAttachmentCreatorTest</members>
+         <name>ApexClass</name>
+    </types>
+   
+      <!-- LWC -->
+
+    <types>
+        <members>Generate_QR_Code_on_CASE</members>
+        <name>Flows</name>
+    </types>
+
+      <!-- Visualforce Page -->
+
+     <types>
+         <members>CaseQRCodePage</members>
+        <name>ApexPage</name>
+    </types>
+
+     <!-- Quick Action -->
+
+    <types>
+    <members>Order.Generate_Summary</members> 
+     <name>QuickAction</name>
+    </types>
+
+
+
+
+
+    <version>58.0</version>
+</Package>
