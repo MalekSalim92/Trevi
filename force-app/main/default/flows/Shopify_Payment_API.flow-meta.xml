@@ -19,12 +19,10 @@
         </inputParameters>
         <nameSegment>Shopify.Shopify Customer Pay</nameSegment>
         <offset>0</offset>
-        <outputParameters>
-            <assignToReference>response</assignToReference>
-            <name>2XX</name>
-        </outputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Error_msg</name>
         <label>Assign Error msg</label>
@@ -343,7 +341,7 @@ TEXT({!woli.Outstanding_Amount_Before_Tax__c})
             <targetReference>Set_Body</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Obsolete</status>
     <variables>
         <name>body</name>
         <apexClass>ExternalService__Shopify_Shopifyx20Customerx20Pay_IN_body</apexClass>
@@ -411,14 +409,14 @@ TEXT({!woli.Outstanding_Amount_Before_Tax__c})
         <dataType>Apex</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
-        <isOutput>true</isOutput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>responseCode</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
-        <isOutput>true</isOutput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>sendEmail</name>
