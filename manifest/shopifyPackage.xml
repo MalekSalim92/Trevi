@@ -27,6 +27,12 @@
         <members>ShopifyPaymentServiceTest</members>
         <name>ApexClass</name>
     </types>
+                <!-- Apex Trigger -->
+
+    <types>
+        <members>LateFeeConfigurationTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
             <!-- Named Credential -->
 
     <types>
