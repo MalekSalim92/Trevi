@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <!-- Flows -->
+    <types>
+        <members>Service_Appointment_Confirmation_Form</members>
+        <members>Service_Appointment_Confirmation_Form_ActionSubflow</members>
+        <members>Notification_for_Service_Appointment_Forms</members>
+        <name>Flow</name>
+    </types>
+    
+    <!-- Lightning Web Components -->
+    <types>
+        <members>serviceAppointmentFormBanner</members>
+        <members>serviceAppointmentFormNavigation</members>
+        <members>serviceAppointmentConfirmationForm</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    
+    <!-- Apex Classes -->
+    <types>
+        <members>ServiceAppointmentProductGrouper</members>
+        <members>ServiceAppointmentFormPdfGenerator</members>
+        <members>ServiceAppointmentProductGrouperTest</members>
+        <members>ServiceAppointmentFormPdfGeneratorTest</members>
+        <name>ApexClass</name>
+    </types>
+    
+    <!-- Visualforce Pages -->
+    <types>
+        <members>ServiceAppointmentSummaryResponses</members>
+        <name>ApexPage</name>
+    </types>
+    
+      <!-- Custom Objects -->
+    <types>
+        <members>Service_Appointment_Form_Rule__c</members>
+        <name>CustomObject</name>
+    </types>
+    <!-- Custom Fields -->
+    <types>
+        <members>Service_Appointment__c.External_Reference__c</members>
+        <members>Work_Type_Group_Member__c.Form_Name__c</members>
+        <members>Service_Appointment_Form_Rule__c.*</members>
+        <name>CustomField</name>
+    </types>
+    
+    <!-- Global Picklists -->
+    <types>
+        <members>Form_Name</members>
+        <name>GlobalValueSet</name>
+    </types>
+    
+    <version>63.0</version>
+</Package>
