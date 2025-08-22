@@ -24,6 +24,7 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Shopify - WOLI payment Integration {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Shopify - WOLI payment Integration</label>
@@ -65,5 +66,5 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
