@@ -6,7 +6,7 @@
     <types>
         <members>Shopify_Travel_Fees_Payment_FSL_Mobile</members>
         <members>Shopify_WOLI_payment_Integration</members>
-        <members>Shopify_Refund</members>
+        <!-- <members>Shopify_Refund</members> -->
         <members>Shopify_Payment_API</members>
         <name>Flow</name>
     </types>
@@ -35,8 +35,8 @@
     </types>
         <!-- External Service -->
     <types>
-        <members>Shopify_Shopifyx20Customerx20Pay_OUT_2XX</members>
-        <name>ExternalService</name>
+        <members>Shopify</members>
+        <name>ExternalServiceRegistration</name>
     </types>
 
         <!-- Labels -->
