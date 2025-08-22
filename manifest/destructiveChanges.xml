@@ -3,7 +3,32 @@
     <types>
         <members>FormSubmissionEventTriggerHandler</members>
         <members>FormSubmissionEventTriggerHandlerTest</members>
+        <members>ServiceAppointmentEventTriggerHandler</members>
+        <members>ServiceAppointmentEventTriggrHandlerTest</members>
+        <members>ServiceAppointmentFormController</members>
+        <members>ServiceAppointmentFormControllerTest</members>
+        <members>ServiceAppointmentFormDataService</members>
+        <members>ShopifyIntegration</members>
+        <members>ShopifyIntegrationTest</members>
+        <members>ShopifyRefund</members>
+        <members>ShopifyWrapper</members>
+        <members>test</members>
+        <members>UserRegistrationTriggerHandler</members>
         <name>ApexClass</name>
+    </types>
+
+
+        <types>
+         <members>appointmentConfirmationForm</members>
+         <members>flowRedirectingComponent</members>
+         <members>lwcTestTOREMOVE</members>
+         <members>ouvertureFermeture_contractRadioSelector</members>
+         <members>ouvertureFermeture_spaContractRadioSelector</members>
+         <members>ouvertureFermeture_spaRadioSelector</members>
+         <members>shopifyPaymentFieldServiceMobile</members>
+         <members>shopifyPayNow</members>
+         <members>userRegistrationFlow</members>
+        <name>LightningComponentBundle</name>
     </types>
     <version>64.0</version>
 </Package>
