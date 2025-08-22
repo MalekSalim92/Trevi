@@ -3,18 +3,14 @@
     <types>
         <members>FormSubmissionEventTriggerHandler</members>
         <members>FormSubmissionEventTriggerHandlerTest</members>
-        <members>ServiceAppointmentEventTriggerHandler</members>
         <members>ServiceAppointmentEventTriggrHandlerTest</members>
         <members>ServiceAppointmentFormController</members>
         <members>ServiceAppointmentFormControllerTest</members>
         <members>ServiceAppointmentFormDataService</members>
         <members>ShopifyIntegration</members>
         <members>ShopifyIntegrationTest</members>
-        <members>ShopifyRefund</members>
-        <members>ShopifyWrapper</members>
-        <members>test</members>
-        <members>UserRegistrationTriggerHandler</members>
-        <name>ApexClass</name>
+         <members>ShopifyWrapper</members>
+         <name>ApexClass</name>
     </types>
 
 
