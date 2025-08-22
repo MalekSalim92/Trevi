@@ -1,0 +1,72 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- Flows -->
+    <types>
+        <members>Shopify_Travel_Fees_Payment_FSL_Mobile</members>
+        <members>Shopify_WOLI_payment_Integration</members>
+        <members>Shopify_Refund</members>
+        <members>Shopify_Payment_API</members>
+         <name>Flow</name>
+    </types>
+
+  <!-- Custom Fields -->
+    <types>
+        <members>Product2.Shopify_Payment_Pending__c</members>
+        <members>Product2.Shopify_Payment_url__c</members>
+        <members>Product2.Location_TECH_Shopify_Contact_Id__c_c</members>
+        <members>Product2.Payment_Launched__c</members>
+        <members>Product2.Shopify_Client_Message__c</members>
+         <name>CustomField</name>
+    </types>
+    
+ 
+ 
+
+
+
+
+
+     <!-- APEX -->
+
+    <types>
+        <!-- Apex Classes -->
+
+        <members>ShopifyPaymentService</members>
+  
+            <!-- Test classes -->
+
+        <members>ShopifyPaymentServiceTest</members>
+          <name>ApexClass</name>
+    </types>
+    
+
+        <!-- Named Credential -->
+
+    <types>
+        <!-- Apex Classes -->
+
+        <members>Shopify_API</members>
+   
+            <!-- Test classes -->
+
+          <name>NamedCredential</name>
+    </types>
+    
+    
+    
+    
+    <!-- Custom Labels -->
+    <types>
+        <members>customer_pays</members>
+        <members>integration_error</members>
+        <members>payment_Processed</members>
+        <members>refund_amount</members>
+        <members>refund_amount_validation_message</members>
+        <members>Refund_failed</members>
+        <members>Refund_processed</members>
+        <name>CustomLabel</name>
+    </types>
+
+    <version>64.0</version>
+</Package>

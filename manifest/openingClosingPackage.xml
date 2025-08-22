@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!-- Flows -->
+    <types>
+        <members>Ouverture_Fermeture_CapacitiesSubflow</members>
+        <members>Ouverture_Fermeture_CaptureExistingOrderSubflow</members>
+        <members>Ouverture_Fermeture_CaptureLateFeesSubflow</members>
+        <members>Ouverture_Fermeture_ClausesSubflow</members>
+        <members>Ouverture_Fermeture_ProductPreselectionSubflow</members>
+        <members>Ouverture_Fermeture_ProductsScreenSubflow</members>
+        <members>Ouverture_Fermeture_RecordsCreationSubflow</members>
+        <members>Ouverture_Fermeture_AssetsSubflow</members>
+        <members>Ouverture_Fermeture_BaseProductsSubflow</members>
+        <members>Ouverture_Fermeture_CaptureAddressSubflow</members>
+        <members>Ouverture_Fermeture_CaptureContactSubflow</members>
+        <members>Ouverture_Fermeture_CaptureTaxesSubflow</members>
+        <members>Ouverture_Fermeture_Optimized</members>
+        <members>Screen_Flow_Faulty_Message</members>
+        <members>Shopify_Payment_API</members>
+        <name>Flow</name>
+    </types>
+
+     <!-- APEX -->
+
+    <types>
+        <!-- Apex Classes -->
+
+        <members>GoogleMapsDistanceMatrixService</members>
+        <members>OuvertureFermetureContractEmailer</members>
+        <members>CapacityFinder</members>
+ 
+            <!-- Test classes -->
+
+          <name>ApexClass</name>
+    </types>
+    
+    
+    
+    
+    <!-- Custom Labels -->
+    <types>
+        <members>Amount</members>
+        <members>Amount_for_three_years</members>
+        <members>Amount_for_two_years</members>
+        <members>Annual_Amount</members>
+        <members>Asset_Confirmation</members>
+        <members>Asset_Confirmation_Spa</members>
+        <members>Asset_Message_Spa</members>
+        <members>Base_service_amount</members>
+        <members>blocked_account_text</members>
+        <members>cant_find_asset</members>
+        <members>check_checkbox_before_next</members>
+        <members>City</members>
+        <members>Closing_date</members>
+        <members>Contract_List</members>
+        <members>Contract_Terms</members>
+        <members>Discount</members>
+        <members>Discount_Price</members>
+        <members>Do_you_have_a_Gaz_heater</members>
+        <members>Do_you_have_a_Heat_pump</members>
+        <members>Do_you_have_a_spillover_spa</members>
+        <members>Do_you_have_a_swim_jet_system</members>
+        <members>Do_you_have_a_Trevi_solar_heater</members>
+        <members>Do_you_have_an_Electric_heater</members>
+        <members>Do_you_have_one_or_more_laminar_jets</members>
+        <members>Do_you_have_one_or_more_water_blades_waterfalls</members>
+        <members>Do_you_have_pool_heater</members>
+        <members>Employee_number</members>
+        <members>Employee_number_not_found</members>
+        <members>Extra_services_closing</members>
+        <members>Extra_services_opening</members>
+        <members>Extras_amount</members>
+        <members>finish_process_button</members>
+        <members>have_contract_for_this_product</members>
+        <members>How_many_bags_of_salt2</members>
+        <members>I_confirm_that_the_cover_is_less_than_8_years_old_I_understand_and_accept_the_c</members>
+        <members>I_will_have_in_on_hand_product</members>
+        <members>Luxury_Opening_Service</members>
+        <members>not_available_capacity</members>
+        <members>Opening_Closing</members>
+        <members>opening_closing_address_not_found</members>
+        <members>Opening_Closing_No_contract_found</members>
+        <members>Opening_Closing_No_products_found</members>
+        <members>Opening_Closing_No_products_found_in_Address</members>
+        <members>Opening_Closing_No_products_found_in_Order</members>
+        <members>opening_closing_please_confirm</members>
+        <members>Opening_Date</members>
+        <members>Order_Contract_Type</members>
+        <members>Order_End_Date</members>
+        <members>Order_Name</members>
+        <members>Order_Start_Date</members>
+        <members>Payment_Options</members>
+        <members>please_select_a_value</members>
+        <members>Polywood_8x11</members>
+        <members>positive_value</members>
+        <members>Postal_Code</members>
+        <members>Price</members>
+        <members>Price_Summary_Distance_fees</members>
+        <members>Price_Summary_Msg</members>
+        <members>process_payment</members>
+        <members>Product_Description</members>
+        <members>Product_name</members>
+        <members>Products</members>
+        <members>products_associated_with_your_aaccount</members>
+        <members>Purchase_Date</members>
+        <members>Quantity</members>
+        <members>Requested_Services</members>
+        <members>Requested_Services_Title</members>
+        <members>Sage_Order_Number</members>
+        <members>Select_an_address</members>
+        <members>Select_Contract</members>
+        <members>Serial_Number</members>
+        <members>State</members>
+        <members>Street</members>
+        <members>Support_blocs</members>
+        <members>Total_amount</members>
+        <members>Total_amount_after_taxes</members>
+        <members>Total_Price</members>
+        <members>Travel_Expenses</members>
+        <members>Week_Selection</members>
+        <members>winter_cover_possession</members>
+        <members>Would_you_like_Tr_vi_to_deliver_the_salt_bags</members>
+        <name>CustomLabel</name>
+    </types>
+    
+    <version>64.0</version>
+</Package>
