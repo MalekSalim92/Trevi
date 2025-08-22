@@ -57,6 +57,24 @@
         <name>ApexPage</name>
     </types>
 
+
+<!-- Custom Labels -->
+    <types>
+        <members>Contractor_Invoice_NoDuplicate</members>
+        <members>Contractor_Invoice_FullDuplicate</members>
+        <members>Contractor_Invoice_PartialDuplicate</members>
+        <members>Contractor_Invoice_Account</members>
+        <members>Contractor_Invoice_Appointment_Resource</members>
+        <members>Contractor_Invoice_Service_Appointment</members>
+        <members>Contractor_Invoice_To</members>
+        <members>Contractor_Invoice_From</members>
+        <members>Contractor_Invoice_Resource</members>
+        <members>Contractor_Invoice_Work_Type</members>
+        <members>Contractor_Invoice_Total</members>
+        <members>Contractor_Invoice_All_Products</members>
+        <name>CustomLabel</name>
+    </types>
+    
      <!-- Web link -->
 
     <types>

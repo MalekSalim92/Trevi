@@ -12,19 +12,14 @@
 
   <!-- Custom Fields -->
     <types>
-        <members>Product2.Shopify_Payment_Pending__c</members>
-        <members>Product2.Shopify_Payment_url__c</members>
-        <members>Product2.Location_TECH_Shopify_Contact_Id__c_c</members>
-        <members>Product2.Payment_Launched__c</members>
-        <members>Product2.Shopify_Client_Message__c</members>
+        <members>WorkOrderLineItem.Shopify_Payment_Pending__c</members>
+        <members>WorkOrderLineItem.Shopify_Payment_url__c</members>
+        <members>WorkOrderLineItem.Location_TECH_Shopify_Contact_Id__c_c</members>
+        <members>WorkOrderLineItem.Payment_Launched__c</members>
+        <members>WorkOrderLineItem.Shopify_Client_Message__c</members>
          <name>CustomField</name>
     </types>
     
- 
- 
-
-
-
 
 
      <!-- APEX -->
@@ -44,13 +39,9 @@
         <!-- Named Credential -->
 
     <types>
-        <!-- Apex Classes -->
-
+ 
         <members>Shopify_API</members>
-   
-            <!-- Test classes -->
-
-          <name>NamedCredential</name>
+        <name>NamedCredential</name>
     </types>
     
     
