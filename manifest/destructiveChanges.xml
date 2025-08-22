@@ -21,12 +21,9 @@
         <types>
          <members>appointmentConfirmationForm</members>
          <members>flowRedirectingComponent</members>
-         <members>lwcTestTOREMOVE</members>
-         <members>ouvertureFermeture_contractRadioSelector</members>
-         <members>ouvertureFermeture_spaContractRadioSelector</members>
-         <members>ouvertureFermeture_spaRadioSelector</members>
-         <members>shopifyPaymentFieldServiceMobile</members>
-         <members>shopifyPayNow</members>
+          <members>ouvertureFermeture_contractRadioSelector</members>
+          <members>ouvertureFermeture_spaRadioSelector</members>
+          <members>shopifyPayNow</members>
          <members>userRegistrationFlow</members>
         <name>LightningComponentBundle</name>
     </types>
