@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>FormSubmissionEventTriggerHandler</members>
-        <members>FormSubmissionEventTriggerHandlerTest</members>
-        <members>ServiceAppointmentEventTriggrHandlerTest</members>
-        <members>ServiceAppointmentFormController</members>
-        <members>ServiceAppointmentFormControllerTest</members>
-        <members>ServiceAppointmentFormDataService</members>
         <members>ShopifyIntegration</members>
-        <members>ShopifyIntegrationTest</members>
-         <members>ShopifyWrapper</members>
-         <name>ApexClass</name>
+            <name>ApexClass</name>
     </types>
 
 
         <types>
-         <members>appointmentConfirmationForm</members>
          <members>flowRedirectingComponent</members>
-          <members>ouvertureFermeture_contractRadioSelector</members>
-          <members>ouvertureFermeture_spaRadioSelector</members>
           <members>shopifyPayNow</members>
-         <members>userRegistrationFlow</members>
-        <name>LightningComponentBundle</name>
+      
+      
+         <name>LightningComponentBundle</name>
     </types>
     <version>64.0</version>
 </Package>

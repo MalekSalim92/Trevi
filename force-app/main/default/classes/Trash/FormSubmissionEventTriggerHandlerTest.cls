@@ -1,6 +1,0 @@
-
-@isTest
-private class FormSubmissionEventTriggerHandlerTest {
-  
-    
-}
