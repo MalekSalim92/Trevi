@@ -631,6 +631,10 @@ TIMENOW() - 18000000
         <queriedFields>Expiration_Time_Montreal__c</queriedFields>
         <queriedFields>Quebec_Expiration_Days__c</queriedFields>
         <queriedFields>Montreal_Expiration_Days__c</queriedFields>
+        <queriedFields>Service_Appointment_Status__c</queriedFields>
+        <queriedFields>Email_Template_Name_Mtl__c</queriedFields>
+        <queriedFields>Email_Template_Name_Qc__c</queriedFields>
+        <queriedFields>Name</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Woli</name>
