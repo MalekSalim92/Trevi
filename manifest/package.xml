@@ -1,4 +1,368 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <!-- Custom Objects / Metadata types / Custom Settings -->
+    <types>
+        <members>Contractor_Invoice_Settings__c.*</members>
+        <members>Contractor_Invoice__c.*</members>
+        <members>Contractor_Invoice_Line__c.*</members>
+        <members>Service_Appointment_Form_Rule__c</members>
+        <members>QR_code_urls__mdt.*</members>
+        <name>CustomObject</name>
+    </types>
+
+    <!-- Custom Fields -->
+    <types>
+        <members>ServiceAppointment.TECH_OrderRecordType__c</members>
+        <members>Appointment_Resource__c.TECH_Resource_Account_Id__c</members>
+        <members>Service_Appointment__c.External_Reference__c</members>
+        <members>Work_Type_Group_Member__c.Form_Name__c</members>
+        <members>Service_Appointment_Form_Rule__c.*</members>
+        <members>WorkOrderLineItem.Shopify_Payment_Pending__c</members>
+        <members>WorkOrderLineItem.Shopify_Payment_url__c</members>
+        <members>WorkOrderLineItem.TECH_Shopify_Contact_Id__c</members>
+        <members>WorkOrderLineItem.Payment_Launched__c</members>
+        <members>WorkOrderLineItem.Shopify_Client_Message__c</members>
+        <members>Product2.Base_Type__c</members>
+        <members>Product2.Val_Mar_Required__c</members>
+        <members>Product2.Location__c</members>
+        <members>Product2.Opening_Closing__c</members>
+        <members>Product2.Product_Type__c</members>
+        <members>Product2.Val_Mar_Product__c</members>
+        <members>PricebookEntry.Base_Type__c</members>
+        <members>PricebookEntry.Location__c</members>
+        <members>PricebookEntry.Opening_Closing__c</members>
+        <members>PricebookEntry.Product_Type__c</members>
+        <members>PricebookEntry.Val_Mar_Product__c</members>
+        <members>PricebookEntry.Val_Mar_Required__c</members>
+        <members>asset.Lower_water_level_closing__c</members>
+        <name>CustomField</name>
+    </types>
+
+    <!-- APEX Classes -->
+    <types>
+        <!-- Original classes from first manifest -->
+        <members>GoogleMapsDistanceMatrixService</members>
+        <members>OuvertureFermetureContractEmailer</members>
+        <members>CapacityFinder</members>
+        
+        <!-- Contractor Invoice classes -->
+        <members>AppointmentResourceDuplicationChecker</members>
+        <members>ContractorInvoiceController</members>
+        <members>ContractorInvoiceManager</members>
+        <members>ContractorInvoiceInvocable</members>
+        <members>ContractorInvoicePdfGenerator</members>
+        
+        <!-- Contract Summary classes -->
+        <members>ContractSummaryController</members>
+        <members>ContractSummaryPdfGenerator</members>
+        
+        <!-- Dispatcher Console classes -->
+        <members>DispatcherConsoleActionController</members>
+        
+        <!-- Service Appointment classes -->
+        <members>ServiceAppointmentProductGrouper</members>
+        <members>ServiceAppointmentFormPdfGenerator</members>
+        
+        <!-- HexaSurvey classes -->
+        <members>HexaSurveyMockHttpResponse</members>
+        <members>HexaSurveyPostDeliveryBatch</members>
+        <members>HexaSurveyPostDeliverySch</members>
+        <members>HexaSurveyPostSaleInvocable</members>
+        <members>HexaSurveyPostSaleQueue</members>
+        <members>HexaSurveyPostSubmissionQueue</members>
+        <members>HexaSurveyPostSubmissionSch</members>
+        <members>HexaSurveyService</members>
+        <members>HexaSurveyUtils</members>
+        
+        <!-- QR Code classes -->
+        <members>CaseQRCodeGenerator</members>
+        <members>CaseQRCodeAttachmentCreator</members>
+        
+        <!-- Shopify classes -->
+        <members>ShopifyPaymentService</members>
+        
+        <!-- Val-Mar classes -->
+        <members>CapacityFinderValmar</members>
+        
+        <!-- Test classes -->
+        <members>AppointmentResourceDuplicationTest</members>
+        <members>ContractorInvoiceControllerTest</members>
+        <members>ContractorInvoiceInvocableTest</members>
+        <members>ContractSummaryControllerTest</members>
+        <members>ContractSummaryPdfGeneratorTest</members>
+        <members>DispatcherConsoleActionControllerTest</members>
+        <members>ServiceAppointmentProductGrouperTest</members>
+        <members>ServiceAppointmentFormPdfGeneratorTest</members>
+        <members>HexaSurveyPostDeliveryTest</members>
+        <members>HexaSurveyPostSaleTest</members>
+        <members>HexaSurveyPostSubmissionTest</members>
+        <members>CaseQRCodeGeneratorTest</members>
+        <members>CaseQRCodeAttachmentCreatorTest</members>
+        <members>ShopifyPaymentServiceTest</members>
+        
+        <name>ApexClass</name>
+    </types>
+
+    <!-- Apex Triggers -->
+    <types>
+        <members>LateFeeConfigurationTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+
+    <!-- Flows -->
+    <types>
+        <!-- Original flows -->
+        <members>Ouverture_Fermeture_CapacitiesSubflow</members>
+        <members>Ouverture_Fermeture_CaptureExistingOrderSubflow</members>
+        <members>Ouverture_Fermeture_CaptureLateFeesSubflow</members>
+        <members>Ouverture_Fermeture_ClausesSubflow</members>
+        <members>Ouverture_Fermeture_ProductPreselectionSubflow</members>
+        <members>Ouverture_Fermeture_ProductsScreenSubflow</members>
+        <members>Ouverture_Fermeture_RecordsCreationSubflow</members>
+        <members>Ouverture_Fermeture_AssetsSubflow</members>
+        <members>Ouverture_Fermeture_BaseProductsSubflow</members>
+        <members>Ouverture_Fermeture_CaptureAddressSubflow</members>
+        <members>Ouverture_Fermeture_CaptureContactSubflow</members>
+        <members>Ouverture_Fermeture_CaptureTaxesSubflow</members>
+        <members>Ouverture_Fermeture_Optimized</members>
+        <members>Screen_Flow_Faulty_Message</members>
+        <members>Shopify_Payment_API</members>
+        
+        <!-- Additional flows -->
+        <members>Contractor_Invoice</members>
+        <members>Service_Appointment_Confirmation_Form</members>
+        <members>Service_Appointment_Confirmation_Form_ActionSubflow</members>
+        <members>Notification_for_Service_Appointment_Forms</members>
+        <members>Generate_QR_Code_on_CASE</members>
+        <members>Shopify_Travel_Fees_Payment_FSL_Mobile</members>
+        <members>Shopify_WOLI_payment_Integration</members>
+        <members>Shopify_Refund</members>
+        
+        <!-- Val-Mar flows -->
+        <members>Ouverture_Fermeture_Val_Mar_AssignProducts_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_CreateRecords_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_GetProducts_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_LateFees_Subflow</members>
+        <members>Ouverture_Fermeture_Val_Mar_Optimized</members>
+        <members>Ouverture_Fermeture_Val_Mar_PriceCalculation_Subflow</members>
+        
+        <name>Flow</name>
+    </types>
+
+    <!-- Lightning Web Components -->
+    <types>
+        <members>GenerateContractSummary</members>
+        <members>serviceAppointmentFormBanner</members>
+        <members>serviceAppointmentFormNavigation</members>
+        <members>serviceAppointmentConfirmationForm</members>
+        <name>LightningComponentBundle</name>
+    </types>
+
+    <!-- Visualforce Pages -->
+    <types>
+        <members>CaseQRCodePage</members>
+        <members>ContractSummary</members>
+        <members>ContractSummary_En</members>
+        <members>DispatcherConsoleStatusAction</members>
+        <members>ServiceAppointmentSummaryResponses</members>
+        <name>ApexPage</name>
+    </types>
+
+    <!-- Quick Actions -->
+    <types>
+        <members>Order.Generate_Summary</members>
+        <name>QuickAction</name>
+    </types>
+
+    <!-- Web Links -->
+    <types>
+        <members>Appointment_Resource__c.Generate_an_Invoice</members>
+        <name>WebLink</name>
+    </types>
+
+    <!-- Custom Permissions -->
+    <types>
+        <members>Dispatcher_Console_Change_Status_Button</members>
+        <name>CustomPermission</name>
+    </types>
+
+    <!-- Global Value Sets -->
+    <types>
+        <members>Form_Name</members>
+        <name>GlobalValueSet</name>
+    </types>
+
+    <!-- Named Credentials -->
+    <types>
+        <members>Shopify_API</members>
+        <name>NamedCredential</name>
+    </types>
+
+    <!-- External Service Registrations -->
+    <types>
+        <members>Shopify</members>
+        <name>ExternalServiceRegistration</name>
+    </types>
+
+    <!-- Custom Labels -->
+    <types>
+        <!-- Original labels -->
+        <members>Amount</members>
+        <members>Amount_for_three_years</members>
+        <members>Amount_for_two_years</members>
+        <members>Annual_Amount</members>
+        <members>Asset_Confirmation</members>
+        <members>Asset_Confirmation_Spa</members>
+        <members>Asset_Message_Spa</members>
+        <members>Base_service_amount</members>
+        <members>blocked_account_text</members>
+        <members>cant_find_asset</members>
+        <members>check_checkbox_before_next</members>
+        <members>City</members>
+        <members>Closing_date</members>
+        <members>Contract_List</members>
+        <members>Contract_Terms</members>
+        <members>Discount</members>
+        <members>Discount_Price</members>
+        <members>Do_you_have_a_Gaz_heater</members>
+        <members>Do_you_have_a_Heat_pump</members>
+        <members>Do_you_have_a_spillover_spa</members>
+        <members>Do_you_have_a_swim_jet_system</members>
+        <members>Do_you_have_a_Trevi_solar_heater</members>
+        <members>Do_you_have_an_Electric_heater</members>
+        <members>Do_you_have_one_or_more_laminar_jets</members>
+        <members>Do_you_have_one_or_more_water_blades_waterfalls</members>
+        <members>Do_you_have_pool_heater</members>
+        <members>Employee_number</members>
+        <members>Employee_number_not_found</members>
+        <members>Extra_services_closing</members>
+        <members>Extra_services_opening</members>
+        <members>Extras_amount</members>
+        <members>finish_process_button</members>
+        <members>have_contract_for_this_product</members>
+        <members>How_many_bags_of_salt2</members>
+        <members>I_confirm_that_the_cover_is_less_than_8_years_old_I_understand_and_accept_the_c</members>
+        <members>I_will_have_in_on_hand_product</members>
+        <members>Luxury_Opening_Service</members>
+        <members>not_available_capacity</members>
+        <members>Opening_Closing</members>
+        <members>opening_closing_address_not_found</members>
+        <members>Opening_Closing_No_contract_found</members>
+        <members>Opening_Closing_No_products_found</members>
+        <members>Opening_Closing_No_products_found_in_Address</members>
+        <members>Opening_Closing_No_products_found_in_Order</members>
+        <members>opening_closing_please_confirm</members>
+        <members>Opening_Date</members>
+        <members>Order_Contract_Type</members>
+        <members>Order_End_Date</members>
+        <members>Order_Name</members>
+        <members>Order_Start_Date</members>
+        <members>Payment_Options</members>
+        <members>please_select_a_value</members>
+        <members>Polywood_8x11</members>
+        <members>positive_value</members>
+        <members>Postal_Code</members>
+        <members>Price</members>
+        <members>Price_Summary_Distance_fees</members>
+        <members>Price_Summary_Msg</members>
+        <members>process_payment</members>
+        <members>Product_Description</members>
+        <members>Product_name</members>
+        <members>Products</members>
+        <members>products_associated_with_your_aaccount</members>
+        <members>Purchase_Date</members>
+        <members>Quantity</members>
+        <members>Requested_Services</members>
+        <members>Requested_Services_Title</members>
+        <members>Sage_Order_Number</members>
+        <members>Select_an_address</members>
+        <members>Select_Contract</members>
+        <members>Serial_Number</members>
+        <members>State</members>
+        <members>Street</members>
+        <members>Support_blocs</members>
+        <members>Total_amount</members>
+        <members>Total_amount_after_taxes</members>
+        <members>Total_Price</members>
+        <members>Travel_Expenses</members>
+        <members>Week_Selection</members>
+        <members>winter_cover_possession</members>
+        <members>Would_you_like_Tr_vi_to_deliver_the_salt_bags</members>
+        
+        <!-- Contractor Invoice labels -->
+        <members>Contractor_Invoice_NoDuplicate</members>
+        <members>Contractor_Invoice_FullDuplicate</members>
+        <members>Contractor_Invoice_PartialDuplicate</members>
+        <members>Contractor_Invoice_Account</members>
+        <members>Contractor_Invoice_Appointment_Resource</members>
+        <members>Contractor_Invoice_Service_Appointment</members>
+        <members>Contractor_Invoice_To</members>
+        <members>Contractor_Invoice_From</members>
+        <members>Contractor_Invoice_Resource</members>
+        <members>Contractor_Invoice_Work_Type</members>
+        <members>Contractor_Invoice_Total</members>
+        <members>Contractor_Invoice_All_Products</members>
+        
+        <!-- Shopify labels -->
+        <members>customer_pays</members>
+        <members>integration_error</members>
+        <members>payment_Processed</members>
+        <members>refund_amount</members>
+        <members>refund_amount_validation_message</members>
+        <members>Refund_failed</members>
+        <members>Refund_processed</members>
+        
+        <!-- Val-Mar labels -->
+        <members>Requested_Services_Text</members>
+        <members>Requested_Services_VM_Title</members>
+        <members>select_at_least_a_product</members>
+        <members>val_mar_account</members>
+        <members>val_mar_additional_fees_note</members>
+        <members>val_mar_address</members>
+        <members>val_mar_amount_before_taxes</members>
+        <members>val_mar_brand_label</members>
+        <members>val_mar_closing_clauses</members>
+        <members>val_mar_closing_date</members>
+        <members>val_mar_closing_title</members>
+        <members>val_mar_comments</members>
+        <members>val_mar_confirm_conditions</members>
+        <members>val_mar_confirmation_of_information</members>
+        <members>val_mar_contact</members>
+        <members>val_mar_description_label</members>
+        <members>val_mar_email</members>
+        <members>val_mar_notice_part_1</members>
+        <members>val_mar_notice_part_2</members>
+        <members>val_mar_notice_part_3</members>
+        <members>val_mar_opening_clauses</members>
+        <members>val_mar_opening_date</members>
+        <members>val_mar_opening_title</members>
+        <members>val_mar_phone</members>
+        <members>val_mar_price_label</members>
+        <members>val_mar_product_list</members>
+        <members>val_mar_product_type</members>
+        <members>val_mar_quantity_label</members>
+        <members>val_mar_select_date</members>
+        <members>val_mar_select_dates</members>
+        <members>val_mar_select_products</members>
+        <members>val_mar_service_date</members>
+        <members>val_mar_service_summary</members>
+        <members>val_mar_size_label</members>
+        <members>val_mar_title</members>
+        <members>val_mar_total_confirmation</members>
+        <members>val_mar_total_price_label</members>
+        <members>val_mar_warranty_damages</members>
+        <members>val_mar_year_label</members>
+        
+        <name>CustomLabel</name>
+    </types>
+
+    <!-- Translations -->
+    <types>
+        <members>en_US</members>
+        <members>fr</members>
+        <name>Translations</name>
+    </types>
+
     <version>64.0</version>
 </Package>
