@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initialscale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style type="text/css">@media screen and (max-width: 480px) {slot[style] {margin-right: 0 !important;}.columnDiv {margin-right: 0 !important;}}@media screen and (min-width: 480px) {slot[style] {margin-bottom: 0 !important;}.columnDiv {margin-bottom: 0 !important;}}</style>
+  <style type="text/css">@media screen and (max-width: 480px) {.contentbuilderBaseColumnRow .columnCell {display:inline-block;width:100%}}</style>
+  <style type="text/css">.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 600px;}@media only screen and (max-width: 480px) {.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 320px;}}</style>
+ </head>
+ <body>
+  <table class="contentpageDefaultEmailTemplatePageTemplate" style="background-color: #E9EAEC;" role="presentation" id="contentpage_emailTemplateBodyContent" width="100%" cellpadding="0" cellspacing="0">
+   <tbody>
+    <tr>
+     <td width="100%" align="center">
+      <table class="contentRoot" style="background-color: #FFFFFF;" role="presentation" width="600" cellpadding="0" cellspacing="0">
+       <tbody>
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill;" src="{[devName:Logo]}" alt="" width="600" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 30px;padding-right: 30px;padding-bottom: 10px;padding-left: 30px;"><span style="line-height:1.5;"><span style="font-size:12px;">Bonjour {{{ServiceAppointment.Contact_Name__c}}}, &nbsp;<br /><br /> Nous vous demandons quelques minutes de votre temps pour prendre connaissance de ce courriel, faire la vérification requise plus bas et confirmer la date de livraison proposée, et ce dans le but d’accélérer la procédure.&nbsp;<br /><br /> Votre rendez-vous de livraison est cédulé pour le {{{ServiceAppointment.Scheduled_start_date__c}}}.<br /> Veuillez s.v.p. confirmer ce rendez-vous&nbsp;{{{ServiceAppointment.Delay__c}}}<span style="color:#c0392b;">&nbsp;</span><span style="color:#000000;">jours</span> minimum avant la date en question afin que le rendez-vous puisse être honoré.&nbsp;</span></span><br /><br /><strong><span style="line-height:1.5;"><span style="font-size:12px;">{{{ServiceAppointment.Form_Link_FR__c}}}</span></span></strong><br /><br /><span style="line-height:1.5;"><span style="font-size:12px;"><strong>IMPORTANT </strong>: Nous vous recommandons de lire attentivement le devis de construction ci-joint afin de connaître toutes les étapes du processus de construction. Vous trouverez ci-joint le devis de construction et le lien pour faire votre demande en ligne auprès d’Info-Excavation.&nbsp;</span><br /><br /><a href="https://noviqintegration.sharepoint.com/:w:/r/sites/Trvi/_layouts/15/Doc2.aspx?action=editNew&amp;sourcedoc=%7B739322c0-50f4-4204-b61a-c5b7734feb86%7D&amp;wdOrigin=TEAMS-MAGLEV.teamsSdk_ns.rwc&amp;wdExp=TEAMS-TREATMENT&amp;wdhostclicktime=1736809769848&amp;web=1&amp;clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNDEyMDEwMDIxMyJ9"><span style="font-size:12px;">Devis de construction CR</span></a><span style="font-size:12px;"> &nbsp;&nbsp;</span><br /><a href="https://www.info-ex.com/piscine/"><span style="font-size:12px;">Info excavation</span></a><br /><br /><span style="font-size:12px;">Assurez-vous qu’au moment de l’excavation vous aurez votre confirmation d’Info-Excavation entre les mains (1-800-663-9228 ou info-ex.com), sinon l’excavateur ne pourra pas débuter les travaux. &nbsp;<br /><br /> Voici, à ce jour, le détail des versements que vous devrez effectuer. Ces montants pourront varier si des modifications sont faites suite à ce courriel.<br /><br /> Le paiement peut être effectué en ligne sur le site internet de votre institution financière. Vous pouvez faire un paiement de facture en nous ajoutant comme fournisseur (Trevi) et inscrire votre numéro de client. Vous pouvez également faire le paiement par argent comptant ou traite bancaire à l’ordre de Magasins Trévi Inc. en succursale. Le paiement pour la livraison doit être effectués 15 jours avant la semaine prévue au contrat. Le ou les autres paiements devront être effectués 24 à 48 heures avant le rendez-vous. Une preuve de paiement devra être montré au technicien.&nbsp;<br /><br /> Voici les montants à remettre lors des différentes étapes :<br /><br /> Livraison: {{{ServiceAppointment.CR_Delivery_Amount__c}}}.<br /> Excavation:&nbsp;{{{ServiceAppointment.CR_Installation_Amount__c}}}.<br /><span style="color:#000000;">&nbsp;<br /> Nous vous invitons à consulter votre espace client sur le site internet de Trevi&nbsp;</span></span></span><a href="http://www.trevi.com/"><span style="color:#2980b9;"><span style="font-size:12px;">www.trevi.com</span></span></a>&nbsp;<span style="line-height:1.5;"><span style="font-size:12px;"><span style="color:#000000;">où vous trouverez de nombreuses informations ainsi qu’un FAQ.&nbsp;<br /><br /> Voici le lien pour accéder au devis de construction ou vous trouverez tous les informations concernant les étapes de votre projet :&nbsp;</span></span></span><a href="https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_cr_fr.pdf"><span style="color:#2980b9;"><span style="font-size:12px;">Devis de constructions</span></span></a><span style="line-height:1.5;">.<br /><span style="font-size:12px;"><span style="color:#000000;">Nos magasins offrent aussi des cours d'entretien gratuitement, voici le lien pour vous inscrire : Cours en magasin. &nbsp;&nbsp;<br /><br /><br /> Cordiales salutations.&nbsp;&nbsp;<br /> Votre équipe du département de Livraison/installation de piscines creusée<br /> Téléphone:&nbsp;514-228-7384 &nbsp;<br /> Livraison Poste:&nbsp;2106<br /> Installation Poste:&nbsp;2100<br /> Courriel:&nbsp;creusee@trevi.ca&nbsp;</span><br /> &nbsp;</span></span></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill; height: 60px;" src="{[devName:Footer]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Customer_Access_Link_FR__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Espace_Clientpng]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Trucs_et_conseils]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 10px;padding-right: 30px;padding-bottom: 10px;padding-left: 30px;"><br /><span style="line-height:1.5;"><span style="font-size:12px;">Hi {{{ServiceAppointment.Contact_Name__c}}},&nbsp;<br /><br /> We ask that you take a few minutes to read this email, answer the questions below and confirm the proposed delivery date in order to accelerate the process.&nbsp;<br /><br /> Your delivery is scheduled on ServiceAppointmnet. SchedStartTime Please confirm this appointment at least&nbsp;{{{ServiceAppointment.Delay__c}}} days before the scheduled delivery date otherwise the appointment will not be honored.</span><br /><br /><strong><span style="font-size:12px;">{{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}}</span></strong><br /><br /><br /><span style="font-size:12px;">IMPORTANT: We strongly recommend that you read «Work Description and Requirements» in order to be aware of all construction steps that will follow. You will also find the information on how to make your location request online with Info-Excavation(see link below).&nbsp;</span><br /><br /><a href="https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_cr_eng.pdf?v=20240805"><span style="font-size:12px;">Detailed work description</span></a><span style="font-size:12px;"> &nbsp;</span><br /><a href="https://www.info-ex.com/piscine/"><span style="font-size:12px;">Info excavation</span></a><br /><br /><span style="font-size:12px;">Please ensure that at the time of excavation you have your Info-Excavationautorisation in hand (1-800-663-9228 or info-ex.com) otherwise the excavatorwill not be able to start the work.&nbsp;<br /><br /> Please refer to the schedule of upcoming payments. These amounts may vary if changes are made following this email.&nbsp;<br /><br /> The payment can be made online via your financial institution’s website. You can add Trevi as a payee and enter your customer number as the account number. You can also pay in a Trevi store in cash or bankdraft, payable to Magasins Trévi Inc.. The payment for the delivery must be made 15 days before the week stipulated on the contract. The other(s)payment(s) must be made 24 to 48 hours before the appointment. The technician will ask to see a proof of payment.<br /><br /> Here are the payments due at the various phases :<br /><br /> Delivery: <span style="color:#000000;">{{{ServiceAppointment.CR_Delivery_Amount__c}}}.</span><br /> Excavation:&nbsp;{{{ServiceAppointment.CR_Installation_Amount__c}}}.<br /><br /> We invite you to consult your customer area on the Trevi website </span><a href="http://www.trevi.com/"><span style="font-size:12px;">www.trevi.com</span></a><span style="font-size:12px;">&nbsp;where you will find a lot of information as well as a FAQ.&nbsp;<br /><br /> Here is the link to access the work description and requirements where you will find all the information concerning the steps of your project : </span></span><a href="https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_cr_eng.pdf?v=20240805"><span style="line-height:1.5;"><span style="font-size:12px;">Work desccription and requirements</span></span></a><span style="line-height:1.5;"><span style="font-size:12px;">.<br /><br /> Our stores also offer free maintenance courses, here is the link to register : </span><a href="https://www.trevi.com/en/classes"><span style="font-size:12px;">In-store course</span></a>.<br /><br /><br /><span style="font-size:12px;">Cordially.&nbsp;<br /> Your inground pool Delivery/Installation Department Team<br /> Phone:&nbsp;514-228-7384 &nbsp;<br /> Delivery Poste:&nbsp;2106<br /> Installation Poste:&nbsp;2100<br /> Email:&nbsp;creusee@trevi.ca&nbsp;</span></span><br /> &nbsp;</td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="left"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Footer]}" alt="" width="390" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Customer_Access_Link_EN__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Customer_Accesspng]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Tips_and_advice]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table></td>
+        </tr>
+       </tbody>
+      </table></td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

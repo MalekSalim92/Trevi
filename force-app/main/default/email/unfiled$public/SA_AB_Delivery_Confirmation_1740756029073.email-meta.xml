@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ce template est envoyé au client pour confirmer son rendez-vous lorsque le type de contrat est AB.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA -  AB Delivery Confirmation</name>
+    <pageDevName>SA_AB_Confirmation</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Confirmation de rendez-vous - Appointment confirmation</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous vous demandons quelques minutes de votre temps pour prendre connaissance de ce courriel et répondre aux questions ci-dessous, et ce dans le but d’accélérer la procédure. 
+
+Votre rendez-vous de livraison est prévue pour le {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Veuillez s.v.p. confirmer ce rendez-vous 48 heures minimum avant la date en question afin que le rendez-vous puisse être honoré. 
+
+{{{ServiceAppointment.Form_Link_FR__c}}}
+
+Votre présence n’est pas requise pour ce rendez-vous. 
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Cordiales salutations. 
+
+Votre équipe du département de Livraison/installation d’abris 
+
+Courriel: abris@trevi.ca 
+
+Téléphone: 514-228-7384 
+
+Livraison poste: 2325 
+
+Installation poste: 2350 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hi {{{ServiceAppointment.Contact_Name__c}}}, 
+
+We ask that you take a few minutes to read this email and answer the questions below in order to accelerate the process. 
+
+Your delivery is scheduled on {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Please confirm this appointment at least 48 hours before the scheduled delivery date otherwise the appointment will not be honored. 
+
+{{{ServiceAppointment.Form_Link_EN__c}}}
+
+Your presence is not required during the delivrey. 
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Cordially. 
+
+Your shelter Delivery/installation department Team 
+
+Email: abris@trevi.ca 
+
+Phone: 514-228-7384 
+
+Delivery poste: 2325 
+
+Installation poste: 2350
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

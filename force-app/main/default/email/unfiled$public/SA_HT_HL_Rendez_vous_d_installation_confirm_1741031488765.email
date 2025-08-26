@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initialscale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style type="text/css">@media screen and (max-width: 480px) {slot[style] {margin-right: 0 !important;}.columnDiv {margin-right: 0 !important;}}@media screen and (min-width: 480px) {slot[style] {margin-bottom: 0 !important;}.columnDiv {margin-bottom: 0 !important;}}</style>
+  <style type="text/css">@media screen and (max-width: 480px) {.contentbuilderBaseColumnRow .columnCell {display:inline-block;width:100%}}</style>
+  <style type="text/css">.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 600px;}@media only screen and (max-width: 480px) {.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 320px;}}</style>
+ </head>
+ <body>
+  <table class="contentpageDefaultEmailTemplatePageTemplate" style="background-color: #E9EAEC;" role="presentation" id="contentpage_emailTemplateBodyContent" width="100%" cellpadding="0" cellspacing="0">
+   <tbody>
+    <tr>
+     <td width="100%" align="center">
+      <table class="contentRoot" style="background-color: #FFFFFF;" role="presentation" width="600" cellpadding="0" cellspacing="0">
+       <tbody>
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-right: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill;" src="{[devName:Logo]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="1">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 30px;padding-right: 40px;padding-bottom: 10px;padding-left: 30px;"><p><span style="line-height:1.5;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">Bonjour&nbsp;{{{ServiceAppointment.Contact_Name__c}}}, &nbsp;<br /><br /> Nous vous confirmons le rendez-vous d’installation cédulé pour le {{{ServiceAppointment.Scheduled_start_date__c}}}.&nbsp;<br /> Votre présence est requise pour ce rendez-vous.&nbsp;<br /> Vous recevrez un message texte lorsque l’équipe sera en direction vers votre domicile.&nbsp;</span></span><br /><br /><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">Nous vous invitons à consulter votre espace client sur le site internet de Trevi </span></span><a href="http://www.trevi.com/"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">www.trevi.com</span></span></a><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">&nbsp;où vous trouverez de nombreuses informations ainsi qu’un FAQ.&nbsp;</span></span><br /><br /><span style="font-size:12px;">Voici une vidéo, qui vous donne des informations pour avant et après votre installation de piscine Hors terre :&nbsp;</span><br /><a href="https://can01.safelinks.protection.outlook.com/?url=https://youtu.be/vb7oeUrSXKg&amp;data=05%7c01%7c%7c1f115fa158974425e88008da381ff351%7cb5a6d8a0848547f3852c7142d53b7466%7c0%7c0%7c637884007119863745%7cUnknown%7cTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7c3000%7c%7c%7c&amp;sdata=s8YW4QjTq/6ML/KauWBbUeqp5ptYBbcH8F3voSnZW2o%3D&amp;reserved=0"><span style="font-size:12px;">Installation piscine hors-terre</span></a>.<br /><br /><span style="font-size:12px;">Nos magasins offrent aussi des cours d'entretien gratuitement, voici le lien pour vous inscrire : </span><a href="https://can01.safelinks.protection.outlook.com/?url=https://www.trevi.com/fr/cours&amp;data=05%7c02%7c%7c0b12d3ad60654433338508dc6ad66928%7cb5a6d8a0848547f3852c7142d53b7466%7c0%7c0%7c638502716329932184%7cUnknown%7cTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7c0%7c%7c%7c&amp;sdata=rLyMcmGX1P6zuGfYRjT/LbzwdIgx04MaY1pHRugZJt8%3D&amp;reserved=0"><span style="font-size:12px;">Cours en magasin</span></a>.<span style="font-size:12px;">&nbsp;<br /><br /> Cordiales salutations.&nbsp;<br /> Votre équipe du département de Livraison/installation des piscines hors-terre&nbsp;<br /> Téléphone: 514-228-7384 &nbsp;<br /> Livraison: livraisonhorsterre@trevi.ca&nbsp; &nbsp;Poste: 2325&nbsp;<br /> Installation: installationhorsterre@trevi.ca&nbsp; &nbsp; Poste: 2352<br /><br /> &nbsp;</span></span></p></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill; height: 60px;" src="{[devName:Footer]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Customer_Access_Link_FR__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Espace_Client]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Trucs_et_conseils]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 80px;padding-right: 40px;padding-bottom: 10px;padding-left: 30px;"><span style="line-height:1.5;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">Hello&nbsp;{{{ServiceAppointment.Contact_Name__c}}},<br /><br /> We confirm that the installation is scheduled on&nbsp;{{{ServiceAppointment.Scheduled_start_date__c}}}.<br /> Your presence is required for this appointment.&nbsp;<br /> You will receive a text message when the installer will be on his way for your house.<br /><br /> We invite you to consult your customer area on the Trevi website </span></span><a href="http://www.trevi.com/"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">www.trevi.com</span></span></a>&nbsp;<span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">where you will find a lot of information as well as a FAQ.&nbsp;</span></span><br /><br /><span style="font-size:12px;">Here is a video, which gives you information for before and after your above ground pool installation &nbsp;:&nbsp;</span><br /><a href="https://can01.safelinks.protection.outlook.com/?url=https://youtu.be/vb7oeUrSXKg&amp;data=05%7c01%7c%7c1f115fa158974425e88008da381ff351%7cb5a6d8a0848547f3852c7142d53b7466%7c0%7c0%7c637884007119863745%7cUnknown%7cTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7c3000%7c%7c%7c&amp;sdata=s8YW4QjTq/6ML/KauWBbUeqp5ptYBbcH8F3voSnZW2o%3D&amp;reserved=0"><span style="font-size:12px;">Installation piscine hors-terre</span></a><span style="font-size:12px;">.</span><br /><br /><span style="font-size:12px;">Our stores also offer free maintenance courses, here is the link to register: &nbsp;</span><a href="https://www.trevi.com/en/classes"><span style="font-size:12px;">In-store courses</span></a>.<span style="font-size:12px;">&nbsp;</span><br /><br /><br /><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">Cordially.&nbsp;<br /> Your above ground pool Delivery/Installation Department Team&nbsp;<br /> Phone: 514-228-7384 &nbsp;<br /> Delivery: livraisonhorsterre@trevi.ca&nbsp; &nbsp;Poste: 2325&nbsp;<br /> Installation: installationhorsterre@trevi.ca&nbsp; &nbsp;Poste: 2352&nbsp;&nbsp;</span></span></span><br /> &nbsp;</td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill; height: 60px;" src="{[devName:Footer]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Customer_Access_Link_EN__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Customer_Access1]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Tips_and_advice]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table></td>
+        </tr>
+       </tbody>
+      </table></td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

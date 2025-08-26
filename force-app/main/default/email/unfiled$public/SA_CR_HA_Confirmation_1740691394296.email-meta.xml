@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This template is sent to the customer to confirm their appointment when the contract type is CR or HA.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA - CR/HA Confirmation</name>
+    <pageDevName>SA_CR_HA_Confirmation</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Confirmation de rendez-vous - Appointment confirmation</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous vous demandons quelques minutes de votre temps pour prendre connaissance de ce courriel, faire la vérification requise plus bas et confirmer la date de livraison proposée, et ce dans le but d’accélérer la procédure. 
+
+Votre rendez-vous de livraison est cédulé pour le {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Veuillez s.v.p. confirmer ce rendez-vous {{{ServiceAppointment.Delay__c}}}joursminimum avant la date en question afin que le rendez-vous puisse être honoré. 
+
+{{{ServiceAppointment.Form_Link_FR__c}}}
+
+IMPORTANT : Nous vous recommandons de lire attentivement le devis de construction ci-joint afin de connaître toutes les étapes du processus de construction. Vous trouverez ci-joint le devis de construction et le lien pour faire votre demande en ligne auprès d’Info-Excavation. 
+
+Devis de construction CR &lt; https://noviqintegration.sharepoint.com/:w:/r/sites/Trvi/_layouts/15/Doc2.aspx?action=editNew&amp;sourcedoc=%257B739322c0-50f4-4204-b61a-c5b7734feb86%257D&amp;wdOrigin=TEAMS-MAGLEV.teamsSdk_ns.rwc&amp;wdExp=TEAMS-TREATMENT&amp;wdhostclicktime=1736809769848&amp;web=1&amp;clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNDEyMDEwMDIxMyJ9 &gt; 
+
+Info excavation &lt; https://www.info-ex.com/piscine/ &gt; 
+
+Assurez-vous qu’au moment de l’excavation vous aurez votre confirmation d’Info-Excavation entre les mains (1-800-663-9228 ou info-ex.com), sinon l’excavateur ne pourra pas débuter les travaux. 
+
+Voici, à ce jour, le détail des versements que vous devrez effectuer. Ces montants pourront varier si des modifications sont faites suite à ce courriel.
+
+Le paiement peut être effectué en ligne sur le site internet de votre institution financière. Vous pouvez faire un paiement de facture en nous ajoutant comme fournisseur (Trevi) et inscrire votre numéro de client. Vous pouvez également faire le paiement par argent comptant ou traite bancaire à l’ordre de Magasins Trévi Inc. en succursale. Le paiement pour la livraison doit être effectués 15 jours avant la semaine prévue au contrat. Le ou les autres paiements devront être effectués 24 à 48 heures avant le rendez-vous. Une preuve de paiement devra être montré au technicien. 
+
+Voici les montants à remettre lors des différentes étapes :
+
+Livraison: {{{ServiceAppointment.CR_Delivery_Amount__c}}}.
+
+Excavation: {{{ServiceAppointment.CR_Installation_Amount__c}}}.
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Voici le lien pour accéder au devis de construction ou vous trouverez tous les informations concernant les étapes de votre projet : Devis de constructions &lt; https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_cr_fr.pdf &gt; .
+
+Nos magasins offrent aussi des cours d&apos;entretien gratuitement, voici le lien pour vous inscrire : Cours en magasin. 
+
+Cordiales salutations. 
+
+Votre équipe du département de Livraison/installation de piscines creusée
+
+Téléphone: 514-228-7384 
+
+Livraison Poste: 2106
+
+Installation Poste: 2100
+
+Courriel: creusee@trevi.ca 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hi {{{ServiceAppointment.Contact_Name__c}}}, 
+
+We ask that you take a few minutes to read this email, answer the questions below and confirm the proposed delivery date in order to accelerate the process. 
+
+Your delivery is scheduled on ServiceAppointmnet. SchedStartTime Please confirm this appointment at least {{{ServiceAppointment.Delay__c}}} days before the scheduled delivery date otherwise the appointment will not be honored.
+
+{{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}}
+
+IMPORTANT: We strongly recommend that you read «Work Description and Requirements» in order to be aware of all construction steps that will follow. You will also find the information on how to make your location request online with Info-Excavation(see link below). 
+
+Detailed work description &lt; https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_cr_eng.pdf?v=20240805 &gt; 
+
+Info excavation &lt; https://www.info-ex.com/piscine/ &gt; 
+
+Please ensure that at the time of excavation you have your Info-Excavationautorisation in hand (1-800-663-9228 or info-ex.com) otherwise the excavatorwill not be able to start the work. 
+
+Please refer to the schedule of upcoming payments. These amounts may vary if changes are made following this email. 
+
+The payment can be made online via your financial institution’s website. You can add Trevi as a payee and enter your customer number as the account number. You can also pay in a Trevi store in cash or bankdraft, payable to Magasins Trévi Inc.. The payment for the delivery must be made 15 days before the week stipulated on the contract. The other(s)payment(s) must be made 24 to 48 hours before the appointment. The technician will ask to see a proof of payment.
+
+Here are the payments due at the various phases :
+
+Delivery: {{{ServiceAppointment.CR_Delivery_Amount__c}}}.
+
+Excavation: {{{ServiceAppointment.CR_Installation_Amount__c}}}.
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Here is the link to access the work description and requirements where you will find all the information concerning the steps of your project : Work desccription and requirements &lt; https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_cr_eng.pdf?v=20240805 &gt; .
+
+Our stores also offer free maintenance courses, here is the link to register : In-store course &lt; https://www.trevi.com/en/classes &gt; .
+
+Cordially. 
+
+Your inground pool Delivery/Installation Department Team
+
+Phone: 514-228-7384 
+
+Delivery Poste: 2106
+
+Installation Poste: 2100
+
+Email: creusee@trevi.ca 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

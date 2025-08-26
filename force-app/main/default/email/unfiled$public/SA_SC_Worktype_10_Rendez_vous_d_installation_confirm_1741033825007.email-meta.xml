@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email de confirmation du rendez-vous d’installation après validation par le client, avec un rappel des conditions d’installation.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA - SC Worktype 10 | Rendez-vous d&apos;installation confirmé</name>
+    <pageDevName>SA_SC_Worktype_10_Rendez_vous_d_installation_confirm</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Votre rendez-vous d’installation est confirmé - Your installation appointment is confirmed</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous vous confirmons que le rendez-vous d’installation est cédulé pour le {{{ServiceAppointment.Scheduled_start_date__c}}}. 
+
+Cette étape consiste à assembler les panneaux ou le mur, la toile ainsi que le système de filtration. 
+
+Votre présence n’est pas requise pour cette étape. 
+
+Prière de vous assurer que : 
+
+1- Tous les matériaux soient disponibles et accessibles. 
+
+2- Nous ayons accès à une prise électrique fonctionnelle. 
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Voici le lien pour accéder au devis de construction ou vous trouverez tous les informations concernant les étapes de votre projet : Devis de construction &lt; https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_sc.pdf?version=20240805 &gt; . 
+
+Nos magasins offrent aussi des cours d&apos;entretien gratuitement, voici le lien pour vous inscrire : Cours en magasin &lt; https://can01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.trevi.com%2Ffr%2Fcours&amp;data=05%257c02%257c%257c0b12d3ad60654433338508dc6ad66928%257cb5a6d8a0848547f3852c7142d53b7466%257c0%257c0%257c638502716329932184%257cUnknown%257cTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%253D%257c0%257c%257c%257c&amp;sdata=rLyMcmGX1P6zuGfYRjT%2FLbzwdIgx04MaY1pHRugZJt8%253D&amp;reserved=0 &gt; .
+
+Cordially. 
+
+Votre équipe du département de Livraison/installation de semi-creusée 
+
+Téléphone : 514-228-7384 
+
+Livraison: livraisonhorsterre@trevi.ca Poste: 2325 
+
+Installation: installationhorsterre@trevi.ca Poste: 2352 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hello {{{ServiceAppointment.Contact_Name__c}}},
+
+We confirm that the installation appointment will be {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+This step consist of assembling the panels or the wall, the liner and the filtration system. 
+
+Your presence is not required at this stage. 
+
+Please ensure the following : 
+
+1- That all the materials are available and accessible.
+
+2- We have access to a functional electrical outlet. 
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Here is the link to access the work description and requirements where you will find all the information concerning the steps of your project :
+
+Work Description and Requirements &lt; https://espaceclient.trevi.com/detaillants/papeterie/tips_for_good_monitoring_during_installation_sc.pdf?v=20240805 &gt; . 
+
+Our stores also offer free maintenance courses, here is the link to register: In-store courses &lt; https://www.trevi.com/en/classes &gt; .
+
+Cordially. 
+
+Your inground pool Delivery/Installation Department Team 
+
+Phone : 514-228-7384 
+
+Delivery: livraisonhorsterre@trevi.ca Poste: 2325 
+
+Installation: installationhorsterre@trevi.ca Poste: 2352 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

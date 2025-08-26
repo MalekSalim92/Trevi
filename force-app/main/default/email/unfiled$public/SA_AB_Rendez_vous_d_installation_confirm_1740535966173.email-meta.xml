@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email de confirmation du rendez-vous d’installation après validation par le client, avec un rappel des conditions d’installation.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA - AB | Rendez-vous d&apos;installation confirmé</name>
+    <pageDevName>SA_AB_Rendez_vous_d_installation_confirm</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Votre rendez-vous d’installation est confirmé - Your installation appointment is confirmed</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous vous confirmons le rendez-vous d&apos;installation et/ou démontage d&apos;abris confirmé pour le {{{ServiceAppointment.Scheduled_start_date__c}}}. 
+
+Votre présence n’est pas requise.
+
+Afin de pouvoir garantir l&apos;installation de l&apos;abri, l&apos;Acheteur comprend et accepte que l&apos;installation doit être effectuée avec des ancrages permanents, des deux côtés de l&apos;abri.  
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Cordiales salutations. 
+
+Votre équipe du département de Livraison/installation d’abris 
+
+Courriel: abris@trevi.ca 
+
+Téléphone: 514-228-7384 
+
+Livraison poste: 2325 
+
+Installation poste: 2350 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hello {{{ServiceAppointment.Contact_Name__c}}},
+
+We confirm that the installation or uninstallation of the car shelter will be {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Your presence is not required. 
+
+In order to guarantee the installation of the shelter, the Buyer understands and accepts that the installation must be carried out with permanent anchors in both sides of the shelter. 
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Cordially 
+
+Your shelter Delivery/installation department Team 
+
+Email: abris@trevi.ca 
+
+Phone: 514-228-7384 
+
+Delivery poste: 2325 
+
+Installation poste: 2350 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

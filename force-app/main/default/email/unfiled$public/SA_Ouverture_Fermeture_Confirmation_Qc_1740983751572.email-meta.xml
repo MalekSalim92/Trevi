@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ce template est envoyé au client pour confirmer son rendez-vous lorsque le type de contrat est Ouverture/Fermeture.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA - Ouverture/ Fermeture Confirmation (Qc)</name>
+    <pageDevName>SA_Ouverture_Fermeture_Confirmation_Qc</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Confirmation de rendez-vous - Appointment confirmation</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Votre requête de service {{{ServiceAppointment.Work_Type_Name__c}}} est prévue pour le {{{ServiceAppointment.Scheduled_start_date__c}}}. 
+
+Veuillez accepter ou refuser le rendez-vous proposé, en cliquant sur le lien en bleu, au plus tard {{{ServiceAppointment.Delay_Fermeture_Ouverture_Fr__c}}} avant la date en question afin que le rendez-vous puisse être honoré. 
+
+Votre présence n&apos;est pas requise. Vous devez simplement nous laisser un accès à la cour et mettre à notre disposition vos équipements/accessoires. 
+
+{{{ServiceAppointment.Form_Link_FR__c}}}
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Veuillez prendre connaissance des termes de votre garantie via votre Espace client. 
+
+Pour toutes questions veuillez-vous référer au magasin.
+
+Cordiales salutations. 
+
+Votre équipe du département de soutien technique et service à domicile 
+
+Courriel: receptionqc@trevi.ca 
+
+Téléphone: 514-228-7384 Poste: 90200 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hi {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Your service request for {{{ServiceAppointment.Work_Type_Name__c}}} is scheduled for {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Please accept or refuse the suggested appointment date, by clicking on the blue link below at the lastest {{{ServiceAppointment.Delay_Fermeture_Ouverture_En__c}}} before the date to ensure we can honor the date. 
+
+Your presence is not required for the service. Please leave all material outside at our disposal with proper access to your backyard. 
+
+{{{ServiceAppointment.Form_Link_EN__c}}}
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Please read the terms of your warranty via your Customer Area.
+
+For any questions, please refer to the store. 
+
+Cordially. 
+
+Your team from the Technical Support and Home Service department. 
+
+Email: receptionqc@trevi.ca 
+
+Phone: 514-228-7384 Poste: 90200 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

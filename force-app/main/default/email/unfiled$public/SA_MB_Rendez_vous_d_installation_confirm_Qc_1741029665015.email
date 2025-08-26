@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initialscale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style type="text/css">@media screen and (max-width: 480px) {slot[style] {margin-right: 0 !important;}.columnDiv {margin-right: 0 !important;}}@media screen and (min-width: 480px) {slot[style] {margin-bottom: 0 !important;}.columnDiv {margin-bottom: 0 !important;}}</style>
+  <style type="text/css">@media screen and (max-width: 480px) {.contentbuilderBaseColumnRow .columnCell {display:inline-block;width:100%}}</style>
+  <style type="text/css">.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 600px;}@media only screen and (max-width: 480px) {.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 320px;}}</style>
+ </head>
+ <body>
+  <table class="contentpageDefaultEmailTemplatePageTemplate" style="background-color: #E9EAEC;" role="presentation" id="contentpage_emailTemplateBodyContent" width="100%" cellpadding="0" cellspacing="0">
+   <tbody>
+    <tr>
+     <td width="100%" align="center">
+      <table class="contentRoot" style="background-color: #FFFFFF;" role="presentation" width="600" cellpadding="0" cellspacing="0">
+       <tbody>
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-right: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill;" src="{[devName:Logo]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="1">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 30px;padding-right: 40px;padding-bottom: 10px;padding-left: 30px;"><p><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:1.5;"><span style="font-size:12px;">Bonjour&nbsp;{{{ServiceAppointment.Contact_Name__c}}}, &nbsp;<br /><br /> Nous vous confirmons le rendez-vous pour l’installation le {{{ServiceAppointment.Scheduled_start_date__c}}}.&nbsp;<br /><br /> Votre présence est requise pour déterminer l’endroit exact où le gazébo doit être installé.&nbsp;<br /> Prière de vous assurer que tous les matériaux soient accessibles et disposés près de l’endroit où l’installation se fera.&nbsp;<br /> La base du gazébo doit être de niveau et prête pour l’installation.&nbsp;<br /> Prière d’identifier le lieu précis de l’installation à l’aide de piquets fixés au sol aux 4 extrémités</span></span></span><br /><br /><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:1.5;"><span style="font-size:12px;">Nous vous invitons à consulter votre espace client sur le site internet de Trevi </span></span></span><a href="http://www.trevi.com/"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:1.5;"><span style="font-size:12px;">www.trevi.com</span></span></span></a><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:1.5;"><span style="font-size:12px;">&nbsp;où vous trouverez de nombreuses informations ainsi qu’un FAQ.&nbsp;</span></span></span><br /><br /><span style="font-size:12px;">Voici le lien pour accéder au guide d’entretien : </span><a href="https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_FR.pdf"><span style="font-size:12px;">Guide d'entretien Meuble et Gazébo</span></a><span style="font-size:12px;">.</span><br /><br /><br /><span style="font-family:Arial,Helvetica,sans-serif;"><span style="line-height:1.5;"><span style="font-size:12px;">Cordiales salutations.&nbsp;&nbsp;<br /> Votre équipe du département de Livraison/installation de meubles de jardins&nbsp;<br /> Courriel: meubleqc@trevi.ca&nbsp;<br /> Téléphone: 514-228-7384&nbsp; &nbsp;Poste: 90500&nbsp;</span></span></span></p></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill; height: 60px;" src="{[devName:Footer]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Customer_Access_Link_FR__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Espace_Client]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Trucs_et_conseils]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 80px;padding-right: 40px;padding-bottom: 10px;padding-left: 30px;"><span style="line-height:1.5;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">Hello&nbsp;{{{ServiceAppointment.Contact_Name__c}}},<br /><br /> We confirm that your installation appointment is scheduled for&nbsp;{{{ServiceAppointment.Scheduled_start_date__c}}}.<br /><br /> Your presence is required to determine the exact location of the installed gazebo.&nbsp;<br /> Please ensure that all materials are accessible and placed near the location of the installation.&nbsp;<br /> The base of the gazebo should be level and ready for installation.&nbsp;<br /> Please identify the specific location of the installation by placing stakes at the 4 extremities.&nbsp;<br /><br /> We invite you to consult your customer area on the Trevi website </span></span></span><a href="http://www.trevi.com/"><span style="line-height:1.5;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">www.trevi.com</span></span></span></a>&nbsp;<span style="line-height:1.5;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">where you will find a lot of information as well as a FAQ.&nbsp;</span></span></span><br /><br /><span style="font-size:12px;">Here is the link to access the document maintenance guide : &nbsp;</span><a href="https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_AN.pdf"><span style="font-size:12px;">Maintenance Guide – Furniture and Gazebo</span></a><span style="font-size:12px;">&nbsp;</span><br /><br /><br /><span style="line-height:1.5;"><span style="font-family:Arial,Helvetica,sans-serif;"><span style="font-size:12px;">Cordially.<br /> Your fourniture and Gazebo delivery/installation department team &nbsp;<br /> Email: meubleqc@trevi.ca&nbsp;<br /> Phone: 514-228-7384&nbsp; &nbsp;Poste: 90500&nbsp;</span></span></span></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill; height: 60px;" src="{[devName:Footer]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Customer_Access_Link_EN__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Customer_Access1]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="{{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}}" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Tips_and_advice]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table></td>
+        </tr>
+       </tbody>
+      </table></td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

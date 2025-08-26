@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA- CR Trottoir Pavé Uni | Payment Pending( Qc)</name>
+    <pageDevName>SA_CR_Trottoir_Pav_Uni_Payment_Pending_Qc</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Rappel de paiement - Payment Reminder</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Afin de vous confirmer une date pour le prochain rendez-vous pour l&apos;installation du pavé uni ou du trottoir, un paiement doit être effectué. Une fois le paiement reçu, vous recevrez une confirmation pour le prochain rendez-vous d&apos;ici approximativement 1 a 3 jours. Nous vous conseillons de faire le paiement rapidement afin d’éviter un délai dans votre projet. 
+
+Votre solde à payer est de : {{{ServiceAppointment.CR_PoolDeck_Amount__c}}}.
+
+Le paiement peut être effectué par traite bancaire, argent comptant / débit directement en magasin ou via votre Espace client pour effectuer un paiement en ligne. 
+
+Vous pouvez également procéder via votre institution bancaire en effectuant un « paiement de facture » (Bénéficiaire: Trévi Mirabel, Numéro de compte: votre numéro client). 
+
+Procédure de paiement &lt; https://espaceclient.trevi.com/detaillants/papeterie/CORPO-22_Proc%C3%A9dure%20de%20paiement%20en%20ligne%20-(bilingue).pdf?v=2023 &gt; 
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Voici le lien pour accéder au devis de construction ou vous trouverez tous les informations concernant les étapes de votre projet : Devis de construction &lt; https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_sc.pdf?version=20240805 &gt; . 
+
+Nos magasins offrent aussi des cours d&apos;entretien gratuitement, voici le lien pour vous inscrire : Cours en magasin &lt; https://can01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.trevi.com%2Ffr%2Fcours&amp;data=05%257c02%257c%257c0b12d3ad60654433338508dc6ad66928%257cb5a6d8a0848547f3852c7142d53b7466%257c0%257c0%257c638502716329932184%257cUnknown%257cTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%253D%257c0%257c%257c%257c&amp;sdata=rLyMcmGX1P6zuGfYRjT%2FLbzwdIgx04MaY1pHRugZJt8%253D&amp;reserved=0 &gt; .
+
+Cordially. 
+
+Votre équipe du département de Livraison/installation de piscines creusée 
+
+Courriel: creuseeqc@trevi.ca 
+
+Téléphone: 514-228-7384 Poste: 90100 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hello {{{ServiceAppointment.Contact_Name__c}}}, 
+
+In order to confirm a date for the next appointment for cement sidewalks or paving stone installation a payment must be done. Once the payment is done, it takes approximately 1 to 3 days to receive a confirmation for the following appointement by email. We recommand making the payment quickly to prevent a delay in the project. 
+
+A balance of {{{ServiceAppointment.CR_PoolDeck_Amount__c}}} must be paid. 
+
+The payment can be made online (customer access plateform) and/or cash/debit/credit card in any Trevi store. 
+
+You can also create Trevi as a payee in order to pay your balance (payee : Trevi Mirabel, Accountnumber : customer number). 
+
+Payment procedure &lt; https://espaceclient.trevi.com/detaillants/papeterie/CORPO-22_Proc%C3%A9dure%20de%20paiement%20en%20ligne%20-(bilingue).pdf?v=2023 &gt; 
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Here is the link to access the work description and requirements where you will find all the information concerning the steps of your project : Work desccription and requirements &lt; https://espaceclient.trevi.com/detaillants/papeterie/pour_bon_suivi_lors_installation_cr_eng.pdf?v=20240805 &gt; .
+
+Our stores also offer free maintenance courses, here is the link to register : In-store courses &lt; http://www.trevi.com/ &gt; .
+
+Cordially. 
+
+Your inground pool Delivery/Installation Department Team 
+
+Email: creuseeqc@trevi.ca 
+
+Phone: 514-228-7384 Poste: 90100 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

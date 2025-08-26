@@ -167,8 +167,6 @@
                     <td width="35%">{!primaryContact.MobilePhone}</td>
                 </tr>
                 <tr>
-                    <td><strong>2nd Name:</strong></td>
-                    <td>{!primaryContact.MiddleName}</td>
                     <td><strong>Phone 2:</strong></td>
                     <td>{!primaryContact.Phone}</td>
                 </tr>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ce template est envoyé au client pour confirmer son rendez-vous lorsque le type de contrat est MB.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA -  MB Delivery Confirmation (Qc)</name>
+    <pageDevName>SA_MB_Delivery_Confirmation_Qc</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Confirmation de rendez-vous - Appointment confirmation</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous vous demandons quelques minutes de votre temps pour prendre connaissance de ce courriel et répondre aux questions ci-dessous, et ce dans le but d’accélérer la procédure. 
+
+Votre rendez-vous de livraison est cédulée pour le {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Veuillez s.v.p. confirmer ce rendez-vous 3 jours minimum avant la date en question afin que le rendez-vous puisse être honoré. 
+
+{{{ServiceAppointment.Form_Link_FR__c}}}
+
+Votre présence n’est pas requise pour ce rendez-vous. Les livraisons se font entre 7 heures et 21 heures.
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Voici le lien pour accéder au guide d’entretien : Guide d&apos;entretien Meuble et Gazébo &lt; https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_FR.pdf &gt; .
+
+Cordiales salutations. 
+
+Votre équipe du département de Livraison/installation de meubles de jardins 
+
+Courriel: meubleqc@trevi.ca 
+
+Téléphone: 514-228-7384 Poste: 90500 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hi {{{ServiceAppointment.Contact_Name__c}}}, 
+
+We ask that you take afew minutes to read this email and answer the questions below in order to acceleratethe delivery process. 
+
+Your delivery is scheduled on {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Please confirm this appointment at least 3 days before the scheduled delivery date otherwise the appointment will not be honored.
+
+{{{ServiceAppointment.Form_Link_EN__c}}}
+
+Your presence is not required during the delivery. The deliveries are made between 7am and 9pm. 
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Here is the link to access the document maintenance guide : Maintenance Guide – Furniture and Gazebo &lt; https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_AN.pdf &gt; . 
+
+Cordially. 
+
+Your fourniture and Gazebo delivery/installation department team 
+
+Email: meubleqc@trevi.ca 
+
+Phone: 514-228-7384 Poste: 90500 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

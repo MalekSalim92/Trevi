@@ -58,7 +58,7 @@ public class ContractSummaryController {
      */
     private void loadPrimaryContact() {
         List<Contact> contacts = [SELECT Id, FirstName, LastName, 
-                                  Email, Phone, MobilePhone, MiddleName 
+                                  Email, Phone, MobilePhone 
                                   FROM Contact 
                                   WHERE AccountId = :order.AccountId 
                                   AND Primary_Contact__c = true

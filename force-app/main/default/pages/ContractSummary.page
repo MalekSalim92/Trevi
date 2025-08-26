@@ -147,8 +147,6 @@
                     <td width="35%">{!primaryContact.MobilePhone}</td>
                 </tr>
                 <tr>
-                    <td><strong>2e nom:</strong></td>
-                    <td>{!primaryContact.MiddleName}</td>
                     <td><strong>Téléphone2:</strong></td>
                     <td>{!primaryContact.Phone}</td>
                 </tr>

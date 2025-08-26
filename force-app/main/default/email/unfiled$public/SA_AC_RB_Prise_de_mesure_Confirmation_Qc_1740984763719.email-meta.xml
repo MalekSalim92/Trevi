@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ce template est envoyé au client pour confirmer son rendez-vous lorsque le type de contrat est AC ou RB.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA -  AC RB (Prise de mesure) Confirmation (Qc)</name>
+    <pageDevName>SA_AC_RB_Prise_de_mesure_Confirmation_Qc1</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Confirmation de rendez-vous - Appointment confirmation</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous vous demandons quelques minutes de votre temps pour prendre connaissance de ce courriel et pour répondre aux questions ci-dessous, et ce dans le but d&apos;accélérer le processus de prise de mesure. 
+
+Votre rendez-vous de livraison est cédulée pour le {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Veuillez s.v.p. confirmer ce rendez-vous 48 heures minimum avant la date en question afin que le rendez-vous puisse être honoré. 
+
+{{{ServiceAppointment.Form_Link_FR__c}}}
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Nos magasins offrent aussi des cours d&apos;entretien gratuitement, voici le lien pour vous inscrire : Cours en magasin &lt; https://can01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.trevi.com%2Ffr%2Fcours&amp;data=05%257c02%257c%257c0b12d3ad60654433338508dc6ad66928%257cb5a6d8a0848547f3852c7142d53b7466%257c0%257c0%257c638502716329932184%257cUnknown%257cTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%253D%257c0%257c%257c%257c&amp;sdata=rLyMcmGX1P6zuGfYRjT%2FLbzwdIgx04MaY1pHRugZJt8%253D&amp;reserved=0 &gt; .
+
+Cordiales salutations. 
+
+Votre équipe du département de Livraison/installation d’accessoires 
+
+Courriel: accessoiresqc@trevi.ca 
+
+Téléphone: 418-687-1988 Poste 90600 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hi {{{ServiceAppointment.Contact_Name__c}}}, 
+
+We kindly ask for a few minutes of your time to read this email and answer the questions below, in order to expedite the measurement process. 
+
+Your delivery is scheduled on {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Please confirm this appointment at least 48 hours before the scheduled delivery date otherwise the appointment will not be honored. 
+
+{{{ServiceAppointment.Form_Link_EN__c}}}
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Our stores also offer free maintenance courses, here is the link to register : In-store courses &lt; https://www.trevi.com/en/classes &gt; . 
+
+Cordially. 
+
+Your accessories delivery/installation department team 
+
+Email: accessoriesqc@trevi.ca 
+
+Phone: 418-687-1988 Poste 90600 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

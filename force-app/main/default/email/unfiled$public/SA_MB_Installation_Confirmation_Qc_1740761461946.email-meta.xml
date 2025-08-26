@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ce template est envoyé au client pour confirmer son rendez-vous lorsque le type de contrat est MB.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA -  MB Installation Confirmation (Qc)</name>
+    <pageDevName>SA_MB_Installation_Confirmation_Qc</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Confirmation de rendez-vous - Appointment confirmation</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous désirons vous informer que votre date d’installation de gazebo et ou meuble a été planifiée pour le : {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Veuillez s.v.p. confirmer ce rendez-vous 1 semaine minimum avant la date en question afin que le rendez-vous puisse être honoré. 
+
+{{{ServiceAppointment.Form_Link_FR__c}}}
+
+Nous n’avons pas de plage horaire, cependant, l’installateur vous avisera lorsqu’il sera en route vers votre domicile. 
+
+Tel que mentionné sur votre contrat, l’ancrage du gazébo n’est pas inclus dans le prix de l’installation. 
+
+Par conséquent, vous avez la possibilité de soit le faire vous-même ou en faire la demande à notre installateur. 
+
+Si vous décidez d’utiliser les services de nos techniciens, le coût varie entre 40$ à 120$, dépendamment de la surface sur laquelle sera posé votre gazébo, sa dimension, ainsi que le nombre d’ancrages nécessaires. 
+
+Le tarif exact vous sera communiqué sur place et payable à notre installateur le jour même. 
+
+Vous pouvez effectuer le paiement en argent comptant ou virement Interac. 
+
+Points à respecter avant la visite du technicien : 
+ - Accès à la cour. 
+ - Gazebo ou pavillon mis à disposition dans la cour. 
+ - Si vous avez des animaux de compagnie, veuillez les garder à l’intérieur et ramasser tous les cadeaux laissés de leur part. 
+ - Espace libre entre l’endroit de l’installation et la clôture/mur de la maison 
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Voici le lien pour accéder au guide d’entretien : Guide d&apos;entretien Meuble et Gazébo &lt; https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_FR.pdf &gt; .
+
+Cordiales salutations. 
+
+Votre équipe du département de Livraison/installation de meubles de jardins
+
+Courriel: meubleqc@trevi.ca 
+
+Téléphone: 514-228-7384 Poste: 90500 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hi {{{ServiceAppointment.Contact_Name__c}}}, 
+
+We would like to inform you that your gazebo installation date has been scheduled for : {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Please confirm this appointment at least 1 week before the scheduled delivery date otherwise the appointment will not be honored. 
+
+{{{ServiceAppointment.Form_Link_EN__c}}}
+
+We do not have a time frame, however, the installer will let you know when they are ontheir way to your home. 
+
+As mentioned on your contract, theanchorage of the gazebo is not included in the price of the installation. 
+
+Therefore, you have the option toeither do it yourself or have it done by our technicians. 
+
+If you decide to have it installedby our installer, the price is between $40 and $120, depending on the surfaceon which your gazebo will be installed, its size, as well as the number ofanchors required. 
+
+The exact rate will be communicated to you on site and payable to our installer the same day. 
+
+You can make the payment in cashor Interac e-Transfer. 
+
+Points to be observed before the technician visit:
+ - Access to the courtyard. 
+ - Gazebo or pavilion available inthe courtyard. 
+ - If you have pets, please keepthem inside and pick up any gifts left from them. 
+ - Clear space between installationlocation and house fence/wall 
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Here is the link to access the document maintenance guide : Maintenance Guide – Furniture and Gazebo &lt; https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_AN.pdf &gt; 
+
+Cordially. 
+
+Your fourniture and Gazebo delivery/installation department team 
+
+Email: meubleqc@trevi.ca 
+
+Phone: 514-228-7384 Poste: 90500 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

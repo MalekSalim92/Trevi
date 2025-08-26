@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initialscale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <style type="text/css">@media screen and (max-width: 480px) {slot[style] {margin-right: 0 !important;}.columnDiv {margin-right: 0 !important;}}@media screen and (min-width: 480px) {slot[style] {margin-bottom: 0 !important;}.columnDiv {margin-bottom: 0 !important;}}</style>
+  <style type="text/css">@media screen and (max-width: 480px) {.contentbuilderBaseColumnRow .columnCell {display:inline-block;width:100%}}</style>
+  <style type="text/css">.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 600px;}@media only screen and (max-width: 480px) {.contentpageDefaultEmailTemplatePageTemplate .contentRoot {width: 320px;}}</style>
+ </head>
+ <body>
+  <table class="contentpageDefaultEmailTemplatePageTemplate" style="background-color: #E9EAEC;" role="presentation" id="contentpage_emailTemplateBodyContent" width="100%" cellpadding="0" cellspacing="0">
+   <tbody>
+    <tr>
+     <td width="100%" align="center">
+      <table class="contentRoot" style="background-color: #FFFFFF;" role="presentation" width="600" cellpadding="0" cellspacing="0">
+       <tbody>
+        <tr>
+         <td style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill;" src="{[devName:Logo]}" alt="" width="600" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 30px;padding-right: 30px;padding-bottom: 10px;padding-left: 30px;"><span style="line-height:1.5;"><span style="font-size:12px;">Bonjour {{{ServiceAppointment.Contact_Name__c}}}, &nbsp;<br /><br /> Votre requête de service {{{ServiceAppointment.AppointmentNumber}}} dont le service est :&nbsp;{{{ServiceAppointment.Work_Type_Name__c}}}, a été cédulée pour le&nbsp;{{{ServiceAppointment.Scheduled_start_date__c}}}.<br /><br /> Veuillez répondre à ce courriel, à partir des liens ci-dessous, Au plus tard,&nbsp;{{{ServiceAppointment.Delay_Fermeture_Ouverture_Fr__c}}} avant midi pour que nous puissions honorer le rendez-vous proposé.&nbsp;<br /><br /> Nous vous serions reconnaissant de bien vouloir vous assurez que notre technicien aura accès au matériel ainsi qu’à votre cour à cette date.&nbsp;<br /><br /> &nbsp;Veuillez le confirmer ou refuser la date proposée en cliquant sur le lien suivant :&nbsp;</span><br /><br /><strong><span style="font-size:12px;">{{{ServiceAppointment.Form_Link_FR__c}}}</span></strong><br /><br /><br /><span style="font-size:12px;">Ci-joint un lien sur nos garanties applicables à nos piscines creusées, hors-terre, bois, spas, saunas, pavé et gazébo : </span><a href="http://www.trevi.com/garantie.html"><span style="font-size:12px;">http://www.trevi.com/t-garanties.aspx</span></a>.<span style="font-size:12px;">&nbsp;</span><br /><br /><span style="font-size:12px;"><span style="color:#000000;">Nous vous invitons à consulter votre espace client sur le site internet de Trevi&nbsp;</span></span><a href="http://www.trevi.com/"><span style="color:#3498db;"><span style="font-size:12px;">www.trevi.com</span></span></a>&nbsp;<span style="font-size:12px;">où vous trouverez de nombreuses informations ainsi qu’un FAQ.&nbsp;</span><br /><br /><span style="font-size:12px;">Veuillez prendre connaissance des termes de votre garantie via votre Espace client.&nbsp;<br /> Pour toutes questions veuillez-vous référer au magasin.<br /><br /><br /> Cordiales salutations.&nbsp;<br /> Votre équipe du département de soutien technique et service à domicile&nbsp;<br /> Courriel: receptionqc@trevi.ca&nbsp;<br /> Téléphone: 514-228-7384&nbsp; &nbsp;Poste: 90200&nbsp;</span><br /><span style="font-size:12px;">&nbsp;</span></span></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="Center"><img style="width: 100%; display: block; border: none; max-width: 100%; object-fit: fill; height: 60px;" src="{[devName:Footer]}" alt="" width="570" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="https://magasinstrevi--dev1.sandbox.my.site.com/s/login/?language=fr&amp;startURL=%2Fs%2F%3Flanguage%3Dfr%26t%3D1737979287657" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Espace_Clientpng]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="https://www.trevi.com/fr/trucs-et-conseils" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Trucs_et_conseils]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="100%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+               <tbody>
+                <tr>
+                 <td>
+                  <table style="width: 100%; border-collapse: collapse; word-break: break-word; font-size: 14px" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="font-family: Arial, Helvetica, sans-serif;padding-top: 10px;padding-right: 30px;padding-bottom: 10px;padding-left: 30px;"><br /><span style="line-height:1.5;"><span style="font-size:12px;">Hi {{{ServiceAppointment.Contact_Name__c}}},&nbsp;<br /><br /> Your request for service&nbsp;{{{ServiceAppointment.AppointmentNumber}}} with the following service :&nbsp;{{{ServiceAppointment.Work_Type_Name__c}}} was scheduled for&nbsp;{{{ServiceAppointment.Scheduled_start_date__c}}}.<br /><br /> Please reply to this email, from the links below, At the latest&nbsp;{{{ServiceAppointment.Delay_Fermeture_Ouverture_En__c}}}&nbsp;before noon so we can honor the appointment proposed. &nbsp;<br /><br /> We would appreciate if you could make sure that our technician will have access to the equipment as well as to your back yard at this date.&nbsp;<br /><br /> If you accept or refuse this appointment, please confirm by clicking on the following link : &nbsp;</span><br /><br /><strong><span style="font-size:12px;">{{{ServiceAppointment.Form_Link_EN__c}}}</span></strong><br /><br /><br /><span style="font-size:12px;">The following link explains our warranties appliable to our in-ground pools, above ground, cedar, spas, saunas, pavement and gazebos : </span><a href="http://www.trevi.com/garantie.html"><span style="font-size:12px;">http://www.trevi.com/t-warranties.aspx</span></a>.<span style="font-size:12px;">&nbsp;</span><br /><br /><span style="font-size:12px;">We invite you to consult your customer area on the Trevi website </span><a href="http://www.trevi.com/"><span style="font-size:12px;">www.trevi.com</span></a><span style="font-size:12px;">&nbsp;where you will find a lot of information as well as a FAQ.&nbsp;</span><br /><br /><span style="font-size:12px;">Please read the terms of your warranty via your Customer Area.<br /> For any questions, please refer to the store.&nbsp;<br /><br /><br /> Cordially.&nbsp;<br /> Your team from the Technical Support and Home Service department.&nbsp;<br /> Email: receptionqc@trevi.ca&nbsp;<br /> Phone: 514-228-7384&nbsp; &nbsp;Poste: 90200&nbsp;</span></span><br /> &nbsp;</td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+                <tr>
+                 <td>
+                  <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                   <tbody>
+                    <tr>
+                     <td style="padding-left: 30px;" align="left"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Footer]}" alt="" width="390" /></td>
+                    </tr>
+                   </tbody>
+                  </table></td>
+                </tr>
+               </tbody>
+              </table></td>
+            </tr>
+           </tbody>
+          </table>
+          <table class="contentbuilderBaseColumnRow" style="align-items: flex-start; width: 100%; background-color:;" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+           <tbody>
+            <tr valign="top">
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="https://magasinstrevi--dev1.sandbox.my.site.com/s/login/?language=en_US&amp;startURL=%2Fs%2F%3Flanguage%3Den_US%26t%3D1737977531681" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Customer_Accesspng]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+             <td width="50%" class="columnCell" style="vertical-align: top;display: inline-block; float:left">
+              <div class="columnDiv" style="margin-right: 5px;margin-bottom: 5px;">
+               <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse; word-break:break-word;">
+                <tbody>
+                 <tr>
+                  <td>
+                   <table style="width:100%; border-collapse: collapse; word-break:break-word;" id="contentRegion" role="presentation" cellspacing="0" cellpadding="0" locked="0">
+                    <tbody>
+                     <tr>
+                      <td align="center"><a href="https://www.trevi.com/en/tips-and-advice" target="_blank"><img style="width: 100%; display: block; border: none; max-width: 70%; object-fit: fill;" src="{[devName:Tips_and_advice]}" alt="" width="206" /></a></td>
+                     </tr>
+                    </tbody>
+                   </table></td>
+                 </tr>
+                </tbody>
+               </table>
+              </div></td>
+            </tr>
+           </tbody>
+          </table></td>
+        </tr>
+       </tbody>
+      </table></td>
+    </tr>
+   </tbody>
+  </table>
+ </body>
+</html>

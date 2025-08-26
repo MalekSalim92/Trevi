@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ce template est envoyé au client pour confirmer son rendez-vous pour un appel de service.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA - Service Call Confirmation (Qc)</name>
+    <pageDevName>SA_Service_Call_Confirmation_Qc</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Confirmation de rendez-vous - Appointment confirmation</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Votre requête de service {{{ServiceAppointment.AppointmentNumber}}} dont le service est : {{{ServiceAppointment.Work_Type_Name__c}}}, a été cédulée pour le {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Veuillez répondre à ce courriel, à partir des liens ci-dessous, Au plus tard, {{{ServiceAppointment.Delay_Fermeture_Ouverture_Fr__c}}} avant midi pour que nous puissions honorer le rendez-vous proposé. 
+
+Nous vous serions reconnaissant de bien vouloir vous assurez que notre technicien aura accès au matériel ainsi qu’à votre cour à cette date. 
+
+Veuillez le confirmer ou refuser la date proposée en cliquant sur le lien suivant : 
+
+{{{ServiceAppointment.Form_Link_FR__c}}}
+
+Ci-joint un lien sur nos garanties applicables à nos piscines creusées, hors-terre, bois, spas, saunas, pavé et gazébo : http://www.trevi.com/t-garanties.aspx &lt; http://www.trevi.com/garantie.html &gt; .
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Veuillez prendre connaissance des termes de votre garantie via votre Espace client. 
+
+Pour toutes questions veuillez-vous référer au magasin.
+
+Cordiales salutations. 
+
+Votre équipe du département de soutien technique et service à domicile 
+
+Courriel: receptionqc@trevi.ca 
+
+Téléphone: 514-228-7384 Poste: 90200 
+
+ &lt; https://magasinstrevi--dev1.sandbox.my.site.com/s/login/?language=fr&amp;startURL=%252Fs%252F%253Flanguage%253Dfr%2526t%253D1737979287657 &gt; 
+
+ &lt; https://www.trevi.com/fr/trucs-et-conseils &gt; 
+
+Hi {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Your request for service {{{ServiceAppointment.AppointmentNumber}}} with the following service : {{{ServiceAppointment.Work_Type_Name__c}}} was scheduled for {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Please reply to this email, from the links below, At the latest {{{ServiceAppointment.Delay_Fermeture_Ouverture_En__c}}} before noon so we can honor the appointment proposed. 
+
+We would appreciate if you could make sure that our technician will have access to the equipment as well as to your back yard at this date. 
+
+If you accept or refuse this appointment, please confirm by clicking on the following link : 
+
+{{{ServiceAppointment.Form_Link_EN__c}}}
+
+The following link explains our warranties appliable to our in-ground pools, above ground, cedar, spas, saunas, pavement and gazebos : http://www.trevi.com/t-warranties.aspx &lt; http://www.trevi.com/garantie.html &gt; .
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Please read the terms of your warranty via your Customer Area.
+
+For any questions, please refer to the store. 
+
+Cordially. 
+
+Your team from the Technical Support and Home Service department. 
+
+Email: receptionqc@trevi.ca 
+
+Phone: 514-228-7384 Poste: 90200 
+
+ &lt; https://magasinstrevi--dev1.sandbox.my.site.com/s/login/?language=en_US&amp;startURL=%252Fs%252F%253Flanguage%253Den_US%2526t%253D1737977531681 &gt; 
+
+ &lt; https://www.trevi.com/en/tips-and-advice &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

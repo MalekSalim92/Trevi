@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email de confirmation du rendez-vous d’installation après validation par le client, avec un rappel des conditions d’installation.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SA - MB | Rendez-vous d&apos;installation confirmé (Qc)</name>
+    <pageDevName>SA_MB_Rendez_vous_d_installation_confirm_Qc</pageDevName>
+    <relatedEntityType>ServiceAppointment</relatedEntityType>
+    <style>none</style>
+    <subject>Votre rendez-vous d’installation est confirmé - Your installation appointment is confirmed</subject>
+    <textOnly>Bonjour {{{ServiceAppointment.Contact_Name__c}}}, 
+
+Nous vous confirmons le rendez-vous pour l’installation le {{{ServiceAppointment.Scheduled_start_date__c}}}. 
+
+Votre présence est requise pour déterminer l’endroit exact où le gazébo doit être installé. 
+
+Prière de vous assurer que tous les matériaux soient accessibles et disposés près de l’endroit où l’installation se fera. 
+
+La base du gazébo doit être de niveau et prête pour l’installation. 
+
+Prière d’identifier le lieu précis de l’installation à l’aide de piquets fixés au sol aux 4 extrémités
+
+Nous vous invitons à consulter votre espace client sur le site internet de Trevi www.trevi.com &lt; http://www.trevi.com/ &gt; où vous trouverez de nombreuses informations ainsi qu’un FAQ. 
+
+Voici le lien pour accéder au guide d’entretien : Guide d&apos;entretien Meuble et Gazébo &lt; https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_FR.pdf &gt; .
+
+Cordiales salutations. 
+
+Votre équipe du département de Livraison/installation de meubles de jardins 
+
+Courriel: meubleqc@trevi.ca 
+
+Téléphone: 514-228-7384 Poste: 90500 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_FR__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_FR__c}}} &gt; 
+
+Hello {{{ServiceAppointment.Contact_Name__c}}},
+
+We confirm that your installation appointment is scheduled for {{{ServiceAppointment.Scheduled_start_date__c}}}.
+
+Your presence is required to determine the exact location of the installed gazebo. 
+
+Please ensure that all materials are accessible and placed near the location of the installation. 
+
+The base of the gazebo should be level and ready for installation. 
+
+Please identify the specific location of the installation by placing stakes at the 4 extremities. 
+
+We invite you to consult your customer area on the Trevi website www.trevi.com &lt; http://www.trevi.com/ &gt; where you will find a lot of information as well as a FAQ. 
+
+Here is the link to access the document maintenance guide : Maintenance Guide – Furniture and Gazebo &lt; https://espaceclient.trevi.com/detaillants/papeterie/Guide_entretien_MB_et_gazebos_AN.pdf &gt; 
+
+Cordially.
+
+Your fourniture and Gazebo delivery/installation department team 
+
+Email: meubleqc@trevi.ca 
+
+Phone: 514-228-7384 Poste: 90500 
+
+ &lt; {{{ServiceAppointment.Customer_Access_Link_EN__c}}} &gt; 
+
+ &lt; {{{ServiceAppointment.Tips_and_Advice_Link_EN__c}}} &gt;</textOnly>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>
