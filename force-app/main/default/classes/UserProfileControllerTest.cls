@@ -10,26 +10,30 @@ public class UserProfileControllerTest {
         insert testAccount;
 
         // Create a new Contact associated with the Account
-        Contact testContact = new Contact(FirstName = 'John', LastName = 'Doe', AccountId = testAccount.Id, MobilePhone='1234567890');
+        Contact testContact = new Contact(FirstName = 'John', LastName = 'Doe',Email = 'portaluser_' + String.valueOf(Math.random()).substring(2,9) + '@example.com', AccountId = testAccount.Id, MobilePhone='1234567890');
         insert testContact;
 
         // Create a portal user
-        Profile portalProfile = [SELECT Id FROM Profile WHERE Name = 'Client Community Login' LIMIT 1];
+        // Profile portalProfile = [SELECT Id FROM Profile WHERE Name = 'Client Community Login' LIMIT 1];
 
-        User portalUser = new User(
-            Username = 'portaluser@example.com',
-            LastName='test',
-            Email = 'portaluser@example.com',
-            Alias = 'puser',
-            ProfileId = portalProfile.Id,
-            ContactId = testContact.Id,
-            IsActive = true,
-            TimeZoneSidKey = 'GMT',
-            LocaleSidKey = 'en_US',
-            EmailEncodingKey = 'UTF-8',
-            LanguageLocaleKey = 'en_US'
-        );
-        insert portalUser;
+        // User portalUser = new User(
+        //     Username = 'portaluser@example.com',
+        //     LastName='test',
+        //     Email = 'portaluser@example.com',
+        //     Alias = 'puser',
+        //     ProfileId = portalProfile.Id,
+        //     ContactId = testContact.Id,
+        //     IsActive = true,
+        //     TimeZoneSidKey = 'GMT',
+        //     LocaleSidKey = 'en_US',
+        //     EmailEncodingKey = 'UTF-8',
+        //     LanguageLocaleKey = 'en_US'
+        // );
+        // insert portalUser;
+
+        // Get the portal user created by flow
+        User portalUser = [SELECT Id FROM User WHERE ContactId = :testContact.Id LIMIT 1];
+
 
         // Test getUserInfo method
         User retrievedUser = UserProfileController.getUserInfo(portalUser.Id);
@@ -49,26 +53,30 @@ public class UserProfileControllerTest {
         insert testAccount;
 
         // Create a new Contact associated with the Account
-        Contact testContact = new Contact(FirstName = 'Jane', LastName = 'Doe', AccountId = testAccount.Id, MobilePhone='1234567890');
+        Contact testContact = new Contact(FirstName = 'Jane', LastName = 'Doe',Email = 'portaluser_' + String.valueOf(Math.random()).substring(2,9) + '@example.com', AccountId = testAccount.Id, MobilePhone='1234567890');
         insert testContact;
 
         // Create a portal user
-        Profile portalProfile = [SELECT Id FROM Profile WHERE Name = 'Client Community Login' LIMIT 1];
+        // Profile portalProfile = [SELECT Id FROM Profile WHERE Name = 'Client Community Login' LIMIT 1];
 
-        User portalUser = new User(
-            Username = 'portaluser2@example.com',
-            LastName='test',
-            Email = 'portaluser2@example.com',
-            Alias = 'puser2',
-            ProfileId = portalProfile.Id,
-            ContactId = testContact.Id,
-            IsActive = true,
-            TimeZoneSidKey = 'GMT',
-            LocaleSidKey = 'en_US',
-            EmailEncodingKey = 'UTF-8',
-            LanguageLocaleKey = 'en_US'
-        );
-        insert portalUser;
+        // User portalUser = new User(
+        //     Username = 'portaluser2@example.com',
+        //     LastName='test',
+        //     Email = 'portaluser2@example.com',
+        //     Alias = 'puser2',
+        //     ProfileId = portalProfile.Id,
+        //     ContactId = testContact.Id,
+        //     IsActive = true,
+        //     TimeZoneSidKey = 'GMT',
+        //     LocaleSidKey = 'en_US',
+        //     EmailEncodingKey = 'UTF-8',
+        //     LanguageLocaleKey = 'en_US'
+        // );
+        // insert portalUser;
+
+        // Get the portal user created by flow
+        User portalUser = [SELECT Id FROM User WHERE ContactId = :testContact.Id LIMIT 1];
+
 
         // Update user, contact, and account
         
