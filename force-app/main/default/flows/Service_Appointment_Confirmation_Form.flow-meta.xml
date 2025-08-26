@@ -190,6 +190,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>FormName_is_null</name>
+        <label>FormName is null</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assing_Variables</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yesFormIsNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Work_Type_Group_Member.Form_Name__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Invalid_Appointment</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Products_Summary</name>
         <label>Products Summary Needed</label>
         <locationX>0</locationX>
@@ -715,7 +740,7 @@ TIMENOW() - 18000000
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assing_Variables</targetReference>
+            <targetReference>FormName_is_null</targetReference>
         </connector>
         <faultConnector>
             <isGoTo>true</isGoTo>
