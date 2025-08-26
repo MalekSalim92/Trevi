@@ -19,7 +19,7 @@
       <!-- LWC -->
 
     <types>
-        <members>GenerateContractSummary</members>
+        <members>generateContractSummary</members>
         <name>LightningComponentBundle</name>
     </types>
 
@@ -35,7 +35,7 @@
      <!-- Quick Action -->
 
     <types>
-    <members>Order.Generate_Summary</members> 
+    <members>Order.Contract_Summary</members> 
      <name>QuickAction</name>
     </types>
 

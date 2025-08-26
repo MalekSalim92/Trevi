@@ -15,8 +15,10 @@ public class TestDataFactory {
     }
     public static Contact createTestContact(Id accountId) {
         return new Contact(
+            firstName = 'firstName',
             lastName = 'Test Contact',
             AccountId = accountId,
+            MobilePhone = '1133443322',
             Email = 'test@example.co'
             );
     }

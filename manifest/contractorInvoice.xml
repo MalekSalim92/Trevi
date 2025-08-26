@@ -5,9 +5,9 @@
       <!-- Custom Objects / Metadata types / Custom Settings -->
 
      <types>
-         <members>Contractor_Invoice_Settings__c.*</members>
-         <members>Contractor_Invoice__c.*</members>
-         <members>Contractor_Invoice_Line__c.*</members>
+         <members>Contractor_Invoice_Settings__c</members>
+         <members>Contractor_Invoice__c</members>
+         <members>Contractor_Invoice_Line__c</members>
         <name>CustomObject</name>
     </types>
 
