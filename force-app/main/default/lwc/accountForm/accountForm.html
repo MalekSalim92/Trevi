@@ -1,0 +1,155 @@
+<template>
+    
+            <template if:true={user}>
+                <div class="slds-p-around_medium">
+                    <lightning-layout>
+                    
+                        <lightning-layout-item size="12">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h1 style="margin-top: 6%;color: #4499C4; font-size: 24px; font-weight: bold;">Welcome {user.Contact.FirstName}  {user.Contact.LastName} </h1>
+                                <h1 style="margin-top: 2%;color: #4499C4;">Customer Number: {user.Account.Sage_ID__c} </h1>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h1 style="margin-top: 6%;">About</h1>
+                                <template if:false={isEditMode} style="margin-top: 6%;">
+                                    <lightning-button label="Edit" onclick={handleEdit}></lightning-button>
+                                </template>
+                            </div>
+                        
+                            <div style="margin-left: 6%; margin-top: 6%;">
+                                <lightning-input 
+                                    label="First Name" 
+                                    value={Contact.FirstName} 
+                                    name="Contact.FirstName" 
+                                    onchange={handleChange} 
+                                    class="no-border"
+                                    disabled="true">>
+                                </lightning-input>
+                                <lightning-input 
+                                    label="Last Name" 
+                                    value={Contact.LastName} 
+                                    name="Contact.LastName" 
+                                    onchange={handleChange} 
+                                    class="no-border"
+                                    disabled="true">
+                                </lightning-input>
+                            </div>
+
+                            <h1 style="margin-top: 6%;">Main Contact</h1>
+                            <div style="margin-left: 6%; margin-top: 6%;">
+                                <lightning-input 
+                                    label="Email" 
+                                    value={Contact.Email} 
+                                    name="Contact.Email" 
+                                    onchange={handleChange} 
+                                    class="no-border"
+                                    disabled={NoEditMode}
+                                    aria-required="true">
+                                </lightning-input>
+
+                                <lightning-input 
+                                    label="Phone" 
+                                    value={Contact.Phone} 
+                                    name="Contact.Phone" 
+                                    onchange={handleChange} 
+                                    class="no-border"
+                                    disabled={NoEditMode}>
+                                </lightning-input>
+                                <lightning-input 
+                                    label="Mobile Phone" 
+                                    value={Contact.MobilePhone} 
+                                    name="Contact.MobilePhone" 
+                                    onchange={handleChange} 
+                                    class="no-border"
+                                    disabled={NoEditMode}>
+                                </lightning-input>
+                            </div>
+
+                            <h1 style="margin-top: 6%;">Account Info</h1>
+                            <div style="margin-left: 6%; margin-top: 6%;">
+                                <lightning-input 
+                                    label="Account Name" 
+                                    value={Account.Name} 
+                                    name="Account.Name" 
+                                    class="no-border"
+                                    onchange={handleChange} 
+                                    disabled="true"
+                                    aria-required="true"
+                                    >
+                                </lightning-input>
+
+                                <lightning-input 
+                                label="Cellphone" 
+                                value={Account.Cellphone__c} 
+                                name="Account.Cellphone__c" 
+                                onchange={handleChange} 
+                                class="no-border"
+                                disabled={NoEditMode}
+                                aria-required="true"
+                                >
+                            </lightning-input>
+                            <lightning-input 
+                            label="Phone" 
+                            value={Account.Phone} 
+                            name="Account.Phone" 
+                            onchange={handleChange} 
+                            class="no-border"
+                            disabled={NoEditMode}>
+                        </lightning-input>
+                        <lightning-input 
+                        label="Email" 
+                        value={Account.Email__c} 
+                        name="Account.Email__c" 
+                        onchange={handleChange} 
+                        class="no-border"
+                        disabled={NoEditMode}
+                         aria-required="true"
+                        >
+                    </lightning-input>
+                                <lightning-input 
+                                    style="margin-top: 1%;"
+                                    label="Do Not Email" 
+                                    name="Contact.HasOptedOutOfEmail" 
+                                    type="checkbox"
+                                    onchange={handleChange} 
+                                    checked={Contact.HasOptedOutOfEmail} 
+                                    disabled={NoEditMode}>
+                                </lightning-input>
+                                <lightning-input 
+                                    style="margin-top: 1%;"
+                                    label="Do Not Call" 
+                                    name="Contact.DoNotCall" 
+                                    type="checkbox"
+                                    onchange={handleChange} 
+                                    checked={Contact.DoNotCall} 
+                                    disabled={NoEditMode}>
+                                </lightning-input>
+                            </div>
+
+                            <h1 style="margin-top: 6%;">Settings</h1>
+                            
+                            <div style="margin-left: 6%; margin-top: 3%;">
+                                <lightning-combobox
+                                label="Language"
+                                name="user.LanguageLocaleKey" 
+                                value={user.LanguageLocaleKey}
+                                options={languageOptions}
+                                onchange={handleChange} 
+                                disabled={NoEditMode}>
+                                </lightning-combobox>
+                                <div style="margin-top: 3%;">
+                                <c-call-update-password-button></c-call-update-password-button></div>
+                            </div>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+
+                <template if:true={isEditMode}>
+                    <div style="display: flex; justify-content: center; margin-top: 20px;">
+                    <lightning-button label="Save" onclick={handleSave} variant="brand"></lightning-button>
+                    <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                    </div>
+                </template>
+            </template>
+        
+    </template>

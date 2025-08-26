@@ -1,0 +1,10 @@
+.no-border  {
+    --lwc-shadowButtonFocus: 0;
+    
+    --slds-c-input-shadow-focus: 0;
+    --sds-c-input-shadow-focus: 0;
+    --lwc-colorBackgroundInputDisabled: rgb(255, 255, 255);
+    --lwc-borderWidthThinDisabled: 0;
+    --lwc-colorBorderInputDisabled: rgb(255, 255, 255);
+    
+}
