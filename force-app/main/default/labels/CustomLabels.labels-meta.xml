@@ -358,16 +358,6 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <shortDescription>val mar year label</shortDescription>
         <value>Year</value>
     </labels>
-<<<<<<< HEAD
-=======
-    <labels>
-        <fullName>Amount</fullName>
-        <categories>Opening Closing</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Amount</shortDescription>
-        <value>Amount</value>
-    </labels>
     <labels>
         <fullName>Amount_for_three_years</fullName>
         <categories>Opening Closing</categories>
@@ -1017,5 +1007,12 @@ Thank you</value>
         <shortDescription>winter cover possession</shortDescription>
         <value>Do you have a winter cover in your possession? It is mandatory for the closure</value>
     </labels>
->>>>>>> Opening/Closing
+    <labels>
+        <fullName>Amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
 </CustomLabels>
