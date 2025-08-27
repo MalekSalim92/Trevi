@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_Cleaning_pbe_To_collection</name>
         <label>Add Cleaning pbe To collection</label>
@@ -171,6 +172,22 @@
         </assignmentItems>
         <connector>
             <targetReference>Assign_Will_have_in_on_hand_product</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>luxuary_selected</name>
+        <label>luxury selected ?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>luxurySelected</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>luxury_selected_formula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Frais_supp_a_appliquer_CR</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -355,19 +372,19 @@
         <label>Cleaning Pool</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>or</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Cleaning</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Cleaning Shared</stringValue>
@@ -404,40 +421,40 @@
         <label>Closing Extras</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>(1 AND (2 OR 3)) OR ( 4 AND 5 )</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Closing Extras</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SC</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>HT</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>CR</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Closing Extras Shared</stringValue>
@@ -453,19 +470,19 @@
         <label>Covers</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Covers</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>CR</stringValue>
@@ -481,26 +498,26 @@
         <label>Covers Acrylic</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Covers</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>acrylicSpa</stringValue>
@@ -516,33 +533,33 @@
         <label>Covers SwimSpa 13</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Covers</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>swimSpa</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size13</stringValue>
@@ -558,40 +575,40 @@
         <label>Covers SwimSpa 16 17</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Covers</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>swimSpa</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size16</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size17</stringValue>
@@ -607,40 +624,40 @@
         <label>Covers SwimSpa 18 19</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Covers</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>swimSpa</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size18</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size19</stringValue>
@@ -656,12 +673,12 @@
         <label>Electric Heater</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Electric Heater</stringValue>
@@ -677,12 +694,12 @@
         <label>Frais Supp</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.null__NotFound</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Applied_to_Postal_Code__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <booleanValue>true</booleanValue>
@@ -698,12 +715,12 @@
         <label>Gaz Heater</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Gaz Heater</stringValue>
@@ -740,19 +757,19 @@
         <label>Laminar Jets</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Laminar Jets</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>CR</stringValue>
@@ -768,12 +785,12 @@
         <label>Luxury Service</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Luxury Service</stringValue>
@@ -789,26 +806,26 @@
         <label>Opening Extras</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>(1 OR 2) AND 3</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Opening Extras</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Opening Extras Shared</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>CR</stringValue>
@@ -824,40 +841,40 @@
         <label>Opening Extras</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>(1 AND (2 OR 3)) OR ( 4 AND 5 )</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Opening Extras</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SC</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>HT</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>CR</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Opening Extras Shared</stringValue>
@@ -873,26 +890,26 @@
         <label>Polywood Acrylic</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Polywood</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>acrylicSpa</stringValue>
@@ -908,26 +925,26 @@
         <label>Polywood SwimSpa 13</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Polywood</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>acrylicSpa</stringValue>
@@ -943,40 +960,40 @@
         <label>Polywood SwimSpa 16 17</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Polywood</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>swimSpa</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size16</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size17</stringValue>
@@ -992,40 +1009,40 @@
         <label>Polywood SwimSpa 18 19</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Polywood</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>swimSpa</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size18</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Size__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Size__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>size19</stringValue>
@@ -1041,12 +1058,12 @@
         <label>Salt Bags</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Salt Bags</stringValue>
@@ -1062,12 +1079,12 @@
         <label>Solar Heater</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Solar Heater</stringValue>
@@ -1083,19 +1100,19 @@
         <label>Spillover Closing</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Spillover Closing</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>CR</stringValue>
@@ -1111,12 +1128,12 @@
         <label>Spillover Opening</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Spillover Opening</stringValue>
@@ -1132,26 +1149,26 @@
         <label>Support Blocs</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Support Blocs</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>SPA</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Spa_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Spa_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>acrylicSpa</stringValue>
@@ -1167,19 +1184,19 @@
         <label>Swim Jet System</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Swim Jet System</stringValue>
             </rightValue>
         </conditions>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Contract_Type__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Contract_Type__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>CR</stringValue>
@@ -1195,12 +1212,12 @@
         <label>Water Blades</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <assignNextValueToReference>currentItem_Cleaning</assignNextValueToReference>
+        <assignNextValueToReference>currentItem_Luxury_Service</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
-            <leftValueReference>currentItem_Cleaning.Location__c</leftValueReference>
+            <leftValueReference>currentItem_Luxury_Service.Location__c</leftValueReference>
             <operator>EqualTo</operator>
             <rightValue>
                 <stringValue>Water Blades</stringValue>
@@ -1210,6 +1227,12 @@
             <targetReference>Laminar_Jets</targetReference>
         </connector>
     </collectionProcessors>
+    <customProperties>
+        <name>ScreenProgressIndicator</name>
+        <value>
+            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
+        </value>
+    </customProperties>
     <decisions>
         <name>Contract_Type</name>
         <label>Contract Type</label>
@@ -1493,6 +1516,11 @@
     </decisions>
     <environments>Default</environments>
     <formulas>
+        <name>luxury_selected_formula</name>
+        <dataType>Boolean</dataType>
+        <expression>{!Luxury_Service_Table.firstSelectedRow.Id} &lt;&gt; null</expression>
+    </formulas>
+    <formulas>
         <name>Quantity_SupportBlocks</name>
         <dataType>Number</dataType>
         <expression>IF(
@@ -1535,6 +1563,9 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
         <connector>
             <targetReference>Order_Found</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Faulty_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Status</field>
@@ -1551,7 +1582,7 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             </value>
         </filters>
         <filters>
-            <field>null__NotFound</field>
+            <field>Service_Type__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>contractType</elementReference>
@@ -1579,6 +1610,10 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
         <connector>
             <targetReference>Heat_Pump_Filter</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Faulty_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>OrderId</field>
@@ -1627,6 +1662,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Do_you_have_a_Heat_pump</name>
@@ -1640,6 +1683,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1704,6 +1755,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1727,6 +1786,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1791,6 +1858,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1814,6 +1889,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1878,6 +1961,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1901,6 +1992,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1965,6 +2064,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -1988,6 +2095,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Water_Blades_Table</name>
@@ -2042,6 +2157,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2064,6 +2187,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>0</scale>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>2</stringValue>
+                        </width>
+                    </styleProperties>
                     <validationRule>
                         <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;{!$Label.positive_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                         <formulaExpression>{!QuantityWaterBlades} &gt; 0</formulaExpression>
@@ -2091,6 +2222,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Laminar_Jets_Table</name>
@@ -2145,6 +2284,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2167,6 +2314,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>0</scale>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>2</stringValue>
+                        </width>
+                    </styleProperties>
                     <validationRule>
                         <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;{!$Label.positive_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                         <formulaExpression>{!QuantityLaminarJets} &gt; 0</formulaExpression>
@@ -2194,6 +2349,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Swim_Jet_System_Table</name>
@@ -2248,6 +2411,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2271,6 +2442,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Spillover_Closing_Table</name>
@@ -2325,6 +2504,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2340,6 +2527,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Extra_CR_Closing</name>
                     <fieldText>&lt;p&gt;&lt;strong&gt;{!$Label.Extra_services_closing} &lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Covers_Table</name>
@@ -2394,6 +2589,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Cleaning_Table</name>
@@ -2442,6 +2645,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2453,6 +2664,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2482,6 +2701,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Spillover_Opening_Table</name>
@@ -2536,6 +2763,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2551,6 +2786,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Extra_CR_Opening</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Extra_services_opening} &lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Extras_Opening_Table</name>
@@ -2599,11 +2842,27 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Deliver_bags</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Would_you_like_Tr_vi_to_deliver_the_salt_bags} &lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Salt_Bags_Table</name>
@@ -2652,6 +2911,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>QuantityBags</name>
@@ -2664,6 +2931,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>0</scale>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>2</stringValue>
+                        </width>
+                    </styleProperties>
                     <validationRule>
                         <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Label.positive_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                         <formulaExpression>{!QuantityBags} &gt; 0</formulaExpression>
@@ -2683,6 +2958,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Luxury_Opening_Service</name>
                     <fieldText>&lt;p&gt;&lt;strong&gt;{!$Label.Luxury_Opening_Service}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Label_Luxury_Opening_Service</name>
@@ -2694,6 +2977,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Luxury_Service_Table</name>
@@ -2748,6 +3039,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2763,6 +3062,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Travel_Expense</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Travel_Expenses}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2774,6 +3081,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2817,6 +3132,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Do_you_have_a_Heat_pump_SC</name>
@@ -2830,6 +3153,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2894,6 +3225,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2917,6 +3256,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2981,6 +3328,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3004,6 +3359,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3068,6 +3431,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3091,6 +3462,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3155,6 +3534,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3170,6 +3557,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Extra_SC_Closing</name>
                     <fieldText>&lt;p&gt;&lt;strong&gt;{!$Label.Extra_services_closing} &lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Extras_SC_Table</name>
@@ -3224,6 +3619,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Cleaning_SC_Table</name>
@@ -3272,6 +3675,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -3283,6 +3694,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -3304,6 +3723,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Extra_SC_Opening</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Extra_services_opening} &lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Extras_Opening_SC_Table</name>
@@ -3352,11 +3779,27 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Deliver_bags_SC</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Would_you_like_Tr_vi_to_deliver_the_salt_bags} &lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Salt_Bags_SC_Table</name>
@@ -3405,6 +3848,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>QuantityBags_SC</name>
@@ -3417,6 +3868,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>0</scale>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>2</stringValue>
+                        </width>
+                    </styleProperties>
                     <validationRule>
                         <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;{!$Label.positive_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                         <formulaExpression>{!QuantityBags_SC} &gt; 0</formulaExpression>
@@ -3436,6 +3895,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Travel_Expense_SC</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Travel_Expenses}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -3447,6 +3914,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -3487,6 +3962,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>RadioButtons</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Winter_Cover_Table</name>
@@ -3541,6 +4024,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3556,6 +4047,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>Extra_services_closing</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Extra_services_closing} &lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Polywood_Acrylic_Table</name>
@@ -3604,6 +4103,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -3615,6 +4122,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>SPA_Products_Section2</name>
@@ -3626,6 +4141,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <name>support_Blocs_Label</name>
                     <fieldText>&lt;p&gt;{!$Label.Support_blocs}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Support_Blocs_Table</name>
@@ -3674,6 +4197,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Quantity_Support_Blocs</name>
@@ -3687,6 +4218,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>2</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3708,6 +4247,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -3723,6 +4270,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             <name>Copy_1_of_Copy_1_of_Travel_Expense</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Travel_Expenses}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -3734,7 +4289,7 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
             <targetReference>Get_Latest_Order</targetReference>
         </connector>
     </start>
-    <status>InvalidDraft</status>
+    <status>Active</status>
     <subflows>
         <name>Add_Frais_supp_products_to_Collection</name>
         <label>Add Frais supp products to Collection</label>
@@ -4182,7 +4737,7 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Frais_supp_a_appliquer_CR</targetReference>
+            <targetReference>luxuary_selected</targetReference>
         </connector>
         <flowName>Ouverture_Fermeture_AssignOrderProductsSubflow</flowName>
         <inputAssignments>
@@ -4431,6 +4986,19 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </subflows>
     <subflows>
+        <name>Faulty_Screen</name>
+        <label>Faulty Screen</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Screen_Flow_Faulty_Message</flowName>
+        <inputAssignments>
+            <name>errorMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>Faulty_Screen_Not_Found</name>
         <label>Faulty Screen Not Found</label>
         <locationX>0</locationX>
@@ -4489,14 +5057,6 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
         <objectType>PricebookEntry</objectType>
     </variables>
     <variables>
-        <name>currentItem_Cleaning</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>PricebookEntry</objectType>
-    </variables>
-    <variables>
         <name>currentItem_Cleaning_All_services</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -4522,6 +5082,14 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
     </variables>
     <variables>
         <name>currentItem_Heat_Pump_Filter</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>PricebookEntry</objectType>
+    </variables>
+    <variables>
+        <name>currentItem_Luxury_Service</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -4556,6 +5124,16 @@ IF({!Quantity_Support_Blocs} = &apos;2&apos;,
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>luxurySelected</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>Opening_Closing</name>

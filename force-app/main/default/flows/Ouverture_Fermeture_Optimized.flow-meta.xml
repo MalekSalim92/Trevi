@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Get_Distance</name>
         <label>Get Distance</label>
-        <locationX>182</locationX>
-        <locationY>2846</locationY>
+        <locationX>806</locationX>
+        <locationY>2954</locationY>
         <actionName>GoogleMapsDistanceMatrixService</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -38,8 +38,8 @@
     <actionCalls>
         <name>Send_Service_Contract_Email</name>
         <label>Send Service Contract Email</label>
-        <locationX>745</locationX>
-        <locationY>8210</locationY>
+        <locationX>1370</locationX>
+        <locationY>8318</locationY>
         <actionName>OuvertureFermetureContractEmailer</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -100,16 +100,23 @@
                 <elementReference>OrderIdToPay</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>sender</name>
+            <value>
+                <stringValue>Trévi Service</stringValue>
+            </value>
+        </inputParameters>
         <nameSegment>OuvertureFermetureContractEmailer</nameSegment>
         <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Prepare the order item and add to list in order to display in the Price summary screen</description>
         <name>Add_Selected_Main_Service_Product</name>
         <label>Add Selected Main Service Product</label>
-        <locationX>182</locationX>
-        <locationY>3686</locationY>
+        <locationX>806</locationX>
+        <locationY>3794</locationY>
         <assignmentItems>
             <assignToReference>PrepareMainServiceOrderItem.ListPrice</assignToReference>
             <operator>Assign</operator>
@@ -152,8 +159,8 @@
     <assignments>
         <name>Add_Selected_Main_Service_Product_to_List</name>
         <label>Add Selected Main Service Product to List</label>
-        <locationX>182</locationX>
-        <locationY>3794</locationY>
+        <locationX>806</locationX>
+        <locationY>3902</locationY>
         <assignmentItems>
             <assignToReference>PrepareMainServiceOrderItemsList</assignToReference>
             <operator>Add</operator>
@@ -175,8 +182,8 @@
     <assignments>
         <name>Assign_Base_OrderItem</name>
         <label>Assign Base OrderItem</label>
-        <locationX>542</locationX>
-        <locationY>4334</locationY>
+        <locationX>1167</locationX>
+        <locationY>4442</locationY>
         <assignmentItems>
             <assignToReference>baseOrderItem</assignToReference>
             <operator>Assign</operator>
@@ -191,8 +198,8 @@
     <assignments>
         <name>Assign_Base_Products_to_Collection</name>
         <label>Assign Base Products to Collection</label>
-        <locationX>314</locationX>
-        <locationY>1622</locationY>
+        <locationX>938</locationX>
+        <locationY>1730</locationY>
         <assignmentItems>
             <assignToReference>basePricebookEntriesInput</assignToReference>
             <operator>Assign</operator>
@@ -207,8 +214,8 @@
     <assignments>
         <name>Assign_swimSpa_Base_Products_to_Collection</name>
         <label>Assign swimSpa Base Products to Collection</label>
-        <locationX>50</locationX>
-        <locationY>1622</locationY>
+        <locationX>674</locationX>
+        <locationY>1730</locationY>
         <assignmentItems>
             <assignToReference>basePricebookEntriesInput</assignToReference>
             <operator>Assign</operator>
@@ -223,8 +230,8 @@
     <assignments>
         <name>Assing_Base_Pbe</name>
         <label>Assing Base Pbe</label>
-        <locationX>806</locationX>
-        <locationY>4226</locationY>
+        <locationX>1431</locationX>
+        <locationY>4334</locationY>
         <assignmentItems>
             <assignToReference>basePricebookEntries</assignToReference>
             <operator>Add</operator>
@@ -239,8 +246,8 @@
     <assignments>
         <name>Assing_Base_Pbe_filtred</name>
         <label>Assing Base Pbe</label>
-        <locationX>542</locationX>
-        <locationY>4226</locationY>
+        <locationX>1167</locationX>
+        <locationY>4334</locationY>
         <assignmentItems>
             <assignToReference>basePricebookEntries</assignToReference>
             <operator>Add</operator>
@@ -255,8 +262,8 @@
     <assignments>
         <name>Capture_Selected_Contract_Terms</name>
         <label>Capture Selected Contract Terms</label>
-        <locationX>182</locationX>
-        <locationY>2738</locationY>
+        <locationX>806</locationX>
+        <locationY>2846</locationY>
         <assignmentItems>
             <assignToReference>Selected_Contract_Terms</assignToReference>
             <operator>Assign</operator>
@@ -271,8 +278,8 @@
     <assignments>
         <name>reAssign_Order_products_collection</name>
         <label>reAssign Order products collection</label>
-        <locationX>182</locationX>
-        <locationY>3578</locationY>
+        <locationX>806</locationX>
+        <locationY>3686</locationY>
         <assignmentItems>
             <assignToReference>PrepareOrderItemsList</assignToReference>
             <operator>Assign</operator>
@@ -512,8 +519,8 @@
         <name>Filter_Asset_Product</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Asset Product</label>
-        <locationX>448</locationX>
-        <locationY>7154</locationY>
+        <locationX>1073</locationX>
+        <locationY>7262</locationY>
         <assignNextValueToReference>currentItem_Filter_Asset_Product</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allProducts</collectionReference>
@@ -540,8 +547,8 @@
         <name>Filter_Base_Pricebook_Entries</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Base Pricebook Entries</label>
-        <locationX>314</locationX>
-        <locationY>1514</locationY>
+        <locationX>938</locationX>
+        <locationY>1622</locationY>
         <assignNextValueToReference>currentItem_Filter_Base_Pricebook_Entries</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
@@ -559,8 +566,8 @@ TEXT({!currentItem_Filter_Base_Pricebook_Entries.Product2.Spa_Type__c}) = {!spaT
         <name>Filter_Distance_Product</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Distance Product</label>
-        <locationX>50</locationX>
-        <locationY>3062</locationY>
+        <locationX>674</locationX>
+        <locationY>3170</locationY>
         <assignNextValueToReference>currentItem_Filter_Distance_Product_0</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
@@ -574,8 +581,8 @@ TEXT({!currentItem_Filter_Base_Pricebook_Entries.Product2.Spa_Type__c}) = {!spaT
         <name>Filter_Late_fee_pbe</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Late fee pbe</label>
-        <locationX>674</locationX>
-        <locationY>4634</locationY>
+        <locationX>1299</locationX>
+        <locationY>4742</locationY>
         <assignNextValueToReference>currentItem_Filter_Late_fee_pbe</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
@@ -595,8 +602,8 @@ TEXT({!currentItem_Filter_Base_Pricebook_Entries.Product2.Spa_Type__c}) = {!spaT
         <name>Filter_Null_products</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Null products</label>
-        <locationX>182</locationX>
-        <locationY>3470</locationY>
+        <locationX>806</locationX>
+        <locationY>3578</locationY>
         <assignNextValueToReference>currentItem_Filter_Null_products</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>PrepareOrderItemsList</collectionReference>
@@ -616,8 +623,8 @@ TEXT({!currentItem_Filter_Base_Pricebook_Entries.Product2.Spa_Type__c}) = {!spaT
         <name>Filter_Swim_Spa_Base_Pbes</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Swim Spa Base Pbes</label>
-        <locationX>50</locationX>
-        <locationY>1514</locationY>
+        <locationX>674</locationX>
+        <locationY>1622</locationY>
         <assignNextValueToReference>currentItem_Filter_Swim_Spa_Base_Pbes</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>allPricebookEntries</collectionReference>
@@ -646,8 +653,8 @@ AND(
         <name>Filter_Work_Type_products</name>
         <elementSubtype>FilterCollectionProcessor</elementSubtype>
         <label>Filter Work Type products</label>
-        <locationX>448</locationX>
-        <locationY>7046</locationY>
+        <locationX>1073</locationX>
+        <locationY>7154</locationY>
         <assignNextValueToReference>currentItem_Filter_Work_Type_products</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
         <collectionReference>PrepareOrderItemsList</collectionReference>
@@ -693,10 +700,35 @@ AND(
         </value>
     </constants>
     <decisions>
+        <name>Blocked_Account</name>
+        <label>Blocked Account</label>
+        <locationX>428</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Contrat_Ouverture_Fermeture</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesBlockedAccount</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>accountBlocked</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Blocked_Account_Screen</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Capacities_Available</name>
         <label>Capacities Available</label>
-        <locationX>1396</locationX>
-        <locationY>6722</locationY>
+        <locationX>2021</locationX>
+        <locationY>6830</locationY>
         <defaultConnector>
             <targetReference>Capacities_Not_Available_Screen</targetReference>
         </defaultConnector>
@@ -720,8 +752,8 @@ AND(
     <decisions>
         <name>Capacity_Week_Selected</name>
         <label>Capacity Week Selected?</label>
-        <locationX>992</locationX>
-        <locationY>6938</locationY>
+        <locationX>1617</locationX>
+        <locationY>7046</locationY>
         <defaultConnector>
             <targetReference>Week_Not_Selected_Screen</targetReference>
         </defaultConnector>
@@ -746,8 +778,8 @@ AND(
     <decisions>
         <name>Closing_Capacities</name>
         <label>Closing Capacities</label>
-        <locationX>1396</locationX>
-        <locationY>5606</locationY>
+        <locationX>2021</locationX>
+        <locationY>5714</locationY>
         <defaultConnector>
             <targetReference>Opening_Capacities</targetReference>
         </defaultConnector>
@@ -771,8 +803,8 @@ AND(
     <decisions>
         <name>Contract_Type_Selected</name>
         <label>Contract Type Selected</label>
-        <locationX>182</locationX>
-        <locationY>350</locationY>
+        <locationX>806</locationX>
+        <locationY>458</locationY>
         <defaultConnector>
             <targetReference>Capture_Address_subflow</targetReference>
         </defaultConnector>
@@ -796,8 +828,8 @@ AND(
     <decisions>
         <name>Error</name>
         <label>Error ?</label>
-        <locationX>674</locationX>
-        <locationY>4850</locationY>
+        <locationX>1299</locationX>
+        <locationY>4958</locationY>
         <defaultConnector>
             <targetReference>ExtraProducts_Count</targetReference>
         </defaultConnector>
@@ -818,8 +850,8 @@ AND(
     <decisions>
         <name>Error_Create_Records</name>
         <label>Error ?</label>
-        <locationX>448</locationX>
-        <locationY>7370</locationY>
+        <locationX>1073</locationX>
+        <locationY>7478</locationY>
         <defaultConnector>
             <targetReference>whoUser</targetReference>
         </defaultConnector>
@@ -844,8 +876,8 @@ AND(
     <decisions>
         <name>Error_Taxes</name>
         <label>Error ?</label>
-        <locationX>182</locationX>
-        <locationY>4010</locationY>
+        <locationX>806</locationX>
+        <locationY>4118</locationY>
         <defaultConnector>
             <targetReference>Opening_Closing</targetReference>
         </defaultConnector>
@@ -870,8 +902,8 @@ AND(
     <decisions>
         <name>ErrorClosingCapacity</name>
         <label>Error ?</label>
-        <locationX>1242</locationX>
-        <locationY>5822</locationY>
+        <locationX>1867</locationX>
+        <locationY>5930</locationY>
         <defaultConnector>
             <targetReference>Opening_Capacities</targetReference>
         </defaultConnector>
@@ -896,8 +928,8 @@ AND(
     <decisions>
         <name>ErrorOpeningCapacity</name>
         <label>Error ?</label>
-        <locationX>1242</locationX>
-        <locationY>6380</locationY>
+        <locationX>1867</locationX>
+        <locationY>6488</locationY>
         <defaultConnector>
             <targetReference>Capacities_Available</targetReference>
         </defaultConnector>
@@ -922,8 +954,8 @@ AND(
     <decisions>
         <name>Existing_Order_Found</name>
         <label>Existing Order Found ?</label>
-        <locationX>402</locationX>
-        <locationY>2246</locationY>
+        <locationX>1026</locationX>
+        <locationY>2354</locationY>
         <defaultConnector>
             <targetReference>Capture_Selected_Contract_Terms</targetReference>
         </defaultConnector>
@@ -953,14 +985,21 @@ AND(
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>productIds</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>fdsqfdqsfdsqfdqs</stringValue>
+                </rightValue>
+            </conditions>
             <label>Error</label>
         </rules>
     </decisions>
     <decisions>
         <name>Extra_Distance_exists</name>
         <label>Extra Distance exists?</label>
-        <locationX>182</locationX>
-        <locationY>2954</locationY>
+        <locationX>806</locationX>
+        <locationY>3062</locationY>
         <defaultConnector>
             <targetReference>Products_Screen</targetReference>
         </defaultConnector>
@@ -984,8 +1023,8 @@ AND(
     <decisions>
         <name>Has_ErrorShopify</name>
         <label>Has Error</label>
-        <locationX>679</locationX>
-        <locationY>7886</locationY>
+        <locationX>1304</locationX>
+        <locationY>7994</locationY>
         <defaultConnector>
             <targetReference>Set_url_to_Order</targetReference>
         </defaultConnector>
@@ -1009,8 +1048,8 @@ AND(
     <decisions>
         <name>Is_New_Asset</name>
         <label>Is New Asset ?</label>
-        <locationX>182</locationX>
-        <locationY>2030</locationY>
+        <locationX>806</locationX>
+        <locationY>2138</locationY>
         <defaultConnector>
             <targetReference>Existing_Orders</targetReference>
         </defaultConnector>
@@ -1034,8 +1073,8 @@ AND(
     <decisions>
         <name>Is_Swim_Spa</name>
         <label>Is Swim Spa ?</label>
-        <locationX>182</locationX>
-        <locationY>1406</locationY>
+        <locationX>806</locationX>
+        <locationY>1514</locationY>
         <defaultConnector>
             <targetReference>Filter_Base_Pricebook_Entries</targetReference>
         </defaultConnector>
@@ -1059,8 +1098,8 @@ AND(
     <decisions>
         <name>Opening_Capacities</name>
         <label>Opening Capacities</label>
-        <locationX>1396</locationX>
-        <locationY>6164</locationY>
+        <locationX>2021</locationX>
+        <locationY>6272</locationY>
         <defaultConnector>
             <targetReference>Capacities_Available</targetReference>
         </defaultConnector>
@@ -1084,8 +1123,8 @@ AND(
     <decisions>
         <name>Opening_Closing</name>
         <label>Opening Closing ?</label>
-        <locationX>674</locationX>
-        <locationY>4118</locationY>
+        <locationX>1299</locationX>
+        <locationY>4226</locationY>
         <defaultConnector>
             <targetReference>Assing_Base_Pbe</targetReference>
         </defaultConnector>
@@ -1109,8 +1148,8 @@ AND(
     <decisions>
         <name>Send_Contract</name>
         <label>Send Contract ?</label>
-        <locationX>877</locationX>
-        <locationY>8102</locationY>
+        <locationX>1502</locationX>
+        <locationY>8210</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>YesSendContract</name>
@@ -1131,8 +1170,8 @@ AND(
     <decisions>
         <name>whoUser</name>
         <label>who user ?</label>
-        <locationX>679</locationX>
-        <locationY>7478</locationY>
+        <locationX>1304</locationX>
+        <locationY>7586</locationY>
         <defaultConnector>
             <targetReference>Payment_Screen_Client</targetReference>
         </defaultConnector>
@@ -1490,8 +1529,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <recordLookups>
         <name>Get_All_Pricebook_Entries</name>
         <label>Get All Pricebook Entries</label>
-        <locationX>182</locationX>
-        <locationY>1298</locationY>
+        <locationX>806</locationX>
+        <locationY>1406</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Is_Swim_Spa</targetReference>
@@ -1532,13 +1571,13 @@ IF({!Selected_Contract_Terms_Num}=3,
         <queriedFields>Opening_Closing__c</queriedFields>
         <queriedFields>Product_Sage_Id__c</queriedFields>
         <queriedFields>Spa_Size_Grouped__c</queriedFields>
-        <queriedFields>null__NotFound</queriedFields>
+        <queriedFields>Applied_to_Postal_Code__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_All_Products</name>
         <label>Get All Products</label>
-        <locationX>182</locationX>
-        <locationY>1082</locationY>
+        <locationX>806</locationX>
+        <locationY>1190</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>productIds</targetReference>
@@ -1573,13 +1612,13 @@ IF({!Selected_Contract_Terms_Num}=3,
         <queriedFields>Opening_Closing__c</queriedFields>
         <queriedFields>Sage_ID__c</queriedFields>
         <queriedFields>Is_Asset_Product__c</queriedFields>
-        <queriedFields>null__NotFound</queriedFields>
+        <queriedFields>Applied_to_Postal_Code__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_DETCAD_PriceBook</name>
         <label>Get DETCAD PriceBook</label>
-        <locationX>182</locationX>
-        <locationY>974</locationY>
+        <locationX>806</locationX>
+        <locationY>1082</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_All_Products</targetReference>
@@ -1605,8 +1644,8 @@ IF({!Selected_Contract_Terms_Num}=3,
         <description>Get Opening_and_Winterizing record Type</description>
         <name>Get_Order_Record_Type</name>
         <label>Get Order Record Type</label>
-        <locationX>182</locationX>
-        <locationY>866</locationY>
+        <locationX>806</locationX>
+        <locationY>974</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_DETCAD_PriceBook</targetReference>
@@ -1637,8 +1676,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <recordUpdates>
         <name>Set_url_to_Order</name>
         <label>Set url to Order</label>
-        <locationX>877</locationX>
-        <locationY>7994</locationY>
+        <locationX>1502</locationX>
+        <locationY>8102</locationY>
         <connector>
             <targetReference>Send_Contract</targetReference>
         </connector>
@@ -1664,10 +1703,35 @@ IF({!Selected_Contract_Terms_Num}=3,
     </recordUpdates>
     <runInMode>SystemModeWithSharing</runInMode>
     <screens>
+        <name>Blocked_Account_Screen</name>
+        <label>Blocked Account Screen</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>BlockedAccountText</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.blocked_account_text}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Done</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Capacities_Not_Available_Screen</name>
         <label>Capacities Not Available Screen</label>
-        <locationX>1801</locationX>
-        <locationY>6830</locationY>
+        <locationX>2426</locationX>
+        <locationY>6938</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>true</allowPause>
@@ -1675,6 +1739,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>capacityNotAvailableMsg</name>
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;﻿{!$Label.not_available_capacity}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1682,8 +1754,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Clauses_Screen</name>
         <label>Clauses Screen</label>
-        <locationX>1396</locationX>
-        <locationY>5174</locationY>
+        <locationX>2021</locationX>
+        <locationY>5282</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1694,11 +1766,27 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>Clauses</name>
             <fieldText>&lt;p&gt;{!baseClauses}&lt;/p&gt;&lt;p&gt;{!extraClauses}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>warningClauseFr</name>
             <fieldText>&lt;p&gt;{!warningClause_Fr}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1714,6 +1802,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>warningClauseEn</name>
             <fieldText>&lt;p&gt;{!warningClause_En}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1732,6 +1828,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;{!$Label.Please_Select}&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Clause_Screen_Accept_Message} == True</formulaExpression>
@@ -1743,8 +1847,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Contract_Exists_Screen</name>
         <label>Contract Exists Screen</label>
-        <locationX>138</locationX>
-        <locationY>2354</locationY>
+        <locationX>762</locationX>
+        <locationY>2462</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1752,6 +1856,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>ExistingContractMessage</name>
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;{!$Label.have_contract_for_this_product}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1759,8 +1871,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Contrat_Ouverture_Fermeture</name>
         <label>Contrat Ouverture/Fermeture</label>
-        <locationX>182</locationX>
-        <locationY>242</locationY>
+        <locationX>806</locationX>
+        <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1771,6 +1883,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>Choose_Contract_Type</name>
             <fieldText>&lt;p&gt;{!$Label.Choose_Contract_Type}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Contract_Selection_Component</name>
@@ -1785,6 +1905,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(251, 0, 0);&quot;&gt;{!$Label.please_select_a_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Contract_Selection_Component.selectedValue} &lt;&gt; &apos;&apos;</formulaExpression>
@@ -1796,8 +1924,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Date_Selection_Screen</name>
         <label>Date Selection Screen</label>
-        <locationX>1396</locationX>
-        <locationY>5498</locationY>
+        <locationX>2021</locationX>
+        <locationY>5606</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1811,6 +1939,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>6</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1818,8 +1954,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Main_Service</name>
         <label>Main Service</label>
-        <locationX>182</locationX>
-        <locationY>1922</locationY>
+        <locationX>806</locationX>
+        <locationY>2030</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1873,11 +2009,27 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Contract_Display_Message</name>
             <fieldText>&lt;p&gt;{!$Label.Contract_Display_Message}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Contract_Terms</name>
@@ -1889,6 +2041,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Requested_Services</name>
@@ -1901,6 +2061,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Requested_Service_Message_EN</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Requested_Services}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -1912,6 +2080,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Requested_Service_Accept_Chkbx</name>
@@ -1920,6 +2096,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;{!$Label.Please_Select}&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Requested_Service_Accept_Chkbx} == TRUE</formulaExpression>
@@ -1931,8 +2115,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Pay_Customer_Screen</name>
         <label>Pay Customer Screen</label>
-        <locationX>745</locationX>
-        <locationY>8318</locationY>
+        <locationX>1370</locationX>
+        <locationY>8426</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1949,6 +2133,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1956,8 +2148,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Payment_Screen</name>
         <label>Payment Screen</label>
-        <locationX>547</locationX>
-        <locationY>7586</locationY>
+        <locationX>1172</locationX>
+        <locationY>7694</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1973,6 +2165,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1980,8 +2180,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Payment_Screen_Client</name>
         <label>Payment Screen</label>
-        <locationX>811</locationX>
-        <locationY>7586</locationY>
+        <locationX>1436</locationX>
+        <locationY>7694</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1992,6 +2192,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>PayNowText</name>
             <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;﻿{!$Label.process_payment}&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;﻿&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Process Payment</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -2000,8 +2208,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Price_Summary</name>
         <label>Price Summary</label>
-        <locationX>1396</locationX>
-        <locationY>5066</locationY>
+        <locationX>2021</locationX>
+        <locationY>5174</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2012,16 +2220,40 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>ServiceDemande</name>
             <fieldText>&lt;p&gt;{!$Label.Requested_Services}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>clausesBase</name>
             <fieldText>&lt;p&gt;{!baseClauses}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>omitMsg</name>
             <fieldText>&lt;p&gt;{!$Label.Price_Summary_Msg}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Price_Summary_Section1</name>
@@ -2033,6 +2265,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Selected_Product_Display</name>
                     <fieldText>&lt;p&gt;{!Product_Display.firstSelectedRow.Name}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2049,6 +2289,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_ContractTerms_Display</name>
                     <fieldText>&lt;p&gt;{!Selected_Contract_Terms}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2065,6 +2313,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Selected_Product_Price</name>
                     <fieldText>&lt;p&gt;&lt;strong&gt;{!Product_Display.firstSelectedRow.UnitPrice}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2081,6 +2337,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Selected_Price_Display</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Main_Screen_Contract_Terms_Amt}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2092,6 +2356,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2150,6 +2422,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2208,6 +2488,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2266,6 +2554,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2337,6 +2633,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2365,11 +2669,27 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>PrixService</name>
             <fieldText>&lt;p&gt;{!$Label.Price_Summary_Distance_fees}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Price_Summary_Section3</name>
@@ -2403,16 +2723,40 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_total_Annual_Amounts</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;u&gt;{!$Label.Annual_Amount}:&amp;nbsp;&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>annual_base_amount</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Base_service_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Extras_Amount_Display_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Extras_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2428,6 +2772,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Discount1_Label</name>
                     <fieldText>&lt;p&gt;{!$Label.Discount}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2443,11 +2795,27 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Total_Amount_Label</name>
                     <fieldText>&lt;p&gt;{!$Label.Total_amount}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Final_Amount_Display_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Total_amount_after_taxes}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2464,16 +2832,40 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_blank1</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;&lt;u&gt;Total Annual Amounts :&amp;nbsp;﻿&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_annual_base_amount_value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Main_Screen_Amt_FullPrice}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Extras_Amount_Display_Value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Extras_Total_FullPrice}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2489,6 +2881,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Discount1</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Discount_total}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2504,11 +2904,27 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Total_Amount1</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;﻿{!Total_Amount_Sum}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Final_Amount_Display_Value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Total_Final_Amount_Currency}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2520,6 +2936,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2563,16 +2987,40 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_total_Contract_Amounts</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(255, 0, 0);&quot;&gt;&lt;u&gt;{!Total_Amount_Contract_Title} :&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>contract_base_amount2</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Base_service_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Contact_Extra_Label2</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Extras_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2588,6 +3036,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Discount_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Discount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2603,11 +3059,27 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Total_amount_Label2</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Total_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Contact_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Total_amount_after_taxes}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2624,16 +3096,40 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_blank2</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 255, 255); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;u&gt; Amounts :&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_contract_base_amount_value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Main_Screen_ALL_Terms_Amt}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Contact_Extra</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Extra_Contract_Total_Price}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2649,6 +3145,14 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Discount</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Discount_All_Contract}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2664,11 +3168,27 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Total_amount</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Total_Amount_Sum_AllContract}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Contact</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Total_Contract_Amount_Calculated}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2680,6 +3200,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -2687,8 +3215,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>SPA_TypeS</name>
         <label>SPA Type</label>
-        <locationX>50</locationX>
-        <locationY>458</locationY>
+        <locationX>674</locationX>
+        <locationY>566</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2714,6 +3242,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Label.please_select_a_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>AND({!Spa_Type_Component.selectedValue} &lt;&gt; &apos;&apos; ,IF({!Spa_Type_Component.selectedValue} = &apos;swimSpa&apos; , {!Spa_Type_Component.selectedSize} &lt;&gt; &apos;&apos; ,True))</formulaExpression>
@@ -2725,8 +3261,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Week_Not_Selected_Screen</name>
         <label>Week Not Selected Screen</label>
-        <locationX>1537</locationX>
-        <locationY>7046</locationY>
+        <locationX>2162</locationX>
+        <locationY>7154</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -2734,6 +3270,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>Week_Not_Selected_Error_Message</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;{!$Label.Capacity_Week_Not_Selected_Error_Message}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2741,8 +3285,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <screens>
         <name>Week_Selection_Screen</name>
         <label>Week Selection Screen</label>
-        <locationX>992</locationX>
-        <locationY>6830</locationY>
+        <locationX>1617</locationX>
+        <locationY>6938</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2757,6 +3301,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2776,6 +3328,14 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2791,18 +3351,18 @@ IF({!Selected_Contract_Terms_Num}=3,
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>56</locationX>
+        <locationX>302</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Capture_Contact_subflow</targetReference>
         </connector>
     </start>
-    <status>InvalidDraft</status>
+    <status>Active</status>
     <subflows>
         <name>Add_Distance_Product_to_Collection</name>
         <label>Add Distance Product to Collection</label>
-        <locationX>50</locationX>
-        <locationY>3170</locationY>
+        <locationX>674</locationX>
+        <locationY>3278</locationY>
         <connector>
             <targetReference>Products_Screen</targetReference>
         </connector>
@@ -2836,8 +3396,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Add_Main_Service_to_Collection</name>
         <label>Add Main Service to Collection</label>
-        <locationX>1396</locationX>
-        <locationY>5390</locationY>
+        <locationX>2021</locationX>
+        <locationY>5498</locationY>
         <connector>
             <targetReference>Date_Selection_Screen</targetReference>
         </connector>
@@ -2888,8 +3448,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Api_Faulty_Screen</name>
         <label>Api Faulty Screen</label>
-        <locationX>481</locationX>
-        <locationY>7994</locationY>
+        <locationX>1106</locationX>
+        <locationY>8102</locationY>
         <flowName>Screen_Flow_Faulty_Message</flowName>
         <inputAssignments>
             <name>errorMessage</name>
@@ -2901,8 +3461,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Base_Products2</name>
         <label>Base Products</label>
-        <locationX>182</locationX>
-        <locationY>1814</locationY>
+        <locationX>806</locationX>
+        <locationY>1922</locationY>
         <connector>
             <targetReference>Main_Service</targetReference>
         </connector>
@@ -2918,8 +3478,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Capture_Address_subflow</name>
         <label>Capture Address</label>
-        <locationX>182</locationX>
-        <locationY>650</locationY>
+        <locationX>806</locationX>
+        <locationY>758</locationY>
         <connector>
             <targetReference>Capture_Asset_subflow</targetReference>
         </connector>
@@ -2942,8 +3502,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Capture_Asset_subflow</name>
         <label>Capture Asset</label>
-        <locationX>182</locationX>
-        <locationY>758</locationY>
+        <locationX>806</locationX>
+        <locationY>866</locationY>
         <connector>
             <targetReference>Get_Order_Record_Type</targetReference>
         </connector>
@@ -2978,8 +3538,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Capture_Clauses</name>
         <label>Capture Clauses</label>
-        <locationX>674</locationX>
-        <locationY>4526</locationY>
+        <locationX>1299</locationX>
+        <locationY>4634</locationY>
         <connector>
             <targetReference>Filter_Late_fee_pbe</targetReference>
         </connector>
@@ -3008,10 +3568,10 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Capture_Contact_subflow</name>
         <label>Capture Contact</label>
-        <locationX>182</locationX>
+        <locationX>428</locationX>
         <locationY>134</locationY>
         <connector>
-            <targetReference>Contrat_Ouverture_Fermeture</targetReference>
+            <targetReference>Blocked_Account</targetReference>
         </connector>
         <flowName>Ouverture_Fermeture_CaptureContactSubflow</flowName>
         <inputAssignments>
@@ -3020,6 +3580,10 @@ IF({!Selected_Contract_Terms_Num}=3,
                 <elementReference>recordId.Id</elementReference>
             </value>
         </inputAssignments>
+        <outputAssignments>
+            <assignToReference>accountBlocked</assignToReference>
+            <name>accountBlocked</name>
+        </outputAssignments>
         <outputAssignments>
             <assignToReference>contact</assignToReference>
             <name>contact</name>
@@ -3036,8 +3600,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Capture_Taxes</name>
         <label>Capture Taxes</label>
-        <locationX>182</locationX>
-        <locationY>3902</locationY>
+        <locationX>806</locationX>
+        <locationY>4010</locationY>
         <connector>
             <targetReference>Error_Taxes</targetReference>
         </connector>
@@ -3060,8 +3624,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Create_records</name>
         <label>Create records</label>
-        <locationX>448</locationX>
-        <locationY>7262</locationY>
+        <locationX>1073</locationX>
+        <locationY>7370</locationY>
         <connector>
             <targetReference>Error_Create_Records</targetReference>
         </connector>
@@ -3118,6 +3682,12 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>locationId</name>
             <value>
                 <elementReference>locationId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>luxurySelected</name>
+            <value>
+                <elementReference>luxurySelected</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -3190,8 +3760,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Existing_Orders</name>
         <label>Existing Order</label>
-        <locationX>402</locationX>
-        <locationY>2138</locationY>
+        <locationX>1026</locationX>
+        <locationY>2246</locationY>
         <connector>
             <targetReference>Existing_Order_Found</targetReference>
         </connector>
@@ -3225,8 +3795,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Faulty_Screen</name>
         <label>Faulty Screen</label>
-        <locationX>3121</locationX>
-        <locationY>974</locationY>
+        <locationX>3746</locationX>
+        <locationY>1082</locationY>
         <flowName>Screen_Flow_Faulty_Message</flowName>
         <inputAssignments>
             <name>errorMessage</name>
@@ -3238,8 +3808,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Faulty_Screen2</name>
         <label>Faulty Screen With Error Input</label>
-        <locationX>2065</locationX>
-        <locationY>2954</locationY>
+        <locationX>2690</locationX>
+        <locationY>3062</locationY>
         <flowName>Screen_Flow_Faulty_Message</flowName>
         <inputAssignments>
             <name>errorMessage</name>
@@ -3251,8 +3821,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Get_Closing_Capacities2</name>
         <label>Get Closing Capacities</label>
-        <locationX>1242</locationX>
-        <locationY>5714</locationY>
+        <locationX>1867</locationX>
+        <locationY>5822</locationY>
         <connector>
             <targetReference>ErrorClosingCapacity</targetReference>
         </connector>
@@ -3317,8 +3887,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Late_Fees</name>
         <label>Late Fees</label>
-        <locationX>674</locationX>
-        <locationY>4742</locationY>
+        <locationX>1299</locationX>
+        <locationY>4850</locationY>
         <connector>
             <targetReference>Error</targetReference>
         </connector>
@@ -3395,8 +3965,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Opening_Capacities2</name>
         <label>Opening Capacities</label>
-        <locationX>1242</locationX>
-        <locationY>6272</locationY>
+        <locationX>1867</locationX>
+        <locationY>6380</locationY>
         <connector>
             <targetReference>ErrorOpeningCapacity</targetReference>
         </connector>
@@ -3457,8 +4027,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Payment_Options</name>
         <label>Payment Options</label>
-        <locationX>1396</locationX>
-        <locationY>5282</locationY>
+        <locationX>2021</locationX>
+        <locationY>5390</locationY>
         <connector>
             <targetReference>Add_Main_Service_to_Collection</targetReference>
         </connector>
@@ -3485,8 +4055,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Process_Shopify_Payment</name>
         <label>Process Shopify Payment</label>
-        <locationX>679</locationX>
-        <locationY>7778</locationY>
+        <locationX>1304</locationX>
+        <locationY>7886</locationY>
         <connector>
             <targetReference>Has_ErrorShopify</targetReference>
         </connector>
@@ -3532,12 +4102,18 @@ IF({!Selected_Contract_Terms_Num}=3,
     <subflows>
         <name>Products_Screen</name>
         <label>Products Screen</label>
-        <locationX>182</locationX>
-        <locationY>3362</locationY>
+        <locationX>806</locationX>
+        <locationY>3470</locationY>
         <connector>
             <targetReference>Filter_Null_products</targetReference>
         </connector>
         <flowName>Ouverture_Fermeture_ProductsScreenSubflow</flowName>
+        <inputAssignments>
+            <name>accountId</name>
+            <value>
+                <elementReference>contact.AccountId</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <name>allPricebookEntries</name>
             <value>
@@ -3617,6 +4193,10 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>Extras_Total_Price</name>
         </outputAssignments>
         <outputAssignments>
+            <assignToReference>luxurySelected</assignToReference>
+            <name>luxurySelected</name>
+        </outputAssignments>
+        <outputAssignments>
             <assignToReference>Selected_Products_Set_Get_Opening_Capacity</assignToReference>
             <name>openingProductSet</name>
         </outputAssignments>
@@ -3678,8 +4258,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <transforms>
         <name>ExtraProducts_Count</name>
         <label>ExtraProducts_Count</label>
-        <locationX>1396</locationX>
-        <locationY>4958</locationY>
+        <locationX>2021</locationX>
+        <locationY>5066</locationY>
         <connector>
             <targetReference>Price_Summary</targetReference>
         </connector>
@@ -3702,8 +4282,8 @@ IF({!Selected_Contract_Terms_Num}=3,
     <transforms>
         <name>productIds</name>
         <label>productIds</label>
-        <locationX>182</locationX>
-        <locationY>1190</locationY>
+        <locationX>806</locationX>
+        <locationY>1298</locationY>
         <connector>
             <targetReference>Get_All_Pricebook_Entries</targetReference>
         </connector>
@@ -3720,6 +4300,16 @@ IF({!Selected_Contract_Terms_Num}=3,
             </transformValueActions>
         </transformValues>
     </transforms>
+    <variables>
+        <name>accountBlocked</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
     <variables>
         <name>address</name>
         <dataType>SObject</dataType>
@@ -4161,6 +4751,16 @@ IF({!Selected_Contract_Terms_Num}=3,
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>luxurySelected</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>mdtKey</name>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Is_late_var</name>
         <label>Assign Is late var</label>
@@ -186,7 +187,7 @@
             <targetReference>Get_Late_Fee_Config</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Add_Late_Closing_Product</name>
         <label>Add Late Closing Product</label>

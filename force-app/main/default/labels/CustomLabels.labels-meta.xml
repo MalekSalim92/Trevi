@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Requested_Services_Text</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services Text</shortDescription>
+        <value>At the request of the customer and in consideration of the payment of the service charges, TRÉVI &quot;the Company&quot; undertakes to perform the following services:
+
+In the event that one or more additional services have not been selected or we do not have access to all equipment and materials, the appointment will be handed over and the travelling expenses of &lt;strong&gt; $85 plus tax &lt;/strong&gt; and the additional service charges will be payable before the next visit.
+
+Opening and closing service prices include a distance of &lt;strong&gt;50 km or less&lt;/strong&gt; from the nearest Trevi Super-store. An additional charge of&lt;strong&gt; $2.00 per kilometer &lt;/strong&gt;will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Requested_Services_VM_Title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services Title</shortDescription>
+        <value>REQUESTED SERVICES</value>
+    </labels>
+    <labels>
+        <fullName>not_available_capacity</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>not available capacity</shortDescription>
+        <value>We&apos;re sorry, but there are no more available slots for the selected date.Please choose another date</value>
+    </labels>
+    <labels>
+        <fullName>select_at_least_a_product</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>select at least a product</shortDescription>
+        <value>You haven’t selected any products. Please go back to the previous screens and select at least one product.</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_account</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_additional_fees_note</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar additional fees note</shortDescription>
+        <value>Additional fees of $100 will be applied for requests submitted after November 15 or after June 1st</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_address</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_amount_before_taxes</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar amount before taxes</shortDescription>
+        <value>Amount (before taxes)</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_brand_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar brand label</shortDescription>
+        <value>Brand</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_closing_clauses</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar closing clauses</shortDescription>
+        <value>1. &lt;strong&gt; Lower water level  &lt;/strong&gt; ($100 extra for the town of Mount-Royal)
+2. &lt;strong&gt; Remove diving board, ladder and lights &lt;/strong&gt;
+3. &lt;strong&gt; Drain the pump, the filter, the chlorinator, brominator, salt system, or ozonator &lt;/strong&gt;
+4. &lt;strong&gt; Drain and winterize pool heater &lt;/strong&gt;
+5. &lt;strong&gt; Drain and blow all pipes &lt;/strong&gt;	
+6. &lt;strong&gt; Winterize skimmer &lt;/strong&gt;
+7. &lt;strong&gt; Store pool equipment and accessories &lt;/strong&gt;</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_closing_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar closing date</shortDescription>
+        <value>Closing Date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_closing_title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar closing title</shortDescription>
+        <value>CLOSING</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_comments</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar comments</shortDescription>
+        <value>Comments</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_confirm_conditions</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar confirm conditions</shortDescription>
+        <value>I confirm that I have read the terms and conditions</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_confirmation_of_information</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar confirmation of information</shortDescription>
+        <value>CONFIRMATION OF INFORMATION</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_contact</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_description_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar description label</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_email</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_notice_part_1</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar notice part 1</shortDescription>
+        <value>1 - a . Magasin Trévi inc. will schedule the work to be done, from September 30th to November 1st for the winterizing period and from April 15 to May 15 for the opening period. 
+     b . Magasin Trévi inc. shall not be responsible for any breaks, damages or deterioration of pool due to winterizing period and from April 15 to May 15 for the opening period.
+
+2 - Service charges do not include:
+the cost of parts which need to be replaced;
+the cost of removal of the pump, the base of the diving board, the slide;
+the cost of repairs to the ceramic or the concrete structure after the warranty
+the cost of pumping out any excess water following winterizing of the pool;
+the cost of the leaves collecting in the pool ($35.00 per bag)
+
+3 - Any refill of water required for the opening of the pool shall be done by the customer.</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_notice_part_2</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar notice part 2</shortDescription>
+        <value>4 - Magasin Trévi inc. will place the equipment removed during winterizing where indicated by the customer but without any liability for damages caused while moving this equipment.
+
+5 - Magasin Trévi inc. shall not be responsible for any damages resulting from freezing and/or:
+any shifting of the pool caused by a high water table
+any debris falling in the water while removing the winter cover.
+
+6 - Magasin Trévi inc. does not roll, fold or clean the winter cover
+
+7 - The customer agrees to remove all debris from the winter cover before the opening</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_notice_part_3</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar notice part 3</shortDescription>
+        <value>8 - The customer has to maintain his draining well with less than 18&quot; of water until frost.
+
+9 - Magasin Trévi inc. reserves the right to adjust applicable service charges in the event the technician should note any discrepancy between the size of pool described above and the actual size of your pool or any other supplementary service not mentioned.</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_opening_clauses</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar opening clauses</shortDescription>
+        <value>1. &lt;strong&gt; Reinstall diving board, ladder and lights   &lt;/strong&gt;
+2. &lt;strong&gt; Reconnect pool heater   &lt;/strong&gt;
+3. &lt;strong&gt; Reconnect, start up and check the filtration system   &lt;/strong&gt;
+4. &lt;strong&gt; Reconnect control system and automation   &lt;/strong&gt;
+5. &lt;strong&gt; Start up and water calibration   &lt;/strong&gt;</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_opening_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar opening date</shortDescription>
+        <value>Opening Date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_opening_title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar opening title</shortDescription>
+        <value>OPENING</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_phone</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_price_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar price label</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_product_list</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar product list</shortDescription>
+        <value>Val-Mar Product list</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_product_type</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar product type</shortDescription>
+        <value>Product type</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_quantity_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar quantity label</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_select_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar select date</shortDescription>
+        <value>Select the earliest date you would like this service</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_select_dates</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar select dates</shortDescription>
+        <value>Select a service date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_select_products</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar select products</shortDescription>
+        <value>Here is the list of your Val-Mar products, please select one</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_service_date</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar service date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_service_summary</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar service summary</shortDescription>
+        <value>Summary of selected services</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_size_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar size label</shortDescription>
+        <value>Size (sq. ft.)</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_title</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar title</shortDescription>
+        <value>VAL-MAR - OPENING AND CLOSING</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_total_confirmation</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar total confirmation</shortDescription>
+        <value>Please confirm the service call information.
+
+
+
+If you wish to add any details, you can do so in the comments area below :</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_total_price_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar total price label</shortDescription>
+        <value>Total price</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_warranty_damages</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar warranty damages</shortDescription>
+        <value>Trevi does not warranty damages caused after the year&apos;s first frost</value>
+    </labels>
+    <labels>
+        <fullName>val_mar_year_label</fullName>
+        <categories>Opening Closing Val Mar</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>val mar year label</shortDescription>
+        <value>Year</value>
+    </labels>
+    <labels>
+        <fullName>Amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>Amount_for_three_years</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount for three years</shortDescription>
+        <value>Amount for 3 years</value>
+    </labels>
+    <labels>
+        <fullName>Amount_for_two_years</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount for two years</shortDescription>
+        <value>Amount for 2 years</value>
+    </labels>
+    <labels>
+        <fullName>Annual_Amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Annual Amount</shortDescription>
+        <value>Annual Amount</value>
+    </labels>
+    <labels>
+        <fullName>Asset_Confirmation</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset Confirmation</shortDescription>
+        <value>I Confirm that I do not own one of these pool models</value>
+    </labels>
+    <labels>
+        <fullName>Asset_Confirmation_Spa</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset Confirmation Spa</shortDescription>
+        <value>I confirm that I own a Dynasty or Lacus spa, or one sold directly by Trévi</value>
+    </labels>
+    <labels>
+        <fullName>Asset_Message_Spa</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset Message Spa</shortDescription>
+        <value>Trevi provides opening and closing services for Dynasty and Lacus Spas, as wll as spas sold directly by Trevi Super Stores.</value>
+    </labels>
+    <labels>
+        <fullName>Base_service_amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Base service amount</shortDescription>
+        <value>Base service amount</value>
+    </labels>
+    <labels>
+        <fullName>City</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>Closing_date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Closing date</shortDescription>
+        <value>Closing date</value>
+    </labels>
+    <labels>
+        <fullName>Contract_List</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contract List</shortDescription>
+        <value>Contracts List</value>
+    </labels>
+    <labels>
+        <fullName>Contract_Terms</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contract Terms</shortDescription>
+        <value>Contract Terms</value>
+    </labels>
+    <labels>
+        <fullName>Discount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Discount</shortDescription>
+        <value>Discount</value>
+    </labels>
+    <labels>
+        <fullName>Discount_Price</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Discount Price</shortDescription>
+        <value>Discount Price</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_Gaz_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a Gaz heater</shortDescription>
+        <value>Do you have a Gaz heater?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_Heat_pump</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a Heat pump</shortDescription>
+        <value>Do you have a Heat pump?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_Trevi_solar_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a Trevi solar heater</shortDescription>
+        <value>Do you have a Trevi solar heater?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_spillover_spa</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a spillover spa</shortDescription>
+        <value>Do you have a spillover spa?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_swim_jet_system</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a swim jet system</shortDescription>
+        <value>Do you have a swim jet system?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_an_Electric_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have an Electric heater</shortDescription>
+        <value>Do you have an Electric heater?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_one_or_more_laminar_jets</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have one or more laminar jets</shortDescription>
+        <value>Do you have one or more laminar jets?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_one_or_more_water_blades_waterfalls</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have one or more water blades/waterfalls</shortDescription>
+        <value>Do you have one or more water blades/waterfalls?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_pool_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have pool heater</shortDescription>
+        <value>Do you have a pool heater (heat pump, gas heater, electric heater, solar heater Trévi)?</value>
+    </labels>
+    <labels>
+        <fullName>Employee_number</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Employee number</shortDescription>
+        <value>Salesperson number</value>
+    </labels>
+    <labels>
+        <fullName>Employee_number_not_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Employee number not found</shortDescription>
+        <value>Please add your salesperson number</value>
+    </labels>
+    <labels>
+        <fullName>Extra_services_closing</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Extra services closing</shortDescription>
+        <value>Here are the options available in Extra when closing. Do you want Trévi to do the following service(s) :</value>
+    </labels>
+    <labels>
+        <fullName>Extra_services_opening</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Extra services opening</shortDescription>
+        <value>Here are the options available in Extra when opening. Do you want Trévi to do the following service(s) :</value>
+    </labels>
+    <labels>
+        <fullName>Extras_amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Extras amount</shortDescription>
+        <value>Extras amount</value>
+    </labels>
+    <labels>
+        <fullName>How_many_bags_of_salt2</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>How many bags of salt</shortDescription>
+        <value>How many bags of salt?</value>
+    </labels>
+    <labels>
+        <fullName>I_confirm_that_the_cover_is_less_than_8_years_old_I_understand_and_accept_the_c</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>I confirm that the cover is less than 8 years old. I understand and accept the c</shortDescription>
+        <value>I confirm that the cover is less than 8 years old. I understand and accept the condition.</value>
+    </labels>
+    <labels>
+        <fullName>I_will_have_in_on_hand_product</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>I will have in on hand product</shortDescription>
+        <value>I will have it on hand</value>
+    </labels>
+    <labels>
+        <fullName>Luxury_Opening_Service</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Luxury Opening Service</shortDescription>
+        <value>Trévi offers luxury opening service.
+The swimming pool has a cover aged 8 years or less.This option requires 2 additional visits at opening and includes: emptying the pool, washing the liner, step and crowning. The customer must fill the pool up to the first step at the bottom. The technician will return to collect his equipment. The pool must then be completely filled by the customer in order to proceed with the opening.
+Please note that an additional fee of $35/bag will be applied for bags of leaves/waste that will be removed from the pool.</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing</shortDescription>
+        <value>Opening Closing</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_contract_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No contract found</shortDescription>
+        <value>No contracts have been found. Please create a new product</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_products_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No products found</shortDescription>
+        <value>No products have been found. Please create a new product</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_products_found_in_Address</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No products found in Address</shortDescription>
+        <value>No products have been found for the selected address. Please create a new product</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_products_found_in_Order</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No products found in Order</shortDescription>
+        <value>No products have been found for the selected contract. Please select one of the following products:</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Date</shortDescription>
+        <value>Opening Date</value>
+    </labels>
+    <labels>
+        <fullName>Order_Contract_Type</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order_Contract_Type</shortDescription>
+        <value>Contract Type</value>
+    </labels>
+    <labels>
+        <fullName>Order_End_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order End Date</shortDescription>
+        <value>Order End Date</value>
+    </labels>
+    <labels>
+        <fullName>Order_Name</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Name</shortDescription>
+        <value>Order Name</value>
+    </labels>
+    <labels>
+        <fullName>Order_Start_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Start Date</shortDescription>
+        <value>Order Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Options</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Options</shortDescription>
+        <value>Payment Options</value>
+    </labels>
+    <labels>
+        <fullName>Polywood_8x11</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Polywood 8x11</shortDescription>
+        <value>Would you like Trévi to bring the plywood? (only for 8&apos;X11&apos; spas)</value>
+    </labels>
+    <labels>
+        <fullName>Postal_Code</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>Price</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>Price_Summary_Distance_fees</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price Summary Distance fees</shortDescription>
+        <value>The prices for opening and closing services include a distance of 50 km or less from the nearest Trévi Superstore. An additional charge of $2.00 per kilometer will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Price_Summary_Msg</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price Summary Msg</shortDescription>
+        <value>IF YOU HAVE OMITTED TO SELECT ONE OF THE OPTIONS, PLEASE RETURN TO THE PREVIOUS SCREEN AND ANSWER THE QUESTIONS ADEQUATELY</value>
+    </labels>
+    <labels>
+        <fullName>Product_Description</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Description</shortDescription>
+        <value>Product description</value>
+    </labels>
+    <labels>
+        <fullName>Product_name</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product name</shortDescription>
+        <value>Product name</value>
+    </labels>
+    <labels>
+        <fullName>Products</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Products</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
+        <fullName>Purchase_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Purchase Date</shortDescription>
+        <value>Purchase Date</value>
+    </labels>
+    <labels>
+        <fullName>Quantity</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Requested_Services</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services</shortDescription>
+        <value>REQUESTED SERVICES: At the request of the customer and in consideration of the payment of the service charges. Trévi &quot;the Company&quot; undertakes to perform the services that will be selected.
+
+In the event that one or more additional services have not been selected or we do not have access to all equipment and materials the appointment will be handed over and the travelling expenses of $85 plus tax and the additional service charges will be payable before the next visit.
+
+Opening and closing service prices include a distance of 50 km or less from the nearest Trévi Super store. An additional charge of $2.00 per km will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Requested_Services_Title</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services Title</shortDescription>
+        <value>Requested Services</value>
+    </labels>
+    <labels>
+        <fullName>Sage_Order_Number</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sage Order Number</shortDescription>
+        <value>Sage Order Number</value>
+    </labels>
+    <labels>
+        <fullName>Select_Contract</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Contract</shortDescription>
+        <value>Please select the contract</value>
+    </labels>
+    <labels>
+        <fullName>Select_an_address</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select an address</shortDescription>
+        <value>Please select an address</value>
+    </labels>
+    <labels>
+        <fullName>Serial_Number</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Serial Number</shortDescription>
+        <value>Serial Number</value>
+    </labels>
+    <labels>
+        <fullName>State</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>State</shortDescription>
+        <value>State</value>
+    </labels>
+    <labels>
+        <fullName>Street</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Street</shortDescription>
+        <value>Street</value>
+    </labels>
+    <labels>
+        <fullName>Support_blocs</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support blocs</shortDescription>
+        <value>Would you like Trévi to bring the support blocks? (For 11&apos; spas, two support blocks are mandatory)
+
+Bloc supplied by Trévi for winterizing</value>
+    </labels>
+    <labels>
+        <fullName>Total_Price</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Price</shortDescription>
+        <value>Total Price</value>
+    </labels>
+    <labels>
+        <fullName>Total_amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total amount</shortDescription>
+        <value>Total amount</value>
+    </labels>
+    <labels>
+        <fullName>Total_amount_after_taxes</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total amount after taxes</shortDescription>
+        <value>Total amount after taxes</value>
+    </labels>
+    <labels>
+        <fullName>Travel_Expenses</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Travel Expenses</shortDescription>
+        <value>REQEUSTED SERVICES: At the request of the customer and in consideration of the payment of the service charges, Trévi &quot;the Company&quot; undertakes to perform the following services:
+
+In the event that one or more additional service have not been selected or we do not have access to all equipment and materials, the appointment will be handed over and the travelling expenses of $85 plus tax and the additional servcie charges will be payable before the next visit.
+
+Opening and closing service prices include a distance of 50 km or less from the nearest Trévi Super-store. An additonal charge of $2.00 per kilometer will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Week_Selection</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Week Selection</shortDescription>
+        <value>Select the earliest date on which you would like this service</value>
+    </labels>
+    <labels>
+        <fullName>Would_you_like_Tr_vi_to_deliver_the_salt_bags</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Would you like Trévi to deliver the salt bags</shortDescription>
+        <value>Would you like Trévi to deliver the salt bags?</value>
+    </labels>
+    <labels>
+        <fullName>blocked_account_text</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>blocked account text</shortDescription>
+        <value>Outstanding balance
+Unfortunately, we are unable to place a service call/contract service/in-store repair under your account at this time as there appears to be an outstanding balance.
+
+Please contact the service department to resolve the situation.
+
+Thank you</value>
+    </labels>
+    <labels>
+        <fullName>cant_find_asset</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>cant find asset</shortDescription>
+        <value>Can&apos;t find the product you&apos;re looking for?</value>
+    </labels>
+    <labels>
+        <fullName>check_checkbox_before_next</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>check checkbox before next</shortDescription>
+        <value>Please check the box before proceeding to the next step</value>
+    </labels>
+    <labels>
+        <fullName>finish_process_button</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>finish process button</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>have_contract_for_this_product</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>have contract for this product</shortDescription>
+        <value>You already have a contract for this product.</value>
+    </labels>
+    <labels>
+        <fullName>opening_closing_address_not_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>opening closing address not found</shortDescription>
+        <value>Address not found on this Account</value>
+    </labels>
+    <labels>
+        <fullName>opening_closing_please_confirm</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>opening closing please confirm</shortDescription>
+        <value>Please Confirm</value>
+    </labels>
+    <labels>
+        <fullName>please_select_a_value</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>please select a value</shortDescription>
+        <value>Please select a value</value>
+    </labels>
+    <labels>
+        <fullName>positive_value</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>positive value</shortDescription>
+        <value>Please enter a positive value</value>
+    </labels>
+    <labels>
+        <fullName>process_payment</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>process payment</shortDescription>
+        <value>You are about to process the payment for your order. Please click “Process Payment” to proceed</value>
+    </labels>
+    <labels>
+        <fullName>products_associated_with_your_aaccount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>products associated with your aaccount</shortDescription>
+        <value>Please find below the list of products associated with your account</value>
+    </labels>
+    <labels>
+        <fullName>winter_cover_possession</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>winter cover possession</shortDescription>
+        <value>Do you have a winter cover in your possession? It is mandatory for the closure</value>
+    </labels>
+</CustomLabels>
