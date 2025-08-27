@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Adjusted_Clauses</name>
         <label>Assign Adjusted Clauses</label>
@@ -87,7 +88,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Loop_Through_Extra_Products.Product2.null__NotFound</leftValueReference>
+                <leftValueReference>Loop_Through_Extra_Products.Product2.Has_clause__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -133,7 +134,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Loop_Through_Base_Products.Product2.null__NotFound</leftValueReference>
+                <leftValueReference>Loop_Through_Base_Products.Product2.Has_clause__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -236,7 +237,7 @@
             <targetReference>Loop_Through_Base_Products</targetReference>
         </connector>
     </start>
-    <status>InvalidDraft</status>
+    <status>Active</status>
     <textTemplates>
         <name>baseProductsClauses</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>

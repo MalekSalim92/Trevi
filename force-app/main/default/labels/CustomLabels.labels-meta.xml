@@ -358,4 +358,664 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <shortDescription>val mar year label</shortDescription>
         <value>Year</value>
     </labels>
+<<<<<<< HEAD
+=======
+    <labels>
+        <fullName>Amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
+        <fullName>Amount_for_three_years</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount for three years</shortDescription>
+        <value>Amount for 3 years</value>
+    </labels>
+    <labels>
+        <fullName>Amount_for_two_years</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount for two years</shortDescription>
+        <value>Amount for 2 years</value>
+    </labels>
+    <labels>
+        <fullName>Annual_Amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Annual Amount</shortDescription>
+        <value>Annual Amount</value>
+    </labels>
+    <labels>
+        <fullName>Asset_Confirmation</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset Confirmation</shortDescription>
+        <value>I Confirm that I do not own one of these pool models</value>
+    </labels>
+    <labels>
+        <fullName>Asset_Confirmation_Spa</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset Confirmation Spa</shortDescription>
+        <value>I confirm that I own a Dynasty or Lacus spa, or one sold directly by Trévi</value>
+    </labels>
+    <labels>
+        <fullName>Asset_Message_Spa</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Asset Message Spa</shortDescription>
+        <value>Trevi provides opening and closing services for Dynasty and Lacus Spas, as wll as spas sold directly by Trevi Super Stores.</value>
+    </labels>
+    <labels>
+        <fullName>Base_service_amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Base service amount</shortDescription>
+        <value>Base service amount</value>
+    </labels>
+    <labels>
+        <fullName>City</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>Closing_date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Closing date</shortDescription>
+        <value>Closing date</value>
+    </labels>
+    <labels>
+        <fullName>Contract_List</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contract List</shortDescription>
+        <value>Contracts List</value>
+    </labels>
+    <labels>
+        <fullName>Contract_Terms</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contract Terms</shortDescription>
+        <value>Contract Terms</value>
+    </labels>
+    <labels>
+        <fullName>Discount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Discount</shortDescription>
+        <value>Discount</value>
+    </labels>
+    <labels>
+        <fullName>Discount_Price</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Discount Price</shortDescription>
+        <value>Discount Price</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_Gaz_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a Gaz heater</shortDescription>
+        <value>Do you have a Gaz heater?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_Heat_pump</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a Heat pump</shortDescription>
+        <value>Do you have a Heat pump?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_Trevi_solar_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a Trevi solar heater</shortDescription>
+        <value>Do you have a Trevi solar heater?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_spillover_spa</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a spillover spa</shortDescription>
+        <value>Do you have a spillover spa?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_a_swim_jet_system</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have a swim jet system</shortDescription>
+        <value>Do you have a swim jet system?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_an_Electric_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have an Electric heater</shortDescription>
+        <value>Do you have an Electric heater?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_one_or_more_laminar_jets</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have one or more laminar jets</shortDescription>
+        <value>Do you have one or more laminar jets?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_one_or_more_water_blades_waterfalls</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have one or more water blades/waterfalls</shortDescription>
+        <value>Do you have one or more water blades/waterfalls?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_pool_heater</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have pool heater</shortDescription>
+        <value>Do you have a pool heater (heat pump, gas heater, electric heater, solar heater Trévi)?</value>
+    </labels>
+    <labels>
+        <fullName>Employee_number</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Employee number</shortDescription>
+        <value>Salesperson number</value>
+    </labels>
+    <labels>
+        <fullName>Employee_number_not_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Employee number not found</shortDescription>
+        <value>Please add your salesperson number</value>
+    </labels>
+    <labels>
+        <fullName>Extra_services_closing</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Extra services closing</shortDescription>
+        <value>Here are the options available in Extra when closing. Do you want Trévi to do the following service(s) :</value>
+    </labels>
+    <labels>
+        <fullName>Extra_services_opening</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Extra services opening</shortDescription>
+        <value>Here are the options available in Extra when opening. Do you want Trévi to do the following service(s) :</value>
+    </labels>
+    <labels>
+        <fullName>Extras_amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Extras amount</shortDescription>
+        <value>Extras amount</value>
+    </labels>
+    <labels>
+        <fullName>How_many_bags_of_salt2</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>How many bags of salt</shortDescription>
+        <value>How many bags of salt?</value>
+    </labels>
+    <labels>
+        <fullName>I_confirm_that_the_cover_is_less_than_8_years_old_I_understand_and_accept_the_c</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>I confirm that the cover is less than 8 years old. I understand and accept the c</shortDescription>
+        <value>I confirm that the cover is less than 8 years old. I understand and accept the condition.</value>
+    </labels>
+    <labels>
+        <fullName>I_will_have_in_on_hand_product</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>I will have in on hand product</shortDescription>
+        <value>I will have it on hand</value>
+    </labels>
+    <labels>
+        <fullName>Luxury_Opening_Service</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Luxury Opening Service</shortDescription>
+        <value>Trévi offers luxury opening service.
+The swimming pool has a cover aged 8 years or less.This option requires 2 additional visits at opening and includes: emptying the pool, washing the liner, step and crowning. The customer must fill the pool up to the first step at the bottom. The technician will return to collect his equipment. The pool must then be completely filled by the customer in order to proceed with the opening.
+Please note that an additional fee of $35/bag will be applied for bags of leaves/waste that will be removed from the pool.</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing</shortDescription>
+        <value>Opening Closing</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_contract_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No contract found</shortDescription>
+        <value>No contracts have been found. Please create a new product</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_products_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No products found</shortDescription>
+        <value>No products have been found. Please create a new product</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_products_found_in_Address</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No products found in Address</shortDescription>
+        <value>No products have been found for the selected address. Please create a new product</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Closing_No_products_found_in_Order</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Closing No products found in Order</shortDescription>
+        <value>No products have been found for the selected contract. Please select one of the following products:</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Date</shortDescription>
+        <value>Opening Date</value>
+    </labels>
+    <labels>
+        <fullName>Order_Contract_Type</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order_Contract_Type</shortDescription>
+        <value>Contract Type</value>
+    </labels>
+    <labels>
+        <fullName>Order_End_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order End Date</shortDescription>
+        <value>Order End Date</value>
+    </labels>
+    <labels>
+        <fullName>Order_Name</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Name</shortDescription>
+        <value>Order Name</value>
+    </labels>
+    <labels>
+        <fullName>Order_Start_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Start Date</shortDescription>
+        <value>Order Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Options</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Options</shortDescription>
+        <value>Payment Options</value>
+    </labels>
+    <labels>
+        <fullName>Polywood_8x11</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Polywood 8x11</shortDescription>
+        <value>Would you like Trévi to bring the plywood? (only for 8&apos;X11&apos; spas)</value>
+    </labels>
+    <labels>
+        <fullName>Postal_Code</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>Price</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>Price_Summary_Distance_fees</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price Summary Distance fees</shortDescription>
+        <value>The prices for opening and closing services include a distance of 50 km or less from the nearest Trévi Superstore. An additional charge of $2.00 per kilometer will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Price_Summary_Msg</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price Summary Msg</shortDescription>
+        <value>IF YOU HAVE OMITTED TO SELECT ONE OF THE OPTIONS, PLEASE RETURN TO THE PREVIOUS SCREEN AND ANSWER THE QUESTIONS ADEQUATELY</value>
+    </labels>
+    <labels>
+        <fullName>Product_Description</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Description</shortDescription>
+        <value>Product description</value>
+    </labels>
+    <labels>
+        <fullName>Product_name</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product name</shortDescription>
+        <value>Product name</value>
+    </labels>
+    <labels>
+        <fullName>Products</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Products</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
+        <fullName>Purchase_Date</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Purchase Date</shortDescription>
+        <value>Purchase Date</value>
+    </labels>
+    <labels>
+        <fullName>Quantity</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Requested_Services</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services</shortDescription>
+        <value>REQUESTED SERVICES: At the request of the customer and in consideration of the payment of the service charges. Trévi &quot;the Company&quot; undertakes to perform the services that will be selected.
+
+In the event that one or more additional services have not been selected or we do not have access to all equipment and materials the appointment will be handed over and the travelling expenses of $85 plus tax and the additional service charges will be payable before the next visit.
+
+Opening and closing service prices include a distance of 50 km or less from the nearest Trévi Super store. An additional charge of $2.00 per km will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Requested_Services_Title</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Requested Services Title</shortDescription>
+        <value>Requested Services</value>
+    </labels>
+    <labels>
+        <fullName>Sage_Order_Number</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sage Order Number</shortDescription>
+        <value>Sage Order Number</value>
+    </labels>
+    <labels>
+        <fullName>Select_Contract</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Contract</shortDescription>
+        <value>Please select the contract</value>
+    </labels>
+    <labels>
+        <fullName>Select_an_address</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select an address</shortDescription>
+        <value>Please select an address</value>
+    </labels>
+    <labels>
+        <fullName>Serial_Number</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Serial Number</shortDescription>
+        <value>Serial Number</value>
+    </labels>
+    <labels>
+        <fullName>State</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>State</shortDescription>
+        <value>State</value>
+    </labels>
+    <labels>
+        <fullName>Street</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Street</shortDescription>
+        <value>Street</value>
+    </labels>
+    <labels>
+        <fullName>Support_blocs</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Support blocs</shortDescription>
+        <value>Would you like Trévi to bring the support blocks? (For 11&apos; spas, two support blocks are mandatory)
+
+Bloc supplied by Trévi for winterizing</value>
+    </labels>
+    <labels>
+        <fullName>Total_Price</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Price</shortDescription>
+        <value>Total Price</value>
+    </labels>
+    <labels>
+        <fullName>Total_amount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total amount</shortDescription>
+        <value>Total amount</value>
+    </labels>
+    <labels>
+        <fullName>Total_amount_after_taxes</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total amount after taxes</shortDescription>
+        <value>Total amount after taxes</value>
+    </labels>
+    <labels>
+        <fullName>Travel_Expenses</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Travel Expenses</shortDescription>
+        <value>REQEUSTED SERVICES: At the request of the customer and in consideration of the payment of the service charges, Trévi &quot;the Company&quot; undertakes to perform the following services:
+
+In the event that one or more additional service have not been selected or we do not have access to all equipment and materials, the appointment will be handed over and the travelling expenses of $85 plus tax and the additional servcie charges will be payable before the next visit.
+
+Opening and closing service prices include a distance of 50 km or less from the nearest Trévi Super-store. An additonal charge of $2.00 per kilometer will automatically be added to your invoice.</value>
+    </labels>
+    <labels>
+        <fullName>Week_Selection</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Week Selection</shortDescription>
+        <value>Select the earliest date on which you would like this service</value>
+    </labels>
+    <labels>
+        <fullName>Would_you_like_Tr_vi_to_deliver_the_salt_bags</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Would you like Trévi to deliver the salt bags</shortDescription>
+        <value>Would you like Trévi to deliver the salt bags?</value>
+    </labels>
+    <labels>
+        <fullName>blocked_account_text</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>blocked account text</shortDescription>
+        <value>Outstanding balance
+Unfortunately, we are unable to place a service call/contract service/in-store repair under your account at this time as there appears to be an outstanding balance.
+
+Please contact the service department to resolve the situation.
+
+Thank you</value>
+    </labels>
+    <labels>
+        <fullName>cant_find_asset</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>cant find asset</shortDescription>
+        <value>Can&apos;t find the product you&apos;re looking for?</value>
+    </labels>
+    <labels>
+        <fullName>check_checkbox_before_next</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>check checkbox before next</shortDescription>
+        <value>Please check the box before proceeding to the next step</value>
+    </labels>
+    <labels>
+        <fullName>finish_process_button</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>finish process button</shortDescription>
+        <value>Done</value>
+    </labels>
+    <labels>
+        <fullName>have_contract_for_this_product</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>have contract for this product</shortDescription>
+        <value>You already have a contract for this product.</value>
+    </labels>
+    <labels>
+        <fullName>opening_closing_address_not_found</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>opening closing address not found</shortDescription>
+        <value>Address not found on this Account</value>
+    </labels>
+    <labels>
+        <fullName>opening_closing_please_confirm</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>opening closing please confirm</shortDescription>
+        <value>Please Confirm</value>
+    </labels>
+    <labels>
+        <fullName>please_select_a_value</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>please select a value</shortDescription>
+        <value>Please select a value</value>
+    </labels>
+    <labels>
+        <fullName>positive_value</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>positive value</shortDescription>
+        <value>Please enter a positive value</value>
+    </labels>
+    <labels>
+        <fullName>process_payment</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>process payment</shortDescription>
+        <value>You are about to process the payment for your order. Please click “Process Payment” to proceed</value>
+    </labels>
+    <labels>
+        <fullName>products_associated_with_your_aaccount</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>products associated with your aaccount</shortDescription>
+        <value>Please find below the list of products associated with your account</value>
+    </labels>
+    <labels>
+        <fullName>winter_cover_possession</fullName>
+        <categories>Opening Closing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>winter cover possession</shortDescription>
+        <value>Do you have a winter cover in your possession? It is mandatory for the closure</value>
+    </labels>
+>>>>>>> Opening/Closing
 </CustomLabels>

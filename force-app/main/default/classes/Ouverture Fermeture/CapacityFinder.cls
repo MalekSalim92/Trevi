@@ -130,7 +130,8 @@ global class CapacityFinder {
             AND Region__c =: capRegion                                                              
             AND Week_Start__c >=: Date.valueOf(requests[0].weekEnd)                                                              
             AND Week_End__c >=: Date.valueOf(requests[0].weekEnd)                                                             
-            AND Capacity_Remaining__c > 0                                                              
+            AND Capacity_Remaining__c > 0  
+			AND Week_Start__c > TODAY
             AND CALENDAR_YEAR(Week_End__c) =: requests[0].weekEnd.year()                                                            
             ORDER BY Week_Start__c ASC LIMIT 3
         ]);    
@@ -332,3 +333,257 @@ global class CapacityFinder {
     }
 }
      
+    
+    // @TestVisible
+    // public static WorkType getWorkType2(set<string> productSageIdSet){
+    //     //Get WorkTypes from WorkType
+    //             System.debug('productSageIdSet **** ' + productSageIdSet);
+
+    //     Map<String, WorkType> workTypeMap = new Map<String, WorkType>();
+    //     for(WorkType workTyp : [Select Id, Name, Capacity_Type__c from WorkType where Capacity_Type__c != NULL]){
+    //         workTypeMap.put(workTyp.Name.toLowerCase(), workTyp);
+    //     }
+    //                     System.debug('workTypeMap **** ' + workTypeMap);
+
+
+    //     //Ouverture SC toile avec marche Sel, Sable => 77548 AND 92327 AND 85842 AND 77498 AND 77554 OR 77555
+    //     if(workTypeMap.containsKey(('Ouverture SC toile avec marche Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('92327') && productSageIdSet.contains('85842') && productSageIdSet.contains('77498') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC toile avec marche Sel, Sable').toLowerCase());//'Ouverture SC toile avec marche Sel, Sable';
+    //     //Ouverture HT Marche, Toile, Sel, Sable => 77202 AND 92327 AND 85842 AND 77498 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture HT Marche, Toile, Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('92327') && productSageIdSet.contains('85842') && productSageIdSet.contains('77498') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT Marche, Toile, Sel, Sable').toLowerCase());//'Ouverture HT Marche, Toile, Sel, Sable';
+    //     //Ouverture CR avec toile Sel, Sable => 77204 AND 92327 AND 85842 AND 77467 OR 77477
+    //     else if(workTypeMap.containsKey(('Ouverture CR avec toile Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77204') && productSageIdSet.contains('92327') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77467') || productSageIdSet.contains('77477'))))
+    //         return workTypeMap.get(('Ouverture CR avec toile Sel, Sable').toLowerCase());//'Ouverture CR avec toile Sel, Sable';
+    //     //Ouverture HT avec toile Sel, Sable    =>  77202 AND 92327 AND 85842 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture HT avec toile Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('92327') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT avec toile Sel, Sable').toLowerCase());//'Ouverture HT avec toile Sel, Sable';
+    //     //Ouverture HT Marche, Toile, Sable =>  77202 AND 85842 AND 77498 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture HT Marche, Toile, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('77498') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT Marche, Toile, Sable').toLowerCase());//'Ouverture HT Marche, Toile, Sable';
+    //     //Ouverture HT toile avec marche Sel    =>  77202 AND 92327 AND 77498 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture HT toile avec marche Sel').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('77498') && productSageIdSet.contains('92327') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT toile avec marche Sel').toLowerCase());//'Ouverture HT toile avec marche Sel';
+    //     //Ouverture SC avec toile Sel, Sable    =>  77548 AND 92327 AND  85842 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec toile Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('85842') && productSageIdSet.contains('92327') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC avec toile Sel, Sable').toLowerCase());//'Ouverture SC avec toile Sel, Sable';
+    //     //Ouverture SC toile avec marche Sel    =>  77548 AND 92327 AND 77498 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture SC toile avec marche Sel').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('77498') && productSageIdSet.contains('92327') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC toile avec marche Sel').toLowerCase());//'Ouverture SC toile avec marche Sel';
+    //     //Ouverture SC toile avec marche, Sable =>  77548 AND  85842 AND 77498 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture SC toile avec marche, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('77498') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC toile avec marche, Sable').toLowerCase());//'Ouverture SC toile avec marche, Sable';
+    //     //Ouverture CR avec toile Sel   =>  77204 AND 92327 AND 77467 OR 77477
+    //     else if(workTypeMap.containsKey(('Ouverture CR avec toile Sel').toLowerCase()) && (productSageIdSet.contains('77204') && productSageIdSet.contains('92327') && (productSageIdSet.contains('77467') || productSageIdSet.contains('77477'))))
+    //         return workTypeMap.get(('Ouverture CR avec toile Sel').toLowerCase());//'Ouverture CR avec toile Sel';
+    //     //Ouverture CR avec toile, Sable    =>  77204 AND 85842 AND 77467 OR 77477
+    //     else if(workTypeMap.containsKey(('Ouverture CR avec toile, Sable').toLowerCase()) && (productSageIdSet.contains('77204') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77467') || productSageIdSet.contains('77477'))))
+    //         return workTypeMap.get(('Ouverture CR avec toile, Sable').toLowerCase());//'Ouverture CR avec toile, Sable';
+    //     //Ouverture CR Deluxe Sel, Sable    =>  77532 OR 77500 AND 92327 AND 85842
+    //     else if(workTypeMap.containsKey(('Ouverture CR Deluxe Sel, Sable').toLowerCase()) && (productSageIdSet.contains('92327') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77532') || productSageIdSet.contains('77500'))))
+    //         return workTypeMap.get(('Ouverture CR Deluxe Sel, Sable').toLowerCase());//'Ouverture CR Deluxe Sel, Sable';
+    //     //Ouverture HT avec toile Sel   =>  77202 AND 92327 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture HT avec toile Sel').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('92327') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT avec toile Sel').toLowerCase());//'Ouverture HT avec toile Sel';
+    //     //Ouverture HT avec toile, Sable    =>  77202 AND 85842 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture HT avec toile, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT avec toile, Sable').toLowerCase());//'Ouverture HT avec toile, Sable';
+    //     //Ouverture HT Marche, Sel, Sable   =>  77202 AND 92937 AND 85842 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture HT Marche, Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('92937') && productSageIdSet.contains('85842') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture HT Marche, Sel, Sable').toLowerCase());//'Ouverture HT Marche, Sel, Sable';
+    //     //Ouverture HT toile avec marche    =>  77202 AND 77554 OR 77555 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture HT toile avec marche').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('77498') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT toile avec marche').toLowerCase());//'Ouverture HT toile avec marche';
+    //     //Ouverture SC avec marche Sel, Sable   =>  77548 AND 92327 AND 85842 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec marche Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('92327') && productSageIdSet.contains('85842') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture SC avec marche Sel, Sable').toLowerCase());//'Ouverture SC avec marche Sel, Sable';
+    //     //Ouverture SC avec toile Sel   =>  77548 AND 92327 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec toile Sel').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('92327') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC avec toile Sel').toLowerCase());//'Ouverture SC avec toile Sel';
+    //     //Ouverture SC avec toile, Sable    =>  77548 AND  85842 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec toile, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('85842') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC avec toile, Sable').toLowerCase());//'Ouverture SC avec toile, Sable';
+    //     //Ouverture SC toile avec marche    =>  77548 AND 77554 OR 77555 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture SC toile avec marche').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('77498') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC toile avec marche').toLowerCase());//'Ouverture SC toile avec marche';
+    //     //Fermeture HT avec toile filet marche  =>  77203 AND 77553 AND 77556 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture HT avec toile filet marche').toLowerCase()) && (productSageIdSet.contains('77203') && productSageIdSet.contains('77438') && productSageIdSet.contains('77553') && productSageIdSet.contains('77556')))
+    //         return workTypeMap.get(('Fermeture HT avec toile filet marche').toLowerCase());//'Fermeture HT avec toile filet marche';
+    //     //Fermeture HT avec toile et marche =>  77203 AND 77553 OR 77556 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture HT avec toile et marche').toLowerCase()) && (productSageIdSet.contains('77203') && productSageIdSet.contains('77438') && (productSageIdSet.contains('77553') || productSageIdSet.contains('77556'))))
+    //         return workTypeMap.get(('Fermeture HT avec toile et marche').toLowerCase());//'Fermeture HT avec toile et marche';
+    //     //Fermeture SC avec toile et marche =>  77539 AND 77551 OR 77553 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture SC avec toile et marche').toLowerCase()) && (productSageIdSet.contains('77539') && productSageIdSet.contains('77438') && (productSageIdSet.contains('77551') || productSageIdSet.contains('77553'))))
+    //         return workTypeMap.get(('Fermeture SC avec toile et marche').toLowerCase());//'Fermeture SC avec toile et marche';
+    //     //Fermeture SC avec toile filet et marche   =>  77539 AND 77551 AND 77553 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture SC avec toile filet et marche').toLowerCase()) && (productSageIdSet.contains('77539') && productSageIdSet.contains('77438') && productSageIdSet.contains('77551') && productSageIdSet.contains('77553')))
+    //         return workTypeMap.get(('Fermeture SC avec toile filet et marche').toLowerCase());//'Fermeture SC avec toile filet et marche';
+    //     //Fermeture CR avec toile et marche 77289 AND 77370 OR 77385 AND 77438
+    //     //Fermeture CR avec toile, filet et marche  77289 AND 77370 OR 77385 AND 77438
+    //     //Fermeture de CR avec toile et marche  77289 AND 77370 OR 77385 AND 77438 //TODO
+    //     else if(workTypeMap.containsKey(('Fermeture CR avec toile et marche').toLowerCase()) && (productSageIdSet.contains('77289') && productSageIdSet.contains('77438') && (productSageIdSet.contains('77370') || productSageIdSet.contains('77385'))))
+    //         return workTypeMap.get(('Fermeture CR avec toile et marche').toLowerCase());//'Fermeture CR avec toile et marche';
+    //     //Ouverture CR avec toile   =>  77204 AND 77467 OR 77477
+    //     else if(workTypeMap.containsKey(('Ouverture CR avec toile').toLowerCase()) && (productSageIdSet.contains('77204') && (productSageIdSet.contains('77467') || productSageIdSet.contains('77477'))))
+    //         return workTypeMap.get(('Ouverture CR avec toile').toLowerCase());//'Ouverture CR avec toile';
+    //     //Ouverture CR Deluxe Sel   =>  77532 OR 77500 AND 92327
+    //     else if(workTypeMap.containsKey(('Ouverture CR Deluxe Sel').toLowerCase()) && (productSageIdSet.contains('92327') && (productSageIdSet.contains('77532') || productSageIdSet.contains('77500'))))
+    //         return workTypeMap.get(('Ouverture CR Deluxe Sel').toLowerCase());//'Ouverture CR Deluxe Sel';
+    //     //Ouverture CR Deluxe, Sable    =>  77532 OR 77500 AND 85842
+    //     else if(workTypeMap.containsKey(('Ouverture CR Deluxe, Sable').toLowerCase()) && (productSageIdSet.contains('85842') && (productSageIdSet.contains('77532') || productSageIdSet.contains('77500'))))
+    //         return workTypeMap.get(('Ouverture CR Deluxe, Sable').toLowerCase());//'Ouverture CR Deluxe, Sable';
+    //     //Ouverture CR Sel, Sable   =>  77204 AND 92327 AND 85842
+    //     else if(workTypeMap.containsKey(('Ouverture CR Sel, Sable').toLowerCase()) && (productSageIdSet.contains('85842') && productSageIdSet.contains('77204') && productSageIdSet.contains('92327')))
+    //         return workTypeMap.get(('Ouverture CR Sel, Sable').toLowerCase());//'Ouverture CR Sel, Sable';
+    //     //Ouverture HT avec toile   =>  77202 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture HT avec toile').toLowerCase()) && (productSageIdSet.contains('77202') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture HT avec toile').toLowerCase());//'Ouverture HT avec toile';
+    //     //Ouverture HT marche Sel   =>  77202 AND 92327 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture HT marche Sel').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('92327') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture HT marche Sel').toLowerCase());//'Ouverture HT marche Sel';
+    //     //Ouverture HT marche, Sable    =>  77202 AND 85842 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture HT marche, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('85842') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture HT marche, Sable').toLowerCase());//'Ouverture HT marche, Sable';
+    //     //Ouverture HT Sel, Sable   =>  77202 AND 92327 AND 85842
+    //     else if(workTypeMap.containsKey(('Ouverture HT Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('92327') && productSageIdSet.contains('85842')))
+    //         return workTypeMap.get(('Ouverture HT Sel, Sable').toLowerCase());//'Ouverture HT Sel, Sable';
+    //     //Ouverture SC avec marche Sel  =>  77548 AND 92327 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec marche Sel').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('92327') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture SC avec marche Sel').toLowerCase());//'Ouverture SC avec marche Sel';
+    //     //Ouverture SC avec marche, Sable   =>  77548 AND  85842 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec marche, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('85842') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture SC avec marche, Sable').toLowerCase());//'Ouverture SC avec marche, Sable';
+    //     //Ouverture SC avec toile   =>  77548 AND 77554 OR 77555
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec toile').toLowerCase()) && (productSageIdSet.contains('77548') && (productSageIdSet.contains('77554') || productSageIdSet.contains('77555'))))
+    //         return workTypeMap.get(('Ouverture SC avec toile').toLowerCase());//'Ouverture SC avec toile';
+    //     //Ouverture SC Sel, Sable   =>  77548 AND 92327 AND  85842 
+    //     else if(workTypeMap.containsKey(('Ouverture SC Sel, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('92327') && productSageIdSet.contains('85842')))
+    //         return workTypeMap.get(('Ouverture SC Sel, Sable').toLowerCase());//'Ouverture SC Sel, Sable';
+    //     //Fermeture CR avec Sécurapool et marche    =>  77289 OR 77398 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture CR avec Sécurapool et marche').toLowerCase()) && (productSageIdSet.contains('77438') && (productSageIdSet.contains('77289') || productSageIdSet.contains('77398'))))
+    //         return workTypeMap.get(('Fermeture CR avec Sécurapool et marche').toLowerCase());//'Fermeture CR avec Sécurapool et marche';
+    //     //Fermeture CR avec toile et filet  =>  77289 AND 77370 AND 77385
+    //     else if(workTypeMap.containsKey(('Fermeture CR avec toile et filet').toLowerCase()) && (productSageIdSet.contains('77289') && productSageIdSet.contains('77370') && productSageIdSet.contains('77385')))
+    //         return workTypeMap.get(('Fermeture CR avec toile et filet').toLowerCase());//'Fermeture CR avec toile et filet';
+    //     //Fermeture CR spa déversoir avec marche    =>  77289 AND 77438 AND 77359
+    //     else if(workTypeMap.containsKey(('Fermeture CR spa déversoir avec marche').toLowerCase()) && (productSageIdSet.contains('77289') && productSageIdSet.contains('77438') && productSageIdSet.contains('77359')))
+    //         return workTypeMap.get(('Fermeture CR spa déversoir avec marche').toLowerCase());//'Fermeture CR spa déversoir avec marche';
+    //     //Fermeture HT avec filet et marche =>  77203 AND 77556 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture HT avec filet et marche').toLowerCase()) && (productSageIdSet.contains('77203') && productSageIdSet.contains('77556') && productSageIdSet.contains('77438')))
+    //         return workTypeMap.get(('Fermeture HT avec filet et marche').toLowerCase());//'Fermeture HT avec filet et marche';
+    //     //Fermeture HT avec toile et filet  =>  77203 AND 77553 AND 77556
+    //     else if(workTypeMap.containsKey(('Fermeture HT avec toile et filet').toLowerCase()) && (productSageIdSet.contains('77203') && productSageIdSet.contains('77553') && productSageIdSet.contains('77556')))
+    //         return workTypeMap.get(('Fermeture HT avec toile et filet').toLowerCase());//'Fermeture HT avec toile et filet';
+    //     //Fermeture HT toile    =>  77203 AND 77553 OR 77556
+    //     else if(workTypeMap.containsKey(('Fermeture HT toile').toLowerCase()) && (productSageIdSet.contains('77203') && (productSageIdSet.contains('77553') || productSageIdSet.contains('77556'))))
+    //         return workTypeMap.get(('Fermeture HT toile').toLowerCase());//'Fermeture HT toile';
+    //     //Fermeture SC avec toile et filet  =>  77539 AND 77551 AND 77553
+    //     else if(workTypeMap.containsKey(('Fermeture SC avec toile et filet').toLowerCase()) && (productSageIdSet.contains('77539') && productSageIdSet.contains('77551') && productSageIdSet.contains('77553')))
+    //         return workTypeMap.get(('Fermeture SC avec toile et filet').toLowerCase());//'Fermeture SC avec toile et filet';
+    //     //Fermeture SC avec toile   =>  77539 AND 77551 OR 77553
+    //     else if(workTypeMap.containsKey(('Fermeture SC avec toile').toLowerCase()) && (productSageIdSet.contains('77539') && (productSageIdSet.contains('77551') || productSageIdSet.contains('77553'))))
+    //         return workTypeMap.get(('Fermeture SC avec toile').toLowerCase());//'Fermeture SC avec toile';
+    //     //Fermeture SC filet et marche  =>  77539 AND 77551 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture SC filet et marche').toLowerCase()) && (productSageIdSet.contains('77539') && productSageIdSet.contains('77551') && productSageIdSet.contains('77438')))
+    //         return workTypeMap.get(('Fermeture SC filet et marche').toLowerCase());//'Fermeture SC filet et marche';
+    //     //Fermeture CR avec toile   =>  77289 AND 77370 OR 77385
+    //     //Fermeture de CR avec toile    =>  77289 AND 77370 OR 77385 //TODO
+    //     else if(workTypeMap.containsKey(('Fermeture CR avec toile').toLowerCase()) && (productSageIdSet.contains('77289') && (productSageIdSet.contains('77370') || productSageIdSet.contains('77385'))))
+    //         return workTypeMap.get(('Fermeture CR avec toile').toLowerCase());//'Fermeture CR avec toile';//Fermeture de CR avec toile
+    //     //Ouverture CR Sable    =>  77204 AND 85842
+    //     else if(workTypeMap.containsKey(('Ouverture CR Sable').toLowerCase()) && (productSageIdSet.contains('77204') && productSageIdSet.contains('85842')))
+    //         return workTypeMap.get(('Ouverture CR Sable').toLowerCase());//'Ouverture CR Sable';
+    //     //Ouverture CR Sel  =>  77204 AND 92327
+    //     else if(workTypeMap.containsKey(('Ouverture CR Sel').toLowerCase()) && (productSageIdSet.contains('77204') && productSageIdSet.contains('92327')))
+    //         return workTypeMap.get(('Ouverture CR Sel').toLowerCase());//'Ouverture CR Sel';
+    //     //Ouverture HT marche   =>  77202 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture HT marche').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture HT marche').toLowerCase());//'Ouverture HT marche';
+    //     //Ouverture HT Sel  =>  77202 AND 92327
+    //     else if(workTypeMap.containsKey(('Ouverture HT Sel').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('92327')))
+    //         return workTypeMap.get(('Ouverture HT Sel').toLowerCase());//'Ouverture HT Sel';
+    //     //Ouverture HT, Sable   =>  77202 AND 85842
+    //     else if(workTypeMap.containsKey(('Ouverture HT, Sable').toLowerCase()) && (productSageIdSet.contains('77202') && productSageIdSet.contains('85842')))
+    //         return workTypeMap.get(('Ouverture HT, Sable').toLowerCase());//'Ouverture HT, Sable';
+    //     //Ouverture SC avec marche  =>  77548 AND 77498
+    //     else if(workTypeMap.containsKey(('Ouverture SC avec marche').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('77498')))
+    //         return workTypeMap.get(('Ouverture SC avec marche').toLowerCase());//'Ouverture SC avec marche';
+    //     //Ouverture SC Sel  =>  77548 AND 92327
+    //     else if(workTypeMap.containsKey(('Ouverture SC Sel').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('92327')))
+    //         return workTypeMap.get(('Ouverture SC Sel').toLowerCase());//'Ouverture SC Sel';
+    //     //Ouverture SC, Sable   =>  77548 AND  85842
+    //     else if(workTypeMap.containsKey(('Ouverture SC, Sable').toLowerCase()) && (productSageIdSet.contains('77548') && productSageIdSet.contains('85842')))
+    //         return workTypeMap.get(('Ouverture SC, Sable').toLowerCase());//'Ouverture SC, Sable';
+    //     //Fermeture CR avec filet   =>  77289 AND 77370
+    //     //Fermeture CR avec filet et marche =>  77289 AND 77370 //TODO
+    //     else if(workTypeMap.containsKey(('Fermeture CR avec filet').toLowerCase()) && (productSageIdSet.contains('77289') && productSageIdSet.contains('77370')))
+    //         return workTypeMap.get(('Fermeture CR avec filet').toLowerCase());//'Fermeture CR avec filet';
+    //     //Fermeture CR avec marche  =>  77289 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture CR avec marche').toLowerCase()) && (productSageIdSet.contains('77289') && productSageIdSet.contains('77438')))
+    //         return workTypeMap.get(('Fermeture CR avec marche').toLowerCase());//'Fermeture CR avec marche';
+    //     //Fermeture CR spa déversoir    =>  77289 AND 77359
+    //     else if(workTypeMap.containsKey(('Fermeture CR spa déversoir').toLowerCase()) && (productSageIdSet.contains('77289') && productSageIdSet.contains('77359')))
+    //         return workTypeMap.get(('Fermeture CR spa déversoir').toLowerCase());//'Fermeture CR spa déversoir';
+    //     //Fermeture HT filet    =>  77203 AND 77556
+    //     else if(workTypeMap.containsKey(('Fermeture HT filet').toLowerCase()) && (productSageIdSet.contains('77203') && productSageIdSet.contains('77556')))
+    //         return workTypeMap.get(('Fermeture HT filet').toLowerCase());//'Fermeture HT filet';
+    //     //Fermeture HT marche   =>  77203 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture HT marche').toLowerCase()) && (productSageIdSet.contains('77203') && productSageIdSet.contains('77438')))
+    //         return workTypeMap.get(('Fermeture HT marche').toLowerCase());//'Fermeture HT marche';
+    //     //Fermeture SC avec filet   =>  77539 AND 77551
+    //     else if(workTypeMap.containsKey(('Fermeture SC avec filet').toLowerCase()) && (productSageIdSet.contains('77539') && productSageIdSet.contains('77551')))
+    //         return workTypeMap.get(('Fermeture SC avec filet').toLowerCase());//'Fermeture SC avec filet';
+    //     //Fermeture SC marche   =>  77539 AND 77438
+    //     else if(workTypeMap.containsKey(('Fermeture SC marche').toLowerCase()) && (productSageIdSet.contains('77539') && productSageIdSet.contains('77438')))
+    //         return workTypeMap.get(('Fermeture SC marche').toLowerCase());//'Fermeture SC marche';
+    //     //Ouverture CR Deluxe   =>  77532 OR 77500
+    //     else if(workTypeMap.containsKey(('Ouverture CR Deluxe').toLowerCase()) && (productSageIdSet.contains('77532') || productSageIdSet.contains('77500')))
+    //         return workTypeMap.get(('Ouverture CR Deluxe').toLowerCase());//'Ouverture CR Deluxe';
+    //     //Fermeture CR avec Sécurapool  =>  77289 OR 77398
+    //     else if(workTypeMap.containsKey(('Fermeture CR avec Sécurapool').toLowerCase()) && (productSageIdSet.contains('77289') || productSageIdSet.contains('77398')))
+    //         return workTypeMap.get(('Fermeture CR avec Sécurapool').toLowerCase());//'Fermeture CR avec Sécurapool';
+    //     //Vider laver CR 32' et plus    =>  77532
+    //     else if(workTypeMap.containsKey(('Vider laver CR 32\' et plus').toLowerCase()) && (productSageIdSet.contains('77532')))
+    //         return workTypeMap.get(('Vider laver CR 32\' et plus').toLowerCase());//'Vider laver CR 32\' et plus';
+    //     //Vider laver CR moins de 32'   =>  77500
+    //     else if(workTypeMap.containsKey(('Vider laver CR moins de 32\'').toLowerCase()) && (productSageIdSet.contains('77500')))
+    //         return workTypeMap.get(('Vider laver CR moins de 32\'').toLowerCase());//'Vider laver CR moins de 32\'';
+    //     //Ouverture CR  =>  77204
+    //     else if(workTypeMap.containsKey(('Ouverture CR').toLowerCase()) && (productSageIdSet.contains('77204')))
+    //         return workTypeMap.get(('Ouverture CR').toLowerCase());//'Ouverture CR';
+    //     //Ouverture HT  =>  77202
+    //     else if(workTypeMap.containsKey(('Ouverture HT').toLowerCase()) && (productSageIdSet.contains('77202')))
+    //         return workTypeMap.get(('Ouverture HT').toLowerCase());//'Ouverture HT';
+    //     //Ouverture SC  =>  77548
+    //     else if(workTypeMap.containsKey(('Ouverture SC').toLowerCase()) && (productSageIdSet.contains('77548')))
+    //         return workTypeMap.get(('Ouverture SC').toLowerCase());//'Ouverture SC';
+    //     //Ouverture SPA nature  =>  77567
+    //     else if(workTypeMap.containsKey(('Ouverture SPA nature').toLowerCase()) && (productSageIdSet.contains('77567')))
+    //         return workTypeMap.get(('Ouverture SPA nature').toLowerCase());//'Ouverture SPA nature';
+    //     //Ouverture Val-Mar =>  35539
+    //     else if(workTypeMap.containsKey(('Ouverture Val-Mar').toLowerCase()) && (productSageIdSet.contains('35539')))
+    //         return workTypeMap.get(('Ouverture Val-Mar').toLowerCase());//'Ouverture Val-Mar';
+    //     //Fermeture CR  =>  77289
+    //     //Fermeture CR neuve    =>  77289   //TODO
+    //     else if(workTypeMap.containsKey(('Fermeture CR').toLowerCase()) && (productSageIdSet.contains('77289')))
+    //         return workTypeMap.get(('Fermeture CR').toLowerCase());//'Fermeture CR';
+    //     //Fermeture HT  =>  77203
+    //     else if(workTypeMap.containsKey(('Fermeture HT').toLowerCase()) && (productSageIdSet.contains('77203')))
+    //         return workTypeMap.get(('Fermeture HT').toLowerCase());//'Fermeture HT';
+    //     //Fermeture SC  =>  77539
+    //     else if(workTypeMap.containsKey(('Fermeture SC').toLowerCase()) && (productSageIdSet.contains('77539')))
+    //         return workTypeMap.get(('Fermeture SC').toLowerCase());//'Fermeture SC';
+    //     //Fermeture SPA nature  =>  77564
+    //     else if(workTypeMap.containsKey(('Fermeture SPA nature').toLowerCase()) && (productSageIdSet.contains('77539')))
+    //         return workTypeMap.get(('Fermeture SPA nature').toLowerCase());//'Fermeture SPA nature';
+    //     //Fermeture Spa =>  77207
+    //     else if(workTypeMap.containsKey(('Fermeture Spa').toLowerCase()) && (productSageIdSet.contains('77207')))
+    //         return workTypeMap.get(('Fermeture Spa').toLowerCase());//'Fermeture Spa';
+    //     //Ouverture Spa =>  77206
+    //     else if(workTypeMap.containsKey(('Ouverture Spa').toLowerCase()) && (productSageIdSet.contains('77206')))
+    //         return workTypeMap.get(('Ouverture Spa').toLowerCase());//'Ouverture Spa';
+    //     //Ouverture Spa nage    =>  77560
+    //     else if(workTypeMap.containsKey(('Ouverture Spa nage').toLowerCase()) && (productSageIdSet.contains('77560')))
+    //         return workTypeMap.get(('Ouverture Spa nage').toLowerCase());//'Ouverture Spa nage';
+    //     return null;
+    // }

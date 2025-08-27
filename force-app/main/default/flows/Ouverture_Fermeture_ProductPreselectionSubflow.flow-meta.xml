@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Pbes</name>
         <label>Assign Pbes</label>
@@ -583,7 +584,7 @@
             <targetReference>Get_Order_Products</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <transforms>
         <name>Product_Ids</name>
         <label>Product Ids</label>

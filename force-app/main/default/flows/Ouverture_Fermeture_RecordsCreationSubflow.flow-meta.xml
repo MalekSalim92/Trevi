@@ -26,6 +26,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_final_updated_order_item</name>
         <label>Add final updated order item</label>
@@ -356,10 +357,17 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>Order_Instance.null__NotFound</assignToReference>
+            <assignToReference>Order_Instance.Service_Type__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Selected_Contract</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Order_Instance.Asset__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Create_Asset</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -473,11 +481,29 @@ if address is Quebec &quot;Quebec Region&quot; if address is in Montreal or gati
         <name>Service_Date_on_OrderProduct</name>
         <dataType>Date</dataType>
         <expression>IF({!Loop_OrderItems.Ship_Track__c} = &apos;Opening&apos;,
-    IF({!Loop_to_create_Multiple_OrderItems}=2, 
-        {!Selected_Open_Capacity_Date} + 364, 
-        IF({!Loop_to_create_Multiple_OrderItems}=3, 
-            {!Selected_Open_Capacity_Date} + 728,  
-            {!Selected_Open_Capacity_Date} + (364 * {!OrderLoopCount}) 
+    IF({!luxurySelected}, 
+        IF(TEXT({!Loop_OrderItems.Product2.Location__c}) = &apos;Luxury Service&apos;,
+            IF({!Loop_to_create_Multiple_OrderItems}=2, 
+                {!Selected_Open_Capacity_Date} + 364, 
+                IF({!Loop_to_create_Multiple_OrderItems}=3, 
+                    {!Selected_Open_Capacity_Date} + 728,  
+                    {!Selected_Open_Capacity_Date} + (364 * {!OrderLoopCount}) 
+                )
+            ),
+            IF({!Loop_to_create_Multiple_OrderItems}=2, 
+                {!Selected_Open_Capacity_Date} + 364 + 7, 
+                IF({!Loop_to_create_Multiple_OrderItems}=3, 
+                    {!Selected_Open_Capacity_Date} + 728 + 7,  
+                    {!Selected_Open_Capacity_Date} + (364 * {!OrderLoopCount}) + 7
+                )
+            )
+        ),
+        IF({!Loop_to_create_Multiple_OrderItems}=2, 
+            {!Selected_Open_Capacity_Date} + 364, 
+            IF({!Loop_to_create_Multiple_OrderItems}=3, 
+                {!Selected_Open_Capacity_Date} + 728,  
+                {!Selected_Open_Capacity_Date} + (364 * {!OrderLoopCount}) 
+            )
         )
     ),
     IF({!Loop_to_create_Multiple_OrderItems}=2, 
@@ -937,7 +963,7 @@ if address is Quebec &quot;Quebec Region&quot; if address is in Montreal or gati
             <targetReference>Create_Asset_Decision</targetReference>
         </connector>
     </start>
-    <status>InvalidDraft</status>
+    <status>Active</status>
     <variables>
         <name>address</name>
         <dataType>SObject</dataType>
@@ -1045,6 +1071,16 @@ if address is Quebec &quot;Quebec Region&quot; if address is in Montreal or gati
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>luxurySelected</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>order</name>

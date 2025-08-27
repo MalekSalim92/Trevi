@@ -58,6 +58,7 @@
         </outputParameters>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_Pbe_to_Collection</name>
         <label>Add Pbe to Collection</label>
@@ -196,7 +197,7 @@
             <targetReference>Get_Capacities</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Assign_Product</name>
         <label>Assign Product</label>
