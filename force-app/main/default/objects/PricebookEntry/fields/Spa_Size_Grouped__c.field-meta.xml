@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spa_Size_Grouped__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+OR(Spa_Size__c = &apos;size13&apos;,Spa_Size__c = &apos;size16&apos;,Spa_Size__c = &apos;size17&apos;),
+&apos;Small spa&apos;,
+&apos;Big spa&apos;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Spa Size Grouped</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
