@@ -1,29 +1,26 @@
-import { LightningElement, wire } from 'lwc';
- import getRedirectUrl from '@salesforce/apex/ShopifyIntegration.getRedirectUrl';
+import { LightningElement,api} from 'lwc';
+import getRedirectUrl from '@salesforce/apex/ShopifyPaymentService.getRedirectUrl';
 
 export default class FlowRedirectingComponent extends LightningElement {
-    isLoading = true;
+    @api urlRedirection
+
     
-    connectedCallback() {
-        // Get the redirect URL from Custom Metadata
-        this.getUrlAndRedirect();
-    }
-    
-    getUrlAndRedirect() {
-        getRedirectUrl()
-            .then(result => {
-                console.log('Retrieved redirect URL:', result);
-                if (result) {
-                    // Redirect to the URL from custom metadata
-                    window.location.href = result;
-                } else {
-                    // Fallback URL if none found in metadata
-                    console.error('No redirect URL found in custom metadata');
-                 }
-            })
-            .catch(error => {
-                console.error('Error retrieving redirect URL:', error);
-                // Redirect to fallback URL if there's an error
-            });
+    async connectedCallback() {
+        console.log('.......Redirecting main window.......');
+        try {
+            console.log('urlRedirection...',this.urlRedirection);
+
+            const redirectUrl = await getRedirectUrl({ urlRedirectionName: this.urlRedirection });
+            console.log('Retrieved redirect URL:', redirectUrl);
+            
+            if (redirectUrl) {
+                // Redirect immediately
+                window.location.href = redirectUrl;
+            } else {
+                console.log('No redirect URL found in custom metadata');
+            }
+        } catch (error) {
+            console.error('Error retrieving redirect URL:', error);
+        }
     }
 }
