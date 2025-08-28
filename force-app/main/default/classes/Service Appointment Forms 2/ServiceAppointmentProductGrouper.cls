@@ -119,7 +119,7 @@ public class ServiceAppointmentProductGrouper {
                     OrderItem item = new OrderItem();
                     item.Product2Id       = product2Id;
                     item.Description      = (String) ar.get('productName');
-                    item.Return_Location__c = (String) ar.get('productCode');
+                    item.Return_Location__c = (String) ar.get('sageProdId');
                     item.Quantity         = (Decimal) ar.get('totalQuantity');
                     item.Serial__c        = serialNumbers;
                     

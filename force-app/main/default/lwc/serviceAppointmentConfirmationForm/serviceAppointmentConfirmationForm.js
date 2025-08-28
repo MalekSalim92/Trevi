@@ -4,7 +4,7 @@
  *
  * @usage         Used in a public page to host a flow. 
  *                - Reads `id` param from URL as service appointment external Id.
- *                - Reads optional `language` param (default = en_US).
+ *                - Reads optional `language` param (default = en_CA).
  *                - Passes parameters into Flow via flow-input-variables.
  *                - Provides UI toggle between English and French.
  *
@@ -99,11 +99,11 @@ export default class ServiceAppointmentConfirmationForm extends LightningElement
     }
 
     /**
-     * Detect language from URL (?language=fr or en_US). Defaults to en_US.
+     * Detect language from URL (?language=fr or en_CA). Defaults to en_CA.
      */
     detectCurrentLanguage() {
         const urlParams = new URLSearchParams(window.location.search);
-        this.currentLanguage = urlParams.get('language') || 'en_US';
+        this.currentLanguage = urlParams.get('language') || 'en_CA';
     }
 
     /**
@@ -121,9 +121,9 @@ export default class ServiceAppointmentConfirmationForm extends LightningElement
         let newUrl;
 
         if (currentUrl.includes('language=fr')) {
-            newUrl = currentUrl.replace('language=fr', 'language=en_US');
-        } else if (currentUrl.includes('language=en_US')) {
-            newUrl = currentUrl.replace('language=en_US', 'language=fr');
+            newUrl = currentUrl.replace('language=fr', 'language=en_CA');
+        } else if (currentUrl.includes('language=en_CA')) {
+            newUrl = currentUrl.replace('language=en_CA', 'language=fr');
         } else {
             // No param yet -> add language=fr
             const separator = currentUrl.includes('?') ? '&' : '?';
