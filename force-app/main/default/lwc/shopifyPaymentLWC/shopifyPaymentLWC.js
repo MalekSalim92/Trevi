@@ -9,7 +9,7 @@ export default class ShopifyPaymentLWC extends LightningElement {
     
     @api recordId;    // From Flow or button context
     @api paymentUrl;  // Direct payment URL input from Flow
-     
+    @api redirectionUrl; // redirection URL after payment completion
     isLoading = false;
 
     // ----------------------
@@ -101,7 +101,7 @@ export default class ShopifyPaymentLWC extends LightningElement {
     async redirectMainWindow() {
         console.log('Redirecting main window...');
         try {
-            const redirectUrl = await getRedirectUrl();
+            const redirectUrl = await getRedirectUrl({ urlRedirectionName: this.redirectionUrl });
             console.log('Retrieved redirect URL:', redirectUrl);
             
             if (redirectUrl) {

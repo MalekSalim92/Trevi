@@ -4,5 +4,10 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
+<<<<<<< HEAD
   "editor.formatOnSave": false
+=======
+  "editor.formatOnSave": true,
+  "salesforcedx-vscode-core.show-cli-success-msg": false
+>>>>>>> shopify
 }

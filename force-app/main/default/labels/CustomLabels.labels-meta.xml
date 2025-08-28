@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+<<<<<<< HEAD
         <fullName>Requested_Services_Text</fullName>
         <categories>Opening Closing Val Mar</categories>
         <language>en_US</language>
@@ -1014,5 +1015,61 @@ Thank you</value>
         <protected>false</protected>
         <shortDescription>Amount</shortDescription>
         <value>Amount</value>
+=======
+        <fullName>Refund_failed</fullName>
+        <categories>Shopify</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refund failed</shortDescription>
+        <value>Refund failed.</value>
+    </labels>
+    <labels>
+        <fullName>Refund_processed</fullName>
+        <categories>Shopify</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refund processed</shortDescription>
+        <value>Refund processed.</value>
+    </labels>
+    <labels>
+        <fullName>customer_pays</fullName>
+        <categories>Shopify</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>customer pays</shortDescription>
+        <value>Inform the customer that they need to click on the link that was sent to them to pay.</value>
+    </labels>
+    <labels>
+        <fullName>integration_error</fullName>
+        <categories>Shopify</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>integration error</shortDescription>
+        <value>Payment processing failed. Please contact support</value>
+    </labels>
+    <labels>
+        <fullName>payment_Processed</fullName>
+        <categories>Shopify</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>payment Processed</shortDescription>
+        <value>Inform the customer that the payment was processed on their card and that the transaction is complete.</value>
+    </labels>
+    <labels>
+        <fullName>refund_amount</fullName>
+        <categories>Shopify</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>refund amount</shortDescription>
+        <value>Refund Amount</value>
+    </labels>
+    <labels>
+        <fullName>refund_amount_validation_message</fullName>
+        <categories>Shopify</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>refund amount validation message</shortDescription>
+        <value>Refund amount must be greater than 0 and less than</value>
+>>>>>>> shopify
     </labels>
 </CustomLabels>

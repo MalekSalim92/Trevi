@@ -352,15 +352,15 @@ public without sharing class ShopifyPaymentService {
      * @return String URL or null
      */
     @AuraEnabled(cacheable=true)
-    public static String getRedirectUrl() {
-        try {
+    public static String getRedirectUrl(String urlRedirectionName) {
+         try {
             URL_Configuration__mdt urlConfig = [
-                SELECT DeveloperName, Redirect_URL__c 
+                SELECT DeveloperName, Redirect_URL__c
                 FROM URL_Configuration__mdt 
-                WHERE DeveloperName = 'External_Site_Redirect' 
+                WHERE DeveloperName = :urlRedirectionName 
                 LIMIT 1
             ];
-            return urlConfig.Redirect_URL__c;
+             return urlConfig.Redirect_URL__c;
         } catch (Exception e) {
             System.debug('Error retrieving URL from custom metadata: ' + e.getMessage());
             return null;
