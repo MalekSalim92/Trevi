@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Plan_not_approved_cannot_move_to_2_stage</fullName>
+    <active>true</active>
+    <description>We prevent user to go to”En attente de financement  et “ En attente de document“ stage if plan Trevi not attached</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(Status),
+    NOT(
+        OR(
+            ISPICKVAL(ContractType__c , &apos;39&apos;),
+            ISPICKVAL(ContractType__c , &apos;40&apos;),
+            ISPICKVAL(ContractType__c , &apos;41&apos;),
+            ISPICKVAL(ContractType__c , &apos;42&apos;),
+            ISPICKVAL(ContractType__c , &apos;43&apos;),
+            ISPICKVAL(ContractType__c , &apos;44&apos;),
+            ISPICKVAL(ContractType__c , &apos;45&apos;),
+            ISPICKVAL(ContractType__c , &apos;46&apos;),
+            ISPICKVAL(ContractType__c , &apos;47&apos;),
+            ISPICKVAL(ContractType__c , &apos;48&apos;),
+            ISPICKVAL(ContractType__c , &apos;49&apos;),
+            ISPICKVAL(ContractType__c , &apos;50&apos;),
+            ISPICKVAL(ContractType__c , &apos;51&apos;),
+            ISPICKVAL(ContractType__c , &apos;52&apos;)
+        )
+    ),
+    NOT(    Plan_Trevi_Attached_tech__c  ),
+    OR(
+        ISPICKVAL(Status , &apos;Awaiting documents&apos;),
+        ISPICKVAL(Status , &apos;Awaiting financing&apos;)
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>The Order status cannot be Awaiting documents or Awaiting financing because the plan Trévi is not attached.</errorMessage>
+</ValidationRule>

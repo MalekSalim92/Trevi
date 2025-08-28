@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Classification__c</fullName>
+    <label>Activity Classification</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Delivery</fullName>
+                <default>false</default>
+                <label>Delivery</label>
+            </value>
+            <value>
+                <fullName>Installation</fullName>
+                <default>false</default>
+                <label>Installation</label>
+            </value>
+            <value>
+                <fullName>PoolDeck</fullName>
+                <default>false</default>
+                <label>PoolDeck</label>
+            </value>
+            <value>
+                <fullName>Digging</fullName>
+                <default>false</default>
+                <label>Digging</label>
+            </value>
+            <value>
+                <fullName>Ceramics</fullName>
+                <default>false</default>
+                <label>Ceramics</label>
+            </value>
+            <value>
+                <fullName>Measurement</fullName>
+                <default>false</default>
+                <label>Measurement</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

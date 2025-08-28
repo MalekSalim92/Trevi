@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SC_Installation_Amount__c</fullName>
+    <formula>if( OR(
+ISPICKVAL(Contract_Type__c , &apos;110&apos;),
+AND(
+ISPICKVAL(Contract_Type__c , &apos;112&apos;),
+OR(ISPICKVAL( ContractType__c , &apos;37&apos;),ISPICKVAL( ContractType__c , &apos;38&apos;))
+
+))     	
+
+,Amount_Due__c
+,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Amount for installation</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

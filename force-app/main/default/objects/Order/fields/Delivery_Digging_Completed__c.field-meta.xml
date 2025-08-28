@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery_Digging_Completed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>this field is true when the Delivery or Digging Service appointment is completed. this will cause the order to be blocked until the payment is completed in full</description>
+    <label>Delivery/Digging Completed</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

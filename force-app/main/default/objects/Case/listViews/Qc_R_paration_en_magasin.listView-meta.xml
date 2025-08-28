@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Qc_R_paration_en_magasin</fullName>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>NAME</columns>
+    <columns>Work_Type__c</columns>
+    <columns>Choice_of_store__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Choice_of_store__c</field>
+        <operation>equals</operation>
+        <value>Supermagasins 92,Supermagasins 91</value>
+    </filters>
+    <filters>
+        <field>CASES.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Case.Pump_Repair</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>equals</operation>
+        <value>New,Work in Progress,Pending/On Hold,Open,Escalated</value>
+    </filters>
+    <label>QC - Réparation en magasin</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

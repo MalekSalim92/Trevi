@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Should_send_fees_email_TECH__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>To be changed to true after amount due is populated. Should never be set to false after.</description>
+    <label>Should send fees email (TECH)</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

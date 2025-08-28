@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Main_Product__c</fullName>
+    <label>Main Product</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>In-ground pool</fullName>
+                <default>false</default>
+                <label>In-ground pool</label>
+            </value>
+            <value>
+                <fullName>Semi-inground pool</fullName>
+                <default>false</default>
+                <label>Semi-inground pool</label>
+            </value>
+            <value>
+                <fullName>Above-ground pool</fullName>
+                <default>false</default>
+                <label>Above-ground pool</label>
+            </value>
+            <value>
+                <fullName>Spa</fullName>
+                <default>false</default>
+                <label>Spa</label>
+            </value>
+            <value>
+                <fullName>Furniture</fullName>
+                <default>false</default>
+                <label>Furniture</label>
+            </value>
+            <value>
+                <fullName>Accessories</fullName>
+                <default>false</default>
+                <label>Accessories</label>
+            </value>
+            <value>
+                <fullName>Carport</fullName>
+                <default>false</default>
+                <label>Carport</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

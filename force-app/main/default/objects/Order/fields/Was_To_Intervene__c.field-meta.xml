@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Was_To_Intervene__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>this field is checked if the CR order has ever entered the &quot;to Intervene&quot; status. this will return it to it if the order is deblocked again</description>
+    <label>Was To Intervene</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

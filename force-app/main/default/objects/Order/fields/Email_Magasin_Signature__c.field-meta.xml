@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Magasin_Signature__c</fullName>
+    <externalId>false</externalId>
+    <formula>Case__r.Signature_Email__c</formula>
+    <label>Email Magasin Signature</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

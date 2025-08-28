@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bypass_Charges__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>the client won’t have to pay anything even if he is supposed to</inlineHelpText>
+    <label>Bypass Charges</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_asset_with_product_tech__c</fullName>
+    <formula>NOT( OR(ISBLANK(Asset.Product2.Id ), ISNULL(Asset.Product2.Id )))</formula>
+    <label>Has asset with product</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

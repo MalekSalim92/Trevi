@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Signature_Email__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Region__c = Text($CustomMetadata.Order_Template_Signature_Infos__mdt.SP_Quebec.Region__c) ,
+CASE( Text(Contract_Type__c) ,
+&apos;119&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.SP_Quebec.Email__c ,
+&apos;115&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.CR_Quebec.Email__c ,
+&apos;143&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.AB_Quebec.Email__c ,
+&apos;127&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.AC_Quebec.Email__c ,
+&apos;124&apos;, $CustomMetadata.Order_Template_Signature_Infos__mdt.RC_Quebec.Email__c ,
+&apos;141&apos;, $CustomMetadata.Order_Template_Signature_Infos__mdt.MB_Quebec.Email__c ,
+&apos;&apos;
+),
+CASE( Text(Contract_Type__c) ,
+&apos;119&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.SP.Email__c ,
+&apos;115&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.CR.Email__c ,
+&apos;143&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.AB.Email__c ,
+&apos;127&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.AC.Email__c ,
+&apos;124&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.RC.Email__c ,
+&apos;141&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.MB.Email__c ,
+&apos;&apos;
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Signature Email</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

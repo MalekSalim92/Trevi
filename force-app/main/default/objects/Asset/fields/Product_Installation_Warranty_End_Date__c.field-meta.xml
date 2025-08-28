@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Installation_Warranty_End_Date__c</fullName>
+    <inlineHelpText>From asset warranty, end date of warranty on product and installation.</inlineHelpText>
+    <label>Product &amp; Installation Warranty End Date</label>
+    <summarizedField>AssetWarranty.EndDate</summarizedField>
+    <summaryFilterItems>
+        <field>AssetWarranty.WarrantyType</field>
+        <operation>equals</operation>
+        <value>Product &amp; Installation</value>
+    </summaryFilterItems>
+    <summaryForeignKey>AssetWarranty.AssetId</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

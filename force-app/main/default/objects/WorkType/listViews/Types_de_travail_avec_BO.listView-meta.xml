@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Types_de_travail_avec_BO</fullName>
+    <columns>Name</columns>
+    <columns>Work_Type_Name_EN__c</columns>
+    <columns>Formulaire__c</columns>
+    <columns>Product__c</columns>
+    <columns>BO_Work_Type__c</columns>
+    <columns>Service_Type__c</columns>
+    <columns>Is_Pickup_at_the_Store__c</columns>
+    <columns>Is_Pickup_at_the_Warehouse__c</columns>
+    <columns>Sage_ID__c</columns>
+    <columns>CreatedDate</columns>
+    <columns>LastModifiedDate</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>BO_Work_Type__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Types de travail avec BO</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

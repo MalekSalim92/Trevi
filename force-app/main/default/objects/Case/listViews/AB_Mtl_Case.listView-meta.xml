@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AB_Mtl_Case</fullName>
+    <filterScope>Queue</filterScope>
+    <label>AB Mtl</label>
+    <queue>AB_Mtl</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

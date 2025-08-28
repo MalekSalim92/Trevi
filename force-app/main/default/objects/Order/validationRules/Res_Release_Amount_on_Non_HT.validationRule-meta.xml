@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Res_Release_Amount_on_Non_HT</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+				OR(
+					Commercial_Contract__c = true,
+					AND(
+         				TEXT(Contract_Type__c) != &apos;110&apos;,	OR(TEXT(Contract_Type__c) != &apos;112&apos;,   TEXT(ContractType__c) = &apos;36&apos;)		
+					)
+				),
+    ISCHANGED(Release_Amount__c  )  
+)</errorConditionFormula>
+    <errorDisplayField>Release_Amount__c</errorDisplayField>
+    <errorMessage>This field is only available for Residential Contract of type HT or SC (non Harmony).</errorMessage>
+</ValidationRule>

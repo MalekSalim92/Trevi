@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Family__c</fullName>
+    <label>Sub-Family</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Raw materials</fullName>
+                <default>false</default>
+                <label>Raw materials</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Above ground pool structures</fullName>
+                <default>false</default>
+                <label>Above ground pool structures</label>
+            </value>
+            <value>
+                <fullName>Above ground pool walls</fullName>
+                <default>false</default>
+                <label>Above ground pool walls</label>
+            </value>
+            <value>
+                <fullName>Above ground pool components</fullName>
+                <default>false</default>
+                <label>Above ground pool components</label>
+            </value>
+            <value>
+                <fullName>A.g. (structure, wall and liner)</fullName>
+                <default>false</default>
+                <label>A.g. (structure, wall and liner)</label>
+            </value>
+            <value>
+                <fullName>Above ground pool liners</fullName>
+                <default>false</default>
+                <label>Above ground pool liners</label>
+            </value>
+            <value>
+                <fullName>In ground pool components</fullName>
+                <default>false</default>
+                <label>In ground pool components</label>
+            </value>
+            <value>
+                <fullName>In ground pools</fullName>
+                <default>false</default>
+                <label>In ground pools</label>
+            </value>
+            <value>
+                <fullName>In ground pool liners</fullName>
+                <default>false</default>
+                <label>In ground pool liners</label>
+            </value>
+            <value>
+                <fullName>Spas</fullName>
+                <default>false</default>
+                <label>Spas</label>
+            </value>
+            <value>
+                <fullName>Parts / Accessories / Spas</fullName>
+                <default>false</default>
+                <label>Parts / Accessories / Spas</label>
+            </value>
+            <value>
+                <fullName>Filtration</fullName>
+                <default>false</default>
+                <label>Filtration</label>
+            </value>
+            <value>
+                <fullName>Robots</fullName>
+                <default>false</default>
+                <label>Robots</label>
+            </value>
+            <value>
+                <fullName>Pool heater</fullName>
+                <default>false</default>
+                <label>Pool heater</label>
+            </value>
+            <value>
+                <fullName>Accessories</fullName>
+                <default>false</default>
+                <label>Accessories</label>
+            </value>
+            <value>
+                <fullName>Plumbing</fullName>
+                <default>false</default>
+                <label>Plumbing</label>
+            </value>
+            <value>
+                <fullName>Parts</fullName>
+                <default>false</default>
+                <label>Parts</label>
+            </value>
+            <value>
+                <fullName>Chemicals</fullName>
+                <default>false</default>
+                <label>Chemicals</label>
+            </value>
+            <value>
+                <fullName>Beach items</fullName>
+                <default>false</default>
+                <label>Beach items</label>
+            </value>
+            <value>
+                <fullName>Life-saving</fullName>
+                <default>false</default>
+                <label>Life-saving</label>
+            </value>
+            <value>
+                <fullName>Furniture</fullName>
+                <default>false</default>
+                <label>Furniture</label>
+            </value>
+            <value>
+                <fullName>Car shelters</fullName>
+                <default>false</default>
+                <label>Car shelters</label>
+            </value>
+            <value>
+                <fullName>Ice rinks</fullName>
+                <default>false</default>
+                <label>Ice rinks</label>
+            </value>
+            <value>
+                <fullName>Outdooring</fullName>
+                <default>false</default>
+                <label>Outdooring</label>
+            </value>
+            <value>
+                <fullName>Installation &amp; delivery</fullName>
+                <default>false</default>
+                <label>Installation &amp; delivery</label>
+            </value>
+            <value>
+                <fullName>Delivery</fullName>
+                <default>false</default>
+                <label>Delivery</label>
+            </value>
+            <value>
+                <fullName>Trévi furniture</fullName>
+                <default>false</default>
+                <label>Trévi furniture</label>
+            </value>
+            <value>
+                <fullName>Paving stone</fullName>
+                <default>false</default>
+                <label>Paving stone</label>
+            </value>
+            <value>
+                <fullName>x</fullName>
+                <default>false</default>
+                <label>x</label>
+            </value>
+            <value>
+                <fullName>Other products (misc.)</fullName>
+                <default>false</default>
+                <label>Other products (misc.)</label>
+            </value>
+            <value>
+                <fullName>Service &amp; repairs</fullName>
+                <default>false</default>
+                <label>Service &amp; repairs</label>
+            </value>
+            <value>
+                <fullName>Contests, promos and various sponsors</fullName>
+                <default>false</default>
+                <label>Contests, promos and various sponsors</label>
+            </value>
+            <value>
+                <fullName>Expense</fullName>
+                <default>false</default>
+                <label>Expense</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

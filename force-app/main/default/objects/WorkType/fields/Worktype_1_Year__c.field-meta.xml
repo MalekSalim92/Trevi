@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Worktype_1_Year__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Worktype - 1 Year</label>
+    <referenceTo>WorkType</referenceTo>
+    <relationshipLabel>Work Types</relationshipLabel>
+    <relationshipName>Work_Types_Less_than_1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

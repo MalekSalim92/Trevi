@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GU_Digging_Amount__c</fullName>
+    <formula>if(  AND( Amount_Paid__c &lt; Order_Total__c * VALUE(TEXT(Release_percentage_Residential__c))/100 , ISPICKVAL(Contract_Type__c , &apos;116&apos;))
+, Order_Total__c * 0.8 - Amount_Paid__c
+,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Amount for digging</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

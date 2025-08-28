@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Types_de_travail_avec_Garantie_Produit</fullName>
+    <columns>Name</columns>
+    <columns>Work_Type_Name_EN__c</columns>
+    <columns>Formulaire__c</columns>
+    <columns>Product__c</columns>
+    <columns>Product_Warranty__c</columns>
+    <columns>Sage_ID__c</columns>
+    <columns>CreatedDate</columns>
+    <columns>LastModifiedDate</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Product_Warranty__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Types de travail avec Garantie Produit</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

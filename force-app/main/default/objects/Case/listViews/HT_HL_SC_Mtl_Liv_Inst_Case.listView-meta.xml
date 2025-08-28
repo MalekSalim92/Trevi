@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HT_HL_SC_Mtl_Liv_Inst_Case</fullName>
+    <filterScope>Queue</filterScope>
+    <label>HT/HL/SC Mtl Liv  Inst</label>
+    <queue>HT_HL_SC_Mtl_Liv_Inst</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

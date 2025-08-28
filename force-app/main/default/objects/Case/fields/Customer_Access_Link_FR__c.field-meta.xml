@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Access_Link_FR__c</fullName>
+    <externalId>false</externalId>
+    <formula>SUBSTITUTE(LEFT($Api.Partner_Server_URL_620, FIND(&apos;/services&apos;, $Api.Partner_Server_URL_620) - 1), &apos;my.salesforce.com&apos;, &apos;my.site.com&apos;) &amp; &apos;/s/login/?language=fr&amp;startURL=%2Fs%2F%3Flanguage%3Dfr%26t%3D1737979287657&apos;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Customer Access Link FR</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

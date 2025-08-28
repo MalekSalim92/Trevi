@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subtype__c</fullName>
+    <label>Subtype</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Main_Product__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Réparation chauffe-eau Spa</fullName>
+                <default>false</default>
+                <label>Réparation chauffe-eau Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation contrôleur (Pack) Spa</fullName>
+                <default>false</default>
+                <label>Réparation contrôleur (Pack) Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation pompe Spa</fullName>
+                <default>false</default>
+                <label>Réparation pompe Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation tuyauterie Spa</fullName>
+                <default>false</default>
+                <label>Réparation tuyauterie Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation clavier Spa</fullName>
+                <default>false</default>
+                <label>Réparation clavier Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation pompe balnéo Spa</fullName>
+                <default>false</default>
+                <label>Réparation pompe balnéo Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation lumière Spa</fullName>
+                <default>false</default>
+                <label>Réparation lumière Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation audio Spa</fullName>
+                <default>false</default>
+                <label>Réparation audio Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation composant rouillé Spa</fullName>
+                <default>false</default>
+                <label>Réparation composant rouillé Spa</label>
+            </value>
+            <value>
+                <fullName>Estimé assurance Spa</fullName>
+                <default>false</default>
+                <label>Estimé assurance Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation In.Touch Spa</fullName>
+                <default>false</default>
+                <label>Réparation In.Touch Spa</label>
+            </value>
+            <value>
+                <fullName>Réparation corps de jet Spa</fullName>
+                <default>false</default>
+                <label>Réparation corps de jet Spa</label>
+            </value>
+            <value>
+                <fullName>Subtype 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Subtype 1</label>
+            </value>
+            <value>
+                <fullName>Subtype 2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Subtype 2</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation chauffe-eau Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation contrôleur (Pack) Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation pompe Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation tuyauterie Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation clavier Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation pompe balnéo Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation lumière Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation audio Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation composant rouillé Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Estimé assurance Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation In.Touch Spa</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spa</controllingFieldValue>
+            <valueName>Réparation corps de jet Spa</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

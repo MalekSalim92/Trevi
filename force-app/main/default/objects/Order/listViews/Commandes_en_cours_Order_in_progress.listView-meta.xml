@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commandes_en_cours_Order_in_progress</fullName>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>Order_Number__c</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDER.SHIPPING_CITY</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>Expected_Ship_Date__c</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>Salesperson_1__c</columns>
+    <columns>Plan_Approved_by_Client__c</columns>
+    <columns>Plan_Rejected_by_Client__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ORDERS.STATUS</field>
+        <operation>equals</operation>
+        <value>Awaiting financing,Awaiting material,Awaiting payment,Awaiting plan,Awaiting documents,Pending Annex,Waiting for customer,Awaiting distribution center,Contract B.O.</value>
+    </filters>
+    <label>Commandes en cours/Order in progress</label>
+</ListView>

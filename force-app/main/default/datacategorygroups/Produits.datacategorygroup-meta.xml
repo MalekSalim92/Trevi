@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>pompe pour les jets ne fonctionne pas</label>
+                    <name>pompe_pour_les_jets_ne_fonctionne_pas</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>pompe fonctionne mais pas d&apos;eau des jets</label>
+                    <name>pompe_fonctionne_mais_pas_d_eau_des_jets</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Problème pompe balnéaire</label>
+                    <name>Probl_me_pompe_baln_aire</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>pompe bruyante</label>
+                    <name>pompe_bruyante</name>
+                </dataCategory>
+                <label>Pompe</label>
+                <name>Pompe</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Acrylique</label>
+                <name>Acrylique</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Clavier ne répond pas</label>
+                    <name>Clavier_ne_r_pond_pas</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>code erreur</label>
+                    <name>code_erreur</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Clavier n&apos;allume pas</label>
+                    <name>Clavier_n_allume_pas</name>
+                </dataCategory>
+                <label>Clavier</label>
+                <name>Clavier</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Disjoncteur</label>
+                <name>Disjoncteur</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Ne chauffe pas</label>
+                    <name>Ne_chauffe_pas</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Surchauffe</label>
+                    <name>Surchauffe</name>
+                </dataCategory>
+                <label>Chauffage</label>
+                <name>Chauffage</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Flo / No Flow / État Flo / Entrave / Poc</label>
+                    <name>Flo_No_Flow_tat_Flo_Entrave_Poc</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>F1 / F2 / F3 / ER-1 / ER-2</label>
+                    <name>F1_F2_F3_ER_1_ER_2</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>RH-NF</label>
+                    <name>RH_NF</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Erreur de communication / Relais collé /</label>
+                    <name>Erreur_de_communication_Relais_coll</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>PRR</label>
+                    <name>PRR</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>GFCI Installation - DO NOT ENTER SPA</label>
+                    <name>GFCI_Installation_DO_NOT_ENTER_SPA</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Danger ne pas entrer / Overheat / OH / H</label>
+                    <name>Danger_ne_pas_entrer_Overheat_OH_H</name>
+                </dataCategory>
+                <label>Code d&apos;erreur</label>
+                <name>Code_d_erreur</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Controleur In.Touch</label>
+                <name>Controleur_In_Touch</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Couvert Spa</label>
+                <name>Couvert_Spa</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Estimé Assurance</label>
+                <name>Estim_Assurance</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Fuite d&apos;eau</label>
+                <name>Fuite_d_eau</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Aucune pression ne dort du jet</label>
+                    <name>Aucune_pression_ne_dort_du_jet</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Un jet ne tient pas en place</label>
+                    <name>Un_jet_ne_tient_pas_en_place</name>
+                </dataCategory>
+                <label>Jet</label>
+                <name>Jet</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Une lumière n&apos;allume pas</label>
+                    <name>Une_lumi_re_n_allume_pas</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>lumière ne fonctionne pas sur couleur</label>
+                    <name>lumi_re_ne_fonctionne_pas_sur_couleur</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>pas capable de modifier la couleur</label>
+                    <name>pas_capable_de_modifier_la_couleur</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Les lumières ne s&apos;allument plus</label>
+                    <name>Les_lumi_res_ne_s_allument_plus</name>
+                </dataCategory>
+                <label>Lumière</label>
+                <name>Lumi_re</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Revêtement (jupe)</label>
+                <name>Rev_tement_jupe</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Rouille</label>
+                <name>Rouille</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Spa gelé</label>
+                <name>Spa_gel</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>problème avec le module In.Stream</label>
+                    <name>probl_me_avec_le_module_In_Stream</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>problème avec les haut-parleurs</label>
+                    <name>probl_me_avec_les_haut_parleurs</name>
+                </dataCategory>
+                <label>Système audio</label>
+                <name>Syst_me_audio</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>de chute, de jets de cou ou dérivation</label>
+                    <name>de_chute_de_jets_de_cou_ou_d_rivation</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>valve d&apos;air</label>
+                    <name>valve_d_air</name>
+                </dataCategory>
+                <label>Valve de contrôle</label>
+                <name>Valve_de_contr_le</name>
+            </dataCategory>
+            <label>Produit SPA</label>
+            <name>SPA</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Produit SC</label>
+            <name>SC</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Produits CR</label>
+            <name>CR</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Accessories</label>
+            <name>Accessories</name>
+        </dataCategory>
+        <label>Tout</label>
+        <name>Tout</name>
+    </dataCategory>
+    <label>Produits</label>
+    <objectUsage>
+        <object>SvcCatalogItemDef</object>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

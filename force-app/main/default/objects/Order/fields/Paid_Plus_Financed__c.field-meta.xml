@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paid_Plus_Financed__c</fullName>
+    <description>This field will be used to consider the financed amount in the amount paid once the FR is accepted (stage 7). Thes financed amount will not be considered in the amount paid when the cash will be in the Trevi account (Stage 9) to avoid having twice the same amount.</description>
+    <formula>IF(  Consider_Financed_Amount__c , Financing_Amount__c +  Amount_Paid__c , Amount_Paid__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Amount Paid + Amount Financed (obsolete)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

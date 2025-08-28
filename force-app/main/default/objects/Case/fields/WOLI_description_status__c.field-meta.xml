@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WOLI_description_status__c</fullName>
+    <label>WOLI description status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Your service has been assigned to a team, they will contact you.</fullName>
+                <default>false</default>
+                <label>Your service has been assigned to a team, they will contact you.</label>
+            </value>
+            <value>
+                <fullName>Your service has been completed</fullName>
+                <default>false</default>
+                <label>Your service has been completed</label>
+            </value>
+            <value>
+                <fullName>The technician will contact you to tell you the recommended work.</fullName>
+                <default>false</default>
+                <label>The technician will contact you to tell you the recommended work.</label>
+            </value>
+            <value>
+                <fullName>You have received a notification to make a payment</fullName>
+                <default>false</default>
+                <label>You have received a notification to make a payment</label>
+            </value>
+            <value>
+                <fullName>The work could not be completed, you will be contacted for a next appointment.</fullName>
+                <default>false</default>
+                <label>The work could not be completed, you will be contacted for a next appointment.</label>
+            </value>
+            <value>
+                <fullName>Your service is confirmed</fullName>
+                <default>false</default>
+                <label>Your service is confirmed</label>
+            </value>
+            <value>
+                <fullName>Your piece to be repaired has been deposited in the store</fullName>
+                <default>false</default>
+                <label>Your piece to be repaired has been deposited in the store</label>
+            </value>
+            <value>
+                <fullName>The Trevi team is on its way to your home</fullName>
+                <default>false</default>
+                <label>The Trevi team is on its way to your home</label>
+            </value>
+            <value>
+                <fullName>Your piece is in transit to the repair shop</fullName>
+                <default>false</default>
+                <label>Your piece is in transit to the repair shop</label>
+            </value>
+            <value>
+                <fullName>Your part is in transit to the store. Please wait to be contacted before coming in.</fullName>
+                <default>false</default>
+                <label>Your part is in transit to the store. Please wait to be contacted before coming in.</label>
+            </value>
+            <value>
+                <fullName>You must complete the payment in order for Trevi to honor the appointment</fullName>
+                <default>false</default>
+                <label>You must complete the payment in order for Trevi to honor the appointment</label>
+            </value>
+            <value>
+                <fullName>Your piece is in transit to the store. Please wait to be contacted before coming in.</fullName>
+                <default>false</default>
+                <label>Your piece is in transit to the store. Please wait to be contacted before coming in.</label>
+            </value>
+            <value>
+                <fullName>Your piece is ready to be picked up in store</fullName>
+                <default>false</default>
+                <label>Your piece is ready to be picked up in store</label>
+            </value>
+            <value>
+                <fullName>Your piece is being evaluated</fullName>
+                <default>false</default>
+                <label>Your piece is being evaluated</label>
+            </value>
+            <value>
+                <fullName>Your service is awaiting planning by our teams. You will be contacted to confirm the fixed day.</fullName>
+                <default>false</default>
+                <label>Your service is awaiting planning by our teams. You will be contacted to confirm the fixed day.</label>
+            </value>
+            <value>
+                <fullName>You have received a notification. We are waiting for your confirmation.</fullName>
+                <default>false</default>
+                <label>You have received a notification. We are waiting for your confirmation.</label>
+            </value>
+            <value>
+                <fullName>Your piece is waiting for materials to complete the work</fullName>
+                <default>false</default>
+                <label>Your piece is waiting for materials to complete the work</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stock_Item__c</fullName>
+    <description>Used as workaround for FSL Limitations</description>
+    <formula>Product2.Stock_Item__c</formula>
+    <label>Stock Item</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

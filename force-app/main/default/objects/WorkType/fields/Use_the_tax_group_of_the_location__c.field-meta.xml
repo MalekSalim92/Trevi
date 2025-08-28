@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Use_the_tax_group_of_the_location__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>Use the tax group of the location</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

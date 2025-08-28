@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CR_PoolDeck_Amount__c</fullName>
+    <formula>IF(AND(Amount_Paid__c &lt; Order_Total__c * VALUE(TEXT(Release_percentage_Residential__c))/100, OR(ISPICKVAL(Contract_Type__c , &apos;115&apos;),AND(ISPICKVAL(Contract_Type__c , &apos;112&apos;),ISPICKVAL(ContractType__c , &apos;36&apos;)))),
+0,
+IF(Installation_Done_Tech__c,Amount_Due__c,0)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Amount to finish the pool deck</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delay__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Region__c = &quot;Quebec&quot;,
+&quot;14&quot;,
+IF(OR(Region__c = &quot;Montreal&quot;, Region__c = &quot;Gatineau&quot;),
+&quot;7&quot;,
+&quot;&quot;
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Delay</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

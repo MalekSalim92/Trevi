@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Region__c</fullName>
+    <label>Region</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Montréal</fullName>
+                <default>false</default>
+                <label>Montreal</label>
+            </value>
+            <value>
+                <fullName>Québec</fullName>
+                <default>false</default>
+                <label>Quebec</label>
+            </value>
+            <value>
+                <fullName>Gatineau</fullName>
+                <default>false</default>
+                <label>Gatineau</label>
+            </value>
+            <value>
+                <fullName>Ontario</fullName>
+                <default>false</default>
+                <label>Ontario</label>
+            </value>
+            <value>
+                <fullName>Nouveau-Brunswick</fullName>
+                <default>false</default>
+                <label>New Brunswick</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

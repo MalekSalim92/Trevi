@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Case</fullName>
+    <active>true</active>
+    <businessProcess>Default Process</businessProcess>
+    <label>Default Case</label>
+    <picklistValues>
+        <picklist>Choice_of_store_pl__c</picklist>
+        <values>
+            <fullName>Blainville</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Boucherville</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brossard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gatineau</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Laval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mascouche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pointe-Claire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Québec et Lévis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ventes web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ContractType__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>13</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>14</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>15</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>16</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>17</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>18</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>19</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>20</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>21</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>22</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>23</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>24</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>26</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>27</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>28</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>31</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>32</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>33</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>34</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>35</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>36</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>37</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>38</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>39</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>40</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>41</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>42</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>43</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>44</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>45</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>46</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>47</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>48</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>49</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>50</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>51</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>52</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>53</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>54</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>55</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HT Industria</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ouverture et Fermeture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation en Magasin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Ab</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service CR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service CR - 1 an</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service HT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service HT - 1 an</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Mb</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service SC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service SC - 1 an</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Spa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Main_Product__c</picklist>
+        <values>
+            <fullName>Above-ground pool</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accessories</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Furniture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In-ground pool</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Semi-inground pool</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Origin</picklist>
+        <values>
+            <fullName>Call center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chatbot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webpage</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason</picklist>
+        <values>
+            <fullName>Complex functionality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instructions not clear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User didn%27t attend training</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Region__c</picklist>
+        <values>
+            <fullName>Montréal and Gatineau Regions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quebec Region</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subtype__c</picklist>
+        <values>
+            <fullName>Estimé assurance Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation In%2ETouch Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation audio Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation chauffe-eau Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation clavier Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation composant rouillé Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation contrôleur %28Pack%29 Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation corps de jet Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation lumière Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation pompe Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation pompe balnéo Spa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Réparation tuyauterie Spa</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Feature Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Problem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Question</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type_de_produit__c</picklist>
+        <values>
+            <fullName>SPA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>WOLI_description_status__c</picklist>
+        <values>
+            <fullName>The Trevi team is on its way to your home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The technician will contact you to tell you the recommended work%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The work could not be completed%2C you will be contacted for a next appointment%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>You have received a notification to make a payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>You have received a notification%2E We are waiting for your confirmation%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>You must complete the payment in order for Trevi to honor the appointment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your part is in transit to the store%2E Please wait to be contacted before coming in%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your piece is being evaluated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your piece is in transit to the repair shop</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your piece is in transit to the store%2E Please wait to be contacted before coming in%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your piece is ready to be picked up in store</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your piece is waiting for materials to complete the work</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your piece to be repaired has been deposited in the store</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your service has been assigned to a team%2C they will contact you%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your service has been completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your service is awaiting planning by our teams%2E You will be contacted to confirm the fixed day%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Your service is confirmed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Web_Language__c</picklist>
+        <values>
+            <fullName>A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>F</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

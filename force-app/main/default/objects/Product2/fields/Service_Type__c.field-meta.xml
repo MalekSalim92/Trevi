@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Type__c</fullName>
+    <label>Service Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accessoire</fullName>
+                <default>false</default>
+                <label>Accessoire</label>
+            </value>
+            <value>
+                <fullName>Aucun</fullName>
+                <default>false</default>
+                <label>Aucun</label>
+            </value>
+            <value>
+                <fullName>Base de poussière de pierre</fullName>
+                <default>false</default>
+                <label>Base de poussière de pierre</label>
+            </value>
+            <value>
+                <fullName>Cartouche</fullName>
+                <default>false</default>
+                <label>Cartouche</label>
+            </value>
+            <value>
+                <fullName>Céramique</fullName>
+                <default>false</default>
+                <label>Céramique</label>
+            </value>
+            <value>
+                <fullName>Chauffe-eau</fullName>
+                <default>false</default>
+                <label>Chauffe-eau</label>
+            </value>
+            <value>
+                <fullName>Chimique</fullName>
+                <default>false</default>
+                <label>Chimique</label>
+            </value>
+            <value>
+                <fullName>Chlorinateur</fullName>
+                <default>false</default>
+                <label>Chlorinateur</label>
+            </value>
+            <value>
+                <fullName>Clôture</fullName>
+                <default>false</default>
+                <label>Clôture</label>
+            </value>
+            <value>
+                <fullName>Couronnement</fullName>
+                <default>false</default>
+                <label>Couronnement</label>
+            </value>
+            <value>
+                <fullName>Couvert</fullName>
+                <default>false</default>
+                <label>Couvert</label>
+            </value>
+            <value>
+                <fullName>Drain de fond</fullName>
+                <default>false</default>
+                <label>Drain de fond</label>
+            </value>
+            <value>
+                <fullName>Échelle</fullName>
+                <default>false</default>
+                <label>Échelle</label>
+            </value>
+            <value>
+                <fullName>Échelle/rampe</fullName>
+                <default>false</default>
+                <label>Échelle/rampe</label>
+            </value>
+            <value>
+                <fullName>Écumoire</fullName>
+                <default>false</default>
+                <label>Écumoire</label>
+            </value>
+            <value>
+                <fullName>Équipement</fullName>
+                <default>false</default>
+                <label>Équipement</label>
+            </value>
+            <value>
+                <fullName>Filtreur</fullName>
+                <default>false</default>
+                <label>Filtreur</label>
+            </value>
+            <value>
+                <fullName>Fond de béton</fullName>
+                <default>false</default>
+                <label>Fond de béton</label>
+            </value>
+            <value>
+                <fullName>Fontaine</fullName>
+                <default>false</default>
+                <label>Fontaine</label>
+            </value>
+            <value>
+                <fullName>Garantie</fullName>
+                <default>false</default>
+                <label>Garantie</label>
+            </value>
+            <value>
+                <fullName>Gasket</fullName>
+                <default>false</default>
+                <label>Gasket</label>
+            </value>
+            <value>
+                <fullName>Gazébo</fullName>
+                <default>false</default>
+                <label>Gazébo</label>
+            </value>
+            <value>
+                <fullName>Glissade</fullName>
+                <default>false</default>
+                <label>Glissade</label>
+            </value>
+            <value>
+                <fullName>Gunite</fullName>
+                <default>false</default>
+                <label>Gunite</label>
+            </value>
+            <value>
+                <fullName>In-touch</fullName>
+                <default>false</default>
+                <label>In-touch</label>
+            </value>
+            <value>
+                <fullName>Insertion</fullName>
+                <default>false</default>
+                <label>Insertion</label>
+            </value>
+            <value>
+                <fullName>Installation</fullName>
+                <default>false</default>
+                <label>Installation</label>
+            </value>
+            <value>
+                <fullName>Isolant</fullName>
+                <default>false</default>
+                <label>Isolant</label>
+            </value>
+            <value>
+                <fullName>Jet</fullName>
+                <default>false</default>
+                <label>Jet</label>
+            </value>
+            <value>
+                <fullName>Jupe</fullName>
+                <default>false</default>
+                <label>Jupe</label>
+            </value>
+            <value>
+                <fullName>Lame d&apos;eau</fullName>
+                <default>false</default>
+                <label>Lame d&apos;eau</label>
+            </value>
+            <value>
+                <fullName>Levier</fullName>
+                <default>false</default>
+                <label>Levier</label>
+            </value>
+            <value>
+                <fullName>Livraison</fullName>
+                <default>false</default>
+                <label>Livraison</label>
+            </value>
+            <value>
+                <fullName>Lumière</fullName>
+                <default>false</default>
+                <label>Lumière</label>
+            </value>
+            <value>
+                <fullName>Manche Téléscopique</fullName>
+                <default>false</default>
+                <label>Manche Téléscopique</label>
+            </value>
+            <value>
+                <fullName>Marble lite</fullName>
+                <default>false</default>
+                <label>Marble lite</label>
+            </value>
+            <value>
+                <fullName>Marche</fullName>
+                <default>false</default>
+                <label>Marche</label>
+            </value>
+            <value>
+                <fullName>Meuble</fullName>
+                <default>false</default>
+                <label>Meuble</label>
+            </value>
+            <value>
+                <fullName>Mur</fullName>
+                <default>false</default>
+                <label>Mur</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Ozonateur</fullName>
+                <default>false</default>
+                <label>Ozonateur</label>
+            </value>
+            <value>
+                <fullName>Pavé uni</fullName>
+                <default>false</default>
+                <label>Pavé uni</label>
+            </value>
+            <value>
+                <fullName>Peinture</fullName>
+                <default>false</default>
+                <label>Peinture</label>
+            </value>
+            <value>
+                <fullName>Peinture GU</fullName>
+                <default>false</default>
+                <label>Peinture GU</label>
+            </value>
+            <value>
+                <fullName>Pièce</fullName>
+                <default>false</default>
+                <label>Pièce</label>
+            </value>
+            <value>
+                <fullName>Piscine creusée</fullName>
+                <default>false</default>
+                <label>Piscine creusée</label>
+            </value>
+            <value>
+                <fullName>Piscine hors-terre</fullName>
+                <default>false</default>
+                <label>Piscine hors-terre</label>
+            </value>
+            <value>
+                <fullName>Piscine semi-creusée</fullName>
+                <default>false</default>
+                <label>Piscine semi-creusée</label>
+            </value>
+            <value>
+                <fullName>Plomberie</fullName>
+                <default>false</default>
+                <label>Plomberie</label>
+            </value>
+            <value>
+                <fullName>Pompe</fullName>
+                <default>false</default>
+                <label>Pompe</label>
+            </value>
+            <value>
+                <fullName>Pompe permanente pour puit d&apos;assèchement</fullName>
+                <default>false</default>
+                <label>Pompe permanente pour puit d&apos;assèchement</label>
+            </value>
+            <value>
+                <fullName>Puit d&apos;assèchement</fullName>
+                <default>false</default>
+                <label>Puit d&apos;assèchement</label>
+            </value>
+            <value>
+                <fullName>Rampe</fullName>
+                <default>false</default>
+                <label>Rampe</label>
+            </value>
+            <value>
+                <fullName>Retenue d&apos;aluminium</fullName>
+                <default>false</default>
+                <label>Retenue d&apos;aluminium</label>
+            </value>
+            <value>
+                <fullName>Retour d&apos;eau</fullName>
+                <default>false</default>
+                <label>Retour d&apos;eau</label>
+            </value>
+            <value>
+                <fullName>Robots</fullName>
+                <default>false</default>
+                <label>Robots</label>
+            </value>
+            <value>
+                <fullName>Sauna</fullName>
+                <default>false</default>
+                <label>Sauna</label>
+            </value>
+            <value>
+                <fullName>Securapool</fullName>
+                <default>false</default>
+                <label>Securapool</label>
+            </value>
+            <value>
+                <fullName>Service</fullName>
+                <default>false</default>
+                <label>Service</label>
+            </value>
+            <value>
+                <fullName>Service Audio Visuel</fullName>
+                <default>false</default>
+                <label>Service Audio Visuel</label>
+            </value>
+            <value>
+                <fullName>Spa</fullName>
+                <default>false</default>
+                <label>Spa</label>
+            </value>
+            <value>
+                <fullName>Spa Déversoir</fullName>
+                <default>false</default>
+                <label>Spa Déversoir</label>
+            </value>
+            <value>
+                <fullName>Speaker</fullName>
+                <default>false</default>
+                <label>Speaker</label>
+            </value>
+            <value>
+                <fullName>Système au sel</fullName>
+                <default>false</default>
+                <label>Système au sel</label>
+            </value>
+            <value>
+                <fullName>Système audio-visuel</fullName>
+                <default>false</default>
+                <label>Système audio-visuel</label>
+            </value>
+            <value>
+                <fullName>Système d&apos;ozone</fullName>
+                <default>false</default>
+                <label>Système d&apos;ozone</label>
+            </value>
+            <value>
+                <fullName>Système de filtration</fullName>
+                <default>false</default>
+                <label>Système de filtration</label>
+            </value>
+            <value>
+                <fullName>Toile</fullName>
+                <default>false</default>
+                <label>Toile</label>
+            </value>
+            <value>
+                <fullName>Tremplin</fullName>
+                <default>false</default>
+                <label>Tremplin</label>
+            </value>
+            <value>
+                <fullName>Trottoir</fullName>
+                <default>false</default>
+                <label>Trottoir</label>
+            </value>
+            <value>
+                <fullName>Valve 3 voies</fullName>
+                <default>false</default>
+                <label>Valve 3 voies</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

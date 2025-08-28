@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Labor_Force_Warranty_End_Date__c</fullName>
+    <inlineHelpText>From asset warranty, end date of warranty on labor force.</inlineHelpText>
+    <label>Labor Force Warranty End Date</label>
+    <summarizedField>AssetWarranty.EndDate</summarizedField>
+    <summaryFilterItems>
+        <field>AssetWarranty.WarrantyType</field>
+        <operation>equals</operation>
+        <value>Labor force</value>
+    </summaryFilterItems>
+    <summaryForeignKey>AssetWarranty.AssetId</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Signature_Email__c</fullName>
+    <description>Field to be used in Email Templates based on Store</description>
+    <externalId>false</externalId>
+    <formula>CASE(Choice_of_store_Name__c,
+					&quot;Supermagasins 01&quot;, &quot;gatineau@trevi.ca&quot;,
+					&quot;Supermagasins 03&quot;, &quot;brossard@trevi.ca&quot;,
+					&quot;Supermagasins 04&quot;, &quot;lavalest@trevi.ca&quot;,
+					&quot;Supermagasins 06&quot;, &quot;pointeclaire@trevi.ca&quot;,
+					&quot;Supermagasins 07&quot;, &quot;boucherville@trevi.ca&quot;,
+					&quot;Supermagasins 08&quot;, &quot;mascouche@trevi.ca&quot;,
+					&quot;Supermagasins 09&quot;, &quot;blainville@trevi.ca&quot;,
+					&quot;&quot;  /* Remplacez par une valeur par défaut si aucun magasin ne correspond */
+)</formula>
+    <label>Signature Email</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

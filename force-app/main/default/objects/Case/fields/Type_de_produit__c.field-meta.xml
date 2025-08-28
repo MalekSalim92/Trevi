@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_de_produit__c</fullName>
+    <label>Type de produit</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SPA</fullName>
+                <default>false</default>
+                <label>Produit SPA</label>
+            </value>
+            <value>
+                <fullName>SC</fullName>
+                <default>false</default>
+                <label>Produit SC</label>
+            </value>
+            <value>
+                <fullName>CR</fullName>
+                <default>false</default>
+                <label>Produit CR</label>
+            </value>
+            <value>
+                <fullName>Above ground Pool</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Above ground Pool</label>
+            </value>
+            <value>
+                <fullName>Accesories</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Accesories</label>
+            </value>
+            <value>
+                <fullName>Furniture and Gazebos</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Furniture and Gazebos</label>
+            </value>
+            <value>
+                <fullName>Inground Pool</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Inground Pool</label>
+            </value>
+            <value>
+                <fullName>Pool</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Pool</label>
+            </value>
+            <value>
+                <fullName>Semi-inground Pool</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Semi-inground Pool</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

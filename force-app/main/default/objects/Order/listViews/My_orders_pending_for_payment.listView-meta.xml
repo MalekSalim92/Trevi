@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_orders_pending_for_payment</fullName>
+    <columns>ORDERS.TYPE</columns>
+    <columns>ORDERS.ORDER_NUMBER</columns>
+    <columns>ORDERS.STATUS</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>ORDERS.TOTAL_AMOUNT</columns>
+    <columns>ORDERS.END_DATE</columns>
+    <columns>ORDERS.EFFECTIVE_DATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Order_Creation_Date__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>ORDERS.STATUS</field>
+        <operation>equals</operation>
+        <value>Awaiting payment</value>
+    </filters>
+    <label>Mes commandes en attente de paiement</label>
+    <sharedTo>
+        <group>Vendeurs</group>
+    </sharedTo>
+</ListView>

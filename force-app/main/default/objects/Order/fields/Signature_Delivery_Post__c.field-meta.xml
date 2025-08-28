@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Signature_Delivery_Post__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Region__c = Text($CustomMetadata.Order_Template_Signature_Infos__mdt.SP_Quebec.Region__c) ,
+CASE( Text(Contract_Type__c) ,
+&apos;143&apos; ,  $CustomMetadata.Order_Template_Signature_Infos__mdt.AB_Quebec.Delivery_Post__c  ,
+&apos;115&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.CR_Quebec.Delivery_Post__c  ,
+&apos;106&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.HL_Quebec.Delivery_Post__c  ,
+&apos;110&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.HT_Quebec.Delivery_Post__c  ,
+&apos;112&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.SC_Quebec.Delivery_Post__c  ,
+
+&apos;&apos;
+),
+CASE( Text(Contract_Type__c) ,
+&apos;143&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.AB.Delivery_Post__c ,
+&apos;115&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.CR.Delivery_Post__c ,
+&apos;106&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.HL.Delivery_Post__c ,
+&apos;110&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.HT.Delivery_Post__c ,
+&apos;112&apos; , $CustomMetadata.Order_Template_Signature_Infos__mdt.SC.Delivery_Post__c ,
+
+&apos;&apos;
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Signature Delivery Post</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

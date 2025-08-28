@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_Delivery_Amount__c</fullName>
+    <formula>if(
+Not(
+OR(
+ ISPICKVAL( Contract_Type__c , &apos;115&apos;),
+ AND (
+  ISPICKVAL( Contract_Type__c , &apos;112&apos;),
+  ISPICKVAL( ContractType__c , &apos;36&apos;)
+ ),
+ ISPICKVAL( Contract_Type__c , &apos;124&apos;),
+AND(
+  ISPICKVAL( Contract_Type__c , &apos;112&apos;),
+OR(
+ISPICKVAL( ContractType__c , &apos;38&apos;),
+ISPICKVAL( ContractType__c , &apos;37&apos;))
+ ),
+
+ ISPICKVAL( Contract_Type__c , &apos;110&apos;),
+ ISPICKVAL( Contract_Type__c , &apos;116&apos;)
+ 
+)), Amount_Due__c,
+0
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Amount for delivery</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

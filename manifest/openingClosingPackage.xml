@@ -34,7 +34,23 @@
           <name>ApexClass</name>
     </types>
     
-    
+     <types>
+        <members>Order</members>
+        <members>OrderItem</members>
+        <members>Product2</members>
+        <members>Pricebook2</members>
+        <members>PricebookEntry</members>
+        <members>Asset</members>
+        <members>Address__c</members>
+        <members>WorkType</members>
+        <members>Case</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Client Community Login</members>
+        <members>Dessinateur Community Login</members>
+        <name>Profile</name>
+    </types>
     
     
     <!-- Custom Labels -->

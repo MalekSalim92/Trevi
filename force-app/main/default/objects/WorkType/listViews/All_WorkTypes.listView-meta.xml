@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_WorkTypes</fullName>
+    <columns>Capacity_Type__c</columns>
+    <columns>Activity_Classification__c</columns>
+    <columns>Name</columns>
+    <columns>Work_Type_Name_EN__c</columns>
+    <columns>Service_Type__c</columns>
+    <columns>EstimatedDuration</columns>
+    <columns>DurationType</columns>
+    <columns>CreatedDate</columns>
+    <columns>Is_Pickup_at_the_Store__c</columns>
+    <columns>Sage_ID__c</columns>
+    <columns>Formulaire__c</columns>
+    <columns>testExternal__c</columns>
+    <columns>LastModifiedDate</columns>
+    <columns>Worktype_1_Year__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Tous les types de travail</label>
+</ListView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Com_Release_Perc_on_residential_cont</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+				 Commercial_Contract__c = False,
+				ISCHANGED(Release_Percentage__c)  
+				)</errorConditionFormula>
+    <errorDisplayField>Release_Percentage__c</errorDisplayField>
+    <errorMessage>For a Residential Contract fill the Release Percentage Residential Field only.</errorMessage>
+</ValidationRule>
