@@ -135,6 +135,14 @@
         <members>Travel_Expenses</members>
         <members>Week_Selection</members>
         <members>winter_cover_possession</members>
+        <members>Service_Message_Template</members>
+        <members>And_Text</members>
+        <members>Closing_Service_Text</members>
+        <members>Opening_Service_Text</members>
+        <members>Order_Contract_Type</members>
+        <members>finish_process_button</members>
+        <members>blocked_account_text</members>
+        <members>I_will_have_in_on_hand_product</members>
         <members>Would_you_like_Tr_vi_to_deliver_the_salt_bags</members>
         <name>CustomLabel</name>
     </types>
