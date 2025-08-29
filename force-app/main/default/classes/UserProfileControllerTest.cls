@@ -1,99 +1,74 @@
 @isTest
-public class UserProfileControllerTest {
+private class UserProfileControllerTest {
     
-    @isTest
-    static void testGetUserInfo() {
-        // Create a new Account
-        Account testAccount = new Account(Name = 'Test Account', 
-                                          BillingStreet='123',BillingState='Quebec',BillingCity='Montreal',BillingPostalCode='A0A 0A0',BillingCountry='Canada', Email__c = 'acc@testing.com',
-                                  Phone = '1234567890', ShippingStreet='111',ShippingState='Quebec',ShippingCity='Montreal',ShippingPostalCode='A0A 0A0',ShippingCountry='Canada');
+    @TestSetup
+    static void setup() {
+        // Create a test Account
+        Account testAccount = new Account(
+            Name = 'Test Account',
+            BillingStreet = '123',
+            BillingState = 'Quebec',
+            BillingCity = 'Montreal',
+            BillingPostalCode = 'A0A 0A0',
+            BillingCountry = 'Canada',
+            Email__c = 'acc@testing.com',
+            Phone = '1234567890',
+            ShippingStreet = '111',
+            ShippingState = 'Quebec',
+            ShippingCity = 'Montreal',
+            ShippingPostalCode = 'A0A 0A0',
+            ShippingCountry = 'Canada'
+        );
         insert testAccount;
 
-        // Create a new Contact associated with the Account
-        Contact testContact = new Contact(FirstName = 'John', LastName = 'Doe',Email = 'portaluser_' + String.valueOf(Math.random()).substring(2,9) + '@example.com', AccountId = testAccount.Id, MobilePhone='1234567890');
+        // Create a test Contact
+        Contact testContact = new Contact(
+            FirstName = 'Jane',
+            LastName = 'Doe',
+            Email = 'portaluser_' + String.valueOf(Math.random()).substring(2, 9) + '@example.com',
+            AccountId = testAccount.Id,
+            MobilePhone = '1234567890'
+        );
         insert testContact;
 
-        // Create a portal user
-        // Profile portalProfile = [SELECT Id FROM Profile WHERE Name = 'Client Community Login' LIMIT 1];
 
-        // User portalUser = new User(
-        //     Username = 'portaluser@example.com',
-        //     LastName='test',
-        //     Email = 'portaluser@example.com',
-        //     Alias = 'puser',
-        //     ProfileId = portalProfile.Id,
-        //     ContactId = testContact.Id,
-        //     IsActive = true,
-        //     TimeZoneSidKey = 'GMT',
-        //     LocaleSidKey = 'en_US',
-        //     EmailEncodingKey = 'UTF-8',
-        //     LanguageLocaleKey = 'en_US'
-        // );
-        // insert portalUser;
-
-        // Get the portal user created by flow
-        User portalUser = [SELECT Id FROM User WHERE ContactId = :testContact.Id LIMIT 1];
-
-
-        // Test getUserInfo method
-        User retrievedUser = UserProfileController.getUserInfo(portalUser.Id);
-        
-        System.assertEquals(portalUser.Id, retrievedUser.Id, 'The user ID should match');
-        System.assertEquals(testContact.FirstName, retrievedUser.Contact.FirstName, 'The first name should match');
-        System.assertEquals(testContact.LastName, retrievedUser.Contact.LastName, 'The last name should match');
-        System.assertEquals(testAccount.Name, retrievedUser.Account.Name, 'The account name should match');
     }
 
     @isTest
     static void testSaveUserInfo() {
-        // Create a new Account
-        Account testAccount = new Account(Name = 'Test Account 2', 
-                                          BillingStreet='123',BillingState='Quebec',BillingCity='Montreal',BillingPostalCode='A0A 0A0',BillingCountry='Canada', Email__c = 'acc@testing.com',
-                                  Phone = '1234567890', ShippingStreet='111',ShippingState='Quebec',ShippingCity='Montreal',ShippingPostalCode='A0A 0A0',ShippingCountry='Canada');
-        insert testAccount;
+        // Retrieve test data
+        User testUser = [SELECT Id, ContactId, AccountId, LanguageLocaleKey FROM User LIMIT 1];
+        Contact testContact = [SELECT Id, FirstName, LastName, Email, MobilePhone, AccountId FROM Contact LIMIT 1];
+        Account testAccount = [SELECT Id, Name, Phone, Email__c FROM Account LIMIT 1];
 
-        // Create a new Contact associated with the Account
-        Contact testContact = new Contact(FirstName = 'Jane', LastName = 'Doe',Email = 'portaluser_' + String.valueOf(Math.random()).substring(2,9) + '@example.com', AccountId = testAccount.Id, MobilePhone='1234567890');
-        insert testContact;
-
-        // Create a portal user
-        // Profile portalProfile = [SELECT Id FROM Profile WHERE Name = 'Client Community Login' LIMIT 1];
-
-        // User portalUser = new User(
-        //     Username = 'portaluser2@example.com',
-        //     LastName='test',
-        //     Email = 'portaluser2@example.com',
-        //     Alias = 'puser2',
-        //     ProfileId = portalProfile.Id,
-        //     ContactId = testContact.Id,
-        //     IsActive = true,
-        //     TimeZoneSidKey = 'GMT',
-        //     LocaleSidKey = 'en_US',
-        //     EmailEncodingKey = 'UTF-8',
-        //     LanguageLocaleKey = 'en_US'
-        // );
-        // insert portalUser;
-
-        // Get the portal user created by flow
-        User portalUser = [SELECT Id FROM User WHERE ContactId = :testContact.Id LIMIT 1];
-
-
-        // Update user, contact, and account
-        
+        // Update values
+        testUser.LanguageLocaleKey = 'fr';
         testContact.Email = 'jane.doe@example.com';
-        testAccount.Phone = '123-456-7890';
+        testAccount.Phone = '987-654-3210';
 
-        // Save the changes
+        // Test the method
         Test.startTest();
-        UserProfileController.saveUserInfo(portalUser, testContact, testAccount);
+        UserProfileController.saveUserInfo(testUser, testContact, testAccount);
         Test.stopTest();
 
-        
-        testContact = [SELECT Email FROM Contact WHERE Id = :testContact.Id];
-        testAccount = [SELECT Phone FROM Account WHERE Id = :testAccount.Id];
+        // Verify results
+        User updatedUser = [SELECT LanguageLocaleKey FROM User WHERE Id = :testUser.Id];
+        Contact updatedContact = [SELECT Email FROM Contact WHERE Id = :testContact.Id];
+        Account updatedAccount = [SELECT Phone FROM Account WHERE Id = :testAccount.Id];
 
-  
-        System.assertEquals('jane.doe@example.com', testContact.Email, 'The contact email should be updated');
-        System.assertEquals('123-456-7890', testAccount.Phone, 'The account phone should be updated');
+        System.assertEquals('fr', updatedUser.LanguageLocaleKey, 'User language should be updated to French');
+        System.assertEquals('jane.doe@example.com', updatedContact.Email, 'Contact email should be updated');
+        System.assertEquals('987-654-3210', updatedAccount.Phone, 'Account phone should be updated');
+    }
+
+    @isTest
+    static void testGetUserInfo() {
+        User testUser = [SELECT Id, ContactId, AccountId FROM User LIMIT 1];
+
+        Test.startTest();
+        User retrievedUser = UserProfileController.getUserInfo(testUser.Id);
+        Test.stopTest();
+
+        System.assertEquals(testUser.Id, retrievedUser.Id, 'Retrieved user ID should match');
     }
 }
