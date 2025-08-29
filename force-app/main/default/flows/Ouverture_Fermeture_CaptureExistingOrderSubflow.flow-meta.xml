@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Error_msg</name>
         <label>Assign Error msg</label>
@@ -25,6 +24,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>orderExists_Formula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>existing_order_service</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>existing_order_service_formula</elementReference>
             </value>
         </assignmentItems>
     </assignments>
@@ -65,6 +71,27 @@ TEXT({!currentItem_Opening_Products_Filter.Product2.Opening_Closing__c}) = &apos
 )</formula>
     </collectionProcessors>
     <environments>Default</environments>
+    <formulas>
+        <name>existing_order_service_formula</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   OR({!Opening_Products_Count} &gt; 0 , {!Closing_Products_Count} &gt; 0 ),
+   IF(
+      AND({!Opening_Products_Count} &gt; 0 , {!Closing_Products_Count} &gt; 0),
+      &quot;opening_closing_exist&quot;,
+      IF(
+         AND({!serviceType} = &quot;Opening&quot;, {!Opening_Products_Count} &gt; 0),
+         &quot;opening_exist&quot;,
+         IF(
+            AND({!serviceType} = &quot;Closing&quot;, {!Closing_Products_Count} &gt; 0),
+            &quot;closing_exist&quot;,
+            &quot;&quot;
+         )
+      )
+   ),
+   &quot;&quot;
+)</expression>
+    </formulas>
     <formulas>
         <name>Next_Year</name>
         <dataType>Date</dataType>
@@ -298,6 +325,13 @@ OR({!Opening_Products_Count} &gt; 0 , {!Closing_Products_Count} &gt; 0 )
     </variables>
     <variables>
         <name>ErrorMsg</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>existing_order_service</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

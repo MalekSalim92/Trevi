@@ -1061,6 +1061,7 @@
         <value>Do you have a winter cover in your possession? It is mandatory for the closure</value>
     </labels>
     <labels>
+<<<<<<< HEAD
         <fullName>Amount</fullName>
         <categories>Opening Closing</categories>
         <language>en_US</language>
@@ -1069,3 +1070,37 @@
         <value>Amount</value>
     </labels>
 </CustomLabels>
+=======
+        <fullName>And_Text</fullName>
+        <categories>Appointment Confirmation Forms</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>And Text</shortDescription>
+        <value>and</value>
+    </labels>
+    <labels>
+        <fullName>Closing_Service_Text</fullName>
+        <categories>Appointment Confirmation Forms</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Closing Service Text</shortDescription>
+        <value>Closing service</value>
+    </labels>
+    <labels>
+        <fullName>Opening_Service_Text</fullName>
+        <categories>Appointment Confirmation Forms</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opening Service Text</shortDescription>
+        <value>Opening service</value>
+    </labels>
+    <labels>
+        <fullName>Service_Message_Template</fullName>
+        <categories>Appointment Confirmation Forms</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Service Message Template</shortDescription>
+        <value>An {0}{1}{2} is already scheduled for your {3} for the upcoming season, it is not possible to reschedule the service at this time. If you would like another service, please select previous.</value>
+    </labels>
+</CustomLabels>
+>>>>>>> Opening/Closing

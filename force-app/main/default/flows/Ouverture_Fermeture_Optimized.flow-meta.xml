@@ -110,7 +110,6 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Prepare the order item and add to list in order to display in the Price summary screen</description>
         <name>Add_Selected_Main_Service_Product</name>
@@ -1336,6 +1335,18 @@ IF({!Selected_Contract_Terms_Num}=3,
         <scale>2</scale>
     </formulas>
     <formulas>
+        <name>dynamicMessageExistingOrder</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(
+    SUBSTITUTE(
+        SUBSTITUTE(
+            SUBSTITUTE({!$Label.Service_Message_Template},
+                &quot;{0}&quot;, {!servicePart1}),
+            &quot;{1}&quot;, {!servicePart2}),
+        &quot;{2}&quot;, {!servicePart3}),
+    &quot;{3}&quot;, {!Selected_Contract})</expression>
+    </formulas>
+    <formulas>
         <name>emailClauses</name>
         <dataType>String</dataType>
         <expression>{!baseClauses} &amp;
@@ -1419,6 +1430,26 @@ IF({!Selected_Contract_Terms_Num}=3,
         <dataType>Number</dataType>
         <expression>VALUE({!Selected_Contract_Terms})</expression>
         <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>servicePart1</name>
+        <dataType>String</dataType>
+        <expression>CASE({!Existing_Orders.existing_order_service},
+    &quot;opening_exist&quot;, {!$Label.Opening_Service_Text},
+    &quot;closing_exist&quot;, {!$Label.Closing_Service_Text},
+    &quot;opening_closing_exist&quot;, {!$Label.Opening_Service_Text},
+    &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>servicePart2</name>
+        <dataType>String</dataType>
+        <expression>IF({!Existing_Orders.existing_order_service} = &quot;opening_closing_exist&quot;, {!$Label.And_Text}, &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>servicePart3</name>
+        <dataType>String</dataType>
+        <expression>IF({!Existing_Orders.existing_order_service} = &quot;opening_closing_exist&quot;, {!$Label.Closing_Service_Text}, &quot;&quot;)</expression>
     </formulas>
     <formulas>
         <name>spaSize</name>
@@ -1701,7 +1732,7 @@ IF({!Selected_Contract_Terms_Num}=3,
         </inputAssignments>
         <object>Order</object>
     </recordUpdates>
-    <runInMode>SystemModeWithSharing</runInMode>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Blocked_Account_Screen</name>
         <label>Blocked Account Screen</label>
@@ -1710,18 +1741,13 @@ IF({!Selected_Contract_Terms_Num}=3,
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Screen_Redirection</targetReference>
+        </connector>
         <fields>
             <name>BlockedAccountText</name>
             <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Label.blocked_account_text}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Done</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -1739,14 +1765,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>capacityNotAvailableMsg</name>
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;﻿{!$Label.not_available_capacity}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1766,27 +1784,11 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>Clauses</name>
             <fieldText>&lt;p&gt;{!baseClauses}&lt;/p&gt;&lt;p&gt;{!extraClauses}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>warningClauseFr</name>
             <fieldText>&lt;p&gt;{!warningClause_Fr}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1802,14 +1804,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>warningClauseEn</name>
             <fieldText>&lt;p&gt;{!warningClause_En}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1828,14 +1822,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;{!$Label.Please_Select}&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Clause_Screen_Accept_Message} == True</formulaExpression>
@@ -1854,16 +1840,8 @@ IF({!Selected_Contract_Terms_Num}=3,
         <allowPause>true</allowPause>
         <fields>
             <name>ExistingContractMessage</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;{!$Label.have_contract_for_this_product}&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;{!&lt;/strong&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;dynamicMessageExistingOrder&lt;/strong&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -1883,14 +1861,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>Choose_Contract_Type</name>
             <fieldText>&lt;p&gt;{!$Label.Choose_Contract_Type}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Contract_Selection_Component</name>
@@ -1905,14 +1875,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(251, 0, 0);&quot;&gt;{!$Label.please_select_a_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Contract_Selection_Component.selectedValue} &lt;&gt; &apos;&apos;</formulaExpression>
@@ -1939,14 +1901,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>6</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -2009,27 +1963,11 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Contract_Display_Message</name>
             <fieldText>&lt;p&gt;{!$Label.Contract_Display_Message}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Contract_Terms</name>
@@ -2041,14 +1979,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Requested_Services</name>
@@ -2061,14 +1991,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Requested_Service_Message_EN</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Requested_Services}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2080,14 +2002,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Requested_Service_Accept_Chkbx</name>
@@ -2096,14 +2010,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;{!$Label.Please_Select}&lt;/p&gt;</errorMessage>
                 <formulaExpression>{!Requested_Service_Accept_Chkbx} == TRUE</formulaExpression>
@@ -2133,14 +2039,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -2165,14 +2063,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
@@ -2192,14 +2082,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>PayNowText</name>
             <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;﻿{!$Label.process_payment}&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;﻿&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Process Payment</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -2220,40 +2102,16 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>ServiceDemande</name>
             <fieldText>&lt;p&gt;{!$Label.Requested_Services}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>clausesBase</name>
             <fieldText>&lt;p&gt;{!baseClauses}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>omitMsg</name>
             <fieldText>&lt;p&gt;{!$Label.Price_Summary_Msg}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Price_Summary_Section1</name>
@@ -2265,14 +2123,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Selected_Product_Display</name>
                     <fieldText>&lt;p&gt;{!Product_Display.firstSelectedRow.Name}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2289,14 +2139,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_ContractTerms_Display</name>
                     <fieldText>&lt;p&gt;{!Selected_Contract_Terms}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2313,14 +2155,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Selected_Product_Price</name>
                     <fieldText>&lt;p&gt;&lt;strong&gt;{!Product_Display.firstSelectedRow.UnitPrice}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2337,14 +2171,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Selected_Price_Display</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Main_Screen_Contract_Terms_Amt}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2356,14 +2182,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2422,14 +2240,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2488,14 +2298,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2554,14 +2356,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2633,14 +2427,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2669,27 +2455,11 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>PrixService</name>
             <fieldText>&lt;p&gt;{!$Label.Price_Summary_Distance_fees}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Price_Summary_Section3</name>
@@ -2723,40 +2493,16 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_total_Annual_Amounts</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;&lt;u&gt;{!$Label.Annual_Amount}:&amp;nbsp;&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>annual_base_amount</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Base_service_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Extras_Amount_Display_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Extras_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2772,14 +2518,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Discount1_Label</name>
                     <fieldText>&lt;p&gt;{!$Label.Discount}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2795,27 +2533,11 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Total_Amount_Label</name>
                     <fieldText>&lt;p&gt;{!$Label.Total_amount}&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Final_Amount_Display_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Total_amount_after_taxes}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2832,40 +2554,16 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_blank1</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 255, 255); font-size: 16px;&quot;&gt;&lt;u&gt;Total Annual Amounts :&amp;nbsp;﻿&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_annual_base_amount_value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Main_Screen_Amt_FullPrice}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Extras_Amount_Display_Value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Extras_Total_FullPrice}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2881,14 +2579,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Discount1</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Discount_total}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -2904,27 +2594,11 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Total_Amount1</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;﻿{!Total_Amount_Sum}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Final_Amount_Display_Value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Total_Final_Amount_Currency}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2936,14 +2610,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -2987,40 +2653,16 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_total_Contract_Amounts</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(255, 0, 0);&quot;&gt;&lt;u&gt;{!Total_Amount_Contract_Title} :&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>contract_base_amount2</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Base_service_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Contact_Extra_Label2</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Extras_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3036,14 +2678,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Discount_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Discount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3059,27 +2693,11 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Total_amount_Label2</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Label.Total_amount}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Total_Contact_Label</name>
                     <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Label.Total_amount_after_taxes}&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -3096,40 +2714,16 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_blank2</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(255, 255, 255); font-size: 16px; background-color: rgb(255, 255, 255);&quot;&gt;&lt;u&gt; Amounts :&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_contract_base_amount_value</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Main_Screen_ALL_Terms_Amt}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Contact_Extra</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Extra_Contract_Total_Price}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3145,14 +2739,6 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Discount</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Discount_All_Contract}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3168,27 +2754,11 @@ IF({!Selected_Contract_Terms_Num}=3,
                     <name>Copy_1_of_Total_amount</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Total_Amount_Sum_AllContract}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Copy_1_of_Total_Contact</name>
                     <fieldText>&lt;p style=&quot;text-align: right;&quot;&gt;&lt;strong&gt;{!Total_Contract_Amount_Calculated}&lt;/strong&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>12</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -3200,16 +2770,33 @@ IF({!Selected_Contract_Terms_Num}=3,
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Screen_Redirection</name>
+        <label>Screen Redirection</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>FlowRedirectionLWC</name>
+            <extensionName>c:flowRedirectingComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>urlRedirection</name>
+                <value>
+                    <stringValue>External_Site_Redirect</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
@@ -3242,14 +2829,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Label.please_select_a_value}&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>AND({!Spa_Type_Component.selectedValue} &lt;&gt; &apos;&apos; ,IF({!Spa_Type_Component.selectedValue} = &apos;swimSpa&apos; , {!Spa_Type_Component.selectedSize} &lt;&gt; &apos;&apos; ,True))</formulaExpression>
@@ -3270,14 +2849,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <name>Week_Not_Selected_Error_Message</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;{!$Label.Capacity_Week_Not_Selected_Error_Message}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -3301,14 +2872,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -3328,14 +2891,6 @@ IF({!Selected_Contract_Terms_Num}=3,
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
