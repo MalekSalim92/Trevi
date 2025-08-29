@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>unfiled$public/SA_AB_Delivery_Confirmation_1740756029073</members>
+        <members>SA_AB_Delivery_Confirmation_1740756029073</members>
         <name>EmailTemplate</name>
     </types>
     <version>62.0</version>
 </Package>
-g

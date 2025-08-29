@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-<<<<<<< HEAD
         <fullName>Requested_Services_Text</fullName>
         <categories>Opening Closing Val Mar</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Requested Services Text</shortDescription>
-        <value>At the request of the customer and in consideration of the payment of the service charges, TRÉVI &quot;the Company&quot; undertakes to perform the following services:
+        <value>At the request of the customer and in consideration of the payment of the service
+            charges, TRÉVI &quot;the Company&quot; undertakes to perform the following services:
 
-In the event that one or more additional services have not been selected or we do not have access to all equipment and materials, the appointment will be handed over and the travelling expenses of &lt;strong&gt; $85 plus tax &lt;/strong&gt; and the additional service charges will be payable before the next visit.
+            In the event that one or more additional services have not been selected or we do not
+            have access to all equipment and materials, the appointment will be handed over and the
+            travelling expenses of &lt;strong&gt; $85 plus tax &lt;/strong&gt; and the additional
+            service charges will be payable before the next visit.
 
-Opening and closing service prices include a distance of &lt;strong&gt;50 km or less&lt;/strong&gt; from the nearest Trevi Super-store. An additional charge of&lt;strong&gt; $2.00 per kilometer &lt;/strong&gt;will automatically be added to your invoice.</value>
+            Opening and closing service prices include a distance of &lt;strong&gt;50 km or
+            less&lt;/strong&gt; from the nearest Trevi Super-store. An additional charge
+            of&lt;strong&gt; $2.00 per kilometer &lt;/strong&gt;will automatically be added to your
+            invoice.</value>
     </labels>
     <labels>
         <fullName>Requested_Services_VM_Title</fullName>
@@ -27,7 +33,8 @@ Opening and closing service prices include a distance of &lt;strong&gt;50 km or 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>not available capacity</shortDescription>
-        <value>We&apos;re sorry, but there are no more available slots for the selected date.Please choose another date</value>
+        <value>We&apos;re sorry, but there are no more available slots for the selected date.Please
+            choose another date</value>
     </labels>
     <labels>
         <fullName>select_at_least_a_product</fullName>
@@ -35,7 +42,8 @@ Opening and closing service prices include a distance of &lt;strong&gt;50 km or 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>select at least a product</shortDescription>
-        <value>You haven’t selected any products. Please go back to the previous screens and select at least one product.</value>
+        <value>You haven’t selected any products. Please go back to the previous screens and select
+            at least one product.</value>
     </labels>
     <labels>
         <fullName>val_mar_account</fullName>
@@ -51,7 +59,8 @@ Opening and closing service prices include a distance of &lt;strong&gt;50 km or 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>val mar additional fees note</shortDescription>
-        <value>Additional fees of $100 will be applied for requests submitted after November 15 or after June 1st</value>
+        <value>Additional fees of $100 will be applied for requests submitted after November 15 or
+            after June 1st</value>
     </labels>
     <labels>
         <fullName>val_mar_address</fullName>
@@ -83,13 +92,15 @@ Opening and closing service prices include a distance of &lt;strong&gt;50 km or 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>val mar closing clauses</shortDescription>
-        <value>1. &lt;strong&gt; Lower water level  &lt;/strong&gt; ($100 extra for the town of Mount-Royal)
-2. &lt;strong&gt; Remove diving board, ladder and lights &lt;/strong&gt;
-3. &lt;strong&gt; Drain the pump, the filter, the chlorinator, brominator, salt system, or ozonator &lt;/strong&gt;
-4. &lt;strong&gt; Drain and winterize pool heater &lt;/strong&gt;
-5. &lt;strong&gt; Drain and blow all pipes &lt;/strong&gt;	
-6. &lt;strong&gt; Winterize skimmer &lt;/strong&gt;
-7. &lt;strong&gt; Store pool equipment and accessories &lt;/strong&gt;</value>
+        <value>1. &lt;strong&gt; Lower water level &lt;/strong&gt; ($100 extra for the town of
+            Mount-Royal)
+            2. &lt;strong&gt; Remove diving board, ladder and lights &lt;/strong&gt;
+            3. &lt;strong&gt; Drain the pump, the filter, the chlorinator, brominator, salt system,
+            or ozonator &lt;/strong&gt;
+            4. &lt;strong&gt; Drain and winterize pool heater &lt;/strong&gt;
+            5. &lt;strong&gt; Drain and blow all pipes &lt;/strong&gt;
+            6. &lt;strong&gt; Winterize skimmer &lt;/strong&gt;
+            7. &lt;strong&gt; Store pool equipment and accessories &lt;/strong&gt;</value>
     </labels>
     <labels>
         <fullName>val_mar_closing_date</fullName>
@@ -161,17 +172,21 @@ Opening and closing service prices include a distance of &lt;strong&gt;50 km or 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>val mar notice part 1</shortDescription>
-        <value>1 - a . Magasin Trévi inc. will schedule the work to be done, from September 30th to November 1st for the winterizing period and from April 15 to May 15 for the opening period. 
-     b . Magasin Trévi inc. shall not be responsible for any breaks, damages or deterioration of pool due to winterizing period and from April 15 to May 15 for the opening period.
+        <value>1 - a . Magasin Trévi inc. will schedule the work to be done, from September 30th to
+            November 1st for the winterizing period and from April 15 to May 15 for the opening
+            period.
+            b . Magasin Trévi inc. shall not be responsible for any breaks, damages or deterioration
+            of pool due to winterizing period and from April 15 to May 15 for the opening period.
 
-2 - Service charges do not include:
-the cost of parts which need to be replaced;
-the cost of removal of the pump, the base of the diving board, the slide;
-the cost of repairs to the ceramic or the concrete structure after the warranty
-the cost of pumping out any excess water following winterizing of the pool;
-the cost of the leaves collecting in the pool ($35.00 per bag)
+            2 - Service charges do not include:
+            the cost of parts which need to be replaced;
+            the cost of removal of the pump, the base of the diving board, the slide;
+            the cost of repairs to the ceramic or the concrete structure after the warranty
+            the cost of pumping out any excess water following winterizing of the pool;
+            the cost of the leaves collecting in the pool ($35.00 per bag)
 
-3 - Any refill of water required for the opening of the pool shall be done by the customer.</value>
+            3 - Any refill of water required for the opening of the pool shall be done by the
+            customer.</value>
     </labels>
     <labels>
         <fullName>val_mar_notice_part_2</fullName>
@@ -179,15 +194,18 @@ the cost of the leaves collecting in the pool ($35.00 per bag)
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>val mar notice part 2</shortDescription>
-        <value>4 - Magasin Trévi inc. will place the equipment removed during winterizing where indicated by the customer but without any liability for damages caused while moving this equipment.
+        <value>4 - Magasin Trévi inc. will place the equipment removed during winterizing where
+            indicated by the customer but without any liability for damages caused while moving this
+            equipment.
 
-5 - Magasin Trévi inc. shall not be responsible for any damages resulting from freezing and/or:
-any shifting of the pool caused by a high water table
-any debris falling in the water while removing the winter cover.
+            5 - Magasin Trévi inc. shall not be responsible for any damages resulting from freezing
+            and/or:
+            any shifting of the pool caused by a high water table
+            any debris falling in the water while removing the winter cover.
 
-6 - Magasin Trévi inc. does not roll, fold or clean the winter cover
+            6 - Magasin Trévi inc. does not roll, fold or clean the winter cover
 
-7 - The customer agrees to remove all debris from the winter cover before the opening</value>
+            7 - The customer agrees to remove all debris from the winter cover before the opening</value>
     </labels>
     <labels>
         <fullName>val_mar_notice_part_3</fullName>
@@ -195,9 +213,12 @@ any debris falling in the water while removing the winter cover.
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>val mar notice part 3</shortDescription>
-        <value>8 - The customer has to maintain his draining well with less than 18&quot; of water until frost.
+        <value>8 - The customer has to maintain his draining well with less than 18&quot; of water
+            until frost.
 
-9 - Magasin Trévi inc. reserves the right to adjust applicable service charges in the event the technician should note any discrepancy between the size of pool described above and the actual size of your pool or any other supplementary service not mentioned.</value>
+            9 - Magasin Trévi inc. reserves the right to adjust applicable service charges in the
+            event the technician should note any discrepancy between the size of pool described
+            above and the actual size of your pool or any other supplementary service not mentioned.</value>
     </labels>
     <labels>
         <fullName>val_mar_opening_clauses</fullName>
@@ -205,11 +226,11 @@ any debris falling in the water while removing the winter cover.
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>val mar opening clauses</shortDescription>
-        <value>1. &lt;strong&gt; Reinstall diving board, ladder and lights   &lt;/strong&gt;
-2. &lt;strong&gt; Reconnect pool heater   &lt;/strong&gt;
-3. &lt;strong&gt; Reconnect, start up and check the filtration system   &lt;/strong&gt;
-4. &lt;strong&gt; Reconnect control system and automation   &lt;/strong&gt;
-5. &lt;strong&gt; Start up and water calibration   &lt;/strong&gt;</value>
+        <value>1. &lt;strong&gt; Reinstall diving board, ladder and lights &lt;/strong&gt;
+            2. &lt;strong&gt; Reconnect pool heater &lt;/strong&gt;
+            3. &lt;strong&gt; Reconnect, start up and check the filtration system &lt;/strong&gt;
+            4. &lt;strong&gt; Reconnect control system and automation &lt;/strong&gt;
+            5. &lt;strong&gt; Start up and water calibration &lt;/strong&gt;</value>
     </labels>
     <labels>
         <fullName>val_mar_opening_date</fullName>
@@ -332,8 +353,7 @@ any debris falling in the water while removing the winter cover.
         <value>Please confirm the service call information.
 
 
-
-If you wish to add any details, you can do so in the comments area below :</value>
+            If you wish to add any details, you can do so in the comments area below :</value>
     </labels>
     <labels>
         <fullName>val_mar_total_price_label</fullName>
@@ -405,7 +425,8 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Asset Message Spa</shortDescription>
-        <value>Trevi provides opening and closing services for Dynasty and Lacus Spas, as wll as spas sold directly by Trevi Super Stores.</value>
+        <value>Trevi provides opening and closing services for Dynasty and Lacus Spas, as wll as
+            spas sold directly by Trevi Super Stores.</value>
     </labels>
     <labels>
         <fullName>Base_service_amount</fullName>
@@ -533,7 +554,8 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Do you have pool heater</shortDescription>
-        <value>Do you have a pool heater (heat pump, gas heater, electric heater, solar heater Trévi)?</value>
+        <value>Do you have a pool heater (heat pump, gas heater, electric heater, solar heater
+            Trévi)?</value>
     </labels>
     <labels>
         <fullName>Employee_number</fullName>
@@ -557,7 +579,8 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Extra services closing</shortDescription>
-        <value>Here are the options available in Extra when closing. Do you want Trévi to do the following service(s) :</value>
+        <value>Here are the options available in Extra when closing. Do you want Trévi to do the
+            following service(s) :</value>
     </labels>
     <labels>
         <fullName>Extra_services_opening</fullName>
@@ -565,7 +588,8 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Extra services opening</shortDescription>
-        <value>Here are the options available in Extra when opening. Do you want Trévi to do the following service(s) :</value>
+        <value>Here are the options available in Extra when opening. Do you want Trévi to do the
+            following service(s) :</value>
     </labels>
     <labels>
         <fullName>Extras_amount</fullName>
@@ -588,8 +612,10 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <categories>Opening Closing</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>I confirm that the cover is less than 8 years old. I understand and accept the c</shortDescription>
-        <value>I confirm that the cover is less than 8 years old. I understand and accept the condition.</value>
+        <shortDescription>I confirm that the cover is less than 8 years old. I understand and accept
+            the c</shortDescription>
+        <value>I confirm that the cover is less than 8 years old. I understand and accept the
+            condition.</value>
     </labels>
     <labels>
         <fullName>I_will_have_in_on_hand_product</fullName>
@@ -606,8 +632,13 @@ If you wish to add any details, you can do so in the comments area below :</valu
         <protected>false</protected>
         <shortDescription>Luxury Opening Service</shortDescription>
         <value>Trévi offers luxury opening service.
-The swimming pool has a cover aged 8 years or less.This option requires 2 additional visits at opening and includes: emptying the pool, washing the liner, step and crowning. The customer must fill the pool up to the first step at the bottom. The technician will return to collect his equipment. The pool must then be completely filled by the customer in order to proceed with the opening.
-Please note that an additional fee of $35/bag will be applied for bags of leaves/waste that will be removed from the pool.</value>
+            The swimming pool has a cover aged 8 years or less.This option requires 2 additional
+            visits at opening and includes: emptying the pool, washing the liner, step and crowning.
+            The customer must fill the pool up to the first step at the bottom. The technician will
+            return to collect his equipment. The pool must then be completely filled by the customer
+            in order to proceed with the opening.
+            Please note that an additional fee of $35/bag will be applied for bags of leaves/waste
+            that will be removed from the pool.</value>
     </labels>
     <labels>
         <fullName>Opening_Closing</fullName>
@@ -647,7 +678,8 @@ Please note that an additional fee of $35/bag will be applied for bags of leaves
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Opening Closing No products found in Order</shortDescription>
-        <value>No products have been found for the selected contract. Please select one of the following products:</value>
+        <value>No products have been found for the selected contract. Please select one of the
+            following products:</value>
     </labels>
     <labels>
         <fullName>Opening_Date</fullName>
@@ -727,7 +759,9 @@ Please note that an additional fee of $35/bag will be applied for bags of leaves
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Price Summary Distance fees</shortDescription>
-        <value>The prices for opening and closing services include a distance of 50 km or less from the nearest Trévi Superstore. An additional charge of $2.00 per kilometer will automatically be added to your invoice.</value>
+        <value>The prices for opening and closing services include a distance of 50 km or less from
+            the nearest Trévi Superstore. An additional charge of $2.00 per kilometer will
+            automatically be added to your invoice.</value>
     </labels>
     <labels>
         <fullName>Price_Summary_Msg</fullName>
@@ -735,7 +769,8 @@ Please note that an additional fee of $35/bag will be applied for bags of leaves
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Price Summary Msg</shortDescription>
-        <value>IF YOU HAVE OMITTED TO SELECT ONE OF THE OPTIONS, PLEASE RETURN TO THE PREVIOUS SCREEN AND ANSWER THE QUESTIONS ADEQUATELY</value>
+        <value>IF YOU HAVE OMITTED TO SELECT ONE OF THE OPTIONS, PLEASE RETURN TO THE PREVIOUS
+            SCREEN AND ANSWER THE QUESTIONS ADEQUATELY</value>
     </labels>
     <labels>
         <fullName>Product_Description</fullName>
@@ -783,11 +818,18 @@ Please note that an additional fee of $35/bag will be applied for bags of leaves
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Requested Services</shortDescription>
-        <value>REQUESTED SERVICES: At the request of the customer and in consideration of the payment of the service charges. Trévi &quot;the Company&quot; undertakes to perform the services that will be selected.
+        <value>REQUESTED SERVICES: At the request of the customer and in consideration of the
+            payment of the service charges. Trévi &quot;the Company&quot; undertakes to perform the
+            services that will be selected.
 
-In the event that one or more additional services have not been selected or we do not have access to all equipment and materials the appointment will be handed over and the travelling expenses of $85 plus tax and the additional service charges will be payable before the next visit.
+            In the event that one or more additional services have not been selected or we do not
+            have access to all equipment and materials the appointment will be handed over and the
+            travelling expenses of $85 plus tax and the additional service charges will be payable
+            before the next visit.
 
-Opening and closing service prices include a distance of 50 km or less from the nearest Trévi Super store. An additional charge of $2.00 per km will automatically be added to your invoice.</value>
+            Opening and closing service prices include a distance of 50 km or less from the nearest
+            Trévi Super store. An additional charge of $2.00 per km will automatically be added to
+            your invoice.</value>
     </labels>
     <labels>
         <fullName>Requested_Services_Title</fullName>
@@ -851,9 +893,10 @@ Opening and closing service prices include a distance of 50 km or less from the 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Support blocs</shortDescription>
-        <value>Would you like Trévi to bring the support blocks? (For 11&apos; spas, two support blocks are mandatory)
+        <value>Would you like Trévi to bring the support blocks? (For 11&apos; spas, two support
+            blocks are mandatory)
 
-Bloc supplied by Trévi for winterizing</value>
+            Bloc supplied by Trévi for winterizing</value>
     </labels>
     <labels>
         <fullName>Total_Price</fullName>
@@ -885,11 +928,18 @@ Bloc supplied by Trévi for winterizing</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Travel Expenses</shortDescription>
-        <value>REQEUSTED SERVICES: At the request of the customer and in consideration of the payment of the service charges, Trévi &quot;the Company&quot; undertakes to perform the following services:
+        <value>REQEUSTED SERVICES: At the request of the customer and in consideration of the
+            payment of the service charges, Trévi &quot;the Company&quot; undertakes to perform the
+            following services:
 
-In the event that one or more additional service have not been selected or we do not have access to all equipment and materials, the appointment will be handed over and the travelling expenses of $85 plus tax and the additional servcie charges will be payable before the next visit.
+            In the event that one or more additional service have not been selected or we do not
+            have access to all equipment and materials, the appointment will be handed over and the
+            travelling expenses of $85 plus tax and the additional servcie charges will be payable
+            before the next visit.
 
-Opening and closing service prices include a distance of 50 km or less from the nearest Trévi Super-store. An additonal charge of $2.00 per kilometer will automatically be added to your invoice.</value>
+            Opening and closing service prices include a distance of 50 km or less from the nearest
+            Trévi Super-store. An additonal charge of $2.00 per kilometer will automatically be
+            added to your invoice.</value>
     </labels>
     <labels>
         <fullName>Week_Selection</fullName>
@@ -914,11 +964,12 @@ Opening and closing service prices include a distance of 50 km or less from the 
         <protected>false</protected>
         <shortDescription>blocked account text</shortDescription>
         <value>Outstanding balance
-Unfortunately, we are unable to place a service call/contract service/in-store repair under your account at this time as there appears to be an outstanding balance.
+            Unfortunately, we are unable to place a service call/contract service/in-store repair
+            under your account at this time as there appears to be an outstanding balance.
 
-Please contact the service department to resolve the situation.
+            Please contact the service department to resolve the situation.
 
-Thank you</value>
+            Thank you</value>
     </labels>
     <labels>
         <fullName>cant_find_asset</fullName>
@@ -990,7 +1041,8 @@ Thank you</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>process payment</shortDescription>
-        <value>You are about to process the payment for your order. Please click “Process Payment” to proceed</value>
+        <value>You are about to process the payment for your order. Please click “Process Payment”
+            to proceed</value>
     </labels>
     <labels>
         <fullName>products_associated_with_your_aaccount</fullName>
@@ -1015,61 +1067,5 @@ Thank you</value>
         <protected>false</protected>
         <shortDescription>Amount</shortDescription>
         <value>Amount</value>
-=======
-        <fullName>Refund_failed</fullName>
-        <categories>Shopify</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Refund failed</shortDescription>
-        <value>Refund failed.</value>
-    </labels>
-    <labels>
-        <fullName>Refund_processed</fullName>
-        <categories>Shopify</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Refund processed</shortDescription>
-        <value>Refund processed.</value>
-    </labels>
-    <labels>
-        <fullName>customer_pays</fullName>
-        <categories>Shopify</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>customer pays</shortDescription>
-        <value>Inform the customer that they need to click on the link that was sent to them to pay.</value>
-    </labels>
-    <labels>
-        <fullName>integration_error</fullName>
-        <categories>Shopify</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>integration error</shortDescription>
-        <value>Payment processing failed. Please contact support</value>
-    </labels>
-    <labels>
-        <fullName>payment_Processed</fullName>
-        <categories>Shopify</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>payment Processed</shortDescription>
-        <value>Inform the customer that the payment was processed on their card and that the transaction is complete.</value>
-    </labels>
-    <labels>
-        <fullName>refund_amount</fullName>
-        <categories>Shopify</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>refund amount</shortDescription>
-        <value>Refund Amount</value>
-    </labels>
-    <labels>
-        <fullName>refund_amount_validation_message</fullName>
-        <categories>Shopify</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>refund amount validation message</shortDescription>
-        <value>Refund amount must be greater than 0 and less than</value>
->>>>>>> shopify
     </labels>
 </CustomLabels>
