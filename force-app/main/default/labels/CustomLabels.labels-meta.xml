@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+<<<<<<< HEAD
         <fullName>Requested_Services_Text</fullName>
         <categories>Opening Closing Val Mar</categories>
         <language>en_US</language>
@@ -1104,3 +1105,13 @@
     </labels>
 </CustomLabels>
 >>>>>>> Opening/Closing
+=======
+        <fullName>mobile_phone_pattern</fullName>
+        <categories>Appointment Confirmation Forms</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>mobile phone pattern</shortDescription>
+        <value>Mobile Phone number must be exactly 10 digits.</value>
+    </labels>
+</CustomLabels>
+>>>>>>> appointmentForms
