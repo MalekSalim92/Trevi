@@ -1779,6 +1779,13 @@ TIMENOW() - 18000000
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
+                    <validationRule>
+                        <errorMessage>&lt;p&gt;{!$Label.mobile_phone_pattern}&lt;/p&gt;</errorMessage>
+                        <formulaExpression>OR(
+   ISBLANK({!Delivery_Confirmation_Change_Phone}),
+   NOT(REGEX({!Delivery_Confirmation_Change_Phone}, &quot;^[0-9]{10}$&quot;))
+)</formulaExpression>
+                    </validationRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -1826,6 +1833,10 @@ TIMENOW() - 18000000
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Redirect_url</targetReference>
+        </connector>
         <fields>
             <name>Copy_1_of_invalid</name>
             <extensionName>flowruntime:image</extensionName>
@@ -1865,9 +1876,12 @@ TIMENOW() - 18000000
         <label>Faulty Screen</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <allowBack>true</allowBack>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Redirect_url</targetReference>
+        </connector>
         <fields>
             <name>invalid2</name>
             <extensionName>flowruntime:image</extensionName>
@@ -1899,7 +1913,8 @@ TIMENOW() - 18000000
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
-        <showFooter>false</showFooter>
+        <nextOrFinishButtonLabel>Finish</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
@@ -1910,6 +1925,10 @@ TIMENOW() - 18000000
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Redirect_url</targetReference>
+        </connector>
         <fields>
             <name>invalid</name>
             <extensionName>flowruntime:image</extensionName>
@@ -1952,6 +1971,10 @@ TIMENOW() - 18000000
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Redirect_url</targetReference>
+        </connector>
         <fields>
             <name>Check</name>
             <extensionName>flowruntime:image</extensionName>
@@ -1987,6 +2010,31 @@ TIMENOW() - 18000000
             <name>Confirmation_Msg</name>
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;{!confirmationSubtitle}&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;{!confirmationMessage}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Redirect_url</name>
+        <label>Redirect url</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>flowRedirection</name>
+            <extensionName>c:flowRedirectingComponent</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>urlRedirection</name>
+                <value>
+                    <stringValue>Trevi_website</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
