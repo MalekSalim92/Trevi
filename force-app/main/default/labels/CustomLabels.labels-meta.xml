@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-<<<<<<< HEAD
         <fullName>Requested_Services_Text</fullName>
         <categories>Opening Closing Val Mar</categories>
         <language>en_US</language>
@@ -1062,7 +1061,7 @@
         <value>Do you have a winter cover in your possession? It is mandatory for the closure</value>
     </labels>
     <labels>
-<<<<<<< HEAD
+
         <fullName>Amount</fullName>
         <categories>Opening Closing</categories>
         <language>en_US</language>
@@ -1070,8 +1069,7 @@
         <shortDescription>Amount</shortDescription>
         <value>Amount</value>
     </labels>
-</CustomLabels>
-=======
+    <labels>
         <fullName>And_Text</fullName>
         <categories>Appointment Confirmation Forms</categories>
         <language>en_US</language>
@@ -1101,17 +1099,18 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Service Message Template</shortDescription>
-        <value>An {0}{1}{2} is already scheduled for your {3} for the upcoming season, it is not possible to reschedule the service at this time. If you would like another service, please select previous.</value>
+        <value>An {0}{1}{2} is already scheduled for your {3} for the upcoming season, it is not
+            possible to reschedule the service at this time. If you would like another service,
+            please
+            select previous.</value>
     </labels>
-</CustomLabels>
->>>>>>> Opening/Closing
-=======
+    <labels>
         <fullName>mobile_phone_pattern</fullName>
         <categories>Appointment Confirmation Forms</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>mobile phone pattern</shortDescription>
         <value>Mobile Phone number must be exactly 10 digits.</value>
+
     </labels>
-</CustomLabels>
->>>>>>> appointmentForms
+</CustomLabels> 

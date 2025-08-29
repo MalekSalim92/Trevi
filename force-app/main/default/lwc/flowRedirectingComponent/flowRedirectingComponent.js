@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import { LightningElement} from 'lwc';
-import getRedirectUrl from '@salesforce/apex/ShopifyPaymentService.getRedirectUrl';
-
-export default class FlowRedirectingComponent extends LightningElement {
-       
-    
-    async connectedCallback() {
-        console.log('Redirecting main window...');
-        try {
-            const redirectUrl = await getRedirectUrl();
-=======
 import { LightningElement,api} from 'lwc';
 import getRedirectUrl from '@salesforce/apex/ShopifyPaymentService.getRedirectUrl';
 
@@ -23,7 +11,6 @@ export default class FlowRedirectingComponent extends LightningElement {
             console.log('urlRedirection...',this.urlRedirection);
 
             const redirectUrl = await getRedirectUrl({ urlRedirectionName: this.urlRedirection });
->>>>>>> shopify
             console.log('Retrieved redirect URL:', redirectUrl);
             
             if (redirectUrl) {
