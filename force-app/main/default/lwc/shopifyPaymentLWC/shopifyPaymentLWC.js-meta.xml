@@ -5,15 +5,19 @@
 
     <masterLabel>Shopify Payment</masterLabel>
     <description>Polls for Shopify payment URL and opens payment popup or shows status</description>
-    
+
     <targets>
         <target>lightning__FlowScreen</target>
         <target>lightning__RecordAction</target>
     </targets>
-    
+
     <targetConfigs>
         <targetConfig targets="lightning__FlowScreen">
-            <property name="paymentUrl" type="String" label="Payment Url" description="Shopify Payment Url" />
-         </targetConfig>
-</targetConfigs>
+            <property name="paymentUrl" type="String" label="Payment url"
+                description="Shopify Payment url" />
+            <property name="redirectionUrl" type="String" label="Redirection URL"
+                description="Redirection url api name stored as custom metadata types" />
+
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

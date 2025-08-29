@@ -2,19 +2,20 @@
  * ShopifyPaymentService
  *
  * Responsible for handling Shopify payment requests from Salesforce.
- * Provides invocable methods for Flow/Process Builder and makes async
+ * Provides invocable methods for Flow  and makes async
  * callouts to Shopify API. Updates WorkOrderLineItem/Order records with 
- * payment URLs and pending status.
+ * payment URLs and pending status in bulk.
  *
  * Author: Malek Brachemi
  * Date: 2025-08-18
+ * Modified for Bulkification: 2025-08-28
  */
 public without sharing class ShopifyPaymentService {
 
     /**
      * PaymentRequest
      *
-     * Wrapper class to receive inputs from Flow or Process Builder
+     * Wrapper class to receive inputs from Flow  
      */
     public class PaymentRequest {
         @InvocableVariable(label='Order ID' description='ID of the Order')
@@ -37,186 +38,236 @@ public without sharing class ShopifyPaymentService {
         @AuraEnabled public String hasPaymentPending;
         @AuraEnabled public Boolean success;
         @AuraEnabled public String errorMessage;
+        @AuraEnabled public String recordId; // Added to track record ID
         
-        public PaymentResult(String url, String pending) {
+        public PaymentResult(String url, String pending, String recordId) {
             this.paymentUrl = url;
             this.hasPaymentPending = pending;
             this.success = true;
             this.errorMessage = null;
+            this.recordId = recordId;
         }
         
-        public PaymentResult(String error) {
+        public PaymentResult(String error, String recordId) {
             this.success = false;
             this.errorMessage = error;
             this.paymentUrl = null;
             this.hasPaymentPending = '';
+            this.recordId = recordId;
         }
     }
 
     /**
      * makePayment (Async version)
      *
-     * Invocable method callable from Flow or Process Builder
+     * Invocable method callable from Flow
      * @param requests List of PaymentRequest objects
-     * @throws AuraHandledException if input is missing or callout fails
+     * @throws AuraHandledException if input is missing
      */
-    @InvocableMethod(label='Shopify Payment (Async)' description='Method to process Shopify payment asynchronously')
+    @InvocableMethod(label='Shopify Payment (Async)' description='Method to process Shopify payments asynchronously in bulk')
     public static void makePayment(List<PaymentRequest> requests) {
-        if (requests == null || requests.isEmpty() || String.isBlank(requests[0].woliId) || String.isBlank(requests[0].contactId)) {
-            throw new AuraHandledException('(WOLI ID + Contact ID) must be provided.');
+        if (requests == null || requests.isEmpty()) {
+            throw new AuraHandledException('At least one PaymentRequest must be provided.');
         }
 
-        // Safe null checks for Apex
-        String contactId = (requests[0] != null) ? requests[0].contactId : null;
-        String woliId = (requests[0] != null) ? requests[0].woliId : null;
- 
-        try {
-            // Call future method for async callout
-            makeCalloutAsync(woliId, contactId);
-        } catch (Exception e) {
-            System.debug('Error initiating payment: ' + e.getMessage());
-            throw new AuraHandledException('Failed to initiate payment process: ' + e.getMessage());
+        // Validate inputs
+        List<PaymentRequest> validRequests = new List<PaymentRequest>();
+        for (PaymentRequest req : requests) {
+            if (String.isBlank(req.woliId) || String.isBlank(req.contactId)) {
+                System.debug('Invalid request: WOLI ID or Contact ID missing for ' + req);
+                continue; // Skip invalid requests
+            }
+            validRequests.add(req);
         }
+
+        if (validRequests.isEmpty()) {
+            throw new AuraHandledException('No valid PaymentRequests provided.');
+        }
+
+        // Enqueue Queueable job for async processing
+        System.enqueueJob(new ShopifyPaymentQueueable(validRequests));
     }
 
     /**
      * makePaymentSync
      *
-     * Synchronous method for immediate response (e.g., from LWC or Aura)
-     * @param orderId Order Id (optional)
-     * @param woliId WorkOrderLineItem Id (optional)
-     * @param contactId Contact Id (optional)
-     * @return PaymentResult with payment URL and status
+     * Synchronous method for immediate response from LWC (flow and button click payments)
+     * @param orderIds List of Order IDs
+     * @return List of PaymentResult
      */
     @AuraEnabled
-    public static PaymentResult makePaymentSync(String orderId) {
-        if (String.isBlank(orderId)) {
-            return new PaymentResult('Order ID must be provided.');
+    public static List<PaymentResult> makePaymentSync(List<String> orderIds) {
+        if (orderIds == null || orderIds.isEmpty()) {
+            return new List<PaymentResult>{ new PaymentResult('Order IDs must be provided.', null) };
         }
 
         try {
-            return processPayment(orderId, null, null);
+            return processPayments(orderIds, null, null);
         } catch (Exception e) {
             System.debug('Sync payment failed. Error: ' + e.getMessage());
-            return new PaymentResult('Failed to process payment: ' + e.getMessage());
+            return new List<PaymentResult>{ new PaymentResult('Failed to process payments: ' + e.getMessage(), null) };
         }
     }
 
     /**
-     * makeCalloutAsync (Future method)
-     *
-     * Future method to perform API callout asynchronously
-     * @param orderId Order Id (optional)
-     * @param woliId WorkOrderLineItem Id (optional)
-     * @param contactId Contact Id (optional)
+     * Queueable class for async processing
      */
-    @future(callout=true)
-    private static void makeCalloutAsync(Id woliId, Id contactId) {
-        try {
-            PaymentResult result = processPayment(null, woliId, contactId);
-            
-            if (result.success) {
-                System.debug('Async payment completed successfully for WOLI: ' + woliId);
-            } else {
-                System.debug('Async payment failed for WOLI: ' + woliId + '. Error: ' + result.errorMessage);
+    public class ShopifyPaymentQueueable implements Queueable, Database.AllowsCallouts {
+        private List<PaymentRequest> requests;
+
+        public ShopifyPaymentQueueable(List<PaymentRequest> requests) {
+            this.requests = requests;
+        }
+
+        public void execute(QueueableContext context) {
+            List<String> woliIds = new List<String>();
+            List<String> contactIds = new List<String>();
+            for (PaymentRequest req : requests) {
+                woliIds.add(req.woliId);
+                contactIds.add(req.contactId);
             }
-        } catch (Exception e) {
-            System.debug('Async payment failed for WOLI: ' + woliId + '. Error: ' + e.getMessage());
+            processPayments(null, woliIds, contactIds);
         }
     }
 
     /**
-     * processPayment (Core logic)
+     * processPayments (Core logic)
      *
      * Shared logic for both sync and async payment processing
-     * @param orderId Order Id (optional)
-     * @param woliId WorkOrderLineItem Id (optional)  
-     * @param contactId Contact Id (optional)
-     * @return PaymentResult
+     * @param orderIds List of Order IDs (optional)
+     * @param woliIds List of WorkOrderLineItem IDs (optional)  
+     * @param contactIds List of Contact IDs (optional)
+     * @return List<PaymentResult>
      */
-    private static PaymentResult processPayment(String orderId, String woliId, String contactId) {
-       
-        WorkOrderLineItem woli = null;  
+    private static List<PaymentResult> processPayments(List<String> orderIds, List<String> woliIds, List<String> contactIds) {
+        List<PaymentResult> results = new List<PaymentResult>();
+        Map<Id, WorkOrderLineItem> wolisToUpdate = new Map<Id, WorkOrderLineItem>();
+        Map<Id, Order> ordersToUpdate = new Map<Id, Order>();
 
         try {
-            // Get required records using helper methods
-            woli = getWorkOrderLineItemRecord(woliId);
-            Id orderIdToUse = String.isNotBlank(orderId) ? orderId : woli?.OrderId;
+            // Fetch records in bulk
+            Map<Id, WorkOrderLineItem> woliMap = getWorkOrderLineItems(woliIds);
+            Map<Id, Order> orderMap = getOrders(orderIds, woliMap);
+            Map<Id, Contact> contactMap = getContacts(contactIds);
 
-            Order order = getOrderRecord(orderIdToUse);
-            Contact con = getContactRecord(contactId);
+            // Process each request
+            for (Integer i = 0; i < (woliIds != null ? woliIds.size() : orderIds.size()); i++) {
+                String recordId = woliIds != null ? woliIds[i] : orderIds[i];
+                String contactId = woliIds != null ? contactIds[i] : null;
 
-            // Perform the Shopify API callout
-            ShopifyResponseWrapper response = makeCallout(order, woli, con);
+                WorkOrderLineItem woli = woliIds != null ? woliMap.get(recordId) : null;
+                Id orderIdToUse = woliIds != null ? woli?.OrderId : recordId;
+                Order order = orderMap.get(orderIdToUse);
+                Contact con = contactId != null ? contactMap.get(contactId) : null;
 
-            // Update WOLI with URL and pending status
-            if (woli != null) {
-                woli.Shopify_Payment_url__c = response.url;
-                woli.Shopify_Payment_Pending__c = response.has_payment_request_pending;
-                update woli;
-            } else {
-                order.Shopify_Payment_url__c = response.url;
-                update order;
+                if ((woliIds != null && woli == null) || order == null || (contactId != null && con == null)) {
+                    results.add(new PaymentResult('Missing required record data for ID: ' + recordId, recordId));
+                    continue;
+                }
+
+                // Perform Shopify API callout
+                ShopifyResponseWrapper response;
+                try {
+                    response = makeCallout(order, woli, con);
+                } catch (Exception e) {
+                    results.add(new PaymentResult('Payment processing failed for ID ' + recordId + ': ' + e.getMessage(), recordId));
+                    if (woli != null) {
+                        woli.Payment_Launched__c = false;
+                        wolisToUpdate.put(woli.Id, woli);
+                    }
+                    continue;
+                }
+
+                // Update records
+                if (woli != null) {
+                    woli.Shopify_Payment_url__c = response.url;
+                    woli.Shopify_Payment_Pending__c = response.has_payment_request_pending;
+                    wolisToUpdate.put(woli.Id, woli);
+                } else {
+                    order.Shopify_Payment_url__c = response.url;
+                    ordersToUpdate.put(order.Id, order);
+                }
+
+                results.add(new PaymentResult(response.url, response.has_payment_request_pending, recordId));
             }
 
-            return new PaymentResult(response.url, response.has_payment_request_pending);
-            
+            // Perform bulk DML updates
+            if (!wolisToUpdate.isEmpty()) {
+                update wolisToUpdate.values();
+            }
+            if (!ordersToUpdate.isEmpty()) {
+                update ordersToUpdate.values();
+            }
+
         } catch (Exception e) {
-            if (woli != null) {
-                woli.Payment_Launched__c = false;
-                update woli;
-            }
-
-            return new PaymentResult('Payment processing failed: ' + e.getMessage());
+            System.debug('Bulk payment processing failed: ' + e.getMessage());
+            results.add(new PaymentResult('Bulk payment processing failed: ' + e.getMessage(), null));
         }
+
+        return results;
     }
 
     /**
-     * Helper method to get Order record
+     * Helper method to get Order records in bulk
      */
-    private static Order getOrderRecord(String orderId) {
-        if (String.isBlank(orderId)) return null;
-        return [
+    private static Map<Id, Order> getOrders(List<String> orderIds, Map<Id, WorkOrderLineItem> woliMap) {
+        Set<Id> orderIdSet = new Set<Id>();
+        if (orderIds != null) {
+            orderIdSet.addAll((List<Id>)orderIds);
+        }
+        if (woliMap != null) {
+            for (WorkOrderLineItem woli : woliMap.values()) {
+                if (woli.OrderId != null) {
+                    orderIdSet.add(woli.OrderId);
+                }
+            }
+        }
+        if (orderIdSet.isEmpty()) {
+            return new Map<Id, Order>();
+        }
+
+        return new Map<Id, Order>([
             SELECT Id, Order_Number__c, AccountId, Status,
                    BillingStreet, BillingCity, BillingPostalCode,
                    BillingStateCode, BillingCountryCode, TotalAmount,
-                   Account.Sage_ID__c, Account.Email__c,GST__c,QST__c,HST__c,
+                   Account.Sage_ID__c, Account.Email__c, GST__c, QST__c, HST__c,
                    Account.BillingStreet, Account.BillingCity,
                    Account.BillingPostalCode, Account.BillingStateCode,
-                   Account.BillingCountryCode, Account.Phone,Account.Cellphone__c
+                   Account.BillingCountryCode, Account.Phone, Account.Cellphone__c
             FROM Order
-            WHERE Id = :orderId
-            LIMIT 1
-        ];
+            WHERE Id IN :orderIdSet
+        ]);
     }
 
     /**
-     * Helper method to get WorkOrderLineItem record
+     * Helper method to get WorkOrderLineItem records in bulk
      */
-    private static WorkOrderLineItem getWorkOrderLineItemRecord(String woliId) {
-        if (String.isBlank(woliId)) return null;
-        
-        return [
+    private static Map<Id, WorkOrderLineItem> getWorkOrderLineItems(List<String> woliIds) {
+        if (woliIds == null || woliIds.isEmpty()) {
+            return new Map<Id, WorkOrderLineItem>();
+        }
+
+        return new Map<Id, WorkOrderLineItem>([
             SELECT Id, OrderId, Status, Outstanding_Amount_Before_Tax__c,
                    GST__c, QST__c, HST__c, Shopify_Payment_url__c
-             FROM WorkOrderLineItem
-            WHERE Id = :woliId
-            LIMIT 1
-        ];
+            FROM WorkOrderLineItem
+            WHERE Id IN :woliIds
+        ]);
     }
 
     /**
-     * Helper method to get Contact record
+     * Helper method to get Contact records in bulk
      */
-    private static Contact getContactRecord(String contactId) {
-        if (String.isBlank(contactId)) return null;
-        
-        return [
+    private static Map<Id, Contact> getContacts(List<String> contactIds) {
+        if (contactIds == null || contactIds.isEmpty()) {
+            return new Map<Id, Contact>();
+        }
+
+        return new Map<Id, Contact>([
             SELECT Id, FirstName, LastName, Email, MobilePhone, HomePhone
             FROM Contact
-            WHERE Id = :contactId
-            LIMIT 1
-        ];
+            WHERE Id IN :contactIds
+        ]);
     }
 
     /**
@@ -266,7 +317,6 @@ public without sharing class ShopifyPaymentService {
      * @return ShopifyApiWrapper
      */
     private static ShopifyApiWrapper buildWrapper(Order order, WorkOrderLineItem woli, Contact con) {
-        
         String phoneNumber;
 
         if (woli != null) {
@@ -338,7 +388,7 @@ public without sharing class ShopifyPaymentService {
      * @throws CustomExceptions.OrderNotFoundException if not found
      */
     @AuraEnabled
-    public static Order getOrderDetails(String recordId){
+    public static Order getOrderDetails(String recordId) {
         if (String.isBlank(recordId)) {
             throw new CustomExceptions.OrderNotFoundException('Record ID is required');
         }
@@ -353,14 +403,14 @@ public without sharing class ShopifyPaymentService {
      */
     @AuraEnabled(cacheable=true)
     public static String getRedirectUrl(String urlRedirectionName) {
-         try {
+        try {
             URL_Configuration__mdt urlConfig = [
                 SELECT DeveloperName, Redirect_URL__c
                 FROM URL_Configuration__mdt 
                 WHERE DeveloperName = :urlRedirectionName 
                 LIMIT 1
             ];
-             return urlConfig.Redirect_URL__c;
+            return urlConfig.Redirect_URL__c;
         } catch (Exception e) {
             System.debug('Error retrieving URL from custom metadata: ' + e.getMessage());
             return null;
