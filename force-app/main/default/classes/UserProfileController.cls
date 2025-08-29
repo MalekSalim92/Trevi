@@ -12,13 +12,11 @@ public without sharing class UserProfileController {
     @AuraEnabled 
     public static void saveUserInfo(User user, Contact contact, Account account) {
         try { 
-            // First, update non-setup objects (Account, Contact)
-            update contact; 
-            update account; 
+            // First, update setup object (User) synchronously
+            update user; 
             
-            // Then, in a separate context, update setup objects (User)
-            // Use a future method to avoid MIXED_DML_OPERATION
-            updateUserAsync(user.Id, JSON.serialize(user));
+            // Then, update non-setup objects (Account, Contact) asynchronously
+            updateContactAccountAsync(JSON.serialize(contact), JSON.serialize(account));
                      
         } catch (Exception e) { 
             throw new AuraHandledException(e.getMessage()); 
@@ -26,16 +24,17 @@ public without sharing class UserProfileController {
     } 
     
     @future
-    public static void updateUserAsync(Id userId, String userJson) {
+    public static void updateContactAccountAsync(String contactJson, String accountJson) {
         try {
-            // Deserialize the user object
-            User userToUpdate = (User) JSON.deserialize(userJson, User.class);
+            // Deserialize objects
+            Contact contactToUpdate = (Contact) JSON.deserialize(contactJson, Contact.class);
+            Account accountToUpdate = (Account) JSON.deserialize(accountJson, Account.class);
             
-             userToUpdate.Id = userId;
+            update contactToUpdate;
+            update accountToUpdate;
             
-            update userToUpdate;
         } catch (Exception e) {
-            System.debug('Error updating user: ' + e.getMessage());
+            System.debug('Error updating contact/account: ' + e.getMessage());
         }
     }
 }
